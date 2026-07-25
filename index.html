@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catalogazione Vinili - 3D & Liquid Glass</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Sfondo LightPillar (Fullscreen) -->
+  <div id="light-pillar-container" class="light-pillar-container"></div>
+
+  <!-- Riquadro VETRO LIQUIDO -->
+  <div id="my-liquid-glass" class="center-glass-panel">
+    <div class="glass-surface__content">
+      
+      <!-- Contenuto Dinamico (Immagine + Scheda Tecnica) -->
+      <div id="center-content" class="center-content">
+        <img id="center-image" src="" alt="Cover Vinile">
+        <p id="center-caption"></p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Ruota di Selezione (Lato Destro). Verrà popolata dinamicamente dal JS -->
+  <div id="option-wheel" class="wheel-container"></div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
