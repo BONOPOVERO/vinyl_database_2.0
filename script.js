@@ -12,8 +12,8 @@ function createGlassSurface(containerId, config = {}) {
   if (!container) return;
 
   const cfg = {
-    width: '450px',         
-    height: '620px',        
+    width: 85 + 'vh',         
+    height: 85 + 'vh',        
     borderRadius: 24,       
     borderWidth: 0.07,
     brightness: 60,
