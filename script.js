@@ -115,8 +115,8 @@ function createGlassSurface(containerId, config = {}) {
 }
 
 createGlassSurface('my-liquid-glass', {
-  width: '450px',
-  height: '620px',
+  width: 85 + 'vh',
+  height: 90 + 'vh',
   borderRadius: 24,
   distortionScale: -120, 
   displace: 5
