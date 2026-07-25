@@ -33,6 +33,9 @@ body {
     color 200ms ease, 
     opacity 400ms ease, 
     filter 200ms ease;
+ touch-action: none; 
+  -webkit-user-select: none;
+  user-select: none;
   
   /* IMPORTANTE: disabilita il mouse sullo sfondo del contenitore */
   pointer-events: none; 
