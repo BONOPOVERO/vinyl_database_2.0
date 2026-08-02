@@ -1,0 +1,1127 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #08070d;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  color: #f3f4f6;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ==========================================
+   SFONDO LIGHTPILLAR
+   ========================================== */
+.light-pillar-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  mix-blend-mode: screen; 
+  pointer-events: none;
+}
+
+.light-pillar-container canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* ==========================================
+   HEADER PRINCIPALE & BARRA STRUMENTI
+   ========================================== */
+.app-header {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: min(650px, 94vw);
+  background: rgba(18, 16, 28, 0.82);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  padding: 8px 14px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.5);
+}
+
+.top-nav-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 8px;
+}
+
+.action-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.filter-btn-pill {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+
+.filter-btn-pill:hover, .filter-btn-pill:active {
+  background: rgba(255, 159, 252, 0.2);
+  border-color: rgba(255, 159, 252, 0.4);
+}
+
+.icon-circle-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.icon-circle-btn.active {
+  background: rgba(255, 159, 252, 0.3);
+  border-color: rgba(255, 159, 252, 0.6);
+  color: #ff9ffc;
+  box-shadow: 0 0 12px rgba(255, 159, 252, 0.4);
+}
+
+.icon-circle-btn:active {
+  transform: scale(0.92);
+}
+
+.nav-cluster {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 3px 8px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-arrow-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+
+.mobile-album-counter {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+.toggle-list-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* BARRA DI RICERCA LIVE */
+.search-bar-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.search-bar-wrapper.hidden {
+  display: none;
+}
+
+.search-bar-wrapper input {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 159, 252, 0.3);
+  border-radius: 12px;
+  padding: 8px 36px 8px 12px;
+  color: #fff;
+  font-size: 0.88rem;
+  font-family: inherit;
+  outline: none;
+}
+
+.clear-input-btn {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* CATEGORY CHIPS DENTRO IL MODAL FILTRI */
+.modal-category-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.chip-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: #cbd5e1;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.chip-btn.active {
+  background: linear-gradient(135deg, rgba(255, 159, 252, 0.35), rgba(82, 39, 255, 0.4));
+  border-color: rgba(255, 159, 252, 0.6);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(255, 159, 252, 0.25);
+}
+
+/* BANNER VALORE COLLEZIONE */
+.kpi-banner-gold {
+  background: linear-gradient(135deg, rgba(82, 39, 255, 0.45), rgba(255, 159, 252, 0.35));
+  border: 1px solid rgba(255, 159, 252, 0.55);
+  border-radius: 20px;
+  padding: 16px;
+  text-align: center;
+  margin-bottom: 1rem;
+  box-shadow: 0 8px 25px rgba(255, 159, 252, 0.25);
+}
+
+.kpi-banner-title {
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #ff9ffc;
+  text-transform: uppercase;
+}
+
+.kpi-banner-amount {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 4px 0;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+}
+
+.kpi-banner-sub {
+  font-size: 0.76rem;
+  color: #cbd5e1;
+}
+
+/* DISCOGS SEARCH BOX */
+.discogs-search-box {
+  background: rgba(82, 39, 255, 0.12);
+  border: 1px solid rgba(255, 159, 252, 0.3);
+  padding: 12px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.discogs-results-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 180px;
+  overflow-y: auto;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  padding: 6px;
+}
+
+.discogs-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.discogs-item:hover {
+  background: rgba(255, 159, 252, 0.2);
+}
+
+.discogs-item img {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.discogs-item-info {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.78rem;
+}
+
+.discogs-item-title {
+  font-weight: 700;
+  color: #fff;
+}
+
+.discogs-item-sub {
+  color: #cbd5e1;
+}
+
+/* STATISTICHE DASHBOARD */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.kpi-card {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 12px;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.kpi-value {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #ff9ffc;
+}
+
+.kpi-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.stat-bar-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.stat-bar-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-bar-info {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.stat-bar-track {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.stat-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #5227ff, #ff9ffc);
+  border-radius: 10px;
+  transition: width 0.5s ease;
+}
+
+/* ==========================================
+   PULSANTE AGGIUNGI / SCANSIONA IN BASSO (FAB)
+   ========================================== */
+.fab-bottom-btn {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 15;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border-radius: 40px;
+  background: linear-gradient(135deg, #ff9ffc, #5227ff);
+  color: #ffffff;
+  font-size: 0.92rem;
+  font-weight: 700;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 12px 30px rgba(82, 39, 255, 0.5),
+    0 4px 15px rgba(255, 159, 252, 0.4);
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.fab-bottom-btn:hover {
+  transform: translateX(-50%) scale(1.04);
+}
+
+.fab-bottom-btn:active {
+  transform: translateX(-50%) scale(0.95);
+}
+
+/* ==========================================
+   RIQUADRO VETRO LIQUIDO CENTRALE (VETRO TRASPARENTE CRISTALLINO)
+   ========================================== */
+.center-glass-panel {
+  position: fixed;
+  top: 52%;
+  left: 32%;
+  transform: translate(-50%, -50%);
+  width: min(580px, 92vw);
+  height: min(710px, 74vh);
+  z-index: 2;
+  will-change: transform;
+  transition: all 0.3s ease;
+}
+
+.glass-surface {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border-radius: 28px;
+  background: 
+    linear-gradient(135deg, 
+      rgba(255, 255, 255, 0.15) 0%, 
+      rgba(255, 255, 255, 0.01) 40%, 
+      rgba(255, 255, 255, 0.05) 70%, 
+      rgba(255, 255, 255, 0.01) 100%),
+    rgba(15, 12, 28, 0.22);
+  backdrop-filter: blur(4px) saturate(180%) brightness(1.15);
+  -webkit-backdrop-filter: blur(4px) saturate(180%) brightness(1.15);
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  box-shadow: 
+    inset 0 1.5px 1px 0 rgba(255, 255, 255, 0.9),
+    inset 1.5px 0 1px 0 rgba(255, 255, 255, 0.55),
+    inset -1px 0 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 -1.5px 2px 0 rgba(255, 255, 255, 0.2),
+    0 25px 70px rgba(0, 0, 0, 0.75),
+    0 0 30px rgba(255, 159, 252, 0.18);
+}
+
+.glass-surface::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(130deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.06) 28%, transparent 55%);
+  border-radius: 28px 28px 0 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.glass-surface__content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  border-radius: inherit;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.center-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  padding-right: 4px;
+  padding-bottom: 10px;
+  transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity;
+}
+
+.center-content::-webkit-scrollbar {
+  width: 5px;
+}
+.center-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 159, 252, 0.35);
+  border-radius: 10px;
+}
+
+.fade-out {
+  opacity: 0;
+}
+
+/* HERO VINILE INTERATTIVO */
+.vinyl-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 1.2rem;
+  position: relative;
+}
+
+.album-cover-wrapper {
+  position: relative;
+  width: 165px;
+  height: 165px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  perspective: 1000px;
+}
+
+.album-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  position: relative;
+  z-index: 2;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.album-cover-wrapper:hover .album-cover-img {
+  transform: scale(1.03);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.8);
+}
+
+.vinyl-disc {
+  position: absolute;
+  top: 5px;
+  right: -25px;
+  width: 155px;
+  height: 155px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #111 20%, #222 25%, #050505 40%, #1a1a1a 41%, #0a0a0a 60%, #1f1f1f 61%, #000 70%);
+  border: 2px solid #333;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  z-index: 1;
+  animation: spinVinyl 12s linear infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+/* EFFETTO GIRADISCHI INTERATTIVO: IL VINILE ESCE DALLA CUSTODIA QUANDO IN RIPRODUZIONE */
+.album-cover-wrapper.playing .vinyl-disc {
+  right: -75px;
+  animation: spinVinyl 3.5s linear infinite;
+  box-shadow: 
+    0 16px 40px rgba(0, 0, 0, 0.8),
+    0 0 20px rgba(255, 159, 252, 0.5);
+}
+
+.album-cover-wrapper.playing .album-cover-img {
+  transform: rotateY(-10deg) scale(1.02);
+}
+
+.play-hint-badge {
+  font-size: 0.72rem;
+  color: #ff9ffc;
+  font-weight: 600;
+  margin-top: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  opacity: 0.85;
+}
+
+.pwa-btn {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35);
+}
+
+.vinyl-disc::after {
+  content: '';
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 15%, #ff9ffc 35%, #5227ff 70%);
+  border: 3px solid #111;
+}
+
+@keyframes spinVinyl {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.album-title-main {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.25;
+  margin-bottom: 4px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+}
+
+.artist-name-sub {
+  font-size: 1.02rem;
+  font-weight: 600;
+  color: #ff9ffc;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.genre-year-badge {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.badge {
+  background: rgba(10, 8, 20, 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+.badge-purple {
+  background: rgba(82, 39, 255, 0.35);
+  border-color: rgba(82, 39, 255, 0.5);
+  color: #e0e7ff;
+}
+
+.badge-pink {
+  background: rgba(255, 159, 252, 0.3);
+  border-color: rgba(255, 159, 252, 0.5);
+  color: #fbcfe8;
+}
+
+/* SPECS & TRACKS */
+.section-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #e2e8f0;
+  margin: 1.2rem 0 0.6rem 0;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+.specs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 8px;
+}
+
+.spec-card {
+  background: rgba(8, 6, 18, 0.55);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 8px 10px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+}
+
+.spec-label {
+  font-size: 0.7rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.spec-value {
+  font-size: 0.85rem;
+  color: #f8fafc;
+  font-weight: 600;
+}
+
+.tracklist-container {
+  background: rgba(8, 6, 18, 0.55);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.track-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  font-size: 0.84rem;
+}
+
+.track-pos {
+  font-weight: 700;
+  color: #ff9ffc;
+  min-width: 28px;
+}
+
+.track-title {
+  flex-grow: 1;
+  color: #f1f5f9;
+  font-weight: 500;
+}
+
+.track-duration {
+  color: #94a3b8;
+  font-size: 0.76rem;
+}
+
+.gallery-container {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.gallery-thumb {
+  width: 85px;
+  height: 85px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* MODALI */
+.app-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(12px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  padding: 16px;
+}
+
+.app-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  width: min(500px, 94vw);
+  max-height: 88vh;
+  background: rgba(22, 19, 36, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.modal-content.large-modal {
+  width: min(620px, 94vw);
+}
+
+.modal-header {
+  padding: 14px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: #94a3b8;
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 16px 20px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.form-group label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  padding: 8px 12px;
+  color: #fff;
+  font-size: 0.88rem;
+  font-family: inherit;
+  outline: none;
+}
+
+.input-range-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.input-range-row input {
+  flex: 1;
+}
+
+.scan-photo-box {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  border: 2px dashed rgba(255, 159, 252, 0.3);
+  padding: 12px;
+  border-radius: 16px;
+}
+
+.photo-preview-container {
+  width: 140px;
+  height: 140px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.05);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.scan-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 0.72rem;
+}
+
+.photo-preview-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hidden-file-input {
+  display: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #ff9ffc, #5227ff);
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-secondary {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.modal-footer {
+  padding: 12px 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.photo-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.photo-modal.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.photo-modal img {
+  max-width: 90vw;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 12px;
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 2.5rem;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* RUOTA LATO DESTRO (TRASPARENTE 3D CURVO) */
+.wheel-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 42%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  padding-right: min(60px, 6vw); 
+  perspective: 1000px;
+  z-index: 5;
+  background: transparent;
+  pointer-events: none;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+}
+
+.wheel-item {
+  position: absolute;
+  font-size: 1.55rem; 
+  font-weight: 500;
+  line-height: 1.2;
+  white-space: nowrap;
+  max-width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transform-origin: right center;
+  pointer-events: auto;
+  cursor: pointer;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  will-change: transform, opacity;
+  opacity: 0.3;
+  transition: color 150ms ease, opacity 150ms ease, text-shadow 150ms ease;
+}
+
+.mobile-overlay {
+  display: none;
+}
+
+/* TOAST NOTIFICATIONS */
+.toast-container {
+  position: fixed;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 150;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  pointer-events: none;
+}
+
+.toast {
+  background: rgba(18, 16, 28, 0.92);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 159, 252, 0.4);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+/* SCANNER CODICE A BARRE CAMERAFEED */
+.video-scanner-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  height: 220px;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 159, 252, 0.5);
+  background: #000;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+.video-scanner-wrapper video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.scan-laser-line {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  width: 90%;
+  height: 3px;
+  background: #ff9ffc;
+  box-shadow: 0 0 12px #ff9ffc, 0 0 20px #ff9ffc;
+  animation: laserScan 2s ease-in-out infinite alternate;
+}
+
+@keyframes laserScan {
+  0% { top: 15%; }
+  100% { top: 85%; }
+}
+
+/* RESPONSIVE DESIGN FOR MOBILE */
+@media (max-width: 768px) {
+  .center-glass-panel {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 94vw;
+    height: 74vh;
+  }
+
+  .fab-bottom-btn {
+    bottom: 16px;
+    padding: 10px 20px;
+    font-size: 0.86rem;
+  }
+
+  .specs-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .wheel-container {
+    width: 85vw;
+    max-width: 340px;
+    background: transparent;
+    padding-right: 20px;
+    align-items: flex-end;
+    transform: translateX(100%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .wheel-container.open {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .wheel-item {
+    font-size: 1.2rem;
+    transform-origin: right center;
+  }
+
+  .mobile-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(3px);
+    z-index: 4;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .mobile-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
