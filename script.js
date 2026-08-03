@@ -2114,18 +2114,64 @@ if (toggleListBtn) toggleListBtn.addEventListener("click", toggleMobileDrawer);
 if (mobileOverlay) mobileOverlay.addEventListener("click", closeMobileDrawer);
 
 let isWheelThrottled = false;
-if (wheelContainer) {
-  wheelContainer.addEventListener("wheel", (e) => {
-  e.preventDefault();
-  if (isWheelThrottled) return;
-  isWheelThrottled = true;
-  if (e.deltaY > 0) selectIndex(selectedIndex + 1);
-  else if (e.deltaY < 0) selectIndex(selectedIndex - 1);
-  setTimeout(() => { isWheelThrottled = false; }, 80);
-}, { passive: false });
-let isWheelThrottled = false;
 
 if (wheelContainer) {
+  // Evento mouse (Scroll Wheel)
+  wheelContainer.addEventListener("wheel", (e) => {
+    e.preventDefault();
+    if (isWheelThrottled) return;
+    isWheelThrottled = true;
+    if (e.deltaY > 0) selectIndex(selectedIndex + 1);
+    else if (e.deltaY < 0) selectIndex(selectedIndex - 1);
+    setTimeout(() => { isWheelThrottled = false; }, 80);
+  }, { passive: false });
+
+  // === Gestione Drag & Swipe Mobile ===
+  let touchStartY = 0;
+  let isSwiping = false;
+
+  // 1. Inizio del tocco
+  wheelContainer.addEventListener('touchstart', (e) => {
+    touchStartY = e.touches[0].clientY;
+    isSwiping = true;
+  }, { passive: true });
+
+  // 2. Trascinamento
+  wheelContainer.addEventListener('touchmove', (e) => {
+    // Se non stiamo facendo swipe, ignora
+    if (!isSwiping) return;
+    
+    // FONDAMENTALE: Blocca lo scroll nativo PRIMA del controllo di throttling!
+    e.preventDefault(); 
+    
+    // Se la ruota è in pausa per l'animazione, fermati qui
+    if (isWheelThrottled) return;
+
+    const touchCurrentY = e.touches[0].clientY;
+    const deltaY = touchStartY - touchCurrentY;
+
+    // Soglia di trascinamento (35px)
+    if (Math.abs(deltaY) > 35) {
+      isWheelThrottled = true;
+      
+      if (deltaY > 0) {
+        selectIndex(selectedIndex + 1); // Drag verso l'alto (prossimo)
+      } else {
+        selectIndex(selectedIndex - 1); // Drag verso il basso (precedente)
+      }
+      
+      // Resetta il punto di partenza
+      touchStartY = touchCurrentY; 
+      
+      setTimeout(() => { isWheelThrottled = false; }, 120); 
+    }
+  }, { passive: false });
+
+  // 3. Fine del tocco
+  wheelContainer.addEventListener('touchend', () => {
+    isSwiping = false;
+  }, { passive: true });
+}
   // Evento mouse esistente
   wheelContainer.addEventListener("wheel", (e) => {
     e.preventDefault();
