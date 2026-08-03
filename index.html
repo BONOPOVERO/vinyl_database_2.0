@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Catalogazione Vinili - Mobile Experience</title>
+  
+  <!-- PWA Manifest & Theme Color -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#5227ff">
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Sfondo LightPillar (Fullscreen) -->
+  <div id="light-pillar-container" class="light-pillar-container"></div>
+
+  <!-- HEADER PRINCIPALE & BARRA STRUMENTI -->
+  <header class="app-header">
+    <div class="top-nav-row">
+      <!-- Bottone Cerca -->
+      <button id="toggle-search-btn" class="icon-circle-btn" aria-label="Cerca Vinili" title="Cerca Vinili">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      </button>
+
+      <!-- Bottone Filtri & Categorie -->
+      <button id="open-filter-btn" class="action-pill-btn filter-btn-pill" aria-label="Filtri e Categorie">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
+        <span>Filtri</span>
+      </button>
+
+      <!-- Bottone Statistiche -->
+      <button id="open-stats-btn" class="icon-circle-btn" aria-label="Statistiche Collezione" title="Statistiche Collezione">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+      </button>
+
+      <!-- Toggle Lista Mobile -->
+      <button id="toggle-list-btn" class="toggle-list-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+        <span>Titoli</span>
+      </button>
+    </div>
+
+    <!-- CAMPO DI RICERCA LIVE -->
+    <div id="search-bar-wrapper" class="search-bar-wrapper hidden">
+      <input type="text" id="search-input" placeholder="Cerca artista, album, genere, etichetta..." autocomplete="off">
+      <button id="clear-search-btn" class="clear-input-btn">&times;</button>
+    </div>
+  </header>
+
+  <!-- RIQUADRO VETRO LIQUIDO CENTRALE -->
+  <main class="center-glass-panel">
+    <div id="my-liquid-glass" class="glass-surface">
+      <div class="glass-surface__content">
+        <article id="center-content" class="center-content">
+          <!-- Generato dinamicamente via JS -->
+        </article>
+      </div>
+    </div>
+  </main>
+
+  <!-- OVERLAY SCURA MOBILE PER LA RUOTA -->
+  <div id="mobile-overlay" class="mobile-overlay"></div>
+
+  <!-- RUOTA SELETTORE TITOLI TRASPARENTE 3D (DESKTOP & MOBILE DRAWER) -->
+  <aside id="option-wheel" class="wheel-container">
+    <!-- Generato dinamicamente via JS -->
+  </aside>
+
+  <!-- MODAL FILTRI & CATEGORIE & ORDINAMENTO -->
+  <div id="filter-modal" class="app-modal" aria-hidden="true">
+    <div class="modal-content glass-card">
+      <div class="modal-header">
+        <h3>Filtri, Categorie & Ordinamento</h3>
+        <button id="close-filter-modal" class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body">
+        
+        <!-- CATEGORIE -->
+        <div class="form-group">
+          <label>Categoria Catalogo</label>
+          <div class="modal-category-chips category-chips">
+            <button type="button" class="chip-btn active" data-category="ALL">Tutti</button>
+            <button type="button" class="chip-btn" data-category="Personale">Personale</button>
+            <button type="button" class="chip-btn" data-category="Wishlist">Wish List</button>
+            <button type="button" class="chip-btn" data-category="Eredità">Eredità</button>
+            <button type="button" class="chip-btn" data-category="Vendita">🏷️ In Vendita / Scambio</button>
+          </div>
+        </div>
+
+        <!-- ORDINAMENTO -->
+        <div class="form-group">
+          <label>Ordinamento Catalogo</label>
+          <select id="sort-select">
+            <option value="DEFAULT">Ordinamento Predefinito (Iniziale)</option>
+            <option value="YEAR_ASC">Anno Uscita (Dal più antico)</option>
+            <option value="YEAR_DESC">Anno Uscita (Dal più recente)</option>
+            <option value="ARTIST_ASC">Artista (A - Z)</option>
+            <option value="ALBUM_ASC">Titolo Album (A - Z)</option>
+            <option value="RATING_DESC">Stato Disco Migliore (10 -> 1)</option>
+          </select>
+        </div>
+
+        <!-- INTERVALLO ANNI -->
+        <div class="form-group">
+          <label>Anno di Uscita</label>
+          <div class="input-range-row">
+            <input type="number" id="filter-year-from" placeholder="Da es. 1970">
+            <span>fino a</span>
+            <input type="number" id="filter-year-to" placeholder="A es. 1990">
+          </div>
+        </div>
+
+        <!-- GENERE -->
+        <div class="form-group">
+          <label>Genere Musicale</label>
+          <select id="filter-genre-select">
+            <option value="">Tutti i Generi</option>
+          </select>
+        </div>
+
+        <!-- BACKUP / ESPORTAZIONE & IMPORTAZIONE -->
+        <div class="form-group" style="margin-top: 10px;">
+          <label>Backup & Gestione Database</label>
+          <div class="input-range-row">
+            <button type="button" id="export-json-btn" class="btn-secondary full-width">📥 Esporta JSON</button>
+            <button type="button" id="export-csv-btn" class="btn-secondary full-width">📊 Esporta CSV</button>
+          </div>
+          <div style="margin-top: 8px;">
+            <input type="file" id="import-json-file" accept=".json" class="hidden-file-input">
+            <button type="button" id="trigger-import-btn" class="btn-secondary full-width">📤 Importa Backup JSON</button>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button id="reset-filters-btn" class="btn-secondary">Reset Filtri</button>
+        <button id="apply-filters-btn" class="btn-primary">Applica Filtri</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL STATISTICHE COLLEZIONE -->
+  <div id="stats-modal" class="app-modal" aria-hidden="true">
+    <div class="modal-content glass-card large-modal">
+      <div class="modal-header">
+        <h3>📊 Statistiche della Collezione</h3>
+        <button id="close-stats-modal" class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body" id="stats-modal-body">
+        <!-- Generato dinamicamente via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL AGGIUNGI / SCANSIONA VINILE (CON DISCOGS LOOKUP) -->
+  <div id="add-vinyl-modal" class="app-modal" aria-hidden="true">
+    <div class="modal-content glass-card large-modal">
+      <div class="modal-header">
+        <h3>📸 Scansiona / Aggiungi Vinile</h3>
+        <button id="close-add-modal" class="modal-close-btn">&times;</button>
+      </div>
+      <form id="add-vinyl-form" class="modal-body scrollable-form">
+        
+        <!-- SEARCH & BARCODE SCANNER BOX -->
+        <div class="discogs-search-box">
+          <label style="font-size: 0.82rem; font-weight: 700; color: #ff9ffc;">🔍 Cerca o Scansiona Codice a Barre / Titolo</label>
+          <div class="input-range-row">
+            <input type="text" id="discogs-query" placeholder="Inserisci Codice a Barre (EAN) o Titolo Album">
+            <button type="button" id="discogs-search-btn" class="btn-primary">Cerca Dati</button>
+          </div>
+          <button type="button" id="start-barcode-scan-btn" class="btn-secondary full-width" style="margin-top: 6px; background: rgba(255, 159, 252, 0.15); border-color: rgba(255, 159, 252, 0.4); font-weight: 700;">
+            📷 Scansiona Codice a Barre con la Fotocamera
+          </button>
+          <div id="discogs-results" class="discogs-results-list hidden"></div>
+        </div>
+
+        <!-- FOTO / CAMERASCANNER -->
+        <div class="scan-photo-box">
+          <div id="photo-preview-container" class="photo-preview-container">
+            <div class="scan-placeholder">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path><circle cx="12" cy="13" r="4"></circle></svg>
+              <span>Scatta Foto o Carica Copertina</span>
+            </div>
+            <img id="photo-preview-img" src="" class="hidden" alt="Anteprima Foto Vinile">
+          </div>
+          <input type="file" id="camera-file-input" accept="image/*" capture="environment" class="hidden-file-input">
+          <button type="button" id="trigger-camera-btn" class="btn-secondary full-width">📷 Apri Fotocamera / Galleria Foto</button>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Titolo Album *</label>
+            <input type="text" id="add-titolo" required placeholder="Es. Abbey Road">
+          </div>
+          <div class="form-group">
+            <label>Artista *</label>
+            <input type="text" id="add-artista" required placeholder="Es. The Beatles">
+          </div>
+          <div class="form-group">
+            <label>Genere</label>
+            <input type="text" id="add-genere" placeholder="Es. Rock / Pop">
+          </div>
+          <div class="form-group">
+            <label>📍 Posizione Fisica (Scaffale / Ripiano)</label>
+            <input type="text" id="add-posizione-fisica" placeholder="Es. Scaffale A - Ripiano 2">
+          </div>
+          <div class="form-group">
+            <label>Stato Catalogo</label>
+            <select id="add-stato-catalogo">
+              <option value="Personale">Personale</option>
+              <option value="Wishlist">Wish List</option>
+              <option value="Eredità">Eredità</option>
+              <option value="In Vendita">🏷️ In Vendita / Scambio</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Valore Stimato / Prezzo (€)</label>
+            <input type="number" id="add-valore-stimato" placeholder="Es. 25" min="0" step="0.5">
+          </div>
+          <div class="form-group">
+            <label>Anno Uscita Originale</label>
+            <input type="number" id="add-anno-uscita" placeholder="Es. 1969">
+          </div>
+          <div class="form-group">
+            <label>Anno Stampa</label>
+            <input type="number" id="add-anno-stampa" placeholder="Es. 1978">
+          </div>
+          <div class="form-group">
+            <label>Etichetta</label>
+            <input type="text" id="add-etichetta" placeholder="Es. Apple Records">
+          </div>
+          <div class="form-group">
+            <label>Numero Catalogo</label>
+            <input type="text" id="add-cat-num" placeholder="Es. PCS 7088">
+          </div>
+          <div class="form-group">
+            <label>Codice Matrice / Barcode</label>
+            <input type="text" id="add-matrice" placeholder="Es. YEX 749-2">
+          </div>
+          <div class="form-group">
+            <label>Velocità & Grammatura</label>
+            <div class="input-range-row">
+              <input type="text" id="add-velocita" placeholder="33 / 45 giri" value="33">
+              <input type="text" id="add-grammatura" placeholder="Es. 180g" value="180g">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Valutazione Disco (1-10)</label>
+            <input type="number" id="add-stato-disco" min="1" max="10" value="8">
+          </div>
+          <div class="form-group">
+            <label>Valutazione Copertina (1-10)</label>
+            <input type="number" id="add-stato-copertina" min="1" max="10" value="8">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Note / Dettagli Stato</label>
+          <textarea id="add-note" rows="2" placeholder="Note su stato vinile, bollini, codice a barre..."></textarea>
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn-primary full-width">Salva Vinile nel Database</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL MODIFICA VINILE -->
+  <div id="edit-vinyl-modal" class="app-modal" aria-hidden="true">
+    <div class="modal-content glass-card">
+      <div class="modal-header">
+        <h3>✏️ Modifica Scheda Vinile</h3>
+        <button id="close-edit-modal-btn" class="modal-close-btn">&times;</button>
+      </div>
+      <form id="edit-vinyl-form" class="modal-body scrollable-form">
+        <input type="hidden" id="edit-vinyl-id">
+        
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Titolo Album *</label>
+            <input type="text" id="edit-titolo" required>
+          </div>
+          <div class="form-group">
+            <label>Artista *</label>
+            <input type="text" id="edit-artista" required>
+          </div>
+          <div class="form-group">
+            <label>Genere</label>
+            <input type="text" id="edit-genere">
+          </div>
+          <div class="form-group">
+            <label>📍 Posizione Fisica (Scaffale / Ripiano)</label>
+            <input type="text" id="edit-posizione-fisica">
+          </div>
+          <div class="form-group">
+            <label>Stato Catalogo</label>
+            <select id="edit-stato-catalogo">
+              <option value="Personale">Personale</option>
+              <option value="Wishlist">Wish List</option>
+              <option value="Eredità">Eredità</option>
+              <option value="In Vendita">🏷️ In Vendita / Scambio</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Valore Stimato (€)</label>
+            <input type="number" id="edit-valore-stimato" min="0" step="0.5">
+          </div>
+          <div class="form-group">
+            <label>Anno Uscita Originale</label>
+            <input type="number" id="edit-anno-uscita">
+          </div>
+          <div class="form-group">
+            <label>Anno Stampa</label>
+            <input type="number" id="edit-anno-stampa">
+          </div>
+          <div class="form-group">
+            <label>Etichetta</label>
+            <input type="text" id="edit-etichetta">
+          </div>
+          <div class="form-group">
+            <label>Numero Catalogo</label>
+            <input type="text" id="edit-cat-num">
+          </div>
+          <div class="form-group">
+            <label>Codice Matrice / Barcode</label>
+            <input type="text" id="edit-matrice">
+          </div>
+          <div class="form-group">
+            <label>Velocità & Grammatura</label>
+            <div class="input-range-row">
+              <input type="text" id="edit-velocita" placeholder="33 / 45 giri">
+              <input type="text" id="edit-grammatura" placeholder="180g">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Valutazione Disco (1-10)</label>
+            <input type="number" id="edit-stato-disco" min="1" max="10">
+          </div>
+          <div class="form-group">
+            <label>Valutazione Copertina (1-10)</label>
+            <input type="number" id="edit-stato-copertina" min="1" max="10">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Note / Dettagli Stato</label>
+          <textarea id="edit-note" rows="2"></textarea>
+        </div>
+
+        <div class="modal-footer" style="display: flex; gap: 8px;">
+          <button type="button" id="delete-vinyl-from-edit-btn" class="btn-secondary" style="background: rgba(239, 68, 68, 0.25); border-color: rgba(239, 68, 68, 0.6); color: #f87171;">🗑️ Elimina</button>
+          <button type="submit" class="btn-primary" style="flex: 1;">💾 Salva Modifiche</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+
+  <!-- Modal Lightbox Foto Album -->
+  <div id="photo-modal" class="photo-modal" aria-hidden="true">
+    <button id="close-modal-btn" class="close-modal-btn">&times;</button>
+    <img id="modal-img" src="" alt="Foto Album Ingrandita">
+  </div>
+
+  <!-- MODAL DEDICATO IMPOSTAZIONI & TEMI 3D -->
+  <div id="settings-modal" class="app-modal" aria-hidden="true">
+    <div class="modal-content glass-card" style="max-width: 440px;">
+      <div class="modal-header">
+        <h3>⚙️ Impostazioni & Temi 3D</h3>
+        <button id="close-settings-modal-btn" class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body scrollable-form">
+        <!-- SEZIONE TEMA GRAFICO 3D -->
+        <div class="form-group">
+          <label>🎨 Tema Grafico 3D & Dock Menu</label>
+          <div class="modal-category-chips theme-chips">
+            <button type="button" class="chip-btn theme-chip-btn active" data-theme="AUTO_ALBUM">💿 Adattivo da Copertina</button>
+            <button type="button" class="chip-btn theme-chip-btn" data-theme="VIOLET">🔮 Violet Glow</button>
+            <button type="button" class="chip-btn theme-chip-btn" data-theme="CYBERPUNK">⚡ Cyberpunk</button>
+            <button type="button" class="chip-btn theme-chip-btn" data-theme="EMERALD">🌲 Emerald Mint</button>
+            <button type="button" class="chip-btn theme-chip-btn" data-theme="SUNSET">🌅 Sunset Amber</button>
+            <button type="button" class="chip-btn theme-chip-btn" data-theme="ROYAL">👑 Royal Gold</button>
+            <button type="button" class="chip-btn theme-chip-btn" data-theme="OCEAN">🌊 Abyssal Ocean</button>
+            <button type="button" class="chip-btn theme-chip-btn" data-theme="SYNTH">🌆 80s Synthwave</button>
+            <button type="button" class="chip-btn theme-chip-btn" data-theme="OLED">🌑 Deep OLED</button>
+          </div>
+        </div>
+
+        <!-- SEZIONE NITIDEZZA SFONDO & CONTROLLO ANIMAZIONI -->
+        <div class="form-group" style="margin-top: 14px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.12);">
+          <label style="display: flex; justify-content: space-between; align-items: center;">
+            <span>✨ Iterazioni Shader 3D</span>
+            <span id="sharpness-value-badge" style="font-size: 0.76rem; color: #ff9ffc; font-weight: 700;">20 iter.</span>
+          </label>
+          <input type="range" id="settings-sharpness-slider" min="1" max="50" step="1" value="20" style="width: 100%; accent-color: #ff9ffc; margin-top: 6px; cursor: pointer;">
+
+          <label style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px;">
+            <span>🌫️ Blur Sfondo</span>
+            <span id="bg-blur-badge" style="font-size: 0.76rem; color: #9fddff; font-weight: 700;">0.0px</span>
+          </label>
+          <input type="range" id="bg-blur-slider" min="0" max="20" step="0.5" value="0" style="width: 100%; accent-color: #9fddff; margin-top: 6px; cursor: pointer;">
+
+          <button type="button" id="settings-toggle-anim-btn" class="btn-secondary full-width" style="margin-top: 10px; font-weight: 700; background: rgba(255, 255, 255, 0.08); border-color: rgba(255, 255, 255, 0.25);">
+            ⏸️ Metti in Pausa Animazioni Sfondo
+          </button>
+        </div>
+
+        <!-- SEZIONE GESTIONE DATI & VALUTA DISCOGS -->
+        <div class="form-group" style="margin-top: 14px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.12);">
+          <label>🌐 Valuta & Sincronizzazione Discogs</label>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px;">
+            <div>
+              <span style="font-size: 0.76rem; color: #cbd5e1; display: block; margin-bottom: 4px;">Valuta Valutazioni:</span>
+              <select id="settings-currency-select" class="form-control" style="padding: 6px 10px; font-size: 0.84rem; background: rgba(0,0,0,0.4); color: #fff; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2);">
+                <option value="EUR">€ EUR (Euro)</option>
+                <option value="USD">$ USD (Dollaro)</option>
+                <option value="GBP">£ GBP (Stellina)</option>
+                <option value="CHF">CHF (Franco Svizzero)</option>
+              </select>
+            </div>
+            <div>
+              <span style="font-size: 0.76rem; color: #cbd5e1; display: block; margin-bottom: 4px;">Sincronizzazione Live:</span>
+              <select id="settings-discogs-sync-freq" class="form-control" style="padding: 6px 10px; font-size: 0.84rem; background: rgba(0,0,0,0.4); color: #fff; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2);">
+                <option value="AUTO_ALWAYS">🔄 Ad ogni avvio</option>
+                <option value="DAILY">📅 Una volta al giorno</option>
+                <option value="MANUAL">🛑 Solo manuale</option>
+              </select>
+            </div>
+          </div>
+          <button type="button" id="settings-force-sync-discogs-btn" class="btn-secondary full-width" style="margin-top: 10px; font-size: 0.82rem; color: #34d399; border-color: rgba(52,211,153,0.4);">
+            🔄 Forza Risincronizzazione Ora
+          </button>
+        </div>
+
+        <!-- SEZIONE SCARICAMENTO BACKUP -->
+        <div class="form-group" style="margin-top: 12px;">
+          <label>💾 Backup Collezione</label>
+          <div class="input-range-row">
+            <button type="button" id="settings-export-json-btn" class="btn-secondary full-width">📥 Download JSON</button>
+            <button type="button" id="settings-export-csv-btn" class="btn-secondary full-width">📊 Download CSV</button>
+          </div>
+          <div style="margin-top: 8px;">
+            <input type="file" id="settings-import-json-file" accept=".json" class="hidden-file-input">
+            <button type="button" id="settings-trigger-import-btn" class="btn-secondary full-width">📤 Importa Backup JSON</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL ISTRUZIONI INSTALLAZIONE APP -->
+  <div id="install-modal" class="app-modal" aria-hidden="true">
+    <div class="modal-content glass-card">
+      <div class="modal-header">
+        <h3>📱 Installa / Scarica l'App</h3>
+        <button id="close-install-modal" class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body" style="gap: 12px; font-size: 0.88rem; color: #e2e8f0;">
+        <p>Puoi installare questa applicazione sul tuo dispositivo per usarla offline come un'app nativa:</p>
+        <div style="background: rgba(255,159,252,0.12); border: 1px solid rgba(255,159,252,0.3); border-radius: 14px; padding: 12px;">
+          <strong style="color: #ff9ffc;">📱 Su iPhone / iPad (Safari):</strong>
+          <ol style="margin-left: 20px; margin-top: 6px; font-size: 0.84rem; line-height: 1.4;">
+            <li>Tocca l'icona <strong>Condividi</strong> (quadrato con la freccia verso l'alto).</li>
+            <li>Scorri le opzioni e seleziona <strong>"Aggiungi alla schermata Home"</strong>.</li>
+          </ol>
+        </div>
+        <div style="background: rgba(82,39,255,0.18); border: 1px solid rgba(82,39,255,0.35); border-radius: 14px; padding: 12px;">
+          <strong style="color: #a5b4fc;">🤖 Su Android / Chrome / Edge:</strong>
+          <ol style="margin-left: 20px; margin-top: 6px; font-size: 0.84rem; line-height: 1.4;">
+            <li>Tocca i <strong>tre pallini</strong> in alto a destra nel browser.</li>
+            <li>Seleziona <strong>"Installa applicazione"</strong> o <strong>"Aggiungi a schermata Home"</strong>.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="close-install-modal-btn" class="btn-primary full-width">Ho Capito</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- DOCK BAR ORIZZONTALE FLUTTUANTE (GLASSMORPHIC DOCK CAPSULE) -->
+  <!-- DOCK BAR ORIZZONTALE FLUTTUANTE (GLASSMORPHIC DOCK CAPSULE) -->
+  <nav id="floating-glass-dock" class="glass-dock-container" aria-label="Menù di Navigazione Rapida">
+    <div id="dock-main-items" class="dock-main-items">
+      <!-- 1. AGGIUNGI / SCANSIONA -->
+      <button type="button" id="dock-add-btn" class="dock-item-btn" title="Aggiungi / Scansiona Vinile" aria-label="Aggiungi / Scansiona Vinile">
+        <svg class="dock-svg-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="12" y1="5" x2="12" y2="19"></line>
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+        </svg>
+        <span class="dock-btn-label">Aggiungi Vinile</span>
+      </button>
+
+      <!-- 2. MODIFICA VINILE SELEZIONATO -->
+      <button type="button" id="dock-edit-btn" class="dock-item-btn" title="Modifica Vinile Selezionato" aria-label="Modifica Vinile Selezionato">
+        <svg class="dock-svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 20h9"></path>
+          <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+        </svg>
+        <span class="dock-btn-label">Modifica Vinile</span>
+      </button>
+
+      <!-- 3. ELIMINA VINILE SELEZIONATO -->
+      <button type="button" id="dock-delete-btn" class="dock-item-btn dock-delete-btn" title="Elimina Vinile Selezionato" aria-label="Elimina Vinile Selezionato">
+        <svg class="dock-svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="3 6 5 6 21 6"></polyline>
+          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+          <line x1="10" y1="11" x2="10" y2="17"></line>
+          <line x1="14" y1="11" x2="14" y2="17"></line>
+        </svg>
+        <span class="dock-btn-label">Elimina Vinile</span>
+      </button>
+
+      <!-- 4. DISCOGS MARKETPLACE PER VINILE SELEZIONATO -->
+      <button type="button" id="dock-discogs-btn" class="dock-item-btn dock-discogs-btn" title="Apri Discogs Marketplace per questo Vinile" aria-label="Discogs Marketplace">
+        <svg class="dock-svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"></circle>
+          <circle cx="20" cy="21" r="1"></circle>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+        </svg>
+        <span class="dock-btn-label">Discogs Store</span>
+      </button>
+
+      <!-- 5. SPOTIFY LINK PER VINILE SELEZIONATO -->
+      <button type="button" id="dock-spotify-btn" class="dock-item-btn dock-spotify-btn" title="Ascolta Album su Spotify" aria-label="Ascolta Album su Spotify">
+        <svg class="dock-svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M8 11.5c3.5-1 7-.5 9.5 1"></path>
+          <path d="M7 14.5c4-1.2 8-.7 11 1"></path>
+          <path d="M9 8.5c4.5-1.2 9-.5 12 1.5"></path>
+        </svg>
+        <span class="dock-btn-label">Ascolta su Spotify</span>
+      </button>
+
+      <!-- 6. JUKEBOX / PARTY MODE -->
+      <button type="button" id="dock-jukebox-btn" class="dock-item-btn" title="🎉 Attiva Jukebox Party Mode" aria-label="Jukebox Party Mode">
+        <svg class="dock-svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        </svg>
+        <span class="dock-btn-label">Jukebox Party</span>
+      </button>
+
+      <!-- 7. IMPOSTAZIONI & TEMI 3D -->
+      <button type="button" id="dock-settings-btn" class="dock-item-btn" title="Impostazioni & Temi 3D" aria-label="Impostazioni & Temi 3D">
+        <svg class="dock-svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+        <span class="dock-btn-label">Impostazioni 3D</span>
+      </button>
+    </div>
+
+    <!-- WRAPPER DI POSIZIONAMENTO PER ALTRO + MENU OVERFLOW -->
+    <div class="dock-more-wrapper">
+      <!-- BOTTONE MENU ALTRO (Nascondibile) -->
+      <button type="button" id="dock-more-btn" class="dock-item-btn hidden" title="Altre Opzioni" aria-label="Altre Opzioni">
+        <svg class="dock-svg-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="2"></circle>
+          <circle cx="19" cy="12" r="2"></circle>
+          <circle cx="5" cy="12" r="2"></circle>
+        </svg>
+        <span class="dock-btn-label">Altro</span>
+      </button>
+
+      <!-- MENU DI OVERFLOW FLUTTUANTE -->
+      <div id="dock-overflow-menu" class="dock-overflow-menu"></div>
+    </div>
+  </nav>
+
+  <!-- MODAL JUKEBOX PARTY MODE FULLSCREEN -->
+  <div id="jukebox-modal" class="app-modal" aria-hidden="true">
+    <div class="modal-content glass-card large-modal" style="width: min(750px, 95vw); text-align: center; border-color: rgba(255, 159, 252, 0.6); box-shadow: 0 0 35px rgba(255, 159, 252, 0.4);">
+      <div class="modal-header">
+        <h3 style="color: #ff9ffc; font-weight: 800; font-size: 1.25rem;">🎉 JUKEBOX PARTY MODE</h3>
+        <button id="close-jukebox-modal-btn" class="modal-close-btn">&times;</button>
+      </div>
+      <div class="modal-body" style="gap: 16px; align-items: center;">
+        <div id="jukebox-display" style="width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 20px; background: rgba(0,0,0,0.5); border-radius: 20px; border: 1px solid rgba(255,159,252,0.3);">
+          <!-- Generato dinamicamente via JS -->
+        </div>
+        <div style="display: flex; gap: 12px; width: 100%;">
+          <button type="button" id="jukebox-random-btn" class="btn-primary full-width" style="font-size: 1rem; padding: 12px;">🎲 Estraggo Album A Sorpresa!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>

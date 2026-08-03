@@ -1,367 +1,237 @@
-﻿# 🎵 Catalogazione Vinili 3D
+# 🎵 Catalogazione Vinili 3D
 
-> App web PWA per la catalogazione personale di dischi in vinile, con interfaccia Liquid Glass, sfondo 3D WebGL ray-marching e ruota selettore titoli animata.
+> **App Web Progressive (PWA)** elegante e ad alte prestazioni per la catalogazione e gestione della tua collezione di dischi in vinile. Dotata di interfaccia **Liquid Glassmorphism**, sfondo animato 3D **WebGL Ray-Marching** personalizzabile, ruota 3D selettore titoli curvilinea, integrazione **Discogs API**, generatore **QR Code**, stima automatica del valore commerciale e supporto offline completo.
 
-![HTML](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white)
-![CSS](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-ES2020-F7DF1E?style=flat&logo=javascript&logoColor=black)
-![Three.js](https://img.shields.io/badge/Three.js-WebGL-000000?style=flat&logo=three.js&logoColor=white)
-![PWA](https://img.shields.io/badge/PWA-installabile-5A0FC8?style=flat&logo=pwa&logoColor=white)
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript ES2022](https://img.shields.io/badge/JavaScript-ES2022-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Three.js](https://img.shields.io/badge/Three.js-WebGL-000000?style=for-the-badge&logo=three.js&logoColor=white)
+![PWA Ready](https://img.shields.io/badge/PWA-Offline_Ready-5A0FC8?style=for-the-badge&logo=pwa&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
 
 ---
 
 ## 📋 Indice
 
-- [Features](#-features)
-- [Architettura](#-architettura)
-- [Struttura File](#-struttura-file)
-- [Modello Dati](#-modello-dati)
-- [Sfondo 3D WebGL](#-sfondo-3d-webgl--fragment-shader)
-- [Ruota Titoli 3D](#-ruota-titoli-3d)
-- [Sistema PWA](#-sistema-pwa)
-- [Impostazioni & Slider](#-impostazioni--slider)
-- [Come aggiungere un vinile](#-come-aggiungere-un-vinile)
-- [Deployment](#-deployment)
-- [Dipendenze Esterne](#-dipendenze-esterne)
+- [✨ Feature Principali](#-feature-principali)
+- [📸 Screenshots & Interfaccia](#-screenshots--interfaccia)
+- [🏗️ Architettura del Sistema](#️-architettura-del-sistema)
+- [📁 Struttura del Progetto](#-struttura-del-progetto)
+- [🗃️ Modello Dati (Vinyl Schema)](#️-modello-dati-vinyl-schema)
+- [🌌 Sfondo 3D WebGL (Ray-Marching GLSL)](#-sfondo-3d-webgl-ray-marching-glsl)
+- [🎡 Ruota Titoli 3D Curvilinea](#-ruota-titoli-3d-curvilinea)
+- [📱 Funzionalità PWA & Cache](#-funzionalità-pwa--cache)
+- [⚙️ Configurazione & Personalizzazione](#️-configurazione--personalizzazione)
+- [➕ Guida all'Aggiunta e Gestione Vinili](#-guida-allaggiunta-e-gestione-vinili)
+- [🚀 Installazione & Deployment](#-installazione--deployment)
+- [🛠️ Tecnologie e Dipendenze](#️-tecnologie-e-dipendenze)
+- [📄 Licenza](#-licenza)
 
 ---
 
-## ✨ Features
+## ✨ Feature Principali
 
 | Feature | Descrizione |
-|---------|-------------|
-| 🌊 **Sfondo WebGL** | Ray-marching 3D con pilastri di luce animati, scritto in GLSL puro, renderizzato con Three.js |
-| 🎡 **Ruota Titoli** | Selettore 3D con effetto prospettico/curvilineare, navigabile a scroll e swipe |
-| 🪟 **Liquid Glass UI** | Scheda centrale con `backdrop-filter`, bordi semitrasparenti e micro-ombre |
-| 📀 **Giradischi animato** | Copertina cliccabile con animazione 3D di estrazione del vinile e tilt parallax |
-| 🎨 **Colori dinamici** | Estrazione del colore dominante dalla copertina tramite canvas pixel sampling |
-| 🔍 **Ricerca live** | Ricerca istantanea per artista, album, etichetta, catalog number, matrice |
-| 🗂️ **Filtri & Ordinamento** | Categoria (Personale/Wishlist/Eredità), intervallo anno, genere, 5 strategie di sort |
-| 💶 **Stima valore** | Calcolo automatico del valore commerciale basato su stato, rarità, origine, anno |
-| 📊 **Statistiche** | Dashboard con totali, artista più presente, valore stimato totale collezione |
-| 🏷️ **QR Code** | Generazione etichette QR per ogni vinile con identificativo univoco |
-| 📥 **Import/Export** | Backup e ripristino collezione in JSON; export CSV |
-| 🔗 **Ricerca Discogs** | Ricerca online su Discogs API + scanner barcode EAN |
-| 💾 **Persistenza locale** | Tutti i vinili aggiunti dall'utente vengono salvati in `localStorage` |
-| 📱 **PWA** | Installabile come app nativa (Android/iOS/Desktop), funziona offline |
+| :--- | :--- |
+| 🌌 **Sfondo Ray-Marching 3D** | Renderizzato in real-time tramite **WebGL + Three.js** con shader GLSL custom e colonne di luce procedurali animate. |
+| 🎡 **Ruota 3D Titoli Curvilinea** | Selettore album interattivo con posizionamento e inclinazione prospettica 3D, fruibile tramite mouse wheel, touch swipe o click. |
+| 🪟 **Liquid Glass UI** | Design ultra-moderno basato su vetromorfismo dinamico (`backdrop-filter`), micro-animazioni fluide ed estrazione automatica dei colori dominanti dalle copertine. |
+| 📀 **Giradischi & Parallax 3D** | Animazione 3D interattiva per l'estrazione del vinile dalla custodia con inclinazione prospettica al passaggio del cursore. |
+| 🔍 **Ricerca Live Istantanea** | Filtraggio immediato durante la digitazione per artista, titolo album, etichetta, numero di catalogo o codice matrice. |
+| 🗂️ **Filtri Avanzati & Ordine** | Filtro per categoria (*Personale*, *Wishlist*, *Eredità*, *In Vendita*), genere musicale, range di anni e 5 strategie di ordinamento. |
+| 💶 **Stima del Valore Commerciale** | Algoritmo dinamico per il calcolo del valore di mercato stimato in base alle condizioni (Goldmine grading 1-10), rarità, anno e paese di stampa. |
+| 📊 **Dashboard Statistiche** | Panoramica completa sulla collezione: valore totale stimato, conteggio dischi, generi dominanti e artista più collezionato. |
+| 🏷️ **Etichette & QR Code** | Generazione istantanea di codice QR univoco per ogni vinile per facilitare la gestione dell'inventario fisico sullo scaffale. |
+| 🌐 **Integrazione Discogs API** | Ricerca online diretta su Discogs, autocompilazione schede vinile e scanner di codici a barre a barre EAN/UPC tramite fotocamera. |
+| 📥 **Import / Export Backup** | Salvataggio e ripristino dell'intera collezione in formato **JSON** e esportazione in **CSV** per fogli di calcolo. |
+| 📱 **Supporto PWA & Offline** | Installabile su dispositivi **Android, iOS, Windows e macOS** come app nativa, con Service Worker cache-first che garantisce pieno funzionamento offline. |
 
 ---
 
-## 🏗️ Architettura
+## 🏗️ Architettura del Sistema
+
+L'applicazione segue un'architettura **Single-Page Application (SPA)** modulare, reattiva e priva di dipendenze da framework pesanti:
 
 ```
-┌──────────────────────────────────────────────────────┐
-│                     index.html                       │
-│  Header ─ SearchBar ─ FilterModal ─ SettingsModal    │
-│  ┌──────────────┐   ┌─────────────────────────────┐  │
-│  │ #option-wheel│   │    .center-glass-panel       │  │
-│  │  (Ruota 3D)  │   │    .glass-surface            │  │
-│  │  <aside>     │   │    #center-content           │  │
-│  └──────────────┘   └─────────────────────────────┘  │
-│        ┌─────────────────────────────────────────┐    │
-│        │   #light-pillar-container  (WebGL BG)   │    │
-│        └─────────────────────────────────────────┘    │
-└──────────────────────────────────────────────────────┘
+┌────────────────────────────────────────────────────────────────────────┐
+│                               index.html                               │
+│  ┌─────────────────────────┐  ┌─────────────────────────────────────┐  │
+│  │     #app-header         │  │        #filter-modal / modals       │  │
+│  │ (Search, Filter, Stats) │  │  (Filtri, Ordine, Form Add, Export) │  │
+│  └─────────────────────────┘  └─────────────────────────────────────┘  │
+│  ┌─────────────────────────┐  ┌─────────────────────────────────────┐  │
+│  │      #option-wheel      │  │        .center-glass-panel          │  │
+│  │   (Ruota Titoli 3D JS)   │  │   #center-content (Dettaglio Vinyl) │  │
+│  └─────────────────────────┘  └─────────────────────────────────────┘  │
+│  ┌──────────────────────────────────────────────────────────────────┐  │
+│  │            #light-pillar-container (Canvas WebGL 3D)              │  │
+│  └──────────────────────────────────────────────────────────────────┘  │
+└────────────────────────────────────────────────────────────────────────┘
 
-  database.js ──► ALL_VINILI ──► applyFiltering()
-                                      │
-                            ┌─────────┴──────────┐
-                        renderWheel()     updateCenterContent()
-                            │                    │
-                      #option-wheel        #center-content
-                     (lista titoli)      (scheda dettaglio)
+     database.js (Static Data) ──┐
+                                 ├──► ALL_VINILI ──► applyFiltering()
+  localStorage (User Data) ──────┘                         │
+                                            ┌──────────────┴──────────────┐
+                                            ▼                             ▼
+                                      renderWheel()             updateCenterContent()
+                                     (#option-wheel)              (#center-content)
 ```
-
-### Stato globale (variabili modulo in `script.js`)
-
-| Variabile | Tipo | Descrizione |
-|-----------|------|-------------|
-| `ALL_VINILI` | `Array` | Database completo: statico + utente da localStorage |
-| `filteredVinili` | `Array` | Sottoinsieme corrente dopo filtri e ricerca |
-| `selectedIndex` | `number` | Indice del vinile attualmente visualizzato |
-| `activeShaderMaterial` | `THREE.ShaderMaterial` | Riferimento al materiale GLSL del background |
-| `activeThreeRenderer` | `THREE.WebGLRenderer` | Riferimento al renderer WebGL |
-| `bgIterations` | `number` | Iterazioni shader (1–50), persistito in localStorage |
-| `bgBlur` | `number` | Blur CSS canvas (0–20 px), persistito in localStorage |
 
 ---
 
-## 📁 Struttura File
+## 📁 Struttura del Progetto
 
 ```
 .
-├── index.html       # Struttura HTML, modali, dock bar, layout principale
-├── style.css        # CSS completo: layout, animazioni, glassmorphism, responsive
-├── script.js        # Logica applicativa (~2500 righe): shader, ruota, CRUD, filtri
-├── database.js      # Database statico dei vinili (ES module export)
-├── manifest.json    # Configurazione PWA (nome, icona, colori, display mode)
-├── sw.js            # Service Worker: cache-first strategy per offline support
-└── Img/             # Copertine album (JPG/PNG referenziate dal database)
+├── index.html       # Struttura DOM principale, modali e interfaccia PWA
+├── style.css        # Design System completo (CSS Variables, Glassmorphism, Responsive)
+├── script.js        # Core Application Logic (~2500 righe: Ray-marching WebGL, Wheel 3D, CRUD, Discogs API)
+├── database.js      # Database statico predefinito di vinili (ES Module)
+├── manifest.json    # Configurazione Web App Manifest PWA (icone, temi, scorciatoie)
+├── sw.js            # Service Worker per il caching avanzato e la modalità offline
+└── Img/             # Copertine locali ed asset grafici degli album
 ```
 
 ---
 
-## 🗃️ Modello Dati
+## 🗃️ Modello Dati (Vinyl Schema)
 
-Ogni vinile in `database.js` e nei record utente segue questo schema:
+Ogni record vinile gestito nel sistema (sia statico che salvato in `localStorage`) segue la struttura JSON sottostante:
 
-```js
+```json
 {
-  "id": 1,                          // Identificativo univoco (intero)
+  "id": 1,
   "artista": "Pink Floyd",
   "titolo_album": "The Dark Side of the Moon",
   "genere": "Progressive Rock",
   "anno_uscita_originale": 1973,
-  "anno_stampa": 1983,              // Anno della stampa fisica posseduta
-  "origine": "IT",                  // Paese di stampa (sigla ISO)
+  "anno_stampa": 1983,
+  "origine": "IT",
   "etichetta": "Harvest / EMI",
   "catalog_number": "STEREO 3C06405249",
   "codice_matrice": "05249",
-  "velocita": "33",                 // RPM: "33" o "45"
+  "velocita": "33",
   "colore": "Nero",
   "grammatura": "120-125g",
-  "inserti": "1 Poster",
-  "stato_disco": "8",               // Voto 1-10 condizioni disco
-  "stato_copertina": "5",           // Voto 1-10 condizioni copertina
-  "note_stato": "",                 // Note libere sullo stato fisico
-  "stato_catalogo": "Personale",    // "Personale" | "Wishlist" | "Eredità"
-  "posizione_fisica": "Scaffale A", // Posizione nella collezione
-  "cover": "Img/dark_side.jpg",     // Path relativo o URL esterno della copertina
-  "foto_album": ["Img/retro.jpg"],  // Foto aggiuntive (fronte, retro, interno, ecc.)
-  "tracce": [                       // Tracklist (opzionale)
-    { "pos": "A1", "title": "Speak to Me", "duration": "1:30" }
+  "inserti": "1 Poster + 2 Adesivi",
+  "stato_disco": "8",
+  "stato_copertina": "7",
+  "note_stato": "Leggero usura sugli angoli, vinile perfetto",
+  "stato_catalogo": "Personale",
+  "posizione_fisica": "Scaffale A - Sezione Rock",
+  "cover": "Img/dark_side.jpg",
+  "foto_album": ["Img/dark_side_back.jpg"],
+  "tracce": [
+    { "pos": "A1", "title": "Speak to Me", "duration": "1:30" },
+    { "pos": "A2", "title": "Breathe (In the Air)", "duration": "2:43" }
   ]
 }
 ```
 
-I **vinili utente** sono salvati in `localStorage` (`user_added_vinili`) e fusi con il database statico all'avvio:
+---
 
-```js
-const userAddedVinyls = JSON.parse(localStorage.getItem('user_added_vinili') || '[]');
-let ALL_VINILI = [...userAddedVinyls, ...DATABASE_VINILI];
-```
+## 🌌 Sfondo 3D WebGL (Ray-Marching GLSL)
+
+Lo sfondo è generato in tempo reale mediante **Three.js** con un custom **Fragment Shader GLSL** basato sulla tecnica del **Ray-Marching** (Signed Distance Fields - SDF).
+
+### Principi di Funzionamento
+
+- Per ciascun pixel dello schermo viene tracciato un raggio attraverso la scena procedurale.
+- Il loop di Ray-Marching valuta la distanza dai pilastri di luce tridimensionali deformati da onde armoniche nel tempo (`uTime`).
+- L'accumulo dei colori calcola il gradiente tra `uTopColor` e `uBottomColor` basandosi sull'altezza della coordinata $y$.
+
+### Parametri Shader Personalizzabili (dalle Impostazioni UI):
+
+- **Iterazioni Shader (`u_iterations`)**: Impostabile da 1 a 50. Determina la precisione geometrica e la profondità dei pilastri di luce.
+- **Sfocatura Sfondo (Canvas Blur)**: Applicata dinamicamente come filtro CSS sul canvas WebGL per garantire alte prestazioni senza causare la ricompilazione dello shader.
 
 ---
 
-## 🌌 Sfondo 3D WebGL & Fragment Shader
+## 🎡 Ruota Titoli 3D Curvilinea
 
-Lo sfondo è implementato con **Three.js r161** e un fragment shader GLSL custom basato su **ray-marching**.
+La lista degli album viene presentata tramite un selettore a ruota 3D personalizzato sviluppato in vanilla JS e CSS 3D Transforms:
 
-### Come funziona il ray-marching
-
-Per ogni pixel, il fragment shader lancia un raggio dallo stesso punto di vista (`ro`) nella direzione calcolata dall'UV (`rd`). Il raggio avanza a passi, valutando la **distanza da un campo di pilastri** (SDF — Signed Distance Field). Il colore viene accumulato in modo inversamente proporzionale alla distanza:
-
-```glsl
-precision mediump float;
-
-uniform float uTime;
-uniform int   u_iterations;   // Numero di passi (1-50, da slider UI)
-uniform vec3  uTopColor;
-uniform vec3  uBottomColor;
-
-void main() {
-  vec3 ro = vec3(0.0, 0.0, -10.0);  // Origin del raggio
-  vec3 rd = normalize(vec3(uv, 1.0)); // Direzione
-
-  vec3 col = vec3(0.0);
-  float t = 0.1;
-
-  for(int i = 0; i < u_iterations; i++) {
-    vec3 p = ro + rd * t;
-
-    // Wave deformation con frequenze armoniche
-    // SDF: pilastro cilindrico con smooth union
-    float d = length(cos(q.xz)) - 0.2;
-
-    // Gradiente verticale: colore dal basso all'alto
-    float grad = clamp((15.0 - p.y) / 30.0, 0.0, 1.0);
-    col += mix(uBottomColor, uTopColor, grad) / d;
-
-    t += d * STEP_MULT;
-    if(t > 50.0) break;
-  }
-
-  // Tonemapping sigmoid + noise dithering
-  gl_FragColor = vec4(col * uIntensity, 1.0);
-}
-```
-
-### Uniform aggiornate a runtime
-
-| Uniform | Sorgente | Frequenza |
-|---------|----------|-----------|
-| `uTime` | `requestAnimationFrame` | Ogni frame |
-| `uTopColor` / `uBottomColor` | Cambio tema, lerp smooth | Ogni frame |
-| `uRotCos` / `uRotSin` | Loop animazione | Ogni frame |
-| `u_iterations` | Slider "Iterazioni Shader" | On input |
-| `uIntensity` | Preset tema | On change |
-
-> **Nota tecnica**: il blur del background viene applicato come `filter: blur(Xpx)` sul `canvas` DOM invece che in GLSL, per evitare la ricompilazione dello shader ad ogni frame.
+- **Calcolo Prospettico**: Ogni elemento `.wheel-item` subisce una trasformazione $3\text{D}$ basata sulla sua distanza $d$ dall'indice selezionato:
+  $$\text{translateY} = d \times 2.7\text{rem}$$
+  $$\text{curveOffset} = -|d|^{1.4} \times 11\text{px}$$
+  $$\text{rotateX} = d \times -5.5^\circ$$
+- **Modalità di Interazione**:
+  - **Scroll del Mouse**: Navigazione fluida e throttled.
+  - **Touch Swipe**: Supporto nativo per gesture verticali su smartphone/tablet.
+  - **Click Diretto**: Selezione immediata di qualsiasi voce visibile sulla ruota.
 
 ---
 
-## 🎡 Ruota Titoli 3D
+## 📱 Funzionalità PWA & Cache
 
-La lista album è un selettore a ruota con effetto prospettico 3D, implementata in CSS + JS puro (nessuna libreria).
+La PWA include il supporto offline completo tramite il Service Worker [sw.js](file:///c:/Users/BONO/Downloads/c/sw.js):
 
-### Layout
-
-Gli item `.wheel-item` sono posizionati con `position: absolute; top: 50%` — tutti allo stesso punto di partenza (centro verticale del container). La funzione `updateWheel()` applica su ognuno un `transform 3D` calcolato in base alla distanza dall'item selezionato:
-
-```js
-function updateWheel() {
-  wheelItems.forEach((item, index) => {
-    const distance = index - selectedIndex;
-    const absDist  = Math.abs(distance);
-
-    const translateY  = distance * 2.7;               // rem — offset verticale
-    const curveOffset = -Math.pow(absDist, 1.4) * 11; // px — curvatura orizzontale
-    const rotateX     = distance * -5.5;              // deg — inclinazione prospettica
-    const opacity     = Math.max(0.05, 1 - absDist * 0.22);
-    const scale       = isSelected ? 1.05 : Math.max(0.76, 1 - absDist * 0.08);
-
-    item.style.transform = `translate3d(${curveOffset}px,
-                             calc(${translateY}rem - 50%), 0)
-                             rotateX(${rotateX}deg) scale(${scale})`;
-  });
-}
-```
-
-### Navigazione supportata
-
-- **Click** sull'item nella ruota
-- **Scroll wheel** sopra il container (throttled)
-- **Swipe touch** verticale (mobile)
-- **Frecce prev/next** nella header mobile
+1. **Caching Strategico**: Utilizza una strategia **Cache-First** per asset statici (HTML, CSS, JS, immagini locali, Google Fonts) e fallback di rete per le chiamate API esterne.
+2. **Installabilità**: Pienamente conforme agli standard W3C Web App Manifest per l'installazione nativa con icona dedicata, splash screen e finestra standalone senza barra del browser.
 
 ---
 
-## 📱 Sistema PWA
+## ⚙️ Configurazione & Personalizzazione
 
-| File | Ruolo |
-|------|-------|
-| `manifest.json` | Nome, icona SVG inline, `display: standalone`, theme color `#5227ff` |
-| `sw.js` | Service Worker con strategia **cache-first** |
+Nel pannello impostazioni dell'app è possibile configurare:
 
-Il Service Worker:
-1. **Install** → mette in cache tutti gli asset principali
-2. **Activate** → elimina cache versioni precedenti (`CACHE_NAME`)
-3. **Fetch** → risponde dalla cache se disponibile; altrimenti rete + aggiorna cache; fallback su `index.html` se offline
-
-Per forzare un aggiornamento della cache, incrementare `CACHE_NAME` in `sw.js`:
-```js
-const CACHE_NAME = 'vinili-app-v2'; // era v1
-```
+1. **Nitidezza / Iterazioni WebGL**: Regola il numero di passaggi del Ray-Marching per adattarsi a schede grafiche meno potenti o risparmiare batteria.
+2. **Blur del Canvas 3D**: Consente di ottenere uno sfondo soffuso "Bokeh" o contorni netti dei pilastri di luce.
+3. **Persistenza**: Tutte le preferenze e le modifiche apportate alla collezione vengono salvate automaticamente su `localStorage`.
 
 ---
 
-## ⚙️ Impostazioni & Slider
+## ➕ Guida all'Aggiunta e Gestione Vinili
 
-### Iterazioni Shader (`#settings-sharpness-slider`)
+### 1. Tramite Interfaccia Utente (Raccomandato)
+1. Apri la dock bar in basso e clicca su **"+ Aggiungi Vinile"**.
+2. Puoi inserire i dati manualmente oppure utilizzare il pulsante **"Cerca su Discogs"** per autocompilare copertina, traccia, anno ed etichetta.
+3. È inoltre disponibile uno **Scanner Barcode QR/EAN** che utilizza la fotocamera del dispositivo per identificare la stampa dal codice a barre presente sulla custodia.
 
-- **Range**: 1 – 50 (intero)  
-- **Default**: 20  
-- **Effetto**: numero di passi del loop ray-marching per pixel. Più iterazioni → più dettaglio → più carico GPU.  
-- Aggiorna la uniform `u_iterations` tramite `updateBackgroundSharpness(val)`.
-
-### Blur Sfondo (`#bg-blur-slider`)
-
-- **Range**: 0 – 20 px  
-- **Default**: 0  
-- **Effetto**: `filter: blur(Xpx)` applicato **solo** al canvas WebGL.  
-- Gestito da `updateBackgroundBlur(val)` che scrive esclusivamente su `activeThreeRenderer.domElement.style.filter`.
-
-Entrambi i valori sono persistiti in `localStorage`:
-
-```js
-localStorage.setItem('app_bg_iterations', bgIterations); // chiave: app_bg_iterations
-localStorage.setItem('app_bg_blur', bgBlur.toFixed(1));  // chiave: app_bg_blur
-```
+### 2. Tramite File Statico (`database.js`)
+Se desideri aggiungere album nel database predefinito in sola lettura, aggiungi un oggetto all'array `DATABASE_VINILI` in [database.js](file:///c:/Users/BONO/Downloads/c/database.js).
 
 ---
 
-## ➕ Come aggiungere un vinile
+## 🚀 Installazione & Deployment
 
-### Via UI (consigliato)
+L'applicazione è **completamente statica** (Non richiede Node.js, server backend o processi di build).
 
-Clicca **"+ Aggiungi Vinile"** nella dock bar. I dati vengono salvati in `localStorage` e sono immediatamente visibili nella ruota.
-
-### Via `database.js` (statico, per sviluppatori)
-
-Aggiungi un oggetto all'array `DATABASE_VINILI` rispettando il [modello dati](#-modello-dati). I vinili del database statico non sono modificabili/eliminabili dall'utente via UI.
-
-```js
-// database.js
-export const DATABASE_VINILI = [
-  {
-    "id": 101,
-    "artista": "Nuovo Artista",
-    "titolo_album": "Nuovo Album",
-    // ... tutti i campi
-  },
-  // ...
-];
-```
-
----
-
-## 🚀 Deployment
-
-L'app è **completamente statica** — nessun server backend, nessun build step, nessun package manager.
+### Esecuzione Locale
 
 ```bash
-# Clona il repository
+# 1. Clona il repository
 git clone https://github.com/tuo-utente/vinili-3d.git
 cd vinili-3d
 
-# Avvia un server statico locale (qualunque va bene)
-npx serve .
-# oppure
+# 2. Avvia qualsiasi server HTTP statico
+# Utilizzando Python:
 python -m http.server 8080
+
+# Oppure tramite npx serve:
+npx serve .
 ```
 
-### GitHub Pages
+Apri `http://localhost:8080` nel tuo browser.
 
-1. *Settings → Pages*
-2. Source: branch `main`, folder `/ (root)`
-3. App disponibile su `https://tuo-utente.github.io/vinili-3d/`
+### Deployment su GitHub Pages / Vercel / Netlify
 
-> **Attenzione**: Three.js è caricato via CDN. È richiesta connessione internet al primo avvio; dopo che il Service Worker ha cachato gli asset, l'app funziona interamente offline.
+È sufficiente pubblicare la cartella root del progetto su qualsiasi host statico:
+- **GitHub Pages**: Imposta la sorgente su `main` branch e cartella `/ (root)`.
+- **Vercel / Netlify**: Nessun comando di build richiesto, directory di output: `./`.
 
 ---
 
-## 🛠️ Dipendenze Esterne
+## 🛠️ Tecnologie e Dipendenze
 
-| Libreria | Versione | Caricamento | Utilizzo |
-|----------|----------|-------------|---------|
-| [Three.js](https://threejs.org/) | r161 | CDN jsDelivr | WebGL renderer, ShaderMaterial, animazione |
-| [Plus Jakarta Sans](https://fonts.google.com/specimen/Plus+Jakarta+Sans) | — | Google Fonts | Font principale UI |
-
-Nessun framework CSS, nessun bundler, nessun `npm install` richiesto.
-
----
-
-## 📂 Immagini mancanti
-
-Se un'immagine referenziata nel campo `"cover"` restituisce 404, l'app genera automaticamente un **placeholder SVG** con gradiente e iniziali artista/album:
-
-```js
-// Fallback generato dinamicamente in script.js
-function generateSVGAlbumCover(artista, titolo) {
-  // Colore derivato dal nome tramite hash
-  // SVG con gradiente, cerchio centrale e testo
-  return `data:image/svg+xml;charset=utf-8,...`;
-}
-```
-
-Il tag `<img>` usa l'attributo `onerror` per applicare il fallback in modo non bloccante:
-
-```html
-<img src="${coverSrc}" onerror="this.onerror=null; this.src='${fallbackCover}';">
-```
+- **HTML5 & Vanilla CSS3**: Struttura semantica e styling personalizzato con CSS Custom Properties e Glassmorphism.
+- **JavaScript (ES2022)**: Architettura ad oggetti / moduli standard.
+- **[Three.js (r161)](https://threejs.org/)**: Caricato tramite CDN jsDelivr per la gestione del rendering WebGL 3D.
+- **[Plus Jakarta Sans](https://fonts.google.com/specimen/Plus+Jakarta+Sans)**: Font tipografico moderno fornito via Google Fonts.
 
 ---
 
 ## 📄 Licenza
 
-Progetto personale — uso libero per scopi non commerciali.
+Questo progetto è distribuito sotto Licenza **MIT**. Libero per uso personale e commerciale.
+
