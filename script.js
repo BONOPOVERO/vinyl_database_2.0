@@ -2224,7 +2224,7 @@ if (wheelContainer) {
   wheelContainer.addEventListener('touchend', () => {
     isSwiping = false;
   }, { passive: true });
-
+}
 
 // ==========================================
 // GESTIONE STORICO VALORE & QR CODE ETICHETTA STAMPABILE
