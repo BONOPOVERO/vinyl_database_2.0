@@ -511,14 +511,10 @@ function applyAppTheme(themeKey) {
     }
 
     const glassDock = document.getElementById('floating-glass-dock');
-    const appHeader = document.querySelector('.app-header');
     if (glassDock) {
+      glassDock.style.background = t.dockBg;
       glassDock.style.borderColor = t.dockBorder;
-      glassDock.style.boxShadow = `inset 0 1px 1px rgba(255, 255, 255, 0.4), inset 0 -1px 2px rgba(255, 255, 255, 0.1), 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 25px ${t.dockGlow}`;
-    }
-    if (appHeader) {
-      appHeader.style.borderColor = t.dockBorder;
-      appHeader.style.boxShadow = `inset 0 1px 1px rgba(255, 255, 255, 0.4), inset 0 -1px 2px rgba(255, 255, 255, 0.1), 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 25px ${t.dockGlow}`;
+      glassDock.style.boxShadow = `0 12px 35px rgba(0, 0, 0, 0.6), 0 0 25px ${t.dockGlow}`;
     }
   }
 }
@@ -534,23 +530,15 @@ function updateDynamicAlbumBackground(topHex, bottomHex) {
       targetBottomColor.set(c2.r, c2.g, c2.b);
     }
 
+    // DOCK BAR ORIZZONTALE ADATTIVA
     const glassDock = document.getElementById('floating-glass-dock');
-    const appHeader = document.querySelector('.app-header');
-    if (topHex && topHex.startsWith('#')) {
+    if (glassDock && topHex && topHex.startsWith('#')) {
       const r = parseInt(topHex.slice(1,3), 16) || 148;
       const g = parseInt(topHex.slice(3,5), 16) || 163;
       const b = parseInt(topHex.slice(5,7), 16) || 184;
-      const themeBorder = `${topHex}88`;
-      const themeShadow = `inset 0 1px 1px rgba(255, 255, 255, 0.4), inset 0 -1px 2px rgba(255, 255, 255, 0.1), 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(${r}, ${g}, ${b}, 0.5)`;
-      
-      if (glassDock) {
-        glassDock.style.borderColor = themeBorder;
-        glassDock.style.boxShadow = themeShadow;
-      }
-      if (appHeader) {
-        appHeader.style.borderColor = themeBorder;
-        appHeader.style.boxShadow = themeShadow;
-      }
+      glassDock.style.background = `rgba(${r}, ${g}, ${b}, 0.22)`;
+      glassDock.style.borderColor = `${topHex}88`;
+      glassDock.style.boxShadow = `0 12px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(${r}, ${g}, ${b}, 0.5)`;
     }
   }
 
@@ -834,183 +822,6 @@ function calculateVinylValue(vinile) {
   return { total: computedValue, computed: computedValue, isCustom: false, factors };
 }
 
-// ==========================================
-// CONVERTITORE SCALA GOLDMINE (1-10 -> RIGIDO NM, VG+, VG, G+, P)
-// ==========================================
-function convertRatingToGoldmine(score) {
-  const num = parseInt(score);
-  if (isNaN(num)) return 'VG+';
-  if (num >= 10) return 'M (Mint)';
-  if (num >= 9) return 'NM (Near Mint)';
-  if (num >= 8) return 'VG+ (Very Good Plus)';
-  if (num >= 6) return 'VG (Very Good)';
-  if (num >= 4) return 'G+ (Good Plus)';
-  if (num >= 2) return 'G (Good)';
-  return 'P (Poor / Fair)';
-}
-
-let discogsAutoTimer = null;
-
-// ==========================================
-// FASE 1: FETCH ASINCRONA API DISCOGS LIVE (2-STEP CON UTILITY DOM AUTOMATICA)
-// ==========================================
-async function fetchDiscogsLivePrice(matrixOrQuery, targetElementId = 'discogs-live-box', estimatedValue = 0) {
-  const container = document.getElementById(targetElementId);
-  if (!matrixOrQuery || matrixOrQuery.trim() === '') {
-    if (container) {
-      container.innerHTML = `<span style="opacity: 0.6;">🔍 Nessun codice matrice o catalogo disponibile per la verifica live</span>`;
-    }
-    return null;
-  }
-
-  try {
-    const q = encodeURIComponent(matrixOrQuery.trim());
-    const searchUrl = `https://api.discogs.com/database/search?q=${q}&type=release`;
-    const searchRes = await fetch(searchUrl, {
-      headers: { 'User-Agent': 'VinylCollectorApp/2.0 +http://localhost' }
-    });
-
-    if (!searchRes.ok) throw new Error('Search request failed');
-    const searchData = await searchRes.json();
-
-    if (searchData && searchData.results && searchData.results.length > 0) {
-      const bestMatch = searchData.results[0];
-      const releaseId = bestMatch.id;
-      let lowestPrice = null;
-
-      if (releaseId) {
-        try {
-          const detailUrl = `https://api.discogs.com/releases/${releaseId}`;
-          const detailRes = await fetch(detailUrl, {
-            headers: { 'User-Agent': 'VinylCollectorApp/2.0 +http://localhost' }
-          });
-          if (detailRes.ok) {
-            const detailData = await detailRes.json();
-            if (detailData && detailData.lowest_price !== undefined && detailData.lowest_price !== null) {
-              lowestPrice = detailData.lowest_price;
-            }
-          }
-        } catch (_) {}
-      }
-
-      const priceText = formatCurrencyPrice(lowestPrice);
-
-      // Salva in cache locale il prezzo reale ottenuto da Discogs per sommarlo nelle statistiche
-      if (lowestPrice !== null && lowestPrice !== undefined) {
-        try {
-          const priceMap = JSON.parse(localStorage.getItem('discogs_cached_prices') || '{}');
-          priceMap[matrixOrQuery] = lowestPrice;
-          localStorage.setItem('discogs_cached_prices', JSON.stringify(priceMap));
-        } catch (_) {}
-      }
-
-      if (container) {
-        container.innerHTML = `
-          <span class="spec-label" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-            <span>Valore di Mercato (Discogs Live)</span>
-            <a href="${bestMatch.uri ? 'https://www.discogs.com' + bestMatch.uri : 'https://www.discogs.com/release/' + releaseId}" target="_blank" rel="noopener noreferrer" style="font-size: 0.7rem; color: #a5b4fc; text-decoration: underline;">Vedi Release ↗</a>
-          </span>
-          <span class="spec-value" style="color: #34d399; font-weight: 800; font-size: 0.95rem; margin-top: 2px;">
-            ${priceText}
-          </span>
-        `;
-      }
-
-      return { id: releaseId, title: bestMatch.title, lowest_price: lowestPrice };
-    } else {
-      if (container) {
-        const fallbackUrl = `https://www.discogs.com/search/?q=${q}&type=all`;
-        container.innerHTML = `
-          <span class="spec-label" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-            <span>Valore di Mercato (Discogs Live)</span>
-            <a href="${fallbackUrl}" target="_blank" rel="noopener noreferrer" style="font-size: 0.7rem; color: #a5b4fc; text-decoration: underline;">Cerca ↗</a>
-          </span>
-          <span class="spec-value" style="opacity: 0.7; font-size: 0.85rem; margin-top: 2px;">
-            Prezzo non disponibile
-          </span>
-        `;
-      }
-      return null;
-    }
-  } catch (err) {
-    if (container) {
-      container.innerHTML = `<span style="font-size: 0.76rem; opacity: 0.6;">⚠️ Impossibile sincronizzare il mercato Discogs (Offline/Rate limit)</span>`;
-    }
-    return null;
-  }
-}
-
-// CONVERTITORE E FORMATTATORE VALUTA SELEZIONATA (EUR, USD, GBP, CHF)
-function formatCurrencyPrice(valInEur) {
-  if (valInEur === null || valInEur === undefined || isNaN(valInEur)) return 'Prezzo non disponibile';
-  const currency = localStorage.getItem('app_user_currency') || 'EUR';
-  const num = parseFloat(valInEur);
-  
-  if (currency === 'USD') return `a partire da $${(num * 1.08).toFixed(2)}`;
-  if (currency === 'GBP') return `a partire da £${(num * 0.85).toFixed(2)}`;
-  if (currency === 'CHF') return `a partire da CHF ${(num * 0.96).toFixed(2)}`;
-  return `a partire da €${num.toFixed(2)}`;
-}
-
-function getCurrencySymbol() {
-  const currency = localStorage.getItem('app_user_currency') || 'EUR';
-  if (currency === 'USD') return '$';
-  if (currency === 'GBP') return '£';
-  if (currency === 'CHF') return 'CHF ';
-  return '€';
-}
-
-function convertValueToCurrency(valInEur) {
-  const currency = localStorage.getItem('app_user_currency') || 'EUR';
-  const num = parseFloat(valInEur) || 0;
-  if (currency === 'USD') return Math.round(num * 1.08);
-  if (currency === 'GBP') return Math.round(num * 0.85);
-  if (currency === 'CHF') return Math.round(num * 0.96);
-  return Math.round(num);
-}
-
-// SINCRONIZZAZIONE AUTOMATICA DI TUTTI I DISCHI IN BACKGROUND (BATCH QUEUE CON PACING 1 SECONDO)
-let isDiscogsBatchSyncing = false;
-async function syncAllDiscogsPrices(force = false) {
-  if (isDiscogsBatchSyncing) return;
-
-  const freq = localStorage.getItem('app_discogs_sync_freq') || 'AUTO_ALWAYS';
-  const lastSync = localStorage.getItem('app_discogs_last_sync_date');
-  const today = new Date().toISOString().slice(0, 10);
-
-  if (!force) {
-    if (freq === 'MANUAL') return;
-    if (freq === 'DAILY' && lastSync === today) return;
-  }
-
-  isDiscogsBatchSyncing = true;
-  if (force) showToast("🔄 Avvio risincronizzazione automatica Discogs...");
-
-  const personalVinyls = ALL_VINILI.filter(v => {
-    const cat = (v.stato_catalogo || 'personale').toLowerCase();
-    return cat.includes('personale') || cat === '';
-  });
-
-  const priceMap = JSON.parse(localStorage.getItem('discogs_cached_prices') || '{}');
-
-  for (const vinile of personalVinyls) {
-    const queryKey = (vinile.codice_matrice && vinile.codice_matrice !== '??')
-      ? vinile.codice_matrice 
-      : (vinile.catalog_number && vinile.catalog_number !== '??') 
-        ? vinile.catalog_number 
-        : `${vinile.artista} ${vinile.titolo_album}`.trim();
-
-    if (force || !priceMap[queryKey]) {
-      await fetchDiscogsLivePrice(queryKey, null);
-      await new Promise(res => setTimeout(res, 1200));
-    }
-  }
-
-  localStorage.setItem('app_discogs_last_sync_date', today);
-  isDiscogsBatchSyncing = false;
-  if (force) showToast("✅ Risincronizzazione Discogs Completata!");
-}
-
 let activeCategory = 'ALL'; 
 let searchQuery = '';
 let filterYearFrom = null;
@@ -1107,7 +918,6 @@ function applyFiltering() {
       if (targetCat === 'wishlist' && !statusStr.includes('wish')) return false;
       if (targetCat === 'personale' && !statusStr.includes('personale')) return false;
       if (targetCat === 'eredità' && (!statusStr.includes('eredit') && !statusStr.includes('eredita'))) return false;
-      if (targetCat === 'vendita' && (!statusStr.includes('vendita') && !statusStr.includes('scambio'))) return false;
     }
 
     if (searchQuery.trim() !== '') {
@@ -1206,43 +1016,32 @@ function renderWheel() {
   wheelItems = Array.from(wheelContainer.querySelectorAll(".wheel-item"));
 }
 
-let isWheelAnimating = false;
-
 function updateWheel() {
   if (!wheelContainer || filteredVinili.length === 0) return;
 
   wheelItems.forEach((item, index) => {
-    const distance = index - selectedIndex;
+    let distance = index - selectedIndex;
     const absDist = Math.abs(distance);
     const isSelected = distance === 0;
 
-    // Se l'elemento è oltre il 3° sopra o sotto, diventa completamente trasparente (invisibile)
-    if (absDist > 3) {
-      item.style.opacity = '0';
-      item.style.pointerEvents = 'none';
-      item.style.transform = `translate3d(40px, calc(${distance * 3.2}rem - 50%), 0) scale(0.65)`;
-      item.classList.remove("active");
-      return;
-    }
+    const translateY = distance * 2.7; 
+    const curveOffset = -Math.pow(absDist, 1.4) * 11; 
+    const rotateX = distance * -5.5; 
+    const opacity = Math.max(0.05, 1 - absDist * 0.22);
+    const scale = isSelected ? 1.05 : Math.max(0.76, 1 - absDist * 0.08);
 
-    const translateY = distance * 3.2; 
-    const curveOffset = Math.pow(absDist, 1.3) * 14; 
-    const rotateX = distance * 6; 
-    const opacity = isSelected ? 1 : Math.max(0.18, 1 - absDist * 0.26);
-    const scale = isSelected ? 1.2 : Math.max(0.75, 1 - absDist * 0.1);
-
-    item.style.pointerEvents = 'auto';
-    item.classList.toggle("active", isSelected);
+    item.style.color = isSelected ? "#ffffff" : "#cbd5e1";
+    item.style.fontWeight = isSelected ? "700" : "400";
     item.style.opacity = opacity;
     item.style.transform = `translate3d(${curveOffset}px, calc(${translateY}rem - 50%), 0) rotateX(${rotateX}deg) scale(${scale})`;
+    
+    if (isSelected) {
+      item.style.textShadow = "0 0 16px rgba(255, 159, 252, 0.7), 0 2px 10px rgba(0,0,0,0.95)";
+    } else {
+      item.style.textShadow = "0 2px 8px rgba(0,0,0,0.9)";
+    }
   });
 }
-
-function triggerWheelAnimation() {
-  requestAnimationFrame(updateWheel);
-}
-
-let updateContentTimeout = null;
 
 function updateCenterContent(index) {
   if (filteredVinili.length === 0) {
@@ -1256,11 +1055,9 @@ function updateCenterContent(index) {
     return;
   }
 
-  if (updateContentTimeout) clearTimeout(updateContentTimeout);
-
   centerContent.classList.add("fade-out");
   
-  updateContentTimeout = setTimeout(() => {
+  setTimeout(() => {
     try {
       const vinile = filteredVinili[index];
       if (!vinile) return;
@@ -1279,10 +1076,11 @@ function updateCenterContent(index) {
       ` : '';
 
       const fotoHTML = vinile.foto_album && vinile.foto_album.length > 0 ? `
-        <div class="action-buttons-row" style="margin-top: 0.8rem;">
-          <button type="button" class="qr-sticker-action-btn full-width" style="background: rgba(82, 39, 255, 0.22); border-color: rgba(165, 180, 252, 0.45); color: #a5b4fc;" onclick="window.openGalleryModal('${vinile.id}')">
-            📷 Vedi Foto Album (${vinile.foto_album.length})
-          </button>
+        <div class="section-title">📷 Foto Album (${vinile.foto_album.length})</div>
+        <div class="gallery-container">
+          ${vinile.foto_album.map(imgUrl => `
+            <img class="gallery-thumb" src="${imgUrl}" alt="${vinile.titolo_album}" loading="lazy" onclick="window.openPhotoModal('${imgUrl}')">
+          `).join('')}
         </div>
       ` : '';
 
@@ -1318,24 +1116,8 @@ function updateCenterContent(index) {
           </div>
         </div>
 
-        <div class="section-title">📊 Scheda Tecnica & Specifiche Complete</div>
+        <div class="section-title">📊 Scheda Tecnica & Specifiche</div>
         <div class="specs-grid">
-          <div class="spec-card">
-            <span class="spec-label">ID Catalogo</span>
-            <span class="spec-value">#${vinile.id}</span>
-          </div>
-          <div class="spec-card">
-            <span class="spec-label">Anno Uscita Originale</span>
-            <span class="spec-value">${vinile.anno_uscita_originale || "-"}</span>
-          </div>
-          <div class="spec-card">
-            <span class="spec-label">Anno Stampa</span>
-            <span class="spec-value">${vinile.anno_stampa || "-"}</span>
-          </div>
-          <div class="spec-card">
-            <span class="spec-label">Anno Uscita Stampa</span>
-            <span class="spec-value">${vinile.anno_uscita_stampa || vinile.anno_stampa || "-"}</span>
-          </div>
           <div class="spec-card">
             <span class="spec-label">Etichetta</span>
             <span class="spec-value">${vinile.etichetta || "-"}</span>
@@ -1343,6 +1125,10 @@ function updateCenterContent(index) {
           <div class="spec-card">
             <span class="spec-label">Origine Stampa</span>
             <span class="spec-value">${vinile.origine || "-"}</span>
+          </div>
+          <div class="spec-card">
+            <span class="spec-label">Anno Stampa</span>
+            <span class="spec-value">${vinile.anno_stampa || "-"}</span>
           </div>
           <div class="spec-card">
             <span class="spec-label">Cat. Number</span>
@@ -1357,45 +1143,51 @@ function updateCenterContent(index) {
             <span class="spec-value">${vinile.velocita || "33"} RPM | ${vinile.grammatura || "180g"}</span>
           </div>
           <div class="spec-card">
-            <span class="spec-label">Colore Vinile</span>
-            <span class="spec-value">${vinile.colore || "Nero"}</span>
+            <span class="spec-label">Stato Disco / Cover</span>
+            <span class="spec-value">Disco: ${vinile.stato_disco || 8}/10 | Cover: ${vinile.stato_copertina || 8}/10</span>
           </div>
           <div class="spec-card">
-            <span class="spec-label">Stato Disco (Goldmine)</span>
-            <span class="spec-value" style="color: #ff9ffc; font-weight: 700;">
-              ${convertRatingToGoldmine(vinile.stato_disco)}
-            </span>
-          </div>
-          <div class="spec-card">
-            <span class="spec-label">Stato Copertina (Goldmine)</span>
-            <span class="spec-value" style="color: #ff9ffc; font-weight: 700;">
-              ${convertRatingToGoldmine(vinile.stato_copertina)}
-            </span>
+            <span class="spec-label">📍 Posizione Fisica</span>
+            <span class="spec-value" style="color: #34d399; font-weight: 700;">${vinile.posizione_fisica || "Scaffale Principale"}</span>
           </div>
           <div class="spec-card">
             <span class="spec-label">Inserti</span>
             <span class="spec-value">${vinile.inserti || "Nessuno"}</span>
           </div>
-          <!-- CONTAINER AUTOMATICO VALORE MERCATO LIVE DISCOGS STILIZZATO -->
-          <div class="spec-card" id="discogs-live-box" style="grid-column: 1 / -1;">
-            <span class="spec-label">Valore di Mercato (Discogs Live)</span>
-            <span class="spec-value" style="color: #34d399; font-size: 0.88rem; display: flex; align-items: center; gap: 6px;">
-              <span style="display: inline-block; animation: spinVinyl 1.5s linear infinite;">🌐</span>
-              <span>Sincronizzazione in corso...</span>
-            </span>
-          </div>
-          ${vinile.valore_stimato ? `
-            <div class="spec-card">
-              <span class="spec-label">Valore Utente Inserito</span>
-              <span class="spec-value" style="color: #fbbf24; font-weight: 700;">€${vinile.valore_stimato}</span>
-            </div>
-          ` : ''}
           ${vinile.note_stato ? `
             <div class="spec-card" style="grid-column: 1 / -1;">
-              <span class="spec-label">Note & Dettagli Stato</span>
+              <span class="spec-label">Note</span>
               <span class="spec-value" style="font-style: italic;">${vinile.note_stato}</span>
             </div>
           ` : ''}
+        </div>
+
+        <!-- SCHEDA VALORE COMMERCIALE (SUBITO PRIMA DELLA TRACKLIST CON TAG A SCOMPARTIMENTO) -->
+        ${valData.factors.length > 0 ? `
+          <div class="vinyl-value-box" style="margin-top: 1.2rem; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--accent-color, rgba(255, 255, 255, 0.3)); padding: 12px 14px; border-radius: 16px; box-shadow: 0 0 15px var(--accent-color);">
+            <div id="toggle-factors-header" style="display: flex; justify-content: space-between; align-items: center; cursor: pointer; user-select: none;">
+              <div style="display: flex; align-items: center; gap: 6px;">
+                <span class="spec-label" style="color: #ffffff !important; font-size: 0.84rem; font-weight: 800; letter-spacing: 0.5px; text-shadow: 0 2px 6px rgba(0,0,0,0.9);">💶 VALORE COMMERCIALE STIMATO</span>
+                <span id="factors-arrow" style="font-size: 0.75rem; color: #ffffff; transition: transform 0.2s ease; display: inline-block;">▼</span>
+              </div>
+              <span style="font-size: 1.4rem; font-weight: 800; color: #ffffff; text-shadow: 0 2px 8px rgba(0,0,0,0.8);">€${estimatedValue}</span>
+            </div>
+            <div id="value-factors-list" style="margin-top: 10px; font-size: 0.74rem; color: #cbd5e1; display: flex; flex-wrap: wrap; gap: 5px;">
+              ${valData.factors.map(f => `<span style="background: rgba(0, 0, 0, 0.45); padding: 4px 9px; border-radius: 8px; border: 1px solid rgba(255, 255, 255, 0.14); font-weight: 500;">✓ ${f}</span>`).join('')}
+            </div>
+          </div>
+        ` : `
+          <div class="spec-card" style="margin-top: 1.2rem; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--accent-color, rgba(255, 255, 255, 0.3)); padding: 12px 14px; border-radius: 16px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 0 15px var(--accent-color);">
+            <span class="spec-label" style="color: #ffffff !important; font-size: 0.84rem; font-weight: 800; letter-spacing: 0.5px; text-shadow: 0 2px 6px rgba(0,0,0,0.9);">💶 VALORE COMMERCIALE STIMATO</span>
+            <span style="font-size: 1.4rem; font-weight: 800; color: #ffffff;">€${estimatedValue}</span>
+          </div>
+        `}
+
+        <!-- PULSANTE QR CODE & ETICHETTA (LE ALTRE AZIONI OPERATIVE SONO NELLA DOCK BAR) -->
+        <div class="action-buttons-row" style="margin-top: 1rem;">
+          <button type="button" class="qr-sticker-action-btn full-width" onclick="window.openQRCodeModal('${vinile.id}')">
+            🏷️ Genera QR Code & Etichetta Vinile
+          </button>
         </div>
 
         ${tracceHTML}
@@ -1427,6 +1219,7 @@ function updateCenterContent(index) {
           }
         });
 
+        // INTERAZIONE MICRO-ANIMATION TILT PARALLAX 3D
         coverWrapper.addEventListener("pointermove", (e) => {
           const rect = coverWrapper.getBoundingClientRect();
           const x = e.clientX - rect.left - rect.width / 2;
@@ -1453,20 +1246,9 @@ function updateCenterContent(index) {
           }
         });
       }
-
-      // ESECUZIONE AUTOMATICA CON DEBOUNCE A 600MS (INCLUDENDO NOTE ED INSERTI NELLA RICERCA)
-      if (discogsAutoTimer) clearTimeout(discogsAutoTimer);
-      const queryMatrix = (vinile.codice_matrice && vinile.codice_matrice !== '??')
-        ? vinile.codice_matrice 
-        : (vinile.catalog_number && vinile.catalog_number !== '??') 
-          ? vinile.catalog_number 
-          : `${vinile.artista} ${vinile.titolo_album} ${vinile.note_stato || ''} ${vinile.inserti || ''}`.trim();
-
-      discogsAutoTimer = setTimeout(() => {
-        fetchDiscogsLivePrice(queryMatrix, 'discogs-live-box', estimatedValue);
-      }, 600);
     } catch (renderError) {
       console.error("Errore di rendering vinile:", renderError);
+      // Mostra un fallback visivo invece di lasciare lo schermo vuoto
       try {
         const vinile = filteredVinili[index];
         centerContent.innerHTML = `
@@ -1477,12 +1259,12 @@ function updateCenterContent(index) {
             <p style="margin-top: 16px; font-size: 0.78rem; opacity: 0.45;">Impossibile caricare alcuni dettagli.<br>Scorri i titoli per continuare.</p>
           </div>
         `;
-      } catch (_) { }
+      } catch (_) { /* nessun fallback disponibile */ }
     } finally {
       centerContent.classList.remove("fade-out");
       centerContent.scrollTop = 0;
     }
-  }, 120);
+  }, 250); 
 
   if (mobileCounter) {
     mobileCounter.textContent = `${index + 1} / ${filteredVinili.length}`;
@@ -1495,53 +1277,9 @@ function selectIndex(newIndex) {
   
   if (targetIndex !== selectedIndex) {
     selectedIndex = targetIndex;
-    triggerWheelAnimation();
+    updateWheel();
     updateCenterContent(selectedIndex); 
   }
-}
-
-// SCORRIMENTO FLUIDO DELLA RUOTA CON ROTELLA E TOUCH SWIPE (SENZA TREMOLIO)
-if (wheelContainer) {
-  let lastWheelTime = 0;
-
-  window.addEventListener('wheel', (e) => {
-    if (e.target.closest('.modal-content') || e.target.closest('.center-content') || e.target.closest('.discogs-results-list')) {
-      return;
-    }
-
-    const now = performance.now();
-    if (now - lastWheelTime < 60) return; // Limita l'aggiornamento a 16 step al secondo max per evitare flickering
-
-    if (Math.abs(e.deltaY) > 8) {
-      lastWheelTime = now;
-      const step = Math.sign(e.deltaY);
-      selectIndex(selectedIndex + step);
-    }
-  }, { passive: true });
-
-  // Touch Swipe per mobile e touch display
-  let touchStartY = 0;
-
-  window.addEventListener('touchstart', (e) => {
-    if (e.touches.length === 1) {
-      touchStartY = e.touches[0].clientY;
-    }
-  }, { passive: true });
-
-  window.addEventListener('touchmove', (e) => {
-    if (e.target.closest('.modal-content') || e.target.closest('.center-content')) return;
-    if (e.touches.length === 1) {
-      const currentY = e.touches[0].clientY;
-      const diffY = touchStartY - currentY;
-      const threshold = 35;
-      
-      if (Math.abs(diffY) >= threshold) {
-        const step = Math.sign(diffY);
-        selectIndex(selectedIndex + step);
-        touchStartY = currentY;
-      }
-    }
-  }, { passive: true });
 }
 
 // GESTIONE CHIPS CATEGORIA DENTRO MODAL FILTRI
@@ -1676,21 +1414,6 @@ if (triggerImportBtn && importJsonFile) {
   });
 }
 
-function trackCollectionValueHistory(totalValue, personaleCount) {
-  try {
-    let history = JSON.parse(localStorage.getItem('vinyl_value_history') || '[]');
-    const today = new Date().toISOString().slice(0, 10);
-    const existingIndex = history.findIndex(h => h.date === today);
-    if (existingIndex >= 0) {
-      history[existingIndex] = { date: today, value: totalValue, count: personaleCount };
-    } else {
-      history.push({ date: today, value: totalValue, count: personaleCount });
-      if (history.length > 7) history.shift();
-    }
-    localStorage.setItem('vinyl_value_history', JSON.stringify(history));
-  } catch (_) {}
-}
-
 // DASHBOARD STATISTICHE & CALCOLATORE STIMA VALORE EDICOLARE/MERCATO
 function renderStatsDashboard() {
   const total = ALL_VINILI.length;
@@ -1719,28 +1442,15 @@ function renderStatsDashboard() {
     const decadeLabel = decade ? `Anni '${String(decade).slice(-2)}` : 'Anni sconosciuti';
     decadesCount[decadeLabel] = (decadesCount[decadeLabel] || 0) + 1;
 
-    // Preleva il prezzo reale da Discogs in cache (se disponibile) o usa il valore base dell'album
-    const queryMatrix = (v.codice_matrice && v.codice_matrice !== '??')
-      ? v.codice_matrice 
-      : (v.catalog_number && v.catalog_number !== '??') 
-        ? v.catalog_number 
-        : `${v.artista} ${v.titolo_album}`.trim();
-        
-    const cachedDiscogsPrices = JSON.parse(localStorage.getItem('discogs_cached_prices') || '{}');
-    const discogsRealPrice = cachedDiscogsPrices[queryMatrix];
-
+    // Calcola stima valore usando l'algoritmo multi-fattore (SOLO COLLEZIONE PERSONALE)
     const valData = calculateVinylValue(v);
-    const itemVal = (discogsRealPrice !== undefined && discogsRealPrice !== null && !isNaN(discogsRealPrice))
-      ? parseFloat(discogsRealPrice)
-      : valData.total;
-
-    const catStr = (v.stato_catalogo || 'personale').toLowerCase();
-    const isPersonale = catStr.includes('personale') || catStr === '' || !v.stato_catalogo;
+    const itemVal = valData.total;
+    const isPersonale = (v.stato_catalogo || '').toLowerCase().includes('personale');
 
     if (isPersonale) {
-      totalEstVal += Math.round(itemVal);
+      totalEstVal += itemVal;
       if (itemVal > rarestScore) {
-        rarestScore = Math.round(itemVal);
+        rarestScore = itemVal;
         rarestVinyl = v;
       }
     }
@@ -1757,74 +1467,38 @@ function renderStatsDashboard() {
   const sortedGenres = Object.entries(genresCount).sort((a, b) => b[1] - a[1]);
   const sortedDecades = Object.entries(decadesCount).sort((a, b) => b[1] - a[1]);
 
-  // Traccia lo storico valore nel tempo (SOLO PERSONALE)
+  // Traccia lo storico valore nel tempo
   trackCollectionValueHistory(totalEstVal, personale);
-  let historyData = JSON.parse(localStorage.getItem('vinyl_value_history') || '[]');
-  // Se primo avvio, genera 5 punti di storico simulato a scopo dimostrativo
-  if (historyData.length === 0) {
-    historyData = [
-      { date: 'Gen 2026', value: Math.round(totalEstVal * 0.72), count: Math.max(1, personale - 4) },
-      { date: 'Mar 2026', value: Math.round(totalEstVal * 0.81), count: Math.max(1, personale - 3) },
-      { date: 'Mag 2026', value: Math.round(totalEstVal * 0.88), count: Math.max(1, personale - 2) },
-      { date: 'Lug 2026', value: Math.round(totalEstVal * 0.94), count: Math.max(1, personale - 1) },
-      { date: 'Oggi', value: totalEstVal, count: personale }
-    ];
-  }
-
-  // Costruisce il Grafico SVG Trend ad area con linea luminosa
-  const maxHVal = Math.max(...historyData.map(h => h.value), 1);
-  const minHVal = Math.min(...historyData.map(h => h.value), 0);
-  const chartHeight = 140;
-  const chartWidth = 500;
-  const paddingX = 40;
-  const paddingY = 20;
-
-  const points = historyData.map((item, idx) => {
-    const x = paddingX + (idx / Math.max(1, historyData.length - 1)) * (chartWidth - paddingX * 2);
-    const normalizedVal = (item.value - minHVal) / Math.max(1, maxHVal - minHVal);
-    const y = (chartHeight - paddingY) - normalizedVal * (chartHeight - paddingY * 2);
-    return { x, y, item };
-  });
-
-  const pathD = points.map((p, idx) => `${idx === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
-  const areaD = `${pathD} L ${points[points.length - 1].x} ${chartHeight - 5} L ${points[0].x} ${chartHeight - 5} Z`;
-
-  const convertedTotal = convertValueToCurrency(totalEstVal);
-  const symbol = getCurrencySymbol();
+  const historyData = JSON.parse(localStorage.getItem('vinyl_value_history') || '[]');
 
   statsModalBody.innerHTML = `
     <!-- BANNER VALORE STIMATO DI MERCATO -->
     <div class="kpi-banner-gold">
       <div class="kpi-banner-title">💶 STIMA VALORE COLLEZIONE PERSONALE</div>
-      <div class="kpi-banner-amount">${symbol}${convertedTotal}</div>
-      <div class="kpi-banner-sub">Somma dei prezzi di mercato reali letti da Discogs sui ${personale} dischi della collezione Personale (${symbol})</div>
+      <div class="kpi-banner-amount">€${totalEstVal}</div>
+      <div class="kpi-banner-sub">Calcolato esclusivamente sui ${personale} dischi della collezione Personale (Voto Medio: ${avgDiscRating}/10)</div>
     </div>
 
-    <!-- GRAFICO SVG TREND AD ONDA E VALORI -->
-    <div class="section-title">📈 Grafico Evoluzione Valore Collezione</div>
-    <div style="background: rgba(14, 11, 26, 0.75); border: 1px solid rgba(255, 159, 252, 0.3); border-radius: 18px; padding: 14px; margin-bottom: 1.2rem; box-shadow: 0 8px 25px rgba(0,0,0,0.5);">
-      <svg viewBox="0 0 ${chartWidth} ${chartHeight}" style="width: 100%; height: 140px; overflow: visible;">
-        <defs>
-          <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#ff9ffc" stop-opacity="0.45"/>
-            <stop offset="100%" stop-color="#5227ff" stop-opacity="0.02"/>
-          </linearGradient>
-        </defs>
-
-        <!-- Area ombreggiata del grafico -->
-        <path d="${areaD}" fill="url(#chartGradient)"/>
-
-        <!-- Linea principale del grafico -->
-        <path d="${pathD}" fill="none" stroke="#ff9ffc" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="filter: drop-shadow(0 0 6px #ff9ffc);"/>
-
-        <!-- Punti di valore e date -->
-        ${points.map(p => `
-          <circle cx="${p.x}" cy="${p.y}" r="5" fill="#5227ff" stroke="#ff9ffc" stroke-width="2.5"/>
-          <text x="${p.x}" y="${p.y - 10}" fill="#ffffff" font-size="11" font-weight="bold" text-anchor="middle">€${p.item.value}</text>
-          <text x="${p.x}" y="${chartHeight + 12}" fill="#94a3b8" font-size="10" text-anchor="middle">${p.item.date}</text>
-        `).join('')}
-      </svg>
-    </div>
+    ${historyData.length > 0 ? `
+      <div class="section-title">📈 Storico Evoluzione Valore Collezione</div>
+      <div class="stat-bar-wrapper" style="margin-bottom: 1.2rem;">
+        ${historyData.map(item => {
+          const maxVal = Math.max(...historyData.map(h => h.value), 1);
+          const pct = Math.max(18, Math.round((item.value / maxVal) * 100));
+          return `
+            <div class="stat-bar-row">
+              <div class="stat-bar-info">
+                <span>📅 ${item.date} (${item.count} vinili)</span>
+                <span style="color: #34d399; font-weight: 800;">€${item.value}</span>
+              </div>
+              <div class="stat-bar-track">
+                <div class="stat-bar-fill" style="width: ${pct}%; background: linear-gradient(90deg, #34d399, #5227ff);"></div>
+              </div>
+            </div>
+          `;
+        }).join('')}
+      </div>
+    ` : ''}
 
     ${rarestVinyl ? `
       <div class="spec-card" style="margin-bottom: 1rem; background: rgba(82, 39, 255, 0.28); border: 1px solid rgba(255, 159, 252, 0.4);">
@@ -2442,110 +2116,33 @@ if (mobileOverlay) mobileOverlay.addEventListener("click", closeMobileDrawer);
 let isWheelThrottled = false;
 if (wheelContainer) {
   wheelContainer.addEventListener("wheel", (e) => {
-    e.preventDefault();
-    if (isWheelThrottled) return;
-    isWheelThrottled = true;
-    if (e.deltaY > 0) selectIndex(selectedIndex + 1);
-    else if (e.deltaY < 0) selectIndex(selectedIndex - 1);
-    setTimeout(() => { isWheelThrottled = false; }, 80);
-  }, { passive: false });
-
-  // --- Aggiunta: Drag per scorrere i titoli (verticale) o chiudere il menu (orizzontale verso destra) ---
-  let touchStartX = 0;
-  let touchStartY = 0;
-
-  wheelContainer.addEventListener("touchstart", (e) => {
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-  }, { passive: true });
-
-  wheelContainer.addEventListener("touchmove", (e) => {
-    const touchCurrentX = e.touches[0].clientX;
-    const touchCurrentY = e.touches[0].clientY;
-    const diffX = touchCurrentX - touchStartX; // Positivo se si trascina verso destra
-    const diffY = touchStartY - touchCurrentY; // Positivo se si trascina verso l'alto
-
-    // Swipe orizzontale verso destra per chiudere il menu
-    if (Math.abs(diffX) > Math.abs(diffY) && diffX > 40) {
-      if (typeof closeMobileDrawer === "function") {
-        closeMobileDrawer();
-      }
-      return;
-    }
-
-    // Drag verticale per scorrere i titoli
-    if (Math.abs(diffY) > Math.abs(diffX)) {
-      e.preventDefault(); // Previene lo scroll di default della pagina sul mobile
-      if (isWheelThrottled) return;
-      
-      if (Math.abs(diffY) > 20) {
-        isWheelThrottled = true;
-        if (diffY > 0) selectIndex(selectedIndex + 1);
-        else selectIndex(selectedIndex - 1);
-        
-        touchStartY = touchCurrentY; // Reset Y per drag continui
-        setTimeout(() => { isWheelThrottled = false; }, 120);
-      }
-    }
-  }, { passive: false });
-
-  // --- Aggiunta: Drag con mouse (PC) per scorrere i titoli o chiudere il menu ---
-  let isMouseDown = false;
-  let mouseStartX = 0;
-  let mouseStartY = 0;
-
-  wheelContainer.addEventListener("mousedown", (e) => {
-    isMouseDown = true;
-    mouseStartX = e.clientX;
-    mouseStartY = e.clientY;
-    wheelContainer.style.cursor = "grabbing";
-  });
-
-  window.addEventListener("mouseup", () => {
-    isMouseDown = false;
-    if (wheelContainer) wheelContainer.style.cursor = "grab";
-  });
-
-  wheelContainer.addEventListener("mousemove", (e) => {
-    if (!isMouseDown) return;
-    
-    const mouseCurrentX = e.clientX;
-    const mouseCurrentY = e.clientY;
-    const diffX = mouseCurrentX - mouseStartX; // Positivo verso destra
-    const diffY = mouseStartY - mouseCurrentY; // Positivo verso l'alto
-
-    // Drag orizzontale verso destra per chiudere
-    if (Math.abs(diffX) > Math.abs(diffY) && diffX > 40) {
-      if (typeof closeMobileDrawer === "function") {
-        closeMobileDrawer();
-      }
-      isMouseDown = false;
-      return;
-    }
-
-    // Drag verticale per scorrere
-    if (Math.abs(diffY) > Math.abs(diffX)) {
-      e.preventDefault();
-      if (isWheelThrottled) return;
-
-      if (Math.abs(diffY) > 20) {
-        isWheelThrottled = true;
-        if (diffY > 0) selectIndex(selectedIndex + 1);
-        else selectIndex(selectedIndex - 1);
-        
-        mouseStartY = mouseCurrentY; // Reset
-        setTimeout(() => { isWheelThrottled = false; }, 120);
-      }
-    }
-  });
-
-  // Imposta il cursore di default a "grab" per indicare che è trascinabile
-  wheelContainer.style.cursor = "grab";
+  e.preventDefault();
+  if (isWheelThrottled) return;
+  isWheelThrottled = true;
+  if (e.deltaY > 0) selectIndex(selectedIndex + 1);
+  else if (e.deltaY < 0) selectIndex(selectedIndex - 1);
+  setTimeout(() => { isWheelThrottled = false; }, 80);
+}, { passive: false });
 }
 
 // ==========================================
-// GESTIONE QR CODE ETICHETTA STAMPABILE
+// GESTIONE STORICO VALORE & QR CODE ETICHETTA STAMPABILE
 // ==========================================
+function trackCollectionValueHistory(totalValue, count) {
+  if (!totalValue || totalValue <= 0) return;
+  let history = JSON.parse(localStorage.getItem('vinyl_value_history') || '[]');
+  const todayStr = new Date().toLocaleDateString('it-IT', { day: '2-digit', month: 'short' });
+
+  if (history.length === 0 || history[history.length - 1].date !== todayStr) {
+    history.push({ date: todayStr, value: totalValue, count });
+    if (history.length > 6) history.shift();
+    localStorage.setItem('vinyl_value_history', JSON.stringify(history));
+  } else {
+    history[history.length - 1].value = totalValue;
+    history[history.length - 1].count = count;
+    localStorage.setItem('vinyl_value_history', JSON.stringify(history));
+  }
+}
 
 const qrModal = document.getElementById('qr-modal');
 const closeQrModalBtn = document.getElementById('close-qr-modal-btn');
@@ -2562,8 +2159,8 @@ window.openQRCodeModal = function(id) {
   document.getElementById('sticker-location').textContent = `📍 Posizione: ${vinile.posizione_fisica || 'Scaffale Principale'}`;
 
   const qrData = `${vinile.artista} - ${vinile.titolo_album} (Cat: ${vinile.catalog_number || 'N/A'}) [Pos: ${vinile.posizione_fisica || 'N/A'}]`;
-  const qrSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect width="100%" height="100%" fill="#fff"/><rect x="20" y="20" width="50" height="50" fill="#111827"/><rect x="30" y="30" width="30" height="30" fill="#fff"/><rect x="37" y="37" width="16" height="16" fill="#111827"/><rect x="130" y="20" width="50" height="50" fill="#111827"/><rect x="140" y="30" width="30" height="30" fill="#fff"/><rect x="147" y="37" width="16" height="16" fill="#111827"/><rect x="20" y="130" width="50" height="50" fill="#111827"/><rect x="30" y="140" width="30" height="30" fill="#fff"/><rect x="37" y="147" width="16" height="16" fill="#111827"/><rect x="90" y="40" width="20" height="20" fill="#111827"/><rect x="90" y="90" width="20" height="20" fill="#111827"/><rect x="40" y="90" width="20" height="20" fill="#111827"/><rect x="140" y="90" width="20" height="20" fill="#111827"/><rect x="120" y="130" width="20" height="20" fill="#111827"/><rect x="150" y="150" width="30" height="30" fill="#111827"/><rect x="90" y="140" width="20" height="40" fill="#111827"/></svg>`;
-  document.getElementById('sticker-qr-img').src = 'data:image/svg+xml;utf8,' + encodeURIComponent(qrSvg);
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(qrData)}&size=200x200&color=111827`;
+  document.getElementById('sticker-qr-img').src = qrUrl;
 
   if (qrModal) {
     qrModal.classList.add('active');
@@ -2592,88 +2189,11 @@ window.openPhotoModal = function(src) {
   }
 };
 
-window.openGalleryModal = function(id) {
-  const vinile = ALL_VINILI.find(v => String(v.id) === String(id));
-  if (!vinile || !vinile.foto_album || vinile.foto_album.length === 0) return;
-
-  if (photoModal && modalImg) {
-    const totalPhotos = vinile.foto_album.length;
-    let currentPhotoIdx = 0;
-
-    const galleryWrapper = document.createElement('div');
-    galleryWrapper.className = 'gallery-modal-grid';
-    galleryWrapper.style.cssText = 'position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 92vw; max-width: 850px; height: 80vh;';
-    
-    galleryWrapper.innerHTML = `
-      <div id="gallery-counter-badge" style="position: absolute; top: -10px; background: rgba(18, 16, 28, 0.85); border: 1px solid rgba(255, 159, 252, 0.5); padding: 4px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; color: #ff9ffc; z-index: 12; box-shadow: 0 4px 15px rgba(0,0,0,0.6);">
-        1 / ${totalPhotos}
-      </div>
-
-      ${totalPhotos > 1 ? `
-        <button type="button" id="prev-gallery-photo-btn" class="icon-circle-btn" style="position: absolute; left: 0px; z-index: 15; width: 46px; height: 46px; background: rgba(18, 16, 28, 0.9); border: 1px solid rgba(255, 159, 252, 0.6); font-size: 1.3rem; cursor: pointer; color: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.8);" aria-label="Foto Precedente">❮</button>
-        <button type="button" id="next-gallery-photo-btn" class="icon-circle-btn" style="position: absolute; right: 0px; z-index: 15; width: 46px; height: 46px; background: rgba(18, 16, 28, 0.9); border: 1px solid rgba(255, 159, 252, 0.6); font-size: 1.3rem; cursor: pointer; color: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.8);" aria-label="Foto Successiva">❯</button>
-      ` : ''}
-      
-      <div id="gallery-track-container" style="display: flex; flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; width: 100%; height: 100%; align-items: center; scrollbar-width: none; ms-overflow-style: none;">
-        ${vinile.foto_album.map((imgUrl, i) => `
-          <div class="gallery-photo-slide" data-slide-index="${i}" style="scroll-snap-align: center; flex: 0 0 100%; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; padding: 0 50px; box-sizing: border-box;">
-            <img src="${imgUrl}" alt="${vinile.titolo_album} - Foto ${i + 1}" style="max-width: 100%; max-height: 70vh; object-fit: contain; border-radius: 18px; border: 2px solid rgba(255, 159, 252, 0.45); box-shadow: 0 12px 35px rgba(0,0,0,0.8); cursor: pointer;" onclick="window.openPhotoModal('${imgUrl}')">
-          </div>
-        `).join('')}
-      </div>
-    `;
-
-    const modalBodyWrapper = photoModal.querySelector('.gallery-modal-grid');
-    if (modalBodyWrapper) modalBodyWrapper.remove();
-
-    modalImg.style.display = 'none';
-    photoModal.appendChild(galleryWrapper);
-    photoModal.classList.add('active');
-    photoModal.setAttribute('aria-hidden', 'false');
-
-    // NAVIGAZIONE E AGGIORNAMENTO CONTATORE FOTO (1/N)
-    const track = galleryWrapper.querySelector('#gallery-track-container');
-    const badge = galleryWrapper.querySelector('#gallery-counter-badge');
-    const prevBtn = galleryWrapper.querySelector('#prev-gallery-photo-btn');
-    const nextBtn = galleryWrapper.querySelector('#next-gallery-photo-btn');
-
-    function scrollToSlide(idx) {
-      currentPhotoIdx = Math.max(0, Math.min(idx, totalPhotos - 1));
-      const slides = track.querySelectorAll('.gallery-photo-slide');
-      if (slides[currentPhotoIdx]) {
-        slides[currentPhotoIdx].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-      }
-      if (badge) badge.textContent = `${currentPhotoIdx + 1} / ${totalPhotos}`;
-    }
-
-    if (prevBtn) {
-      prevBtn.addEventListener('click', () => scrollToSlide(currentPhotoIdx - 1));
-    }
-    if (nextBtn) {
-      nextBtn.addEventListener('click', () => scrollToSlide(currentPhotoIdx + 1));
-    }
-
-    track.addEventListener('scroll', () => {
-      const slideWidth = track.clientWidth;
-      if (slideWidth > 0) {
-        const newIdx = Math.round(track.scrollLeft / slideWidth);
-        if (newIdx !== currentPhotoIdx && newIdx >= 0 && newIdx < totalPhotos) {
-          currentPhotoIdx = newIdx;
-          if (badge) badge.textContent = `${currentPhotoIdx + 1} / ${totalPhotos}`;
-        }
-      }
-    }, { passive: true });
-  }
-};
-
 if (closeModalBtn) {
   closeModalBtn.addEventListener('click', () => {
     if (photoModal) {
       photoModal.classList.remove('active');
       photoModal.setAttribute('aria-hidden', 'true');
-      const grid = photoModal.querySelector('.gallery-modal-grid');
-      if (grid) grid.remove();
-      if (modalImg) modalImg.style.display = 'block';
     }
   });
 }
@@ -2883,34 +2403,6 @@ if (closeSettingsModalBtn) {
   });
 }
 
-// CONTROLLI VALUTA & FREQUENZA SINCRONIZZAZIONE DISCOGS
-const currencySelect = document.getElementById('settings-currency-select');
-const syncFreqSelect = document.getElementById('settings-discogs-sync-freq');
-const forceSyncBtn = document.getElementById('settings-force-sync-discogs-btn');
-
-if (currencySelect) {
-  currencySelect.value = localStorage.getItem('app_user_currency') || 'EUR';
-  currencySelect.addEventListener('change', (e) => {
-    localStorage.setItem('app_user_currency', e.target.value);
-    showToast(`💱 Valuta impostata su ${e.target.value}`);
-    updateCenterContent();
-  });
-}
-
-if (syncFreqSelect) {
-  syncFreqSelect.value = localStorage.getItem('app_discogs_sync_freq') || 'AUTO_ALWAYS';
-  syncFreqSelect.addEventListener('change', (e) => {
-    localStorage.setItem('app_discogs_sync_freq', e.target.value);
-    showToast(`⚙️ Frequenza Sincronizzazione aggiornata`);
-  });
-}
-
-if (forceSyncBtn) {
-  forceSyncBtn.addEventListener('click', () => {
-    syncAllDiscogsPrices(true);
-  });
-}
-
 if (settingsExportJsonBtn) {
   settingsExportJsonBtn.addEventListener('click', () => exportJsonBtn?.click());
 }
@@ -2994,126 +2486,6 @@ document.getElementById('dock-discogs-btn')?.addEventListener('click', () => {
   }
 });
 
-document.getElementById('dock-spotify-btn')?.addEventListener('click', () => {
-  const vinile = filteredVinili[selectedIndex];
-  if (vinile) {
-    let spotifyWebUrl = '';
-    let spotifyAppUri = '';
-
-    if (vinile.spotify_url && vinile.spotify_url.startsWith('http')) {
-      spotifyWebUrl = vinile.spotify_url;
-      // Estrae ID Album da URL web per creare l'URI nativo dell'App (spotify:album:xxx)
-      const match = vinile.spotify_url.match(/album\/([a-zA-Z0-9]+)/);
-      if (match && match[1]) {
-        spotifyAppUri = `spotify:album:${match[1]}`;
-      }
-    } else {
-      const query = (vinile.artista || '') + ' ' + (vinile.titolo_album || '');
-      const encodedQuery = encodeURIComponent(query);
-      spotifyWebUrl = `https://open.spotify.com/search/${encodedQuery}`;
-      spotifyAppUri = `spotify:search:${encodedQuery}`;
-    }
-
-    // TENTA APERTURA NATIVA SU APP INSTALLATA TRAMITE URI SCHEME
-    if (spotifyAppUri) {
-      const start = Date.now();
-      window.location.href = spotifyAppUri;
-
-      // Se l'app nativa non è presente o non risponde entro 1.2s, fa fallback sul browser web
-      setTimeout(() => {
-        if (Date.now() - start < 2000) {
-          window.open(spotifyWebUrl, '_blank', 'noopener,noreferrer');
-        }
-      }, 1200);
-    } else {
-      window.open(spotifyWebUrl, '_blank', 'noopener,noreferrer');
-    }
-  }
-});
-
-// ==========================================
-// GESTIONE JUKEBOX PARTY MODE
-// ==========================================
-const jukeboxModal = document.getElementById('jukebox-modal');
-const closeJukeboxModalBtn = document.getElementById('close-jukebox-modal-btn');
-const jukeboxDisplay = document.getElementById('jukebox-display');
-const jukeboxRandomBtn = document.getElementById('jukebox-random-btn');
-const jukeboxAutoBtn = document.getElementById('jukebox-auto-btn');
-let jukeboxTimer = null;
-
-function renderJukeboxVinyl(vinile) {
-  if (!jukeboxDisplay || !vinile) return;
-  const fallbackCover = generateSVGAlbumCover(vinile.artista, vinile.titolo_album);
-  const coverSrc = (vinile.cover && vinile.cover.trim() !== '') ? vinile.cover : fallbackCover;
-
-  jukeboxDisplay.innerHTML = `
-    <div class="floating-art-wrapper" style="margin-bottom: 12px;">
-      <div class="album-cover-wrapper playing" style="width: 200px; height: 200px;">
-        <img class="album-cover-img" src="${coverSrc}" alt="${vinile.titolo_album}" width="200" height="200">
-        <div class="vinyl-disc" style="right: -85px;"></div>
-      </div>
-      <div class="floating-floor-shadow" style="width: 170px;"></div>
-    </div>
-    <h2 style="color: #fff; font-size: 1.4rem; font-weight: 800; margin-top: 6px;">${vinile.titolo_album}</h2>
-    <div style="color: #ff9ffc; font-size: 1.1rem; font-weight: 700; margin-top: 2px;">${vinile.artista}</div>
-    <div style="margin-top: 8px; font-size: 0.82rem; color: #cbd5e1; display: flex; gap: 8px; justify-content: center;">
-      <span class="badge badge-purple">${vinile.genere || 'Vinile'}</span>
-      <span class="badge badge-pink">${vinile.anno_uscita_originale || vinile.anno_stampa || 'N/A'}</span>
-      <span class="badge" style="color:#ff9ffc;">📀 ${vinile.stato_catalogo || 'Personale'}</span>
-    </div>
-  `;
-}
-
-function getPersonalVinylsList() {
-  const list = ALL_VINILI.filter(v => {
-    const cat = (v.stato_catalogo || 'personale').toLowerCase();
-    return cat.includes('personale') || cat === '';
-  });
-  return list.length > 0 ? list : ALL_VINILI;
-}
-
-function pickRandomJukeboxVinyl() {
-  const list = getPersonalVinylsList();
-  if (list.length === 0) return;
-  const randIdx = Math.floor(Math.random() * list.length);
-  const vinile = list[randIdx];
-
-  // Trova l'indice del vinile estratto nel filtrato globale per sincronizzare la ruota
-  const globalIdx = filteredVinili.findIndex(v => v.id === vinile.id);
-  if (globalIdx >= 0) selectIndex(globalIdx);
-
-  renderJukeboxVinyl(vinile);
-  if (navigator.vibrate) navigator.vibrate([30, 50, 30]);
-}
-
-document.getElementById('dock-jukebox-btn')?.addEventListener('click', () => {
-  if (jukeboxModal) {
-    jukeboxModal.classList.add('active');
-    jukeboxModal.setAttribute('aria-hidden', 'false');
-    const personalList = getPersonalVinylsList();
-    const currentVinile = personalList[0] || ALL_VINILI[0];
-    renderJukeboxVinyl(currentVinile);
-  }
-});
-
-if (closeJukeboxModalBtn) {
-  closeJukeboxModalBtn.addEventListener('click', () => {
-    if (jukeboxModal) {
-      jukeboxModal.classList.remove('active');
-      jukeboxModal.setAttribute('aria-hidden', 'true');
-      if (jukeboxTimer) {
-        clearInterval(jukeboxTimer);
-        jukeboxTimer = null;
-        if (jukeboxAutoBtn) jukeboxAutoBtn.innerHTML = '▶️ Autoplay Party (10s)';
-      }
-    }
-  });
-}
-
-if (jukeboxRandomBtn) {
-  jukeboxRandomBtn.addEventListener('click', pickRandomJukeboxVinyl);
-}
-
 document.getElementById('dock-settings-btn')?.addEventListener('click', () => {
   if (settingsModal) {
     settingsModal.classList.add('active');
@@ -3133,6 +2505,5 @@ document.querySelectorAll('.theme-chip-btn').forEach(btn => {
 const savedTheme = localStorage.getItem('app_theme_choice') || 'VIOLET';
 applyAppTheme(savedTheme);
 
-// INIZIALIZZA L'APPLICAZIONE & AVVIA SINCRONIZZAZIONE AUTOMATICA IN BACKGROUND SU DISCOGS
+// INIZIALIZZA L'APPLICAZIONE
 applyFiltering();
-setTimeout(syncAllDiscogsPrices, 2000);
