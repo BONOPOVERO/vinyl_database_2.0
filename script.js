@@ -2123,6 +2123,61 @@ if (wheelContainer) {
   else if (e.deltaY < 0) selectIndex(selectedIndex - 1);
   setTimeout(() => { isWheelThrottled = false; }, 80);
 }, { passive: false });
+let isWheelThrottled = false;
+
+if (wheelContainer) {
+  // Evento mouse esistente
+  wheelContainer.addEventListener("wheel", (e) => {
+    e.preventDefault();
+    if (isWheelThrottled) return;
+    isWheelThrottled = true;
+    if (e.deltaY > 0) selectIndex(selectedIndex + 1);
+    else if (e.deltaY < 0) selectIndex(selectedIndex - 1);
+    setTimeout(() => { isWheelThrottled = false; }, 80);
+  }, { passive: false });
+
+  // === NUOVO: Gestione Drag & Swipe Mobile ===
+  let touchStartY = 0;
+  let isSwiping = false;
+
+  // 1. Inizio del tocco sullo schermo
+  wheelContainer.addEventListener('touchstart', (e) => {
+    touchStartY = e.touches[0].clientY;
+    isSwiping = true;
+  }, { passive: true });
+
+  // 2. Trascinamento del dito
+  wheelContainer.addEventListener('touchmove', (e) => {
+    if (!isSwiping || isWheelThrottled) return;
+    
+    // Previene lo scroll della pagina sottostante (es. pull-to-refresh)
+    e.preventDefault(); 
+    
+    const touchCurrentY = e.touches[0].clientY;
+    const deltaY = touchStartY - touchCurrentY;
+
+    // Soglia di trascinamento (es. 35px) per attivare lo scatto
+    if (Math.abs(deltaY) > 35) {
+      isWheelThrottled = true;
+      
+      if (deltaY > 0) {
+        selectIndex(selectedIndex + 1); // Drag verso l'alto (prossimo)
+      } else {
+        selectIndex(selectedIndex - 1); // Drag verso il basso (precedente)
+      }
+      
+      // Resetta il punto di partenza per consentire un trascinamento continuo
+      touchStartY = touchCurrentY; 
+      
+      // Ritardo per calibrare la sensibilità della ruota ed evitare cambi troppo rapidi
+      setTimeout(() => { isWheelThrottled = false; }, 120); 
+    }
+  }, { passive: false });
+
+  // 3. Fine del tocco
+  wheelContainer.addEventListener('touchend', () => {
+    isSwiping = false;
+  }, { passive: true });
 }
 
 // ==========================================
