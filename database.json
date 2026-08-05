@@ -1036,15 +1036,13 @@
     "colore": "??",
     "grammatura": "??",
     "inserti": "??",
-    "stato_disco": "8",
-    "stato_copertina": "8",
+    "stato_disco": "??",
+    "stato_copertina": "??",
     "note_stato": "",
-    "stato_catalogo": "Personale",
+    "stato_catalogo": "Wishlist",
     "cover": "Img/Souls_Of_Black.jpg",
     "tracce": [],
-    "foto_album": [],
-    "posizione_fisica": "",
-    "valore_stimato": 25
+    "foto_album": []
   },
   {
     "id": 26,

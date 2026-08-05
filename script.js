@@ -1935,7 +1935,8 @@ window.selectDiscogsResult = function(encodedJson) {
           if (fIdx !== -1) selectIndex(fIdx);
         }
       }
-      addVinylModal.classList.remove('active');
+      if (document.activeElement) document.activeElement.blur();
+    addVinylModal.classList.remove('active');
       discogsResults.classList.add('hidden');
       showToast("✨ Vinile selezionato nella tua collezione!");
       return;
@@ -1983,6 +1984,7 @@ if (openAddBtn) {
 }
 if (closeAddModalBtn) {
   closeAddModalBtn.addEventListener('click', () => {
+    if (document.activeElement) document.activeElement.blur();
     addVinylModal.classList.remove('active');
     addVinylModal.setAttribute('aria-hidden', 'true');
   });
@@ -2047,6 +2049,7 @@ if (addVinylForm) {
     photoPreviewImg.classList.add('hidden');
     document.querySelector('.scan-placeholder').style.display = 'flex';
 
+    if (document.activeElement) document.activeElement.blur();
     addVinylModal.classList.remove('active');
     populateGenreSelect();
     applyFiltering();
@@ -2300,9 +2303,12 @@ window.openEditVinylModal = function(id) {
   document.getElementById('edit-genere').value = vinile.genere || '';
   document.getElementById('edit-posizione-fisica').value = vinile.posizione_fisica || '';
   document.getElementById('edit-stato-catalogo').value = vinile.stato_catalogo || 'Personale';
-  document.getElementById('edit-valore-stimato').value = vinile.valore_stimato || 25;
-  document.getElementById('edit-anno-uscita').value = vinile.anno_uscita_originale || '';
-  document.getElementById('edit-anno-stampa').value = vinile.anno_stampa || '';
+  const vStimato = parseFloat(vinile.valore_stimato);
+  document.getElementById('edit-valore-stimato').value = isNaN(vStimato) ? 25 : vStimato;
+  const annoOrig = parseInt(vinile.anno_uscita_originale);
+  document.getElementById('edit-anno-uscita').value = isNaN(annoOrig) ? '' : annoOrig;
+  const annoStampa = parseInt(vinile.anno_stampa);
+  document.getElementById('edit-anno-stampa').value = isNaN(annoStampa) ? '' : annoStampa;
   document.getElementById('edit-etichetta').value = vinile.etichetta || '';
   document.getElementById('edit-cat-num').value = vinile.catalog_number || '';
   document.getElementById('edit-matrice').value = vinile.codice_matrice || '';
@@ -2321,6 +2327,7 @@ window.openEditVinylModal = function(id) {
 if (closeEditModalBtn) {
   closeEditModalBtn.addEventListener('click', () => {
     if (editVinylModal) {
+      if (document.activeElement) document.activeElement.blur();
       editVinylModal.classList.remove('active');
       editVinylModal.setAttribute('aria-hidden', 'true');
     }
@@ -2358,6 +2365,7 @@ if (editVinylForm) {
     pushDatabaseToGitHub(ALL_VINILI).catch(e => console.error(e));
 
     if (editVinylModal) {
+      if (document.activeElement) document.activeElement.blur();
       editVinylModal.classList.remove('active');
       editVinylModal.setAttribute('aria-hidden', 'true');
     }
@@ -2379,6 +2387,7 @@ window.deleteVinyl = function(id) {
     pushDatabaseToGitHub(ALL_VINILI).catch(e => console.error(e));
 
     if (editVinylModal) {
+      if (document.activeElement) document.activeElement.blur();
       editVinylModal.classList.remove('active');
       editVinylModal.setAttribute('aria-hidden', 'true');
     }
