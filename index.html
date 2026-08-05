@@ -2,11 +2,13 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="App PWA per catalogare la tua collezione di vinili con integrazione Discogs, scanner barcode e temi 3D">
   <title>Catalogazione Vinili - Mobile Experience</title>
   
   <!-- PWA Manifest & Theme Color -->
   <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="Img/apple-touch-icon.png">
   <meta name="theme-color" content="#5227ff">
   
   <!-- Google Fonts: Plus Jakarta Sans -->
@@ -435,13 +437,26 @@
               </select>
             </div>
           </div>
+          <div style="margin-top: 8px;">
+            <span style="font-size: 0.76rem; color: #cbd5e1; display: block; margin-bottom: 4px;">Token API Discogs (Opzionale):</span>
+            <input type="text" id="settings-discogs-token" placeholder="Inserisci il tuo Personal Access Token" class="form-control" style="width: 100%; padding: 6px 10px; font-size: 0.84rem; background: rgba(0,0,0,0.4); color: #fff; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2);">
+          </div>
           <button type="button" id="settings-force-sync-discogs-btn" class="btn-secondary full-width" style="margin-top: 10px; font-size: 0.82rem; color: #34d399; border-color: rgba(52,211,153,0.4);">
             🔄 Forza Risincronizzazione Ora
           </button>
         </div>
 
+        <!-- SEZIONE GITHUB CLOUD SYNC -->
+        <div class="form-group" style="margin-top: 14px; padding-top: 10px; border-top: 1px solid rgba(255, 255, 255, 0.12);">
+          <label>☁️ Sincronizzazione Cloud (GitHub)</label>
+          <div style="margin-top: 8px;">
+            <span style="font-size: 0.76rem; color: #cbd5e1; display: block; margin-bottom: 4px;">GitHub PAT Token:</span>
+            <input type="password" id="settings-github-token" placeholder="github_pat_..." class="form-control" style="width: 100%; padding: 6px 10px; font-size: 0.84rem; background: rgba(0,0,0,0.4); color: #fff; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2);">
+          </div>
+        </div>
+
         <!-- SEZIONE SCARICAMENTO BACKUP -->
-        <div class="form-group" style="margin-top: 12px;">
+        <div class="form-group" style="margin-top: 12px; border-top: 1px solid rgba(255, 255, 255, 0.12); padding-top: 10px;">
           <label>💾 Backup Collezione</label>
           <div class="input-range-row">
             <button type="button" id="settings-export-json-btn" class="btn-secondary full-width">📥 Download JSON</button>
@@ -593,6 +608,8 @@
       </div>
     </div>
   </div>
+
+  <div id="toast-container" class="toast-container"></div>
 
   <script type="module" src="script.js"></script>
 </body>

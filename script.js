@@ -1,12 +1,41 @@
-// Importa Three.js
-import * as THREE from 'https://esm.sh/three';
 
 // Importa il database dal file esterno
-import { DATABASE_VINILI } from './database.js';
+import { fetchDatabaseFromGitHub, pushDatabaseToGitHub } from './github-sync.js';
+
+// Funzione di sicurezza per prevenire XSS injection nell'HTML dinamico
+function escapeHtml(str) {
+  if (str == null) return '';
+  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+}
+
+// Crea una copia safe del vinile con campi testo escaped per rendering HTML
+function safeVinile(v) {
+  if (!v) return {};
+  const s = { ...v };
+  const textFields = ['titolo_album','artista','genere','etichetta','note_stato','catalog_number',
+    'codice_matrice','velocita','grammatura','colore','inserti','origine','stato_disco',
+    'stato_copertina','stato_catalogo','posizione_fisica'];
+  textFields.forEach(f => { if (s[f] != null) s[f] = escapeHtml(String(s[f])); });
+  if (Array.isArray(s.tracce)) {
+    s.tracce = s.tracce.map(t => ({ ...t, title: escapeHtml(t.title || ''), pos: escapeHtml(t.pos || ''), duration: escapeHtml(t.duration || '') }));
+  }
+  return s;
+}
 
 // ==========================================
 // 1. REGISTRAZIONE SERVICE WORKER & RILEVAMENTO PWA INSTALLATA
 // ==========================================
+function safeSave(key, value) {
+  try {
+    localStorage.setItem(key, JSON.stringify(value));
+  } catch (e) {
+    if (e.name === 'QuotaExceededError' || e.name === 'QUOTA_EXCEEDED_ERR') {
+      if (typeof showToast === 'function') showToast('⚠️ Spazio esaurito! Esporta un backup.');
+      console.error('LocalStorage quota exceeded');
+    }
+  }
+}
+
 let deferredPrompt = null;
 const installPwaBtn = document.getElementById('install-pwa-btn');
 const installModal = document.getElementById('install-modal');
@@ -126,443 +155,18 @@ function createGlassSurface(containerId) {
 createGlassSurface('my-liquid-glass');
 
 
-let activeShaderMaterial = null;
-let activeThreeRenderer = null;
-let targetTopColor = new THREE.Vector3(0.32, 0.15, 1.0);
-let targetBottomColor = new THREE.Vector3(1.0, 0.62, 0.98);
-let isBgAnimationPaused = localStorage.getItem('app_bg_anim_paused') === 'true';
-let bgIterations = parseInt(localStorage.getItem('app_bg_iterations'), 10) || 20;
-let bgBlur = parseFloat(localStorage.getItem('app_bg_blur')) || 0.0;
+import { updateBackgroundSharpness, updateBackgroundBlur, toggleBackgroundAnimation, applyAppTheme, updateDynamicAlbumBackground, updateAnimationToggleButtonUI, bgIterations, bgBlur } from './three-bg.js';
 
-function updateBackgroundSharpness(val) {
-  bgIterations = Math.max(1, Math.min(50, parseInt(val, 10) || 20));
-  localStorage.setItem('app_bg_iterations', bgIterations);
 
-  if (activeShaderMaterial && activeShaderMaterial.uniforms && activeShaderMaterial.uniforms.u_iterations) {
-    activeShaderMaterial.uniforms.u_iterations.value = bgIterations;
-  }
-
-  const badge = document.getElementById('sharpness-value-badge');
-  if (badge) {
-    let label = `${bgIterations} iter.`;
-    if (bgIterations >= 40) label += ' (Ultra)';
-    else if (bgIterations >= 28) label += ' (Alta qualità)';
-    else if (bgIterations >= 15) label += ' (Bilanciato)';
-    else label += ' (Veloce)';
-    badge.textContent = label;
-  }
+let userAddedVinyls = []; // Keep it declared if it's used elsewhere, but we won't use it for storage.
+let ALL_VINILI = [];
+try {
+  ALL_VINILI = await fetchDatabaseFromGitHub();
+  safeSave('app_all_vinyls_cache', ALL_VINILI);
+} catch (err) {
+  ALL_VINILI = JSON.parse(localStorage.getItem('app_all_vinyls_cache') || '[]');
+  if (typeof showToast === 'function') showToast("Avvio Offline: caricata cache locale");
 }
-
-function updateBackgroundBlur(val) {
-  bgBlur = Math.max(0, Math.min(20, parseFloat(val) || 0));
-  localStorage.setItem('app_bg_blur', bgBlur.toFixed(1));
-
-  if (activeThreeRenderer && activeThreeRenderer.domElement) {
-    activeThreeRenderer.domElement.style.filter = bgBlur > 0 ? `blur(${bgBlur}px)` : 'none';
-  }
-
-  const badge = document.getElementById('bg-blur-badge');
-  if (badge) {
-    badge.textContent = bgBlur > 0 ? `${bgBlur.toFixed(1)}px` : 'Nessuno';
-  }
-}
-
-function updateAnimationToggleButtonUI() {
-  const btn = document.getElementById('settings-toggle-anim-btn');
-  if (btn) {
-    if (isBgAnimationPaused) {
-      btn.innerHTML = '▶️ Riprendi Animazioni Sfondo';
-      btn.style.background = 'rgba(52, 211, 153, 0.2)';
-      btn.style.borderColor = 'rgba(52, 211, 153, 0.6)';
-    } else {
-      btn.innerHTML = '⏸️ Metti in Pausa Animazioni Sfondo';
-      btn.style.background = 'rgba(255, 255, 255, 0.08)';
-      btn.style.borderColor = 'rgba(255, 255, 255, 0.25)';
-    }
-  }
-}
-
-function toggleBackgroundAnimation() {
-  isBgAnimationPaused = !isBgAnimationPaused;
-  localStorage.setItem('app_bg_anim_paused', isBgAnimationPaused ? 'true' : 'false');
-  updateAnimationToggleButtonUI();
-  if (isBgAnimationPaused) {
-    showToast("⏸️ Animazioni Sfondo messe in Pausa");
-  } else {
-    showToast("▶️ Animazioni Sfondo riattivate!");
-  }
-}
-
-const pillarContainer = document.getElementById('light-pillar-container');
-
-if (pillarContainer) {
-  const settings = { 
-    iterations: 21, // Ottimizzato per prestazioni fluide a 60 FPS senza lag GPU
-    waveIterations: 2, 
-    pixelRatio: Math.min(window.devicePixelRatio, 1.0), 
-    precision: 'mediump', 
-    stepMultiplier: 1.6 
-  };
-
-  const PILLAR_CONFIG = {
-    topColor: '#5227FF',
-    bottomColor: '#FF9FFC',
-    intensity: 1.0,
-    rotationSpeed: 0.3,
-    noiseIntensity: 0.3,
-    pillarWidth: 3.0,
-    pillarHeight: 0.4,
-    pillarRotation: 0
-  };
-
-  const scene = new THREE.Scene();
-  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-
-  const renderer = new THREE.WebGLRenderer({
-    antialias: false,
-    alpha: true,
-    powerPreference: 'high-performance',
-    precision: settings.precision,
-    stencil: false,
-    depth: false
-  });
-
-  const initialPixelRatio = Math.min(window.devicePixelRatio, 3.0);
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(initialPixelRatio);
-  pillarContainer.appendChild(renderer.domElement);
-  activeThreeRenderer = renderer;
-
-  const parseColor = hex => {
-    const color = new THREE.Color(hex);
-    return new THREE.Vector3(color.r, color.g, color.b);
-  };
-
-  const vertexShader = `
-    varying vec2 vUv;
-    void main() {
-      vUv = uv;
-      gl_Position = vec4(position, 1.0);
-    }
-  `;
-
-  const fragmentShader = `
-    precision mediump float;
-
-    uniform float uTime;
-    uniform vec2 uResolution;
-    uniform vec3 uTopColor;
-    uniform vec3 uBottomColor;
-    uniform float uIntensity;
-    uniform float uPillarWidth;
-    uniform float uPillarHeight;
-    uniform float uNoiseIntensity;
-    uniform float uRotCos;
-    uniform float uRotSin;
-    uniform float uPillarRotCos;
-    uniform float uPillarRotSin;
-    uniform float uWaveSin;
-    uniform float uWaveCos;
-    uniform float uSharpness;
-    uniform int u_iterations;
-    varying vec2 vUv;
-
-    const float STEP_MULT = 1.6;
-    const int WAVE_ITER = 2;
-
-    void main() {
-      vec2 uv = (vUv * 2.0 - 1.0) * vec2(uResolution.x / uResolution.y, 1.0);
-      uv = vec2(uPillarRotCos * uv.x - uPillarRotSin * uv.y, uPillarRotSin * uv.x + uPillarRotCos * uv.y);
-
-      vec3 ro = vec3(0.0, 0.0, -10.0);
-      vec3 rd = normalize(vec3(uv, 1.0));
-
-      float rotC = uRotCos;
-      float rotS = uRotSin;
-
-      vec3 col = vec3(0.0);
-      float t = 0.1;
-      
-      for(int i = 0; i < u_iterations; i++) {
-        vec3 p = ro + rd * t;
-        p.xz = vec2(rotC * p.x - rotS * p.z, rotS * p.x + rotC * p.z);
-
-        vec3 q = p;
-        q.y = p.y * uPillarHeight + uTime;
-        
-        float freq = 1.0;
-        float amp = 1.0;
-        for(int j = 0; j < WAVE_ITER; j++) {
-          q.xz = vec2(uWaveCos * q.x - uWaveSin * q.z, uWaveSin * q.x + uWaveCos * q.z);
-          q += cos(q.zxy * freq - uTime * float(j) * 2.0) * amp;
-          freq *= 2.0;
-          amp *= 0.5;
-        }
-        
-        float d = length(cos(q.xz)) - 0.2;
-        float bound = length(p.xz) - uPillarWidth;
-        float k = 4.0;
-        float h = max(k - abs(d - bound), 0.0);
-        d = max(d, bound) + h * h * 0.0625 / k;
-        d = abs(d) * 0.15 + 0.01;
-
-        float grad = clamp((15.0 - p.y) / 30.0, 0.0, 1.0);
-        col += mix(uBottomColor, uTopColor, grad) / d;
-
-        t += d * STEP_MULT;
-        if(t > 50.0) break;
-      }
-
-      float widthNorm = uPillarWidth / 3.0;
-      vec3 exp2x = exp(2.0 * (col * 0.005 / widthNorm));
-      col = (exp2x - 1.0) / (exp2x + 1.0);
-
-      // Contrast / Sharpness scaling
-      vec3 midCol = mix(uBottomColor, uTopColor, 0.5) * 0.3;
-      col = mix(midCol, col, clamp(uSharpness, 0.5, 2.0));
-
-      col -= fract(sin(dot(gl_FragCoord.xy, vec2(12.9898, 78.233))) * 43758.5453) / 15.0 * uNoiseIntensity;
-      
-      gl_FragColor = vec4(col * uIntensity, 1.0);
-    }
-  `;
-
-  const pillarRotRad = (PILLAR_CONFIG.pillarRotation * Math.PI) / 180;
-
-  const material = new THREE.ShaderMaterial({
-    vertexShader,
-    fragmentShader,
-    uniforms: {
-      uTime: { value: 0 },
-      uResolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
-      uTopColor: { value: new THREE.Vector3(0.32, 0.15, 1.0) },
-      uBottomColor: { value: new THREE.Vector3(1.0, 0.62, 0.98) },
-      uIntensity: { value: PILLAR_CONFIG.intensity },
-      uPillarWidth: { value: PILLAR_CONFIG.pillarWidth },
-      uPillarHeight: { value: PILLAR_CONFIG.pillarHeight },
-      uNoiseIntensity: { value: PILLAR_CONFIG.noiseIntensity },
-      uRotCos: { value: 1.0 },
-      uRotSin: { value: 0.0 },
-      uPillarRotCos: { value: Math.cos(pillarRotRad) },
-      uPillarRotSin: { value: Math.sin(pillarRotRad) },
-      uWaveSin: { value: Math.sin(0.4) },
-      uWaveCos: { value: Math.cos(0.4) },
-      uSharpness: { value: 1.0 },
-      u_iterations: { value: bgIterations }
-    },
-    transparent: true,
-    depthWrite: false,
-    depthTest: false
-  });
-
-  const geometry = new THREE.PlaneGeometry(2, 2);
-  const mesh = new THREE.Mesh(geometry, material);
-  scene.add(mesh);
-  activeShaderMaterial = material;
-
-  function resize() {
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    material.uniforms.uResolution.value.set(window.innerWidth, window.innerHeight);
-  }
-  window.addEventListener('resize', resize);
-
-  let timeVal = 0;
-  let lastTime = performance.now();
-
-  function animate(currentTime) {
-    requestAnimationFrame(animate);
-    if (document.hidden) return;
-
-    const deltaTime = Math.min((currentTime - lastTime) * 0.001, 0.1);
-    lastTime = currentTime;
-
-    if (!isBgAnimationPaused) {
-      timeVal += 0.016 * PILLAR_CONFIG.rotationSpeed * 1.5;
-    }
-
-    if (material) {
-      material.uniforms.uTime.value = timeVal;
-      material.uniforms.uRotCos.value = Math.cos(timeVal * 0.3);
-      material.uniforms.uRotSin.value = Math.sin(timeVal * 0.3);
-      
-      // TRANSIZIONE FLUIDA DEI COLORI LERP IN TEMPO REALE
-      material.uniforms.uTopColor.value.lerp(targetTopColor, 0.045);
-      material.uniforms.uBottomColor.value.lerp(targetBottomColor, 0.045);
-    }
-
-    renderer.render(scene, camera);
-  }
-  requestAnimationFrame(animate);
-}
-
-// ==========================================
-// 5. GESTIONE TEMA 3D DINAMICO & STATO APPLICAZIONE
-// ==========================================
-
-let currentAppThemeKey = localStorage.getItem('app_theme_choice') || 'AUTO_ALBUM';
-
-const THEMES = {
-  AUTO_ALBUM: {
-    isAdaptive: true,
-    topColor: '#5227FF',
-    bottomColor: '#FF9FFC',
-    intensity: 1.1,
-    dockBg: 'rgba(82, 39, 255, 0.22)',
-    dockBorder: 'rgba(255, 159, 252, 0.45)',
-    dockGlow: 'rgba(255, 159, 252, 0.4)'
-  },
-  VIOLET: {
-    topColor: '#5227FF',
-    bottomColor: '#FF9FFC',
-    intensity: 1.0,
-    dockBg: 'rgba(82, 39, 255, 0.22)',
-    dockBorder: 'rgba(255, 159, 252, 0.45)',
-    dockGlow: 'rgba(255, 159, 252, 0.4)'
-  },
-  CYBERPUNK: {
-    topColor: '#00F0FF',
-    bottomColor: '#FF007F',
-    intensity: 1.25,
-    dockBg: 'rgba(0, 240, 255, 0.18)',
-    dockBorder: 'rgba(0, 240, 255, 0.5)',
-    dockGlow: 'rgba(255, 0, 127, 0.5)'
-  },
-  EMERALD: {
-    topColor: '#059669',
-    bottomColor: '#34D399',
-    intensity: 1.1,
-    dockBg: 'rgba(5, 150, 105, 0.22)',
-    dockBorder: 'rgba(52, 211, 153, 0.5)',
-    dockGlow: 'rgba(52, 211, 153, 0.45)'
-  },
-  SUNSET: {
-    topColor: '#FF4500',
-    bottomColor: '#FFB703',
-    intensity: 1.15,
-    dockBg: 'rgba(255, 69, 0, 0.22)',
-    dockBorder: 'rgba(255, 183, 3, 0.5)',
-    dockGlow: 'rgba(255, 183, 3, 0.45)'
-  },
-  ROYAL: {
-    topColor: '#7C3AED',
-    bottomColor: '#F59E0B',
-    intensity: 1.2,
-    dockBg: 'rgba(124, 58, 237, 0.22)',
-    dockBorder: 'rgba(245, 158, 11, 0.5)',
-    dockGlow: 'rgba(245, 158, 11, 0.45)'
-  },
-  OCEAN: {
-    topColor: '#0284C7',
-    bottomColor: '#06B6D4',
-    intensity: 1.05,
-    dockBg: 'rgba(2, 132, 199, 0.22)',
-    dockBorder: 'rgba(6, 182, 212, 0.5)',
-    dockGlow: 'rgba(6, 182, 212, 0.45)'
-  },
-  SYNTH: {
-    topColor: '#C084FC',
-    bottomColor: '#38BDF8',
-    intensity: 1.15,
-    dockBg: 'rgba(192, 132, 252, 0.22)',
-    dockBorder: 'rgba(56, 189, 248, 0.5)',
-    dockGlow: 'rgba(192, 132, 252, 0.45)'
-  },
-  OLED: {
-    topColor: '#0F172A',
-    bottomColor: '#1E40AF',
-    intensity: 0.65,
-    dockBg: 'rgba(15, 23, 42, 0.38)',
-    dockBorder: 'rgba(59, 130, 246, 0.4)',
-    dockGlow: 'rgba(30, 64, 175, 0.45)'
-  }
-};
-
-function applyAppTheme(themeKey) {
-  currentAppThemeKey = themeKey;
-  const t = THEMES[themeKey] || THEMES.AUTO_ALBUM;
-  localStorage.setItem('app_theme_choice', themeKey);
-
-  document.querySelectorAll('.theme-chips .chip-btn').forEach(b => {
-    b.classList.toggle('active', b.getAttribute('data-theme') === themeKey);
-  });
-
-  if (t.isAdaptive) {
-    const currentImgEl = document.querySelector('.album-cover-img');
-    if (currentImgEl) {
-      if (currentImgEl.complete && currentImgEl.naturalWidth !== 0) {
-        extractDominantColors(currentImgEl);
-      } else {
-        currentImgEl.onload = () => extractDominantColors(currentImgEl);
-      }
-    }
-  } else {
-    document.documentElement.style.setProperty('--theme-glow-1', t.topColor);
-    document.documentElement.style.setProperty('--theme-glow-2', t.bottomColor);
-    document.documentElement.style.setProperty('--primary-color', t.topColor);
-    document.documentElement.style.setProperty('--accent-color', t.bottomColor);
-
-    const c1 = new THREE.Color(t.topColor);
-    const c2 = new THREE.Color(t.bottomColor);
-    targetTopColor.set(c1.r, c1.g, c1.b);
-    targetBottomColor.set(c2.r, c2.g, c2.b);
-
-    if (activeShaderMaterial) {
-      activeShaderMaterial.uniforms.uIntensity.value = t.intensity;
-    }
-
-    const glassDock = document.getElementById('floating-glass-dock');
-    const appHeader = document.querySelector('.app-header');
-    if (glassDock) {
-      glassDock.style.borderColor = t.dockBorder;
-      glassDock.style.boxShadow = `inset 0 1px 1px rgba(255, 255, 255, 0.4), inset 0 -1px 2px rgba(255, 255, 255, 0.1), 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 25px ${t.dockGlow}`;
-    }
-    if (appHeader) {
-      appHeader.style.borderColor = t.dockBorder;
-      appHeader.style.boxShadow = `inset 0 1px 1px rgba(255, 255, 255, 0.4), inset 0 -1px 2px rgba(255, 255, 255, 0.1), 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 25px ${t.dockGlow}`;
-    }
-  }
-}
-
-function updateDynamicAlbumBackground(topHex, bottomHex) {
-  if (currentAppThemeKey === 'AUTO_ALBUM') {
-    if (topHex && topHex.startsWith('#')) {
-      const c1 = new THREE.Color(topHex);
-      targetTopColor.set(c1.r, c1.g, c1.b);
-    }
-    if (bottomHex && bottomHex.startsWith('#')) {
-      const c2 = new THREE.Color(bottomHex);
-      targetBottomColor.set(c2.r, c2.g, c2.b);
-    }
-
-    const glassDock = document.getElementById('floating-glass-dock');
-    const appHeader = document.querySelector('.app-header');
-    if (topHex && topHex.startsWith('#')) {
-      const r = parseInt(topHex.slice(1,3), 16) || 148;
-      const g = parseInt(topHex.slice(3,5), 16) || 163;
-      const b = parseInt(topHex.slice(5,7), 16) || 184;
-      const themeBorder = `${topHex}88`;
-      const themeShadow = `inset 0 1px 1px rgba(255, 255, 255, 0.4), inset 0 -1px 2px rgba(255, 255, 255, 0.1), 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(${r}, ${g}, ${b}, 0.5)`;
-      
-      if (glassDock) {
-        glassDock.style.borderColor = themeBorder;
-        glassDock.style.boxShadow = themeShadow;
-      }
-      if (appHeader) {
-        appHeader.style.borderColor = themeBorder;
-        appHeader.style.boxShadow = themeShadow;
-      }
-    }
-  }
-
-  const heroWrapper = document.getElementById('cover-wrapper-btn');
-  if (heroWrapper) {
-    heroWrapper.style.setProperty('--album-primary-color', topHex);
-    heroWrapper.style.setProperty('--album-secondary-color', bottomHex);
-  }
-}
-
-const userAddedVinyls = JSON.parse(localStorage.getItem('user_added_vinili') || '[]');
-let ALL_VINILI = [...userAddedVinyls, ...DATABASE_VINILI];
 
 // HELPER PER PULIZIA TESTI E GENERAZIONE COVER FALLBACK IN SVG
 function cleanMusicTitle(str) {
@@ -614,7 +218,7 @@ function generateSVGAlbumCover(artist, album) {
 }
 
 // ESTRAZIONE COLORI REALE TRAMITE CANVAS 2D DA ELEMENTO <img> DELLA COPERTINA
-function extractDominantColors(imgElement) {
+window.extractDominantColors = function extractDominantColors(imgElement) {
   if (!imgElement) return;
 
   try {
@@ -866,9 +470,10 @@ async function fetchDiscogsLivePrice(matrixOrQuery, targetElementId = 'discogs-l
   try {
     const q = encodeURIComponent(matrixOrQuery.trim());
     const searchUrl = `https://api.discogs.com/database/search?q=${q}&type=release`;
-    const searchRes = await fetch(searchUrl, {
-      headers: { 'User-Agent': 'VinylCollectorApp/2.0 +http://localhost' }
-    });
+    const token = localStorage.getItem('app_discogs_token');
+    const headers = { 'User-Agent': 'VinylCollectorApp/2.0 +http://localhost' };
+    if (token) headers['Authorization'] = `Discogs token=${token}`;
+    const searchRes = await fetch(searchUrl, { headers });
 
     if (!searchRes.ok) throw new Error('Search request failed');
     const searchData = await searchRes.json();
@@ -1077,10 +682,17 @@ let currentCapturedCoverBase64 = null;
 
 // NOTIFICHE TOAST FEEDBACK
 function showToast(message) {
+  let container = toastContainer || document.getElementById('toast-container');
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'toast-container';
+    container.className = 'toast-container';
+    document.body.appendChild(container);
+  }
   const toast = document.createElement('div');
   toast.className = 'toast';
   toast.textContent = message;
-  toastContainer.appendChild(toast);
+  container.appendChild(toast);
   setTimeout(() => toast.classList.add('active'), 10);
   setTimeout(() => {
     toast.classList.remove('active');
@@ -1093,7 +705,7 @@ function populateGenreSelect() {
   const genres = Array.from(new Set(ALL_VINILI.map(v => v.genere).filter(Boolean))).sort();
   if (filterGenreSelect) {
     filterGenreSelect.innerHTML = '<option value="">Tutti i Generi</option>' + 
-      genres.map(g => `<option value="${g}">${g}</option>`).join('');
+      genres.map(g => `<option value="${escapeHtml(g)}">${escapeHtml(g)}</option>`).join('');
   }
 }
 populateGenreSelect();
@@ -1263,12 +875,13 @@ function updateCenterContent(index) {
   updateContentTimeout = setTimeout(() => {
     try {
       const vinile = filteredVinili[index];
+      const sv = safeVinile(vinile);
       if (!vinile) return;
 
-      const tracceHTML = vinile.tracce && vinile.tracce.length > 0 ? `
-        <div class="section-title">🎵 Tracklist (${vinile.tracce.length} Tracce)</div>
+      const tracceHTML = sv.tracce && sv.tracce.length > 0 ? `
+        <div class="section-title">🎵 Tracklist (${sv.tracce.length} Tracce)</div>
         <div class="tracklist-container">
-          ${vinile.tracce.map(t => `
+          ${sv.tracce.map(t => `
             <div class="track-item">
               <span class="track-pos">${t.pos}</span>
               <span class="track-title">${t.title}</span>
@@ -1308,13 +921,13 @@ function updateCenterContent(index) {
           </div>
           
           <div class="play-hint-badge">🎵 Clicca la copertina per estrarre il vinile</div>
-          <h1 class="album-title-main" style="margin-top: 6px;">${vinile.titolo_album}</h1>
-          <div class="artist-name-sub">${vinile.artista}</div>
+          <h1 class="album-title-main" style="margin-top: 6px;">${sv.titolo_album}</h1>
+          <div class="artist-name-sub">${sv.artista}</div>
           
           <div class="genre-year-badge">
-            <span class="badge badge-purple">${vinile.genere || 'Vinile'}</span>
-            <span class="badge badge-pink">${vinile.anno_uscita_originale || vinile.anno_stampa || 'N/A'}</span>
-            <span class="badge">${vinile.stato_catalogo || 'Personale'}</span>
+            <span class="badge badge-purple">${sv.genere || 'Vinile'}</span>
+            <span class="badge badge-pink">${sv.anno_uscita_originale || sv.anno_stampa || 'N/A'}</span>
+            <span class="badge">${sv.stato_catalogo || 'Personale'}</span>
           </div>
         </div>
 
@@ -1326,39 +939,39 @@ function updateCenterContent(index) {
           </div>
           <div class="spec-card">
             <span class="spec-label">Anno Uscita Originale</span>
-            <span class="spec-value">${vinile.anno_uscita_originale || "-"}</span>
+            <span class="spec-value">${sv.anno_uscita_originale || "-"}</span>
           </div>
           <div class="spec-card">
             <span class="spec-label">Anno Stampa</span>
-            <span class="spec-value">${vinile.anno_stampa || "-"}</span>
+            <span class="spec-value">${sv.anno_stampa || "-"}</span>
           </div>
           <div class="spec-card">
             <span class="spec-label">Anno Uscita Stampa</span>
-            <span class="spec-value">${vinile.anno_uscita_stampa || vinile.anno_stampa || "-"}</span>
+            <span class="spec-value">${sv.anno_uscita_stampa || sv.anno_stampa || "-"}</span>
           </div>
           <div class="spec-card">
             <span class="spec-label">Etichetta</span>
-            <span class="spec-value">${vinile.etichetta || "-"}</span>
+            <span class="spec-value">${sv.etichetta || "-"}</span>
           </div>
           <div class="spec-card">
             <span class="spec-label">Origine Stampa</span>
-            <span class="spec-value">${vinile.origine || "-"}</span>
+            <span class="spec-value">${sv.origine || "-"}</span>
           </div>
           <div class="spec-card">
             <span class="spec-label">Cat. Number</span>
-            <span class="spec-value">${vinile.catalog_number || "-"}</span>
+            <span class="spec-value">${sv.catalog_number || "-"}</span>
           </div>
           <div class="spec-card">
             <span class="spec-label">Cod. Matrice</span>
-            <span class="spec-value">${vinile.codice_matrice || "-"}</span>
+            <span class="spec-value">${sv.codice_matrice || "-"}</span>
           </div>
           <div class="spec-card">
             <span class="spec-label">Velocità & Grammatura</span>
-            <span class="spec-value">${vinile.velocita || "33"} RPM | ${vinile.grammatura || "180g"}</span>
+            <span class="spec-value">${sv.velocita || "33"} RPM | ${sv.grammatura || "180g"}</span>
           </div>
           <div class="spec-card">
             <span class="spec-label">Colore Vinile</span>
-            <span class="spec-value">${vinile.colore || "Nero"}</span>
+            <span class="spec-value">${sv.colore || "Nero"}</span>
           </div>
           <div class="spec-card">
             <span class="spec-label">Stato Disco (Goldmine)</span>
@@ -1374,7 +987,7 @@ function updateCenterContent(index) {
           </div>
           <div class="spec-card">
             <span class="spec-label">Inserti</span>
-            <span class="spec-value">${vinile.inserti || "Nessuno"}</span>
+            <span class="spec-value">${sv.inserti || "Nessuno"}</span>
           </div>
           <!-- CONTAINER AUTOMATICO VALORE MERCATO LIVE DISCOGS STILIZZATO -->
           <div class="spec-card" id="discogs-live-box" style="grid-column: 1 / -1;">
@@ -1387,13 +1000,13 @@ function updateCenterContent(index) {
           ${vinile.valore_stimato ? `
             <div class="spec-card">
               <span class="spec-label">Valore Utente Inserito</span>
-              <span class="spec-value" style="color: #fbbf24; font-weight: 700;">€${vinile.valore_stimato}</span>
+              <span class="spec-value" style="color: #fbbf24; font-weight: 700;">€${sv.valore_stimato}</span>
             </div>
           ` : ''}
           ${vinile.note_stato ? `
             <div class="spec-card" style="grid-column: 1 / -1;">
               <span class="spec-label">Note & Dettagli Stato</span>
-              <span class="spec-value" style="font-style: italic;">${vinile.note_stato}</span>
+              <span class="spec-value" style="font-style: italic;">${sv.note_stato}</span>
             </div>
           ` : ''}
         </div>
@@ -1662,7 +1275,8 @@ if (triggerImportBtn && importJsonFile) {
           const imported = JSON.parse(evt.target.result);
           if (Array.isArray(imported)) {
             ALL_VINILI = imported;
-            localStorage.setItem('user_added_vinili', JSON.stringify(ALL_VINILI));
+            safeSave('app_all_vinyls_cache', ALL_VINILI);
+            pushDatabaseToGitHub(ALL_VINILI).catch(e => console.error(e));
             populateGenreSelect();
             applyFiltering();
             showToast("📤 Backup Importato con successo!");
@@ -1829,8 +1443,8 @@ function renderStatsDashboard() {
     ${rarestVinyl ? `
       <div class="spec-card" style="margin-bottom: 1rem; background: rgba(82, 39, 255, 0.28); border: 1px solid rgba(255, 159, 252, 0.4);">
         <span class="spec-label" style="color: #ff9ffc; font-weight: 700;">💎 VINILE DI MAGGIOR VALORE IN COLLEZIONE</span>
-        <span class="spec-value" style="font-size: 1rem; margin-top: 2px;">${rarestVinyl.artista} — ${rarestVinyl.titolo_album} (${rarestVinyl.anno_uscita_originale || rarestVinyl.anno_stampa})</span>
-        <span style="font-size: 0.76rem; color: #cbd5e1; margin-top: 2px;">Valore registrato: €${rarestScore} | Condizioni: Disco ${rarestVinyl.stato_disco || 8}/10</span>
+        <span class="spec-value" style="font-size: 1rem; margin-top: 2px;">${escapeHtml(rarestVinyl.artista)} — ${escapeHtml(rarestVinyl.titolo_album)} (${rarestVinyl.anno_uscita_originale || rarestVinyl.anno_stampa})</span>
+        <span style="font-size: 0.76rem; color: #cbd5e1; margin-top: 2px;">Valore registrato: €${rarestScore} | Condizioni: Disco ${escapeHtml(rarestVinyl.stato_disco) || 8}/10</span>
       </div>
     ` : ''}
 
@@ -2077,7 +1691,10 @@ async function searchMusicBrainzOrDiscogs(query) {
   // 1a. Discogs Barcode Endpoint (https://api.discogs.com/database/search?barcode=...)
   if (cleanBarcode.length >= 3) {
     try {
-      const discogsRes = await fetch(`https://api.discogs.com/database/search?barcode=${encodeURIComponent(cleanBarcode)}`);
+      const token = localStorage.getItem('app_discogs_token');
+      const headers = { 'User-Agent': 'VinylCollectorApp/2.0 +http://localhost' };
+      if (token) headers['Authorization'] = `Discogs token=${token}`;
+      const discogsRes = await fetch(`https://api.discogs.com/database/search?barcode=${encodeURIComponent(cleanBarcode)}`, { headers });
       if (discogsRes.ok) {
         const discogsData = await discogsRes.json();
         if (discogsData.results && discogsData.results.length > 0) {
@@ -2405,8 +2022,8 @@ if (addVinylForm) {
     };
 
     ALL_VINILI.unshift(newVinyl);
-    userAddedVinyls.unshift(newVinyl);
-    localStorage.setItem('user_added_vinili', JSON.stringify(userAddedVinyls));
+    safeSave('app_all_vinyls_cache', ALL_VINILI);
+    pushDatabaseToGitHub(ALL_VINILI).catch(e => console.error(e));
 
     addVinylForm.reset();
     currentCapturedCoverBase64 = null;
@@ -2544,41 +2161,8 @@ if (wheelContainer) {
 }
 
 // ==========================================
-// GESTIONE QR CODE ETICHETTA STAMPABILE
+// FUNZIONI RIMOSSE
 // ==========================================
-
-const qrModal = document.getElementById('qr-modal');
-const closeQrModalBtn = document.getElementById('close-qr-modal-btn');
-const printStickerBtn = document.getElementById('print-sticker-btn');
-
-window.openQRCodeModal = function(id) {
-  const vinile = ALL_VINILI.find(v => String(v.id) === String(id));
-  if (!vinile) return;
-
-  document.getElementById('sticker-title').textContent = vinile.titolo_album || 'Album';
-  document.getElementById('sticker-artist').textContent = vinile.artista || 'Artista';
-  document.getElementById('sticker-year').textContent = vinile.anno_uscita_originale || vinile.anno_stampa || 'N/A';
-  document.getElementById('sticker-cat').textContent = `Cat: ${vinile.catalog_number || vinile.codice_matrice || 'N/A'}`;
-  document.getElementById('sticker-location').textContent = `📍 Posizione: ${vinile.posizione_fisica || 'Scaffale Principale'}`;
-
-  const qrData = `${vinile.artista} - ${vinile.titolo_album} (Cat: ${vinile.catalog_number || 'N/A'}) [Pos: ${vinile.posizione_fisica || 'N/A'}]`;
-  const qrSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect width="100%" height="100%" fill="#fff"/><rect x="20" y="20" width="50" height="50" fill="#111827"/><rect x="30" y="30" width="30" height="30" fill="#fff"/><rect x="37" y="37" width="16" height="16" fill="#111827"/><rect x="130" y="20" width="50" height="50" fill="#111827"/><rect x="140" y="30" width="30" height="30" fill="#fff"/><rect x="147" y="37" width="16" height="16" fill="#111827"/><rect x="20" y="130" width="50" height="50" fill="#111827"/><rect x="30" y="140" width="30" height="30" fill="#fff"/><rect x="37" y="147" width="16" height="16" fill="#111827"/><rect x="90" y="40" width="20" height="20" fill="#111827"/><rect x="90" y="90" width="20" height="20" fill="#111827"/><rect x="40" y="90" width="20" height="20" fill="#111827"/><rect x="140" y="90" width="20" height="20" fill="#111827"/><rect x="120" y="130" width="20" height="20" fill="#111827"/><rect x="150" y="150" width="30" height="30" fill="#111827"/><rect x="90" y="140" width="20" height="40" fill="#111827"/></svg>`;
-  document.getElementById('sticker-qr-img').src = 'data:image/svg+xml;utf8,' + encodeURIComponent(qrSvg);
-
-  if (qrModal) {
-    qrModal.classList.add('active');
-    qrModal.setAttribute('aria-hidden', 'false');
-  }
-};
-
-if (closeQrModalBtn) {
-  closeQrModalBtn.addEventListener('click', () => {
-    if (qrModal) {
-      qrModal.classList.remove('active');
-      qrModal.setAttribute('aria-hidden', 'true');
-    }
-  });
-}
 
 const photoModal = document.getElementById('photo-modal');
 const modalImg = document.getElementById('modal-img');
@@ -2678,9 +2262,7 @@ if (closeModalBtn) {
   });
 }
 
-if (printStickerBtn) {
-  printStickerBtn.addEventListener('click', () => window.print());
-}
+
 
 // ==========================================
 // GESTIONE MODIFICA ED ELIMINAZIONE VINILE
@@ -2754,12 +2336,8 @@ if (editVinylForm) {
       note_stato: document.getElementById('edit-note').value
     };
 
-    // Aggiorna userAddedVinyls se presente
-    const userIdx = userAddedVinyls.findIndex(v => String(v.id) === String(id));
-    if (userIdx !== -1) {
-      userAddedVinyls[userIdx] = ALL_VINILI[index];
-      localStorage.setItem('user_added_vinili', JSON.stringify(userAddedVinyls));
-    }
+    safeSave('app_all_vinyls_cache', ALL_VINILI);
+    pushDatabaseToGitHub(ALL_VINILI).catch(e => console.error(e));
 
     if (editVinylModal) {
       editVinylModal.classList.remove('active');
@@ -2778,11 +2356,8 @@ window.deleteVinyl = function(id) {
 
   if (confirm(`Sei sicuro di voler eliminare "${vinile.titolo_album}" dalla collezione?`)) {
     ALL_VINILI = ALL_VINILI.filter(v => String(v.id) !== String(id));
-    const userIdx = userAddedVinyls.findIndex(v => String(v.id) === String(id));
-    if (userIdx !== -1) {
-      userAddedVinyls.splice(userIdx, 1);
-      localStorage.setItem('user_added_vinili', JSON.stringify(userAddedVinyls));
-    }
+    safeSave('app_all_vinyls_cache', ALL_VINILI);
+    pushDatabaseToGitHub(ALL_VINILI).catch(e => console.error(e));
 
     if (editVinylModal) {
       editVinylModal.classList.remove('active');
@@ -2836,11 +2411,7 @@ document.getElementById('dock-delete-vinyl-btn')?.addEventListener('click', () =
   if (vinile) window.deleteVinyl(vinile.id);
 });
 
-document.getElementById('dock-qr-btn')?.addEventListener('click', () => {
-  if (bottomQuickMenu) bottomQuickMenu.classList.remove('active');
-  const vinile = filteredVinili[selectedIndex];
-  if (vinile) window.openQRCodeModal(vinile.id);
-});
+
 
 document.getElementById('dock-add-vinyl-btn')?.addEventListener('click', () => {
   if (bottomQuickMenu) bottomQuickMenu.classList.remove('active');
@@ -2903,6 +2474,15 @@ if (syncFreqSelect) {
     localStorage.setItem('app_discogs_sync_freq', e.target.value);
     showToast(`⚙️ Frequenza Sincronizzazione aggiornata`);
   });
+
+  const discogsTokenInput = document.getElementById('settings-discogs-token');
+  if (discogsTokenInput) {
+    discogsTokenInput.value = localStorage.getItem('app_discogs_token') || '';
+    discogsTokenInput.addEventListener('change', (e) => {
+      localStorage.setItem('app_discogs_token', e.target.value.trim());
+      showToast("🔑 Token Discogs salvato!");
+    });
+  }
 }
 
 if (forceSyncBtn) {
@@ -2927,9 +2507,9 @@ if (settingsTriggerImportBtn && settingsImportJsonFile) {
       try {
         const importedData = JSON.parse(event.target.result);
         if (Array.isArray(importedData)) {
-          userAddedVinyls = importedData;
-          localStorage.setItem('user_added_vinili', JSON.stringify(userAddedVinyls));
-          ALL_VINILI = [...userAddedVinyls, ...DATABASE_VINILI];
+          ALL_VINILI = importedData;
+          safeSave('app_all_vinyls_cache', ALL_VINILI);
+          pushDatabaseToGitHub(ALL_VINILI).catch(e => console.error(e));
           populateGenreSelect();
           applyFiltering();
           if (settingsModal) settingsModal.classList.remove('active');
@@ -3043,6 +2623,7 @@ let jukeboxTimer = null;
 
 function renderJukeboxVinyl(vinile) {
   if (!jukeboxDisplay || !vinile) return;
+  const sv = safeVinile(vinile);
   const fallbackCover = generateSVGAlbumCover(vinile.artista, vinile.titolo_album);
   const coverSrc = (vinile.cover && vinile.cover.trim() !== '') ? vinile.cover : fallbackCover;
 
@@ -3054,12 +2635,12 @@ function renderJukeboxVinyl(vinile) {
       </div>
       <div class="floating-floor-shadow" style="width: 170px;"></div>
     </div>
-    <h2 style="color: #fff; font-size: 1.4rem; font-weight: 800; margin-top: 6px;">${vinile.titolo_album}</h2>
-    <div style="color: #ff9ffc; font-size: 1.1rem; font-weight: 700; margin-top: 2px;">${vinile.artista}</div>
+    <h2 style="color: #fff; font-size: 1.4rem; font-weight: 800; margin-top: 6px;">${sv.titolo_album}</h2>
+    <div style="color: #ff9ffc; font-size: 1.1rem; font-weight: 700; margin-top: 2px;">${sv.artista}</div>
     <div style="margin-top: 8px; font-size: 0.82rem; color: #cbd5e1; display: flex; gap: 8px; justify-content: center;">
-      <span class="badge badge-purple">${vinile.genere || 'Vinile'}</span>
-      <span class="badge badge-pink">${vinile.anno_uscita_originale || vinile.anno_stampa || 'N/A'}</span>
-      <span class="badge" style="color:#ff9ffc;">📀 ${vinile.stato_catalogo || 'Personale'}</span>
+      <span class="badge badge-purple">${sv.genere || 'Vinile'}</span>
+      <span class="badge badge-pink">${sv.anno_uscita_originale || sv.anno_stampa || 'N/A'}</span>
+      <span class="badge" style="color:#ff9ffc;">📀 ${sv.stato_catalogo || 'Personale'}</span>
     </div>
   `;
 }
