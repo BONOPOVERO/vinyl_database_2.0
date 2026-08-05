@@ -160,6 +160,22 @@ import { updateBackgroundSharpness, updateBackgroundBlur, toggleBackgroundAnimat
 
 let userAddedVinyls = []; // Keep it declared if it's used elsewhere, but we won't use it for storage.
 let ALL_VINILI = [];
+
+// BLOCCO DI SICUREZZA (PASSWORD)
+window.checkAdminAccess = function() {
+  if (sessionStorage.getItem('is_admin') === 'true') return true;
+  const psw = prompt("🔒 Inserisci la password per modificare il database:");
+  if (psw === "Yuta") {
+    sessionStorage.setItem('is_admin', 'true');
+    if (typeof showToast === 'function') showToast("🔓 Accesso sbloccato!");
+    return true;
+  }
+  if (psw !== null) {
+    if (typeof showToast === 'function') showToast("❌ Password errata!");
+    else alert("❌ Password errata!");
+  }
+  return false;
+};
 try {
   ALL_VINILI = await fetchDatabaseFromGitHub();
   safeSave('app_all_vinyls_cache', ALL_VINILI);
@@ -1960,6 +1976,7 @@ window.selectDiscogsResult = function(encodedJson) {
 // MODAL ADD VINYL
 if (openAddBtn) {
   openAddBtn.addEventListener('click', () => {
+    if (!window.checkAdminAccess()) return;
     addVinylModal.classList.add('active');
     addVinylModal.setAttribute('aria-hidden', 'false');
   });
@@ -2273,6 +2290,7 @@ const editVinylForm = document.getElementById('edit-vinyl-form');
 const deleteVinylFromEditBtn = document.getElementById('delete-vinyl-from-edit-btn');
 
 window.openEditVinylModal = function(id) {
+  if (!window.checkAdminAccess()) return;
   const vinile = ALL_VINILI.find(v => String(v.id) === String(id));
   if (!vinile) return;
 
@@ -2351,6 +2369,7 @@ if (editVinylForm) {
 }
 
 window.deleteVinyl = function(id) {
+  if (!window.checkAdminAccess()) return;
   const vinile = ALL_VINILI.find(v => String(v.id) === String(id));
   if (!vinile) return;
 
@@ -2415,6 +2434,7 @@ document.getElementById('dock-delete-vinyl-btn')?.addEventListener('click', () =
 
 document.getElementById('dock-add-vinyl-btn')?.addEventListener('click', () => {
   if (bottomQuickMenu) bottomQuickMenu.classList.remove('active');
+  if (!window.checkAdminAccess()) return;
   if (addVinylModal) {
     addVinylModal.classList.add('active');
     addVinylModal.setAttribute('aria-hidden', 'false');
@@ -2481,6 +2501,15 @@ if (syncFreqSelect) {
     discogsTokenInput.addEventListener('change', (e) => {
       localStorage.setItem('app_discogs_token', e.target.value.trim());
       showToast("🔑 Token Discogs salvato!");
+    });
+  }
+
+  const githubTokenInput = document.getElementById('settings-github-token');
+  if (githubTokenInput) {
+    githubTokenInput.value = localStorage.getItem('app_github_token') || '';
+    githubTokenInput.addEventListener('change', (e) => {
+      localStorage.setItem('app_github_token', e.target.value.trim());
+      showToast("☁️ Token GitHub salvato!");
     });
   }
 }
@@ -2550,6 +2579,7 @@ updateAnimationToggleButtonUI();
 // GESTIONE DOCK BAR ORIZZONTALE FLUTTUANTE
 // ==========================================
 document.getElementById('dock-add-btn')?.addEventListener('click', () => {
+  if (!window.checkAdminAccess()) return;
   if (addVinylModal) {
     addVinylModal.classList.add('active');
     addVinylModal.setAttribute('aria-hidden', 'false');
