@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Graphify 3D Viewer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { 
+        margin: 0; 
+        overflow: hidden; 
+        background-color: #0f111a; 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    }
+    #3d-graph { 
+        width: 100vw; 
+        height: 100vh; 
+    }
+    #info-panel { 
+        position: absolute; 
+        top: 20px; 
+        left: 20px; 
+        color: #e2e8f0; 
+        background: rgba(15, 17, 26, 0.8); 
+        padding: 15px 25px; 
+        border-radius: 12px; 
+        border: 1px solid rgba(0, 240, 255, 0.3); 
+        box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        backdrop-filter: blur(10px);
+        pointer-events: none;
+    }
+    h1 { margin: 0 0 5px 0; font-size: 1.2rem; color: #00f0ff; text-transform: uppercase; letter-spacing: 1px; }
+    p { margin: 0; font-size: 0.9rem; color: #94a3b8; }
+  </style>
+  
+  <!-- Caricamento della libreria 3d-force-graph (via CDN) -->
+  <script src="https://unpkg.com/3d-force-graph"></script>
+</head>
+<body>
+  
+  <div id="info-panel">
+    <h1>🕸️ Graphify 3D</h1>
+    <p id="status-text">In attesa del file graph.json...</p>
+  </div>
+
+  <div id="3d-graph"></div>
+
+  <script>
+    // Configura il percorso: se metti questo file fuori da graphify-out, usa 'graphify-out/graph.json'
+    // Se lo metti dentro, usa 'graph.json'
+    const graphDataUrl = 'app_github_repo/graphify-out/graph.json';
+
+    fetch(graphDataUrl)
+      .then(res => {
+        if (!res.ok) throw new Error("File graph.json non trovato! Hai generato Graphify?");
+        return res.json();
+      })
+      .then(gData => {
+        // Adatta il formato json di Graphify per 3d-force-graph
+        if (gData.edges && !gData.links) gData.links = gData.edges;
+        if (gData.nodes && gData.nodes.length > 0 && !gData.nodes[0].id && gData.nodes[0].name) {
+             gData.nodes.forEach(n => n.id = n.name);
+        }
+
+        document.getElementById('status-text').innerHTML = 
+            `<b>Nodi (File):</b> ${gData.nodes.length} <br> <b>Archi (Connessioni):</b> ${gData.links.length}`;
+
+        // Inizializza il grafico 3D
+        const Graph = ForceGraph3D()
+          (document.getElementById('3d-graph'))
+            .graphData(gData)
+            .nodeLabel(node => `<span style="color: #00f0ff; font-weight: bold;">${node.id || node.name}</span>`)
+            .nodeAutoColorBy(node => node.community || node.group || node.type)
+            .linkDirectionalParticles(2)
+            .linkDirectionalParticleSpeed(d => 0.005)
+            .linkDirectionalParticleWidth(1.5)
+            .linkColor(() => 'rgba(255, 159, 252, 0.2)')
+            .onNodeClick(node => {
+               // Effetto zoom spettacolare quando clicchi su un nodo
+               const distance = 60;
+               const distRatio = 1 + distance/Math.hypot(node.x, node.y, node.z);
+               Graph.cameraPosition(
+                 { x: node.x * distRatio, y: node.y * distRatio, z: node.z * distRatio }, 
+                 node, 
+                 2000 // ms transition
+               );
+            });
+            
+        // Animazione iniziale di rotazione della telecamera
+        let angle = 0;
+        setInterval(() => {
+          Graph.cameraPosition({
+            x: 400 * Math.sin(angle),
+            z: 400 * Math.cos(angle)
+          });
+          angle += Math.PI / 1000;
+        }, 15);
+      })
+      .catch(err => {
+        document.getElementById('status-text').innerHTML = 
+            `<span style="color: #ff7b72;">Errore: ${err.message}</span><br><br>
+            <span style="font-size: 0.8rem;">Assicurati di aver generato Graphify e di<br>aprire questa pagina tramite un Live Server.</span>`;
+      });
+  </script>
+</body>
+</html>
