@@ -1,0 +1,857 @@
+[
+  {
+    "id": "05249",
+    "stato_disco": "8",
+    "stato_copertina": "5",
+    "note_stato": "",
+    "stato_catalogo": "Personale",
+    "foto_album": [
+      "Img/The_Dark_Side_Of_The_Moon_Foto/Fronte.jpg",
+      "Img/The_Dark_Side_Of_The_Moon_Foto/Retro.jpg",
+      "Img/The_Dark_Side_Of_The_Moon_Foto/Interno.jpg",
+      "Img/The_Dark_Side_Of_The_Moon_Foto/Side_1.jpg",
+      "Img/The_Dark_Side_Of_The_Moon_Foto/Side_2.jpg"
+    ]
+  },
+  {
+    "id": "375756",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "",
+    "stato_catalogo": "Personale",
+    "foto_album": [
+      "Img/Wish_You_Were_Here_Foto/Fronte.jpg",
+      "Img/Wish_You_Were_Here_Foto/Retro.jpg",
+      "Img/Wish_You_Were_Here_Foto/Tracce.jpg",
+      "Img/Wish_You_Were_Here_Foto/Side_1.jpg",
+      "Img/Wish_You_Were_Here_Foto/Side_2.jpg"
+    ]
+  },
+  {
+    "id": "172074",
+    "stato_disco": "Da Valutare",
+    "stato_copertina": "5",
+    "note_stato": "",
+    "stato_catalogo": "Personale",
+    "foto_album": [
+      "Img/Discipline_Foto/Label_Side_B.jpg",
+      "Img/Discipline_Foto/Matrix_Detail.jpg"
+    ]
+  },
+  {
+    "id": "14313975",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Copia in ottime condizioni",
+    "stato_catalogo": "Personale",
+    "foto_album": [
+      "Img/Mayhem_Daemon_Foto/Side_A.jpg",
+      "Img/Mayhem_Daemon_Foto/Matrix.jpg"
+    ]
+  },
+  {
+    "id": "465796",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "30th Anniversary Edition Limited Edition",
+    "stato_catalogo": "Personale",
+    "foto_album": [
+      "Img/In_Utero_Foto/Fronte.jpg"
+    ]
+  },
+  {
+    "id": "558856",
+    "stato_disco": "??",
+    "stato_copertina": "8",
+    "note_stato": "Copertina integra con lievi segni di usura",
+    "stato_catalogo": "Personale",
+    "foto_album": [
+      "Img/Another_Perfect_Day_Foto/Fronte.jpg"
+    ]
+  },
+  {
+    "id": "297766",
+    "stato_disco": "??",
+    "stato_copertina": "9",
+    "note_stato": "Copertina pulita",
+    "stato_catalogo": "Personale",
+    "foto_album": [
+      "Img/The_Wall_Foto/Fronte.jpg"
+    ]
+  },
+  {
+    "id": "612972",
+    "stato_disco": "??",
+    "stato_copertina": "10",
+    "note_stato": "",
+    "stato_catalogo": "Personale",
+    "foto_album": [
+      "Img/AM_Foto/Fronte.jpg"
+    ]
+  },
+  {
+    "id": "13111566",
+    "stato_disco": "??",
+    "stato_copertina": "10",
+    "note_stato": "Ancora nel cellophan",
+    "stato_catalogo": "Personale",
+    "foto_album": [
+      "Img/Death_USB_Foto/Fronte.jpg"
+    ]
+  },
+  {
+    "id": "FALLBACK_202074",
+    "stato_disco": "??",
+    "stato_copertina": "10",
+    "note_stato": "Copia nuova",
+    "stato_catalogo": "Personale",
+    "foto_album": [
+      "Img/SpiderVerse_Foto/Fronte.jpg"
+    ]
+  },
+  {
+    "id": "21732274",
+    "stato_disco": "??",
+    "stato_copertina": "10",
+    "note_stato": "",
+    "stato_catalogo": "Personale",
+    "foto_album": [
+      "Img/Virus_Foto/Fronte.jpg"
+    ]
+  },
+  {
+    "id": "24583313",
+    "stato_disco": "??",
+    "stato_copertina": "10",
+    "note_stato": "Copertina con artwork bistecca",
+    "stato_catalogo": "Personale",
+    "foto_album": [
+      "Img/Botox_Foto/Fronte.jpg"
+    ]
+  },
+  {
+    "id": "367104",
+    "stato_disco": "8",
+    "stato_copertina": "5",
+    "note_stato": "",
+    "stato_catalogo": "Eredità",
+    "foto_album": [
+      "Img/The_Dark_Side_Of_The_Moon_Foto/Fronte.jpg",
+      "Img/The_Dark_Side_Of_The_Moon_Foto/Retro.jpg"
+    ]
+  },
+  {
+    "id": "FALLBACK_994280",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Personale",
+    "foto_album": [
+      "Img/Abominog_Foto/Fronte.jpg"
+    ]
+  },
+  {
+    "id": "386895",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Personale",
+    "foto_album": [
+      "Img/Animals_Foto/Fronte.jpg"
+    ]
+  },
+  {
+    "id": "3760793",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "Sigillato",
+    "stato_catalogo": "Personale",
+    "foto_album": [
+      "Img/Dark_Roots_Of_Earth_Foto/Fronte.jpg"
+    ]
+  },
+  {
+    "id": "8888020",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "Prezzo etichetta 26,00€",
+    "stato_catalogo": "Personale",
+    "foto_album": [
+      "Img/Hells_Highway_Foto/Fronte.jpg"
+    ]
+  },
+  {
+    "id": "391242",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Personale",
+    "foto_album": [
+      "Img/Iron_Maiden_Foto/Fronte.jpg"
+    ]
+  },
+  {
+    "id": "FALLBACK_636719",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "Black and White cover art",
+    "stato_catalogo": "Personale",
+    "foto_album": [
+      "Img/Nazarene_Sickness_Foto/Fronte.jpg"
+    ]
+  },
+  {
+    "id": "380894",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Prezzo indicato: 35€",
+    "stato_catalogo": "Personale",
+    "foto_album": [
+      "Img/Sabbath_Bloody_Sabbath_Foto/Fronte.jpg"
+    ]
+  },
+  {
+    "id": "385189",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "687822",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "1552282",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "9190214",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "1063332",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Personale",
+    "foto_album": []
+  },
+  {
+    "id": "417556",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Personale",
+    "foto_album": []
+  },
+  {
+    "id": "405725",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "Specificare se I o II",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "405734",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "Specificare se I o II",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "1544692",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "7420128",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "384775",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "7240348",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "396228",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "421436",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "22837919",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "2873079",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "475128",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "3278467",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "513811",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "162920",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "371869",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "1610433",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "3653532",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "FALLBACK_388419",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "393266",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "1063727",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "474072",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "FALLBACK_470718",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "24404510",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "3469236",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "FALLBACK_369671",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "8568278",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "370515",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Edizione 50th Anniversary",
+    "stato_catalogo": "Personale",
+    "foto_album": [
+      "Img/Crimson_King_Foto/Fronte.jpg"
+    ]
+  },
+  {
+    "id": "FALLBACK_636235",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Vinile colorato, edizione limitata scandinava",
+    "stato_catalogo": "Personale",
+    "foto_album": [
+      "Img/Skeleta_Foto/Fronte.jpg"
+    ]
+  },
+  {
+    "id": "302581",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "373922",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "373922",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "373922",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "FALLBACK_219430",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "174902",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "368686",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "FALLBACK_334388",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "14761844",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "FALLBACK_694409",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "381427",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "513813",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "4046850",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "611596",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "375628",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "1214196",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "24735278",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "367567",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "2334540",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "1179741",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "389395",
+    "stato_disco": "??",
+    "stato_copertina": "??",
+    "note_stato": "",
+    "stato_catalogo": "Wishlist",
+    "foto_album": []
+  },
+  {
+    "id": "6055344",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Collezione DeAgostini",
+    "stato_catalogo": "Eredità",
+    "foto_album": []
+  },
+  {
+    "id": "586935",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Collezione DeAgostini",
+    "stato_catalogo": "Eredità",
+    "foto_album": []
+  },
+  {
+    "id": "411514",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Collezione DeAgostini, Finitura Argentata",
+    "stato_catalogo": "Eredità",
+    "foto_album": []
+  },
+  {
+    "id": "371953",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Collezione DeAgostini",
+    "stato_catalogo": "Eredità",
+    "foto_album": []
+  },
+  {
+    "id": "586935",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Collezione DeAgostini",
+    "stato_catalogo": "Eredità",
+    "foto_album": []
+  },
+  {
+    "id": "371966",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Collezione DeAgostini",
+    "stato_catalogo": "Eredità",
+    "foto_album": []
+  },
+  {
+    "id": "414962",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Collezione DeAgostini",
+    "stato_catalogo": "Eredità",
+    "foto_album": []
+  },
+  {
+    "id": "398783",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Collezione DeAgostini",
+    "stato_catalogo": "Eredità",
+    "foto_album": []
+  },
+  {
+    "id": "119949",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Collezione DeAgostini, Album di debutto",
+    "stato_catalogo": "Eredità",
+    "foto_album": []
+  },
+  {
+    "id": "218902",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Collezione DeAgostini, Side White / Side Black",
+    "stato_catalogo": "Eredità",
+    "foto_album": []
+  },
+  {
+    "id": "371980",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Collezione DeAgostini, Doppio vinile live",
+    "stato_catalogo": "Eredità",
+    "foto_album": []
+  },
+  {
+    "id": "475618",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Collezione DeAgostini",
+    "stato_catalogo": "Eredità",
+    "foto_album": []
+  },
+  {
+    "id": "803525",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Collezione DeAgostini, Album postumo",
+    "stato_catalogo": "Eredità",
+    "foto_album": []
+  },
+  {
+    "id": "411232",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Collezione DeAgostini",
+    "stato_catalogo": "Eredità",
+    "foto_album": []
+  },
+  {
+    "id": "376152",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Collezione DeAgostini, Edizione 2 LP",
+    "stato_catalogo": "Eredità",
+    "foto_album": []
+  },
+  {
+    "id": "383102",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Collezione DeAgostini",
+    "stato_catalogo": "Eredità",
+    "foto_album": []
+  },
+  {
+    "id": "411009",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Collezione DeAgostini",
+    "stato_catalogo": "Eredità",
+    "foto_album": []
+  },
+  {
+    "id": "349067",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Collezione DeAgostini, Colonna Sonora",
+    "stato_catalogo": "Eredità",
+    "foto_album": []
+  },
+  {
+    "id": "FALLBACK_245285",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Collezione DeAgostini, Live Concert",
+    "stato_catalogo": "Eredità",
+    "foto_album": []
+  },
+  {
+    "id": "13162528",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Collezione DeAgostini",
+    "stato_catalogo": "Eredità",
+    "foto_album": []
+  },
+  {
+    "id": "FALLBACK_443222",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Collezione DeAgostini, Triplo vinile",
+    "stato_catalogo": "Eredità",
+    "foto_album": []
+  },
+  {
+    "id": "373176",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Collezione DeAgostini",
+    "stato_catalogo": "Eredità",
+    "foto_album": []
+  },
+  {
+    "id": "12685870",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Collezione DeAgostini, Triplo Vinile, Concerto del 1986",
+    "stato_catalogo": "Eredità",
+    "foto_album": []
+  },
+  {
+    "id": "2264310",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Collezione DeAgostini, Triplo Vinile, Registrato nel 1981",
+    "stato_catalogo": "Eredità",
+    "foto_album": []
+  },
+  {
+    "id": "589763",
+    "stato_disco": "10",
+    "stato_copertina": "10",
+    "note_stato": "Identificato da matrice HKAY 32574 (Lato A). Stampa Italiana.",
+    "stato_catalogo": "Eredità",
+    "foto_album": []
+  }
+]
