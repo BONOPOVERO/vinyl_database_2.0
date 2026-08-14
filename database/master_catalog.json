@@ -1,0 +1,4325 @@
+[
+  {
+    "artista": "Pink Floyd",
+    "titolo_album": "The Dark Side of the Moon",
+    "genere": "Progressive Rock",
+    "anno_uscita_originale": 1973,
+    "anno_stampa": 1983,
+    "anno_uscita_stampa": 1984,
+    "origine": "IT",
+    "etichetta": "Harvest (distribuita in Italia da EMI)",
+    "catalog_number": "STEREO 3C06405249",
+    "codice_matrice": "05249",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "120-125g",
+    "inserti": "1 Poster",
+    "cover": "Img/The_Dark_Side_Of_The_Moon.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "Speak to Me",
+        "duration": "1:30"
+      },
+      {
+        "pos": "A2",
+        "title": "Breathe (In the Air)",
+        "duration": "2:43"
+      },
+      {
+        "pos": "A3",
+        "title": "On the Run",
+        "duration": "3:36"
+      },
+      {
+        "pos": "A4",
+        "title": "Time",
+        "duration": "6:53"
+      },
+      {
+        "pos": "A5",
+        "title": "The Great Gig in the Sky",
+        "duration": "4:36"
+      },
+      {
+        "pos": "B1",
+        "title": "Money",
+        "duration": "6:22"
+      },
+      {
+        "pos": "B2",
+        "title": "Us and Them",
+        "duration": "7:46"
+      },
+      {
+        "pos": "B3",
+        "title": "Any Colour You Like",
+        "duration": "3:25"
+      },
+      {
+        "pos": "B4",
+        "title": "Brain Damage",
+        "duration": "3:48"
+      },
+      {
+        "pos": "B5",
+        "title": "Eclipse",
+        "duration": "2:03"
+      }
+    ],
+    "id": "367104"
+  },
+  {
+    "artista": "Pink Floyd",
+    "titolo_album": "Wish You Were Here",
+    "genere": "Progressive Rock",
+    "anno_uscita_originale": 1975,
+    "anno_stampa": 2016,
+    "anno_uscita_stampa": 2016,
+    "origine": "EU (BIEM/GEMA)",
+    "etichetta": "Columbia / Pink Floyd Music Ltd.",
+    "catalog_number": "STEREO 88875184261 B",
+    "codice_matrice": "18958 6A - 5B",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "180g",
+    "inserti": "1 Cartolina",
+    "cover": "Img/Wish_You_Were_Here.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "Shine On You Crazy Diamond (Parts 1-5)",
+        "duration": "13:32"
+      },
+      {
+        "pos": "A2",
+        "title": "Welcome to the Machine",
+        "duration": "7:31"
+      },
+      {
+        "pos": "B1",
+        "title": "Have a Cigar",
+        "duration": "5:08"
+      },
+      {
+        "pos": "B2",
+        "title": "Wish You Were Here",
+        "duration": "5:34"
+      },
+      {
+        "pos": "B3",
+        "title": "Shine On You Crazy Diamond (Parts 6-9)",
+        "duration": "12:31"
+      }
+    ],
+    "id": "375756"
+  },
+  {
+    "artista": "King Crimson",
+    "titolo_album": "Discipline",
+    "genere": "New Wave / Progressive Rock",
+    "anno_uscita_originale": 1981,
+    "anno_stampa": 1983,
+    "anno_uscita_stampa": 1983,
+    "origine": "USA (Winchester Pressing)",
+    "etichetta": "Warner Bros. Records / EG",
+    "catalog_number": "BSK 3629",
+    "codice_matrice": "BSK-2-3629-E-1 ─◁ EDP",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "120g",
+    "inserti": "Nessuno",
+    "cover": "Img/Discipline.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "Elephant Talk",
+        "duration": "4:43"
+      },
+      {
+        "pos": "A2",
+        "title": "Frame by Frame",
+        "duration": "5:09"
+      },
+      {
+        "pos": "A3",
+        "title": "Matte Kudasai",
+        "duration": "3:47"
+      },
+      {
+        "pos": "A4",
+        "title": "Indiscipline",
+        "duration": "4:33"
+      },
+      {
+        "pos": "B1",
+        "title": "Thela Hun Ginjeet",
+        "duration": "6:26"
+      },
+      {
+        "pos": "B2",
+        "title": "The Sheltering Sky",
+        "duration": "8:22"
+      },
+      {
+        "pos": "B3",
+        "title": "Discipline",
+        "duration": "5:13"
+      }
+    ],
+    "id": "172074"
+  },
+  {
+    "artista": "Mayhem",
+    "titolo_album": "Daemon",
+    "genere": "Black Metal",
+    "anno_uscita_originale": 2019,
+    "anno_stampa": 2022,
+    "anno_uscita_stampa": 2022,
+    "origine": "EU (BIEM/GEMA)",
+    "etichetta": "Century Media",
+    "catalog_number": "19439989711",
+    "codice_matrice": "BK62065-01 A1",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "180g",
+    "inserti": "",
+    "cover": "Img/Daemon.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "The Dying False King",
+        "duration": "3:45"
+      },
+      {
+        "pos": "A2",
+        "title": "Agenda Ignis",
+        "duration": "4:34"
+      },
+      {
+        "pos": "A3",
+        "title": "Bad Blood",
+        "duration": "4:58"
+      },
+      {
+        "pos": "A4",
+        "title": "Malum",
+        "duration": "5:05"
+      },
+      {
+        "pos": "A5",
+        "title": "Falsified and Hated",
+        "duration": "5:48"
+      },
+      {
+        "pos": "B1",
+        "title": "Aeon Daemonium",
+        "duration": "6:03"
+      },
+      {
+        "pos": "B2",
+        "title": "Worthless Abominations Destroyed",
+        "duration": "3:48"
+      },
+      {
+        "pos": "B3",
+        "title": "Daemon Spawn",
+        "duration": "6:02"
+      },
+      {
+        "pos": "B4",
+        "title": "Of Worms and Ruins",
+        "duration": "3:48"
+      },
+      {
+        "pos": "B5",
+        "title": "Invoke the Oath",
+        "duration": "5:33"
+      }
+    ],
+    "id": "14313975"
+  },
+  {
+    "artista": "Nirvana",
+    "titolo_album": "In Utero",
+    "genere": "Grunge",
+    "anno_uscita_originale": 1993,
+    "anno_stampa": 2023,
+    "anno_uscita_stampa": 2023,
+    "origine": "??",
+    "etichetta": "Geffen Records",
+    "catalog_number": "060245517858",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "180g",
+    "inserti": "5 B-sides & bonus tracks",
+    "cover": "Img/In_Utero.jpg",
+    "tracce": [],
+    "id": "465796"
+  },
+  {
+    "artista": "Motörhead",
+    "titolo_album": "Another Perfect Day",
+    "genere": "Hard Rock / Heavy Metal",
+    "anno_uscita_originale": 1983,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "Bronze",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Another_Perfect_Day.jpg",
+    "tracce": [],
+    "id": "558856"
+  },
+  {
+    "artista": "Pink Floyd",
+    "titolo_album": "The Wall",
+    "genere": "Progressive Rock",
+    "anno_uscita_originale": 1979,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "Harvest / Columbia",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/The_Wall.jpg",
+    "tracce": [],
+    "id": "297766"
+  },
+  {
+    "artista": "Arctic Monkeys",
+    "titolo_album": "AM",
+    "genere": "Indie Rock",
+    "anno_uscita_originale": 2013,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "Domino",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Am.jpg",
+    "tracce": [],
+    "id": "612972"
+  },
+  {
+    "artista": "Salmo",
+    "titolo_album": "Death USB",
+    "genere": "Rap / Hardcore Hip Hop",
+    "anno_uscita_originale": 2012,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "Italy",
+    "etichetta": "Tanta Roba Label",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Death_USB.jpg",
+    "tracce": [],
+    "id": "13111566"
+  },
+  {
+    "artista": "Daniel Pemberton",
+    "titolo_album": "Spider-Man: Across the Spider-Verse (Original Score)",
+    "genere": "Soundtrack / Score",
+    "anno_uscita_originale": 2023,
+    "anno_stampa": 2023,
+    "anno_uscita_stampa": 2023,
+    "origine": "??",
+    "etichetta": "Sony Classical",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Spiderman_Across_The_Spiderverse.jpg",
+    "tracce": [],
+    "id": "FALLBACK_202074"
+  },
+  {
+    "artista": "Noyz Narcos",
+    "titolo_album": "Virus",
+    "genere": "Rap",
+    "anno_uscita_originale": 2022,
+    "anno_stampa": 2022,
+    "anno_uscita_stampa": 2022,
+    "origine": "Italy",
+    "etichetta": "Thaurus / Sony Music",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Virus.webp",
+    "tracce": [],
+    "id": "21732274"
+  },
+  {
+    "artista": "Night Skinny",
+    "titolo_album": "Botox",
+    "genere": "Hip Hop / Trap",
+    "anno_uscita_originale": 2022,
+    "anno_stampa": 2022,
+    "anno_uscita_stampa": 2022,
+    "origine": "Italy",
+    "etichetta": "Columbia / Sony Music",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Botox.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "Fake",
+        "duration": "??"
+      },
+      {
+        "pos": "A2",
+        "title": "Diavolo",
+        "duration": "??"
+      },
+      {
+        "pos": "A3",
+        "title": "Blessed",
+        "duration": "??"
+      },
+      {
+        "pos": "A4",
+        "title": "Marciapiede",
+        "duration": "??"
+      },
+      {
+        "pos": "A5",
+        "title": "Addio",
+        "duration": "??"
+      },
+      {
+        "pos": "B1",
+        "title": "Scalpello",
+        "duration": "??"
+      },
+      {
+        "pos": "B2",
+        "title": "Così non va",
+        "duration": "??"
+      },
+      {
+        "pos": "B3",
+        "title": "Marmellata",
+        "duration": "??"
+      },
+      {
+        "pos": "B4",
+        "title": "Changes",
+        "duration": "???"
+      }
+    ],
+    "id": "24583313"
+  },
+  {
+    "artista": "Uriah Heep",
+    "titolo_album": "Abominog Expanded Version",
+    "genere": "Hard Rock",
+    "anno_uscita_originale": 1982,
+    "anno_stampa": 1982,
+    "anno_uscita_stampa": 1982,
+    "origine": "??",
+    "etichetta": "Bronze",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Abominog_Expanded_Version.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "Too Scared to Run",
+        "duration": "3:49"
+      },
+      {
+        "pos": "A2",
+        "title": "Chasing Shadows",
+        "duration": "4:39"
+      },
+      {
+        "pos": "A3",
+        "title": "On the Rebound",
+        "duration": "3:14"
+      },
+      {
+        "pos": "A4",
+        "title": "Hot Night in a Cold Town",
+        "duration": "4:03"
+      },
+      {
+        "pos": "A5",
+        "title": "Running All Night (with the Lion)",
+        "duration": "4:28"
+      },
+      {
+        "pos": "B1",
+        "title": "That's the Way That It Is",
+        "duration": "4:06"
+      },
+      {
+        "pos": "B2",
+        "title": "Prisoner",
+        "duration": "4:27"
+      },
+      {
+        "pos": "B3",
+        "title": "Hot Persuasion",
+        "duration": "3:48"
+      },
+      {
+        "pos": "B4",
+        "title": "Sell Your Soul",
+        "duration": "5:25"
+      },
+      {
+        "pos": "B5",
+        "title": "Think It Over",
+        "duration": "3:42"
+      }
+    ],
+    "id": "FALLBACK_994280"
+  },
+  {
+    "artista": "Pink Floyd",
+    "titolo_album": "Animals",
+    "genere": "Progressive Rock",
+    "anno_uscita_originale": 1977,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Animals.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "Pigs on the Wing 1",
+        "duration": "1:25"
+      },
+      {
+        "pos": "A2",
+        "title": "Dogs",
+        "duration": "17:03"
+      },
+      {
+        "pos": "B1",
+        "title": "Sheep",
+        "duration": "10:18"
+      },
+      {
+        "pos": "B2",
+        "title": "Pigs (Three Different Ones)",
+        "duration": "11:25"
+      },
+      {
+        "pos": "B3",
+        "title": "Pigs on the Wing 2",
+        "duration": "1:23"
+      }
+    ],
+    "id": "386895"
+  },
+  {
+    "artista": "Testament",
+    "titolo_album": "Dark Roots of Earth",
+    "genere": "Thrash Metal",
+    "anno_uscita_originale": 2012,
+    "anno_stampa": 2012,
+    "anno_uscita_stampa": 2012,
+    "origine": "??",
+    "etichetta": "Nuclear Blast",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Vinyl Splatter (Gold/Green)",
+    "grammatura": "??",
+    "inserti": "Limited Edition",
+    "cover": "Img/Dark_Roots_Of_Earth.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "Rise Up",
+        "duration": "4:18"
+      },
+      {
+        "pos": "A2",
+        "title": "Native Blood",
+        "duration": "5:21"
+      },
+      {
+        "pos": "A3",
+        "title": "Dark Roots of Earth",
+        "duration": "5:45"
+      },
+      {
+        "pos": "B1",
+        "title": "True American Hate",
+        "duration": "5:22"
+      },
+      {
+        "pos": "B2",
+        "title": "A Day in the Death",
+        "duration": "5:38"
+      },
+      {
+        "pos": "B3",
+        "title": "Cold Embrace",
+        "duration": "7:45"
+      },
+      {
+        "pos": "C1",
+        "title": "Man Kills Mankind",
+        "duration": "5:05"
+      },
+      {
+        "pos": "C2",
+        "title": "Throne of Thorns",
+        "duration": "7:04"
+      },
+      {
+        "pos": "D1",
+        "title": "Last Stand for Independence",
+        "duration": "4:42"
+      }
+    ],
+    "id": "3760793"
+  },
+  {
+    "artista": "AC/DC",
+    "titolo_album": "Live on Air 1974-79 (Hell's Highway)",
+    "genere": "Hard Rock",
+    "anno_uscita_originale": 2016,
+    "anno_stampa": 2016,
+    "anno_uscita_stampa": 2016,
+    "origine": "EU",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Flaming Orange",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Live_On_Air_1974-79.jpg",
+    "tracce": [],
+    "id": "8888020"
+  },
+  {
+    "artista": "Iron Maiden",
+    "titolo_album": "Iron Maiden",
+    "genere": "Heavy Metal",
+    "anno_uscita_originale": 1980,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Iron_Maiden.webp",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "Prowler",
+        "duration": "3:55"
+      },
+      {
+        "pos": "A2",
+        "title": "Remember Tomorrow",
+        "duration": "5:27"
+      },
+      {
+        "pos": "A3",
+        "title": "Running Free",
+        "duration": "3:17"
+      },
+      {
+        "pos": "A4",
+        "title": "Phantom of the Opera",
+        "duration": "7:08"
+      },
+      {
+        "pos": "B1",
+        "title": "Transylvania",
+        "duration": "4:19"
+      },
+      {
+        "pos": "B2",
+        "title": "Strange World",
+        "duration": "5:45"
+      },
+      {
+        "pos": "B3",
+        "title": "Charlotte the Harlot",
+        "duration": "4:12"
+      },
+      {
+        "pos": "B4",
+        "title": "Iron Maiden",
+        "duration": "3:35"
+      }
+    ],
+    "id": "391242"
+  },
+  {
+    "artista": "Gorgoroth",
+    "titolo_album": "Nazarene Sickness",
+    "genere": "Black Metal",
+    "anno_uscita_originale": "??",
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "??",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Nazarene_Sickness.jpg",
+    "tracce": [],
+    "id": "FALLBACK_636719"
+  },
+  {
+    "artista": "Black Sabbath",
+    "titolo_album": "Sabbath Bloody Sabbath",
+    "genere": "Heavy Metal / Doom Metal",
+    "anno_uscita_originale": 1973,
+    "anno_stampa": 2015,
+    "anno_uscita_stampa": 2015,
+    "origine": "EU",
+    "etichetta": "Sanctuary Records",
+    "catalog_number": "BMGRM051LP",
+    "codice_matrice": "BMGRM051LP A/B",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "180g",
+    "inserti": "Gatefold",
+    "cover": "Img/Sabbath_Bloody_Sabbath.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "Sabbath Bloody Sabbath",
+        "duration": "5:48"
+      },
+      {
+        "pos": "A2",
+        "title": "A National Acrobat",
+        "duration": "6:16"
+      },
+      {
+        "pos": "A3",
+        "title": "Fluff",
+        "duration": "4:11"
+      },
+      {
+        "pos": "A4",
+        "title": "Sabbra Cadabra",
+        "duration": "5:59"
+      },
+      {
+        "pos": "B1",
+        "title": "Killing Yourself to Live",
+        "duration": "5:41"
+      },
+      {
+        "pos": "B2",
+        "title": "Who Are You?",
+        "duration": "4:11"
+      },
+      {
+        "pos": "B3",
+        "title": "Looking for Today",
+        "duration": "4:59"
+      },
+      {
+        "pos": "B4",
+        "title": "Spiral Architect",
+        "duration": "5:29"
+      }
+    ],
+    "id": "380894"
+  },
+  {
+    "artista": "Limp Bizkit",
+    "titolo_album": "Chocolate Starfish and the Hot Dog Flavored Water",
+    "genere": "Nu Metal / Rap Metal",
+    "anno_uscita_originale": 2000,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Chocolate_Starfish_And_The_Hot_Dog_Flavored_Water.jpg",
+    "tracce": [],
+    "id": "385189"
+  },
+  {
+    "artista": "Testament",
+    "titolo_album": "Souls of Black",
+    "genere": "Thrash Metal",
+    "anno_uscita_originale": 1990,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Souls_Of_Black.jpg",
+    "tracce": [],
+    "id": "687822"
+  },
+  {
+    "artista": "Korn",
+    "titolo_album": "Untitled",
+    "genere": "Nu Metal",
+    "anno_uscita_originale": 2007,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Untitled.webp",
+    "tracce": [],
+    "id": "1552282"
+  },
+  {
+    "artista": "Testament",
+    "titolo_album": "Brotherhood of the Snake",
+    "genere": "Thrash Metal",
+    "anno_uscita_originale": 2016,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Brotherhood_Of_The_Snake.jpg",
+    "tracce": [],
+    "id": "9190214"
+  },
+  {
+    "artista": "Alice in Chains",
+    "titolo_album": "Facelift",
+    "genere": "Grunge / Alternative Metal",
+    "anno_uscita_originale": 1990,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Facelift.jpg",
+    "tracce": [],
+    "id": "1063332"
+  },
+  {
+    "artista": "System of a Down",
+    "titolo_album": "Toxicity",
+    "genere": "Alternative Metal",
+    "anno_uscita_originale": 2001,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Toxicity.jpg",
+    "tracce": [],
+    "id": "417556"
+  },
+  {
+    "artista": "Guns N' Roses",
+    "titolo_album": "Use Your Illusion I",
+    "genere": "Hard Rock",
+    "anno_uscita_originale": 1991,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Use_Your_Illusion_I.webp",
+    "tracce": [],
+    "id": "405725"
+  },
+  {
+    "artista": "Guns N' Roses",
+    "titolo_album": "Use Your Illusion II",
+    "genere": "Hard Rock",
+    "anno_uscita_originale": 1991,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Use_Your_Illusion_II.jpg",
+    "tracce": [],
+    "id": "405734"
+  },
+  {
+    "artista": "Guns N' Roses",
+    "titolo_album": "Chinese Democracy",
+    "genere": "Hard Rock",
+    "anno_uscita_originale": 2008,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Chinese_Democracy.jpg",
+    "tracce": [],
+    "id": "1544692"
+  },
+  {
+    "artista": "Slayer",
+    "titolo_album": "Repentless",
+    "genere": "Thrash Metal",
+    "anno_uscita_originale": 2015,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Repentless.webp",
+    "tracce": [],
+    "id": "7420128"
+  },
+  {
+    "artista": "Limp Bizkit",
+    "titolo_album": "Significant Other",
+    "genere": "Nu Metal",
+    "anno_uscita_originale": 1999,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Significant_Other.jpg",
+    "tracce": [],
+    "id": "384775"
+  },
+  {
+    "artista": "Tame Impala",
+    "titolo_album": "Currents",
+    "genere": "Psychedelic Pop / Synth-pop",
+    "anno_uscita_originale": 2015,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Currents.jpg",
+    "tracce": [],
+    "id": "7240348"
+  },
+  {
+    "artista": "Iron Maiden",
+    "titolo_album": "Fear of the Dark",
+    "genere": "Heavy Metal",
+    "anno_uscita_originale": 1992,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Fear_Of_The_Dark.jpg",
+    "tracce": [],
+    "id": "396228"
+  },
+  {
+    "artista": "Def Leppard",
+    "titolo_album": "Hysteria",
+    "genere": "Hard Rock / Glam Metal",
+    "anno_uscita_originale": 1987,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Hysteria.jpg",
+    "tracce": [],
+    "id": "421436"
+  },
+  {
+    "artista": "Korn",
+    "titolo_album": "See You on the Other Side",
+    "genere": "Nu Metal",
+    "anno_uscita_originale": 2005,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/See_You_On_The_Other_Side.webp",
+    "tracce": [],
+    "id": "22837919"
+  },
+  {
+    "artista": "Deftones",
+    "titolo_album": "Around the Fur",
+    "genere": "Nu Metal / Alternative Metal",
+    "anno_uscita_originale": 1997,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Around_The_Fur.jpg",
+    "tracce": [],
+    "id": "2873079"
+  },
+  {
+    "artista": "Pantera",
+    "titolo_album": "Cowboys from Hell",
+    "genere": "Groove Metal",
+    "anno_uscita_originale": 1990,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Cowboys_From_Hell.jpeg",
+    "tracce": [],
+    "id": "475128"
+  },
+  {
+    "artista": "Gojira",
+    "titolo_album": "From Mars to Sirius",
+    "genere": "Progressive Death Metal",
+    "anno_uscita_originale": 2005,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/From_Mars_To_Sirius.webp",
+    "tracce": [],
+    "id": "3278467"
+  },
+  {
+    "artista": "Alice in Chains",
+    "titolo_album": "Jar of Flies",
+    "genere": "Grunge / Acoustic Rock",
+    "anno_uscita_originale": 1994,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Jar_Of_Flies.jpg",
+    "tracce": [],
+    "id": "513811"
+  },
+  {
+    "artista": "Slash",
+    "titolo_album": "Slash",
+    "genere": "Hard Rock",
+    "anno_uscita_originale": 2010,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Slash.jpg",
+    "tracce": [],
+    "id": "162920"
+  },
+  {
+    "artista": "Boston",
+    "titolo_album": "Boston",
+    "genere": "Hard Rock / AOR",
+    "anno_uscita_originale": 1976,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Boston.jpg",
+    "tracce": [],
+    "id": "371869"
+  },
+  {
+    "artista": "Uriah Heep",
+    "titolo_album": "Fallen Angel",
+    "genere": "Hard Rock / Progressive Rock",
+    "anno_uscita_originale": 1978,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Fallen_Angel.jpg",
+    "tracce": [],
+    "id": "1610433"
+  },
+  {
+    "artista": "Slash",
+    "titolo_album": "Apocalyptic Love",
+    "genere": "Hard Rock",
+    "anno_uscita_originale": 2012,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Apocalyptic_Love.jpg",
+    "tracce": [],
+    "id": "3653532"
+  },
+  {
+    "artista": "Lustra",
+    "titolo_album": "Left or Dead",
+    "genere": "Pop Punk",
+    "anno_uscita_originale": 2006,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Left_Or_Dead.jpeg",
+    "tracce": [],
+    "id": "FALLBACK_388419"
+  },
+  {
+    "artista": "Def Leppard",
+    "titolo_album": "Pyromania",
+    "genere": "Hard Rock / Glam Metal",
+    "anno_uscita_originale": 1983,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Pyromania.jpg",
+    "tracce": [],
+    "id": "393266"
+  },
+  {
+    "artista": "Judas Priest",
+    "titolo_album": "Painkiller",
+    "genere": "Heavy Metal",
+    "anno_uscita_originale": 1990,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Painkiller.jpg",
+    "tracce": [],
+    "id": "1063727"
+  },
+  {
+    "artista": "Death",
+    "titolo_album": "The Sound of Perseverance",
+    "genere": "Technical Death Metal",
+    "anno_uscita_originale": 1998,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/The_Sound_Of_Perseverance.jpg",
+    "tracce": [],
+    "id": "474072"
+  },
+  {
+    "artista": "Arch Enemy",
+    "titolo_album": "Blood Dynasty",
+    "genere": "Melodic Death Metal",
+    "anno_uscita_originale": 2025,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Blood_Dynasty.jpg",
+    "tracce": [],
+    "id": "FALLBACK_470718"
+  },
+  {
+    "artista": "Revocation",
+    "titolo_album": "Netherheaven",
+    "genere": "Technical Death Metal",
+    "anno_uscita_originale": 2022,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Netherheaven.jpeg",
+    "tracce": [],
+    "id": "24404510"
+  },
+  {
+    "artista": "Cannibal Corpse",
+    "titolo_album": "Torture",
+    "genere": "Death Metal",
+    "anno_uscita_originale": 2012,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Torture.jpg",
+    "tracce": [],
+    "id": "3469236"
+  },
+  {
+    "artista": "Napalm Death",
+    "titolo_album": "Noise for Music's Sake",
+    "genere": "Grindcore",
+    "anno_uscita_originale": 2003,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Noise_For_Music's_Sake.jpg",
+    "tracce": [],
+    "id": "FALLBACK_369671"
+  },
+  {
+    "artista": "Death Angel",
+    "titolo_album": "The Evil Divide",
+    "genere": "Thrash Metal",
+    "anno_uscita_originale": 2016,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/The_Evil_Divide.jpg",
+    "tracce": [],
+    "id": "8568278"
+  },
+  {
+    "artista": "King Crimson",
+    "titolo_album": "In the Court of the Crimson King",
+    "genere": "Progressive Rock",
+    "anno_uscita_originale": 1969,
+    "anno_stampa": 2020,
+    "anno_uscita_stampa": 2020,
+    "origine": "UK/EU",
+    "etichetta": "Panegyric",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "200g",
+    "inserti": "",
+    "cover": "Img/In_The_Court_Of_The_Crimson_King.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "21st Century Schizoid Man",
+        "duration": "7:21"
+      },
+      {
+        "pos": "A2",
+        "title": "I Talk to the Wind",
+        "duration": "6:05"
+      },
+      {
+        "pos": "A3",
+        "title": "Epitaph",
+        "duration": "8:47"
+      },
+      {
+        "pos": "B1",
+        "title": "Moonchild",
+        "duration": "12:13"
+      },
+      {
+        "pos": "B2",
+        "title": "The Court of the Crimson King",
+        "duration": "9:25"
+      }
+    ],
+    "id": "370515"
+  },
+  {
+    "artista": "Ghost",
+    "titolo_album": "Skeletà",
+    "genere": "Hard Rock / Heavy Metal",
+    "anno_uscita_originale": 2025,
+    "anno_stampa": 2025,
+    "anno_uscita_stampa": 2025,
+    "origine": "SVE/DEN/NOR (Scandinavian Exclusive)",
+    "etichetta": "Loma Vista",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Orchid / Magenta",
+    "grammatura": "180g",
+    "inserti": "Booklet",
+    "cover": "Img/Skeleta.webp",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "Imperium",
+        "duration": "1:40"
+      },
+      {
+        "pos": "A2",
+        "title": "Kaisarion",
+        "duration": "5:02"
+      },
+      {
+        "pos": "A3",
+        "title": "Spillways",
+        "duration": "3:16"
+      },
+      {
+        "pos": "A4",
+        "title": "Call Me Little Sunshine",
+        "duration": "4:44"
+      },
+      {
+        "pos": "A5",
+        "title": "Hunter's Moon",
+        "duration": "3:16"
+      },
+      {
+        "pos": "A6",
+        "title": "Watcher in the Sky",
+        "duration": "4:58"
+      },
+      {
+        "pos": "B1",
+        "title": "Dominion",
+        "duration": "1:22"
+      },
+      {
+        "pos": "B2",
+        "title": "Twenties",
+        "duration": "3:46"
+      },
+      {
+        "pos": "B3",
+        "title": "Darkness at the Heart of My Love",
+        "duration": "4:58"
+      },
+      {
+        "pos": "B4",
+        "title": "Griftwood",
+        "duration": "5:16"
+      },
+      {
+        "pos": "B5",
+        "title": "Bite of Passage",
+        "duration": "0:31"
+      },
+      {
+        "pos": "B6",
+        "title": "Respite on the Spitalfields",
+        "duration": "6:42"
+      }
+    ],
+    "id": "FALLBACK_636235"
+  },
+  {
+    "artista": "The Clash",
+    "titolo_album": "London Calling",
+    "genere": "Punk Rock / Post-Punk",
+    "anno_uscita_originale": 1979,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "CBS",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/London_Calling.jpg",
+    "tracce": [],
+    "id": "302581"
+  },
+  {
+    "artista": "Led Zeppelin",
+    "titolo_album": "Led Zeppelin I",
+    "genere": "Hard Rock / Blues Rock",
+    "anno_uscita_originale": 1969,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "Atlantic",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Led_Zeppelin_I.jpg",
+    "tracce": [],
+    "id": "373922"
+  },
+  {
+    "artista": "Led Zeppelin",
+    "titolo_album": "Led Zeppelin II",
+    "genere": "Hard Rock / Blues Rock",
+    "anno_uscita_originale": 1969,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "Atlantic",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Led_Zeppelin_II.jpg",
+    "tracce": [],
+    "id": "373922"
+  },
+  {
+    "artista": "Led Zeppelin",
+    "titolo_album": "Led Zeppelin III",
+    "genere": "Hard Rock / Folk Rock",
+    "anno_uscita_originale": 1970,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "Atlantic",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Led_Zeppelin_III.jpg",
+    "tracce": [],
+    "id": "373922"
+  },
+  {
+    "artista": "Curren$y",
+    "titolo_album": "Pilot Talk Trilogy",
+    "genere": "Hip Hop",
+    "anno_uscita_originale": 2017,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "Empire / Jet Life",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Pilot_Talk_Trilogy.jpg",
+    "tracce": [],
+    "id": "FALLBACK_219430"
+  },
+  {
+    "artista": "The Alan Parsons Project",
+    "titolo_album": "Eye in the Sky",
+    "genere": "Progressive Rock / Soft Rock",
+    "anno_uscita_originale": 1982,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "Arista",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Eye_In_The_Sky.jpg",
+    "tracce": [],
+    "id": "174902"
+  },
+  {
+    "artista": "AC/DC",
+    "titolo_album": "Let There Be Rock",
+    "genere": "Hard Rock",
+    "anno_uscita_originale": 1977,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "Albert / Atlantic",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Let_There_Be_Rock.jpg",
+    "tracce": [],
+    "id": "368686"
+  },
+  {
+    "artista": "Derek and the Dominos",
+    "titolo_album": "Layla and Other Assorted Love Songs",
+    "genere": "Blues Rock",
+    "anno_uscita_originale": 1970,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "Polydor / Atco",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Layla_And_Other_Assorted_Love_Songs.jpg",
+    "tracce": [],
+    "id": "FALLBACK_334388"
+  },
+  {
+    "artista": "Tame Impala",
+    "titolo_album": "The Slow Rush",
+    "genere": "Psychedelic Pop",
+    "anno_uscita_originale": 2020,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "Modular / Interscope",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/The_Slow_Rush.jpg",
+    "tracce": [],
+    "id": "14761844"
+  },
+  {
+    "artista": "Tame Impala",
+    "titolo_album": "Deadbeat",
+    "genere": "Electronic / Dub Techno",
+    "anno_uscita_originale": "??",
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "??",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Deadbeat.jpeg",
+    "tracce": [],
+    "id": "FALLBACK_694409"
+  },
+  {
+    "artista": "R.E.M.",
+    "titolo_album": "Out of Time",
+    "genere": "Alternative Rock",
+    "anno_uscita_originale": 1991,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "Warner Bros.",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Out_Of_Time.jpg",
+    "tracce": [],
+    "id": "381427"
+  },
+  {
+    "artista": "Alice in Chains",
+    "titolo_album": "Dirt",
+    "genere": "Grunge / Alternative Metal",
+    "anno_uscita_originale": 1992,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "Columbia",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Dirt.jpg",
+    "tracce": [],
+    "id": "513813"
+  },
+  {
+    "artista": "The Rolling Stones",
+    "titolo_album": "GRRR!",
+    "genere": "Rock / Rock & Roll",
+    "anno_uscita_originale": 2012,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "ABKCO / Universal",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "??",
+    "inserti": "Compilation",
+    "cover": "Img/Grrr!.jpg",
+    "tracce": [],
+    "id": "4046850"
+  },
+  {
+    "artista": "John Lennon",
+    "titolo_album": "Mind Games",
+    "genere": "Rock",
+    "anno_uscita_originale": 1973,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "Apple",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Mind_Games.jpg",
+    "tracce": [],
+    "id": "611596"
+  },
+  {
+    "artista": "The Beatles",
+    "titolo_album": "Abbey Road",
+    "genere": "Rock / Psychedelic Rock",
+    "anno_uscita_originale": 1969,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "Apple",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Abbey_Road.jpg",
+    "tracce": [],
+    "id": "375628"
+  },
+  {
+    "artista": "Pink Floyd",
+    "titolo_album": "The Division Bell",
+    "genere": "Progressive Rock",
+    "anno_uscita_originale": 1994,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "EMI / Columbia",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "??",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/The_Division_Bell.jpg",
+    "tracce": [],
+    "id": "1214196"
+  },
+  {
+    "artista": "The Beatles",
+    "titolo_album": "1967-1970 (The Blue Album)",
+    "genere": "Rock / Pop Rock",
+    "anno_uscita_originale": 1973,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "Apple",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "??",
+    "inserti": "2LP",
+    "cover": "Img/The_Beatles_1967_1970.jpg",
+    "tracce": [],
+    "id": "24735278"
+  },
+  {
+    "artista": "The Beatles",
+    "titolo_album": "Let It Be",
+    "genere": "Rock",
+    "anno_uscita_originale": 1970,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "Apple",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Let_It_Be.jpg",
+    "tracce": [],
+    "id": "367567"
+  },
+  {
+    "artista": "Oasis",
+    "titolo_album": "Time Flies... 1994-2009",
+    "genere": "Britpop",
+    "anno_uscita_originale": 2010,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "Big Brother",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "??",
+    "inserti": "Compilation",
+    "cover": "Img/Time_Flies_1994_2009.jpg",
+    "tracce": [],
+    "id": "2334540"
+  },
+  {
+    "artista": "Foo Fighters",
+    "titolo_album": "In Your Honor",
+    "genere": "Alternative Rock",
+    "anno_uscita_originale": 2005,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "RCA",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/In_Your_Honor.jpg",
+    "tracce": [],
+    "id": "1179741"
+  },
+  {
+    "artista": "Mötley Crüe",
+    "titolo_album": "Dr. Feelgood",
+    "genere": "Hard Rock / Glam Metal",
+    "anno_uscita_originale": 1989,
+    "anno_stampa": "??",
+    "anno_uscita_stampa": "??",
+    "origine": "??",
+    "etichetta": "Elektra",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "??",
+    "inserti": "??",
+    "cover": "Img/Dr_Feelgood.jpg",
+    "tracce": [],
+    "id": "389395"
+  },
+  {
+    "artista": "Queen",
+    "titolo_album": "Live At The Rainbow '74",
+    "genere": "Rock",
+    "anno_uscita_originale": 2014,
+    "anno_stampa": 2023,
+    "anno_uscita_stampa": 2023,
+    "origine": "EU (MPO France)",
+    "etichetta": "Virgin EMI / DeAgostini",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "180g",
+    "inserti": "Gatefold",
+    "cover": "Img/Live_At_The_Rainbow_74.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "Procession",
+        "duration": "1:18"
+      },
+      {
+        "pos": "A2",
+        "title": "Now I'm Here",
+        "duration": "4:57"
+      },
+      {
+        "pos": "A3",
+        "title": "Ogre Battle",
+        "duration": "5:30"
+      },
+      {
+        "pos": "A4",
+        "title": "Father To Son",
+        "duration": "5:54"
+      },
+      {
+        "pos": "B1",
+        "title": "White Queen (As It Began)",
+        "duration": "5:34"
+      },
+      {
+        "pos": "B2",
+        "title": "Flick Of The Wrist",
+        "duration": "4:06"
+      },
+      {
+        "pos": "B3",
+        "title": "In The Lap Of The Gods",
+        "duration": "3:17"
+      },
+      {
+        "pos": "B4",
+        "title": "Killer Queen",
+        "duration": "1:25"
+      },
+      {
+        "pos": "B5",
+        "title": "The March Of The Black Queen",
+        "duration": "1:35"
+      },
+      {
+        "pos": "B6",
+        "title": "Bring Back That Leroy Brown",
+        "duration": "1:40"
+      }
+    ],
+    "id": "6055344"
+  },
+  {
+    "artista": "Queen",
+    "titolo_album": "Greatest Hits II",
+    "genere": "Rock",
+    "anno_uscita_originale": 1991,
+    "anno_stampa": 2023,
+    "anno_uscita_stampa": 2023,
+    "origine": "EU (MPO France)",
+    "etichetta": "Virgin EMI / DeAgostini",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "180g",
+    "inserti": "Gatefold, 2 LP",
+    "cover": "Img/Queen_Greatest_Hits_II.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "A Kind Of Magic",
+        "duration": "4:22"
+      },
+      {
+        "pos": "A2",
+        "title": "Under Pressure",
+        "duration": "3:56"
+      },
+      {
+        "pos": "A3",
+        "title": "Radio Ga Ga",
+        "duration": "5:43"
+      },
+      {
+        "pos": "A4",
+        "title": "I Want It All",
+        "duration": "4:01"
+      },
+      {
+        "pos": "A5",
+        "title": "I Want To Break Free",
+        "duration": "4:18"
+      },
+      {
+        "pos": "B1",
+        "title": "Innuendo",
+        "duration": "6:27"
+      },
+      {
+        "pos": "B2",
+        "title": "It's A Hard Life",
+        "duration": "4:09"
+      },
+      {
+        "pos": "B3",
+        "title": "Breakthru",
+        "duration": "4:09"
+      },
+      {
+        "pos": "B4",
+        "title": "Who Wants To Live Forever",
+        "duration": "4:57"
+      },
+      {
+        "pos": "C1",
+        "title": "Headlong",
+        "duration": "4:33"
+      },
+      {
+        "pos": "C2",
+        "title": "The Miracle",
+        "duration": "5:01"
+      },
+      {
+        "pos": "C3",
+        "title": "I'm Going Slightly Mad",
+        "duration": "4:22"
+      },
+      {
+        "pos": "C4",
+        "title": "The Invisible Man",
+        "duration": "3:58"
+      },
+      {
+        "pos": "D1",
+        "title": "Hammer To Fall",
+        "duration": "3:40"
+      },
+      {
+        "pos": "D2",
+        "title": "Friends Will Be Friends",
+        "duration": "4:08"
+      },
+      {
+        "pos": "D3",
+        "title": "The Show Must Go On",
+        "duration": "4:35"
+      },
+      {
+        "pos": "D4",
+        "title": "One Vision",
+        "duration": "4:02"
+      }
+    ],
+    "id": "586935"
+  },
+  {
+    "artista": "Queen",
+    "titolo_album": "The Game",
+    "genere": "Rock",
+    "anno_uscita_originale": 1980,
+    "anno_stampa": 2023,
+    "anno_uscita_stampa": 2023,
+    "origine": "EU (MPO France)",
+    "etichetta": "Virgin EMI / DeAgostini",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "180g",
+    "inserti": "Inner Sleeve",
+    "cover": "Img/The_Games.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "Play The Game",
+        "duration": "3:30"
+      },
+      {
+        "pos": "A2",
+        "title": "Dragon Attack",
+        "duration": "4:18"
+      },
+      {
+        "pos": "A3",
+        "title": "Another One Bites The Dust",
+        "duration": "3:35"
+      },
+      {
+        "pos": "A4",
+        "title": "Need Your Loving Tonight",
+        "duration": "2:50"
+      },
+      {
+        "pos": "A5",
+        "title": "Crazy Little Thing Called Love",
+        "duration": "2:44"
+      },
+      {
+        "pos": "B1",
+        "title": "Rock It (Prime Jive)",
+        "duration": "4:33"
+      },
+      {
+        "pos": "B2",
+        "title": "Don't Try Suicide",
+        "duration": "3:52"
+      },
+      {
+        "pos": "B3",
+        "title": "Sail Away Sweet Sister",
+        "duration": "3:33"
+      },
+      {
+        "pos": "B4",
+        "title": "Coming Soon",
+        "duration": "2:51"
+      },
+      {
+        "pos": "B5",
+        "title": "Save Me",
+        "duration": "3:48"
+      }
+    ],
+    "id": "411514"
+  },
+  {
+    "artista": "Queen",
+    "titolo_album": "The Works",
+    "genere": "Rock",
+    "anno_uscita_originale": 1984,
+    "anno_stampa": 2023,
+    "anno_uscita_stampa": 2023,
+    "origine": "EU (MPO France)",
+    "etichetta": "Virgin EMI / DeAgostini",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "180g",
+    "inserti": "Inner Sleeve",
+    "cover": "Img/Queen_The_Works.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "Radio Ga Ga",
+        "duration": "5:49"
+      },
+      {
+        "pos": "A2",
+        "title": "Tear It Up",
+        "duration": "3:28"
+      },
+      {
+        "pos": "A3",
+        "title": "It's A Hard Life",
+        "duration": "4:08"
+      },
+      {
+        "pos": "A4",
+        "title": "Man On The Prowl",
+        "duration": "3:28"
+      },
+      {
+        "pos": "B1",
+        "title": "Machines (or 'Back to Humans')",
+        "duration": "5:10"
+      },
+      {
+        "pos": "B2",
+        "title": "I Want To Break Free",
+        "duration": "3:20"
+      },
+      {
+        "pos": "B3",
+        "title": "Keep Passing The Open Windows",
+        "duration": "5:21"
+      },
+      {
+        "pos": "B4",
+        "title": "Hammer To Fall",
+        "duration": "4:28"
+      },
+      {
+        "pos": "B5",
+        "title": "Is This The World We Created...?",
+        "duration": "2:13"
+      }
+    ],
+    "id": "371953"
+  },
+  {
+    "artista": "Queen",
+    "titolo_album": "Greatest Hits III",
+    "genere": "Rock",
+    "anno_uscita_originale": 1999,
+    "anno_stampa": 2023,
+    "anno_uscita_stampa": 2023,
+    "origine": "EU (MPO France)",
+    "etichetta": "Virgin EMI / DeAgostini",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "180g",
+    "inserti": "Gatefold, 2 LP",
+    "cover": "Img/Greatest_Hits_III.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "The Show Must Go On (Queen + Elton John)",
+        "duration": "4:35"
+      },
+      {
+        "pos": "A2",
+        "title": "Under Pressure (Rah Mix)",
+        "duration": "4:08"
+      },
+      {
+        "pos": "A3",
+        "title": "Barcelona (Freddie Mercury + Montserrat Caballé)",
+        "duration": "4:25"
+      },
+      {
+        "pos": "A4",
+        "title": "Too Much Love Will Kill You",
+        "duration": "4:18"
+      },
+      {
+        "pos": "B1",
+        "title": "Somebody To Love (Queen + George Michael)",
+        "duration": "5:07"
+      },
+      {
+        "pos": "B2",
+        "title": "You Don't Fool Me",
+        "duration": "5:22"
+      },
+      {
+        "pos": "B3",
+        "title": "Heaven For Everyone",
+        "duration": "4:37"
+      },
+      {
+        "pos": "B4",
+        "title": "Las Palabras De Amor",
+        "duration": "4:29"
+      },
+      {
+        "pos": "C1",
+        "title": "Driven By You (Brian May)",
+        "duration": "4:09"
+      },
+      {
+        "pos": "C2",
+        "title": "Living On My Own (Julian Raymond Mix)",
+        "duration": "3:37"
+      },
+      {
+        "pos": "C3",
+        "title": "Let Me Live",
+        "duration": "4:45"
+      },
+      {
+        "pos": "C4",
+        "title": "The Great Pretender",
+        "duration": "3:26"
+      },
+      {
+        "pos": "C5",
+        "title": "Princes Of The Universe",
+        "duration": "3:31"
+      },
+      {
+        "pos": "D1",
+        "title": "Another One Bites The Dust (Queen + Wyclef Jean)",
+        "duration": "4:20"
+      },
+      {
+        "pos": "D2",
+        "title": "No-One But You (Only The Good Die Young)",
+        "duration": "4:11"
+      },
+      {
+        "pos": "D3",
+        "title": "These Are The Days Of Our Lives",
+        "duration": "4:22"
+      },
+      {
+        "pos": "D4",
+        "title": "Thank God It's Christmas",
+        "duration": "4:19"
+      }
+    ],
+    "id": "586935"
+  },
+  {
+    "artista": "Queen",
+    "titolo_album": "A Night At The Opera",
+    "genere": "Rock",
+    "anno_uscita_originale": 1975,
+    "anno_stampa": 2023,
+    "anno_uscita_stampa": 2023,
+    "origine": "EU (MPO France)",
+    "etichetta": "Virgin EMI / DeAgostini",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "180g",
+    "inserti": "Gatefold",
+    "cover": "Img/A_Night_At_The_Opera.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "Death On Two Legs (Dedicated To...)",
+        "duration": "3:43"
+      },
+      {
+        "pos": "A2",
+        "title": "Lazing On A Sunday Afternoon",
+        "duration": "1:07"
+      },
+      {
+        "pos": "A3",
+        "title": "I'm In Love With My Car",
+        "duration": "3:05"
+      },
+      {
+        "pos": "A4",
+        "title": "You're My Best Friend",
+        "duration": "2:52"
+      },
+      {
+        "pos": "A5",
+        "title": "'39",
+        "duration": "3:30"
+      },
+      {
+        "pos": "A6",
+        "title": "Sweet Lady",
+        "duration": "4:03"
+      },
+      {
+        "pos": "A7",
+        "title": "Seaside Rendezvous",
+        "duration": "2:15"
+      },
+      {
+        "pos": "B1",
+        "title": "The Prophet's Song",
+        "duration": "8:21"
+      },
+      {
+        "pos": "B2",
+        "title": "Love Of My Life",
+        "duration": "3:39"
+      },
+      {
+        "pos": "B3",
+        "title": "Good Company",
+        "duration": "3:23"
+      },
+      {
+        "pos": "B4",
+        "title": "Bohemian Rhapsody",
+        "duration": "5:55"
+      },
+      {
+        "pos": "B5",
+        "title": "God Save The Queen",
+        "duration": "1:15"
+      }
+    ],
+    "id": "371966"
+  },
+  {
+    "artista": "Queen",
+    "titolo_album": "A Kind Of Magic",
+    "genere": "Rock",
+    "anno_uscita_originale": 1986,
+    "anno_stampa": 2023,
+    "anno_uscita_stampa": 2023,
+    "origine": "EU (MPO France)",
+    "etichetta": "Virgin EMI / DeAgostini",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "180g",
+    "inserti": "Gatefold",
+    "cover": "Img/A_Kind_Of_Magic.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "One Vision",
+        "duration": "5:10"
+      },
+      {
+        "pos": "A2",
+        "title": "A Kind Of Magic",
+        "duration": "4:24"
+      },
+      {
+        "pos": "A3",
+        "title": "One Year Of Love",
+        "duration": "4:26"
+      },
+      {
+        "pos": "A4",
+        "title": "Pain Is So Close To Pleasure",
+        "duration": "4:21"
+      },
+      {
+        "pos": "A5",
+        "title": "Friends Will Be Friends",
+        "duration": "4:07"
+      },
+      {
+        "pos": "B1",
+        "title": "Who Wants To Live Forever",
+        "duration": "5:15"
+      },
+      {
+        "pos": "B2",
+        "title": "Gimme The Prize (Kurgan's Theme)",
+        "duration": "4:34"
+      },
+      {
+        "pos": "B3",
+        "title": "Don't Lose Your Head",
+        "duration": "4:38"
+      },
+      {
+        "pos": "B4",
+        "title": "Princes Of The Universe",
+        "duration": "3:32"
+      }
+    ],
+    "id": "414962"
+  },
+  {
+    "artista": "Queen",
+    "titolo_album": "Innuendo",
+    "genere": "Rock",
+    "anno_uscita_originale": 1991,
+    "anno_stampa": 2023,
+    "anno_uscita_stampa": 2023,
+    "origine": "EU (MPO France)",
+    "etichetta": "Virgin EMI / DeAgostini",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "180g",
+    "inserti": "Gatefold, 2 LP",
+    "cover": "Img/Innuendo.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "Innuendo",
+        "duration": "6:32"
+      },
+      {
+        "pos": "A2",
+        "title": "I'm Going Slightly Mad",
+        "duration": "4:22"
+      },
+      {
+        "pos": "A3",
+        "title": "Headlong",
+        "duration": "4:38"
+      },
+      {
+        "pos": "B1",
+        "title": "I Can't Live With You",
+        "duration": "4:33"
+      },
+      {
+        "pos": "B2",
+        "title": "Don't Try So Hard",
+        "duration": "3:39"
+      },
+      {
+        "pos": "B3",
+        "title": "Ride The Wild Wind",
+        "duration": "4:42"
+      },
+      {
+        "pos": "C1",
+        "title": "All God's People",
+        "duration": "4:21"
+      },
+      {
+        "pos": "C2",
+        "title": "These Are The Days Of Our Lives",
+        "duration": "4:15"
+      },
+      {
+        "pos": "C3",
+        "title": "Delilah",
+        "duration": "3:35"
+      },
+      {
+        "pos": "D1",
+        "title": "The Hitman",
+        "duration": "4:56"
+      },
+      {
+        "pos": "D2",
+        "title": "Bijou",
+        "duration": "3:36"
+      },
+      {
+        "pos": "D3",
+        "title": "The Show Must Go On",
+        "duration": "4:35"
+      }
+    ],
+    "id": "398783"
+  },
+  {
+    "artista": "Queen",
+    "titolo_album": "Queen",
+    "genere": "Rock",
+    "anno_uscita_originale": 1973,
+    "anno_stampa": 2023,
+    "anno_uscita_stampa": 2023,
+    "origine": "EU (MPO France)",
+    "etichetta": "Virgin EMI / DeAgostini",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "180g",
+    "inserti": "Standard",
+    "cover": "Img/Queen.png",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "Keep Yourself Alive",
+        "duration": "3:46"
+      },
+      {
+        "pos": "A2",
+        "title": "Doing All Right",
+        "duration": "4:10"
+      },
+      {
+        "pos": "A3",
+        "title": "Great King Rat",
+        "duration": "5:41"
+      },
+      {
+        "pos": "A4",
+        "title": "My Fairy King",
+        "duration": "4:07"
+      },
+      {
+        "pos": "B1",
+        "title": "Liar",
+        "duration": "6:26"
+      },
+      {
+        "pos": "B2",
+        "title": "The Night Comes Down",
+        "duration": "4:24"
+      },
+      {
+        "pos": "B3",
+        "title": "Modern Times Rock 'n' Roll",
+        "duration": "1:48"
+      },
+      {
+        "pos": "B4",
+        "title": "Son And Daughter",
+        "duration": "3:19"
+      },
+      {
+        "pos": "B5",
+        "title": "Jesus",
+        "duration": "3:45"
+      },
+      {
+        "pos": "B6",
+        "title": "Seven Seas Of Rhye...",
+        "duration": "1:10"
+      }
+    ],
+    "id": "119949"
+  },
+  {
+    "artista": "Queen",
+    "titolo_album": "Queen II",
+    "genere": "Rock",
+    "anno_uscita_originale": 1974,
+    "anno_stampa": 2023,
+    "anno_uscita_stampa": 2023,
+    "origine": "EU (MPO France)",
+    "etichetta": "Virgin EMI / DeAgostini",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "180g",
+    "inserti": "Gatefold",
+    "cover": "Img/Queen_II.webp",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "Procession",
+        "duration": "1:12"
+      },
+      {
+        "pos": "A2",
+        "title": "Father To Son",
+        "duration": "6:14"
+      },
+      {
+        "pos": "A3",
+        "title": "White Queen (As It Began)",
+        "duration": "4:34"
+      },
+      {
+        "pos": "A4",
+        "title": "Some Day One Day",
+        "duration": "4:23"
+      },
+      {
+        "pos": "A5",
+        "title": "The Loser In The End",
+        "duration": "4:02"
+      },
+      {
+        "pos": "B1",
+        "title": "Ogre Battle",
+        "duration": "4:10"
+      },
+      {
+        "pos": "B2",
+        "title": "The Fairy Feller's Master-Stroke",
+        "duration": "2:40"
+      },
+      {
+        "pos": "B3",
+        "title": "Nevermore",
+        "duration": "1:17"
+      },
+      {
+        "pos": "B4",
+        "title": "The March Of The Black Queen",
+        "duration": "6:33"
+      },
+      {
+        "pos": "B5",
+        "title": "Funny How Love Is",
+        "duration": "2:50"
+      },
+      {
+        "pos": "B6",
+        "title": "Seven Seas Of Rhye",
+        "duration": "2:48"
+      }
+    ],
+    "id": "218902"
+  },
+  {
+    "artista": "Queen",
+    "titolo_album": "Live Killers",
+    "genere": "Rock",
+    "anno_uscita_originale": 1979,
+    "anno_stampa": 2023,
+    "anno_uscita_stampa": 2023,
+    "origine": "EU (MPO France)",
+    "etichetta": "Virgin EMI / DeAgostini",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "180g",
+    "inserti": "Gatefold, 2 LP",
+    "cover": "Img/Queen_Live_Killers.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "We Will Rock You (Fast Version)",
+        "duration": "3:18"
+      },
+      {
+        "pos": "A2",
+        "title": "Let Me Entertain You",
+        "duration": "3:15"
+      },
+      {
+        "pos": "A3",
+        "title": "Death On Two Legs",
+        "duration": "3:31"
+      },
+      {
+        "pos": "A4",
+        "title": "Killer Queen",
+        "duration": "1:59"
+      },
+      {
+        "pos": "A5",
+        "title": "Bicycle Race",
+        "duration": "1:28"
+      },
+      {
+        "pos": "A6",
+        "title": "I'm In Love With My Car",
+        "duration": "2:08"
+      },
+      {
+        "pos": "A7",
+        "title": "Get Down, Make Love",
+        "duration": "4:31"
+      },
+      {
+        "pos": "A8",
+        "title": "You're My Best Friend",
+        "duration": "2:08"
+      },
+      {
+        "pos": "B1",
+        "title": "Now I'm Here",
+        "duration": "8:42"
+      },
+      {
+        "pos": "B2",
+        "title": "Dreamer's Ball",
+        "duration": "3:44"
+      },
+      {
+        "pos": "B3",
+        "title": "Love Of My Life",
+        "duration": "4:57"
+      },
+      {
+        "pos": "B4",
+        "title": "'39",
+        "duration": "3:26"
+      },
+      {
+        "pos": "B5",
+        "title": "Keep Yourself Alive",
+        "duration": "4:02"
+      },
+      {
+        "pos": "C1",
+        "title": "Don't Stop Me Now",
+        "duration": "4:28"
+      },
+      {
+        "pos": "C2",
+        "title": "Spread Your Wings",
+        "duration": "5:17"
+      },
+      {
+        "pos": "C3",
+        "title": "Brighton Rock",
+        "duration": "12:13"
+      },
+      {
+        "pos": "D1",
+        "title": "Bohemian Rhapsody",
+        "duration": "6:02"
+      },
+      {
+        "pos": "D2",
+        "title": "Tie Your Mother Down",
+        "duration": "3:40"
+      },
+      {
+        "pos": "D3",
+        "title": "Sheer Heart Attack",
+        "duration": "3:35"
+      },
+      {
+        "pos": "D4",
+        "title": "We Will Rock You",
+        "duration": "2:48"
+      },
+      {
+        "pos": "D5",
+        "title": "We Are The Champions",
+        "duration": "3:27"
+      },
+      {
+        "pos": "D6",
+        "title": "God Save The Queen",
+        "duration": "1:31"
+      }
+    ],
+    "id": "371980"
+  },
+  {
+    "artista": "Queen",
+    "titolo_album": "The Miracle",
+    "genere": "Rock",
+    "anno_uscita_originale": 1989,
+    "anno_stampa": 2023,
+    "anno_uscita_stampa": 2023,
+    "origine": "EU (MPO France)",
+    "etichetta": "Virgin EMI / DeAgostini",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "180g",
+    "inserti": "Inner Sleeve",
+    "cover": "Img/The_Miracle.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "Party",
+        "duration": "2:24"
+      },
+      {
+        "pos": "A2",
+        "title": "Khashoggi's Ship",
+        "duration": "2:47"
+      },
+      {
+        "pos": "A3",
+        "title": "The Miracle",
+        "duration": "5:02"
+      },
+      {
+        "pos": "A4",
+        "title": "I Want It All",
+        "duration": "4:41"
+      },
+      {
+        "pos": "A5",
+        "title": "The Invisible Man",
+        "duration": "3:55"
+      },
+      {
+        "pos": "B1",
+        "title": "Breakthru",
+        "duration": "4:07"
+      },
+      {
+        "pos": "B2",
+        "title": "Rain Must Fall",
+        "duration": "4:20"
+      },
+      {
+        "pos": "B3",
+        "title": "Scandal",
+        "duration": "4:42"
+      },
+      {
+        "pos": "B4",
+        "title": "My Baby Does Me",
+        "duration": "3:22"
+      },
+      {
+        "pos": "B5",
+        "title": "Was It All Worth It",
+        "duration": "5:45"
+      }
+    ],
+    "id": "475618"
+  },
+  {
+    "artista": "Queen",
+    "titolo_album": "Made In Heaven",
+    "genere": "Rock",
+    "anno_uscita_originale": 1995,
+    "anno_stampa": 2023,
+    "anno_uscita_stampa": 2023,
+    "origine": "EU (MPO France)",
+    "etichetta": "Virgin EMI / DeAgostini",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "180g",
+    "inserti": "Gatefold, 2 LP",
+    "cover": "Img/Made_In_Heaven.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "It's A Beautiful Day",
+        "duration": "2:32"
+      },
+      {
+        "pos": "A2",
+        "title": "Made In Heaven",
+        "duration": "5:25"
+      },
+      {
+        "pos": "A3",
+        "title": "Let Me Live",
+        "duration": "4:45"
+      },
+      {
+        "pos": "A4",
+        "title": "Mother Love",
+        "duration": "4:49"
+      },
+      {
+        "pos": "B1",
+        "title": "My Life Has Been Saved",
+        "duration": "3:15"
+      },
+      {
+        "pos": "B2",
+        "title": "I Was Born To Love You",
+        "duration": "4:49"
+      },
+      {
+        "pos": "B3",
+        "title": "Heaven For Everyone",
+        "duration": "5:36"
+      },
+      {
+        "pos": "C1",
+        "title": "Too Much Love Will Kill You",
+        "duration": "4:20"
+      },
+      {
+        "pos": "C2",
+        "title": "You Don't Fool Me",
+        "duration": "5:24"
+      },
+      {
+        "pos": "C3",
+        "title": "A Winter's Tale",
+        "duration": "3:49"
+      },
+      {
+        "pos": "C4",
+        "title": "It's A Beautiful Day (Reprise)",
+        "duration": "3:01"
+      },
+      {
+        "pos": "D1",
+        "title": "Yeah",
+        "duration": "0:04"
+      },
+      {
+        "pos": "D2",
+        "title": "Untitled",
+        "duration": "22:32"
+      }
+    ],
+    "id": "803525"
+  },
+  {
+    "artista": "Queen",
+    "titolo_album": "Sheer Heart Attack",
+    "genere": "Rock",
+    "anno_uscita_originale": 1974,
+    "anno_stampa": 2023,
+    "anno_uscita_stampa": 2023,
+    "origine": "EU (MPO France)",
+    "etichetta": "Virgin EMI / DeAgostini",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "180g",
+    "inserti": "Inner Sleeve",
+    "cover": "Img/Sheer_Heart_Attack.png",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "Brighton Rock",
+        "duration": "5:08"
+      },
+      {
+        "pos": "A2",
+        "title": "Killer Queen",
+        "duration": "3:01"
+      },
+      {
+        "pos": "A3",
+        "title": "Tenement Funster",
+        "duration": "2:48"
+      },
+      {
+        "pos": "A4",
+        "title": "Flick Of The Wrist",
+        "duration": "3:19"
+      },
+      {
+        "pos": "A5",
+        "title": "Lily Of The Valley",
+        "duration": "1:43"
+      },
+      {
+        "pos": "A6",
+        "title": "Now I'm Here",
+        "duration": "4:10"
+      },
+      {
+        "pos": "B1",
+        "title": "In The Lap Of The Gods",
+        "duration": "3:20"
+      },
+      {
+        "pos": "B2",
+        "title": "Stone Cold Crazy",
+        "duration": "2:12"
+      },
+      {
+        "pos": "B3",
+        "title": "Dear Friends",
+        "duration": "1:07"
+      },
+      {
+        "pos": "B4",
+        "title": "Misfire",
+        "duration": "1:50"
+      },
+      {
+        "pos": "B5",
+        "title": "Bring Back That Leroy Brown",
+        "duration": "2:13"
+      },
+      {
+        "pos": "B6",
+        "title": "She Makes Me (Stormtrooper In Stilettoes)",
+        "duration": "4:08"
+      },
+      {
+        "pos": "B7",
+        "title": "In The Lap Of The Gods... Revisited",
+        "duration": "3:42"
+      }
+    ],
+    "id": "411232"
+  },
+  {
+    "artista": "Queen",
+    "titolo_album": "Greatest Hits",
+    "genere": "Rock",
+    "anno_uscita_originale": 1981,
+    "anno_stampa": 2023,
+    "anno_uscita_stampa": 2023,
+    "origine": "EU (MPO France)",
+    "etichetta": "Virgin EMI / DeAgostini",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "180g",
+    "inserti": "Gatefold, 2 LP",
+    "cover": "Img/Greatest_Hits_I.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "Bohemian Rhapsody",
+        "duration": "5:55"
+      },
+      {
+        "pos": "A2",
+        "title": "Another One Bites The Dust",
+        "duration": "3:35"
+      },
+      {
+        "pos": "A3",
+        "title": "Killer Queen",
+        "duration": "2:59"
+      },
+      {
+        "pos": "A4",
+        "title": "Fat Bottomed Girls",
+        "duration": "3:21"
+      },
+      {
+        "pos": "B1",
+        "title": "Bicycle Race",
+        "duration": "3:01"
+      },
+      {
+        "pos": "B2",
+        "title": "You're My Best Friend",
+        "duration": "2:52"
+      },
+      {
+        "pos": "B3",
+        "title": "Don't Stop Me Now",
+        "duration": "3:29"
+      },
+      {
+        "pos": "B4",
+        "title": "Save Me",
+        "duration": "3:48"
+      },
+      {
+        "pos": "C1",
+        "title": "Crazy Little Thing Called Love",
+        "duration": "2:42"
+      },
+      {
+        "pos": "C2",
+        "title": "Somebody To Love",
+        "duration": "4:56"
+      },
+      {
+        "pos": "C3",
+        "title": "Now I'm Here",
+        "duration": "4:10"
+      },
+      {
+        "pos": "C4",
+        "title": "Good Old-Fashioned Lover Boy",
+        "duration": "2:54"
+      },
+      {
+        "pos": "D1",
+        "title": "Play The Game",
+        "duration": "3:30"
+      },
+      {
+        "pos": "D2",
+        "title": "Flash",
+        "duration": "2:48"
+      },
+      {
+        "pos": "D3",
+        "title": "Seven Seas Of Rhye",
+        "duration": "2:47"
+      },
+      {
+        "pos": "D4",
+        "title": "We Will Rock You",
+        "duration": "2:01"
+      },
+      {
+        "pos": "D5",
+        "title": "We Are The Champions",
+        "duration": "2:59"
+      }
+    ],
+    "id": "376152"
+  },
+  {
+    "artista": "Queen",
+    "titolo_album": "A Day At The Races",
+    "genere": "Rock",
+    "anno_uscita_originale": 1976,
+    "anno_stampa": 2023,
+    "anno_uscita_stampa": 2023,
+    "origine": "EU (MPO France)",
+    "etichetta": "Virgin EMI / DeAgostini",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "180g",
+    "inserti": "Gatefold",
+    "cover": "Img/A_Day_At_The_Races.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "Tie Your Mother Down",
+        "duration": "4:48"
+      },
+      {
+        "pos": "A2",
+        "title": "You Take My Breath Away",
+        "duration": "5:09"
+      },
+      {
+        "pos": "A3",
+        "title": "Long Away",
+        "duration": "3:34"
+      },
+      {
+        "pos": "A4",
+        "title": "The Millionaire Waltz",
+        "duration": "4:54"
+      },
+      {
+        "pos": "A5",
+        "title": "You And I",
+        "duration": "3:25"
+      },
+      {
+        "pos": "B1",
+        "title": "Somebody To Love",
+        "duration": "4:56"
+      },
+      {
+        "pos": "B2",
+        "title": "White Man",
+        "duration": "4:59"
+      },
+      {
+        "pos": "B3",
+        "title": "Good Old-Fashioned Lover Boy",
+        "duration": "2:54"
+      },
+      {
+        "pos": "B4",
+        "title": "Drowse",
+        "duration": "3:45"
+      },
+      {
+        "pos": "B5",
+        "title": "Teo Torriatte (Let Us Cling Together)",
+        "duration": "5:50"
+      }
+    ],
+    "id": "383102"
+  },
+  {
+    "artista": "Queen",
+    "titolo_album": "Jazz",
+    "genere": "Rock",
+    "anno_uscita_originale": 1978,
+    "anno_stampa": 2023,
+    "anno_uscita_stampa": 2023,
+    "origine": "EU (MPO France)",
+    "etichetta": "Virgin EMI / DeAgostini",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "180g",
+    "inserti": "Gatefold, Poster (se presente)",
+    "cover": "Img/Jazz.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "Mustapha",
+        "duration": "3:01"
+      },
+      {
+        "pos": "A2",
+        "title": "Fat Bottomed Girls",
+        "duration": "4:16"
+      },
+      {
+        "pos": "A3",
+        "title": "Jealousy",
+        "duration": "3:13"
+      },
+      {
+        "pos": "A4",
+        "title": "Bicycle Race",
+        "duration": "3:01"
+      },
+      {
+        "pos": "A5",
+        "title": "If You Can't Beat Them",
+        "duration": "4:15"
+      },
+      {
+        "pos": "A6",
+        "title": "Let Me Entertain You",
+        "duration": "3:01"
+      },
+      {
+        "pos": "B1",
+        "title": "Dead On Time",
+        "duration": "3:23"
+      },
+      {
+        "pos": "B2",
+        "title": "In Only Seven Days",
+        "duration": "2:30"
+      },
+      {
+        "pos": "B3",
+        "title": "Dreamer's Ball",
+        "duration": "3:30"
+      },
+      {
+        "pos": "B4",
+        "title": "Fun It",
+        "duration": "3:29"
+      },
+      {
+        "pos": "B5",
+        "title": "Leaving Home Ain't Easy",
+        "duration": "3:15"
+      },
+      {
+        "pos": "B6",
+        "title": "Don't Stop Me Now",
+        "duration": "3:29"
+      },
+      {
+        "pos": "B7",
+        "title": "More Of That Jazz",
+        "duration": "4:16"
+      }
+    ],
+    "id": "411009"
+  },
+  {
+    "artista": "Queen",
+    "titolo_album": "Flash Gordon (Original Soundtrack Music)",
+    "genere": "Soundtrack / Rock",
+    "anno_uscita_originale": 1980,
+    "anno_stampa": 2023,
+    "anno_uscita_stampa": 2023,
+    "origine": "EU (MPO France)",
+    "etichetta": "Virgin EMI / DeAgostini",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "180g",
+    "inserti": "Standard",
+    "cover": "Img/Flash_Gordon.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "Flash's Theme",
+        "duration": "3:30"
+      },
+      {
+        "pos": "A2",
+        "title": "In The Space Capsule (The Love Theme)",
+        "duration": "2:43"
+      },
+      {
+        "pos": "A3",
+        "title": "Ming's Theme (In The Court Of Ming The Merciless)",
+        "duration": "2:41"
+      },
+      {
+        "pos": "A4",
+        "title": "The Ring (Hypnotic Seduction Of Dale)",
+        "duration": "0:57"
+      },
+      {
+        "pos": "A5",
+        "title": "Football Fight",
+        "duration": "1:28"
+      },
+      {
+        "pos": "A6",
+        "title": "In The Death Cell (Love Theme Reprise)",
+        "duration": "2:25"
+      },
+      {
+        "pos": "A7",
+        "title": "Execution Of Flash",
+        "duration": "1:06"
+      },
+      {
+        "pos": "A8",
+        "title": "The Kiss (Aura Resurrects Flash)",
+        "duration": "1:45"
+      },
+      {
+        "pos": "B1",
+        "title": "Arboria (Planet Of The Tree Men)",
+        "duration": "1:42"
+      },
+      {
+        "pos": "B2",
+        "title": "Escape From The Swamp",
+        "duration": "1:43"
+      },
+      {
+        "pos": "B3",
+        "title": "Flash To The Rescue",
+        "duration": "2:44"
+      },
+      {
+        "pos": "B4",
+        "title": "Vultan's Theme (Attack Of The Hawk Men)",
+        "duration": "1:13"
+      },
+      {
+        "pos": "B5",
+        "title": "Battle Theme",
+        "duration": "2:18"
+      },
+      {
+        "pos": "B6",
+        "title": "The Wedding March",
+        "duration": "0:56"
+      },
+      {
+        "pos": "B7",
+        "title": "Marriage Of Dale And Ming (And Flash Approaching)",
+        "duration": "2:04"
+      },
+      {
+        "pos": "B8",
+        "title": "Crash Dive On Mingo City",
+        "duration": "1:00"
+      },
+      {
+        "pos": "B9",
+        "title": "Flash's Theme Reprise (Victory Celebrations)",
+        "duration": "1:24"
+      },
+      {
+        "pos": "B10",
+        "title": "The Hero",
+        "duration": "3:31"
+      }
+    ],
+    "id": "349067"
+  },
+  {
+    "artista": "Queen",
+    "titolo_album": "A Night At The Odeon (Hammersmith 1975)",
+    "genere": "Rock",
+    "anno_uscita_originale": 2015,
+    "anno_stampa": 2023,
+    "anno_uscita_stampa": 2023,
+    "origine": "EU (MPO France)",
+    "etichetta": "Virgin EMI / DeAgostini",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "180g",
+    "inserti": "Gatefold",
+    "cover": "Img/A_Night_At_The_Odeon.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "Now I'm Here",
+        "duration": "4:43"
+      },
+      {
+        "pos": "A2",
+        "title": "Ogre Battle",
+        "duration": "5:19"
+      },
+      {
+        "pos": "A3",
+        "title": "White Queen (As It Began)",
+        "duration": "5:31"
+      },
+      {
+        "pos": "B1",
+        "title": "Bohemian Rhapsody",
+        "duration": "2:28"
+      },
+      {
+        "pos": "B2",
+        "title": "Killer Queen",
+        "duration": "2:01"
+      },
+      {
+        "pos": "B3",
+        "title": "The March Of The Black Queen",
+        "duration": "1:30"
+      },
+      {
+        "pos": "B4",
+        "title": "Bohemian Rhapsody (Reprise)",
+        "duration": "1:02"
+      },
+      {
+        "pos": "B5",
+        "title": "Bring Back That Leroy Brown",
+        "duration": "1:32"
+      },
+      {
+        "pos": "B6",
+        "title": "Brighton Rock",
+        "duration": "2:24"
+      },
+      {
+        "pos": "B7",
+        "title": "Guitar Solo",
+        "duration": "6:37"
+      },
+      {
+        "pos": "B8",
+        "title": "Son And Daughter",
+        "duration": "1:44"
+      },
+      {
+        "pos": "C1",
+        "title": "Keep Yourself Alive",
+        "duration": "4:33"
+      },
+      {
+        "pos": "C2",
+        "title": "Liar",
+        "duration": "8:45"
+      },
+      {
+        "pos": "C3",
+        "title": "In The Lap Of The Gods... Revisited",
+        "duration": "5:24"
+      },
+      {
+        "pos": "D1",
+        "title": "Big Spender",
+        "duration": "1:35"
+      },
+      {
+        "pos": "D2",
+        "title": "Jailhouse Rock (Medley)",
+        "duration": "9:21"
+      },
+      {
+        "pos": "D3",
+        "title": "Seven Seas Of Rhye",
+        "duration": "3:11"
+      },
+      {
+        "pos": "D4",
+        "title": "See What A Fool I've Been",
+        "duration": "4:22"
+      },
+      {
+        "pos": "D5",
+        "title": "God Save The Queen",
+        "duration": "1:23"
+      }
+    ],
+    "id": "FALLBACK_245285"
+  },
+  {
+    "artista": "Queen",
+    "titolo_album": "Bohemian Rhapsody (The Original Soundtrack)",
+    "genere": "Rock / Soundtrack",
+    "anno_uscita_originale": 2018,
+    "anno_stampa": 2023,
+    "anno_uscita_stampa": 2023,
+    "origine": "EU (MPO France)",
+    "etichetta": "Virgin EMI / DeAgostini",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "180g",
+    "inserti": "Gatefold, 2 LP",
+    "cover": "Img/Bohemian_Rhapsody.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "20th Century Fox Fanfare",
+        "duration": "0:25"
+      },
+      {
+        "pos": "A2",
+        "title": "Somebody To Love",
+        "duration": "4:56"
+      },
+      {
+        "pos": "A3",
+        "title": "Doing All Right... Revisited (Smile)",
+        "duration": "3:17"
+      },
+      {
+        "pos": "A4",
+        "title": "Keep Yourself Alive (Live At The Rainbow)",
+        "duration": "3:56"
+      },
+      {
+        "pos": "A5",
+        "title": "Killer Queen",
+        "duration": "2:59"
+      },
+      {
+        "pos": "A6",
+        "title": "Fat Bottomed Girls (Live In Paris)",
+        "duration": "4:38"
+      },
+      {
+        "pos": "B1",
+        "title": "Bohemian Rhapsody",
+        "duration": "5:55"
+      },
+      {
+        "pos": "B2",
+        "title": "Now I'm Here (Live At Hammersmith Odeon)",
+        "duration": "4:26"
+      },
+      {
+        "pos": "B3",
+        "title": "Crazy Little Thing Called Love",
+        "duration": "2:43"
+      },
+      {
+        "pos": "B4",
+        "title": "Love Of My Life (Rock In Rio)",
+        "duration": "4:29"
+      },
+      {
+        "pos": "C1",
+        "title": "We Will Rock You (Movie Mix)",
+        "duration": "2:09"
+      },
+      {
+        "pos": "C2",
+        "title": "Another One Bites The Dust",
+        "duration": "3:35"
+      },
+      {
+        "pos": "C3",
+        "title": "I Want To Break Free",
+        "duration": "3:43"
+      },
+      {
+        "pos": "C4",
+        "title": "Under Pressure (Queen & David Bowie)",
+        "duration": "4:04"
+      },
+      {
+        "pos": "C5",
+        "title": "Who Wants To Live Forever",
+        "duration": "5:15"
+      },
+      {
+        "pos": "D1",
+        "title": "Bohemian Rhapsody (Live Aid)",
+        "duration": "2:28"
+      },
+      {
+        "pos": "D2",
+        "title": "Radio Ga Ga (Live Aid)",
+        "duration": "4:06"
+      },
+      {
+        "pos": "D3",
+        "title": "Ay-Oh (Live Aid)",
+        "duration": "0:41"
+      },
+      {
+        "pos": "D4",
+        "title": "Hammer To Fall (Live Aid)",
+        "duration": "4:04"
+      },
+      {
+        "pos": "D5",
+        "title": "We Are The Champions (Live Aid)",
+        "duration": "3:57"
+      },
+      {
+        "pos": "D6",
+        "title": "Don't Stop Me Now... Revisited",
+        "duration": "3:38"
+      },
+      {
+        "pos": "D7",
+        "title": "The Show Must Go On",
+        "duration": "4:32"
+      }
+    ],
+    "id": "13162528"
+  },
+  {
+    "artista": "Queen",
+    "titolo_album": "On Air (BBC Sessions)",
+    "genere": "Rock",
+    "anno_uscita_originale": 2016,
+    "anno_stampa": 2023,
+    "anno_uscita_stampa": 2023,
+    "origine": "EU (MPO France)",
+    "etichetta": "Virgin EMI / DeAgostini",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "180g",
+    "inserti": "Gatefold, 3 LP",
+    "cover": "Img/On_Air.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "My Fairy King (Session 1)",
+        "duration": "4:08"
+      },
+      {
+        "pos": "A2",
+        "title": "Keep Yourself Alive (Session 1)",
+        "duration": "3:49"
+      },
+      {
+        "pos": "A3",
+        "title": "Doing All Right (Session 1)",
+        "duration": "4:13"
+      },
+      {
+        "pos": "A4",
+        "title": "Liar (Session 1)",
+        "duration": "6:30"
+      },
+      {
+        "pos": "B1",
+        "title": "See What A Fool I've Been (Session 2)",
+        "duration": "4:21"
+      },
+      {
+        "pos": "B2",
+        "title": "Keep Yourself Alive (Session 2)",
+        "duration": "3:50"
+      },
+      {
+        "pos": "B3",
+        "title": "Liar (Session 2)",
+        "duration": "6:29"
+      },
+      {
+        "pos": "B4",
+        "title": "Son And Daughter (Session 2)",
+        "duration": "6:03"
+      },
+      {
+        "pos": "C1",
+        "title": "Ogre Battle (Session 3)",
+        "duration": "3:58"
+      },
+      {
+        "pos": "C2",
+        "title": "Modern Times Rock 'n' Roll (Session 3)",
+        "duration": "2:02"
+      },
+      {
+        "pos": "C3",
+        "title": "Great King Rat (Session 3)",
+        "duration": "5:57"
+      },
+      {
+        "pos": "C4",
+        "title": "Son And Daughter (Session 3)",
+        "duration": "7:08"
+      },
+      {
+        "pos": "D1",
+        "title": "Modern Times Rock 'n' Roll (Session 4)",
+        "duration": "2:46"
+      },
+      {
+        "pos": "D2",
+        "title": "Nevermore (Session 4)",
+        "duration": "1:29"
+      },
+      {
+        "pos": "D3",
+        "title": "White Queen (As It Began) (Session 4)",
+        "duration": "4:54"
+      },
+      {
+        "pos": "E1",
+        "title": "Now I'm Here (Session 5)",
+        "duration": "4:18"
+      },
+      {
+        "pos": "E2",
+        "title": "Stone Cold Crazy (Session 5)",
+        "duration": "2:17"
+      },
+      {
+        "pos": "E3",
+        "title": "Flick Of The Wrist (Session 5)",
+        "duration": "3:26"
+      },
+      {
+        "pos": "E4",
+        "title": "Tenement Funster (Session 5)",
+        "duration": "3:00"
+      },
+      {
+        "pos": "F1",
+        "title": "We Will Rock You (Session 6)",
+        "duration": "1:35"
+      },
+      {
+        "pos": "F2",
+        "title": "We Will Rock You (Fast) (Session 6)",
+        "duration": "2:46"
+      },
+      {
+        "pos": "F3",
+        "title": "Spread Your Wings (Session 6)",
+        "duration": "5:24"
+      },
+      {
+        "pos": "F4",
+        "title": "It's Late (Session 6)",
+        "duration": "6:37"
+      },
+      {
+        "pos": "F5",
+        "title": "My Melancholy Blues (Session 6)",
+        "duration": "3:11"
+      }
+    ],
+    "id": "FALLBACK_443222"
+  },
+  {
+    "artista": "Queen",
+    "titolo_album": "Hot Space",
+    "genere": "Rock / Funk Rock",
+    "anno_uscita_originale": 1982,
+    "anno_stampa": 2024,
+    "anno_uscita_stampa": 2024,
+    "origine": "EU (MPO France)",
+    "etichetta": "Virgin EMI / DeAgostini",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "180g",
+    "inserti": "Inner Sleeve",
+    "cover": "Img/Hot_Space.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "Staying Power",
+        "duration": "4:10"
+      },
+      {
+        "pos": "A2",
+        "title": "Dancer",
+        "duration": "3:46"
+      },
+      {
+        "pos": "A3",
+        "title": "Back Chat",
+        "duration": "4:31"
+      },
+      {
+        "pos": "A4",
+        "title": "Body Language",
+        "duration": "4:29"
+      },
+      {
+        "pos": "A5",
+        "title": "Action This Day",
+        "duration": "3:33"
+      },
+      {
+        "pos": "B1",
+        "title": "Put Out The Fire",
+        "duration": "3:15"
+      },
+      {
+        "pos": "B2",
+        "title": "Life Is Real (Song For Lennon)",
+        "duration": "3:31"
+      },
+      {
+        "pos": "B3",
+        "title": "Calling All Girls",
+        "duration": "3:53"
+      },
+      {
+        "pos": "B4",
+        "title": "Las Palabras De Amor (The Words Of Love)",
+        "duration": "4:26"
+      },
+      {
+        "pos": "B5",
+        "title": "Cool Cat",
+        "duration": "3:26"
+      },
+      {
+        "pos": "B6",
+        "title": "Under Pressure (with David Bowie)",
+        "duration": "4:02"
+      }
+    ],
+    "id": "373176"
+  },
+  {
+    "artista": "Queen",
+    "titolo_album": "Live At Wembley Stadium",
+    "genere": "Rock",
+    "anno_uscita_originale": 1990,
+    "anno_stampa": 2024,
+    "anno_uscita_stampa": 2024,
+    "origine": "EU (MPO France)",
+    "etichetta": "Virgin EMI / DeAgostini",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "180g",
+    "inserti": "Gatefold, 3 LP",
+    "cover": "Img/Live_At_Wembley_Stadium.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "One Vision",
+        "duration": "5:50"
+      },
+      {
+        "pos": "A2",
+        "title": "Tie Your Mother Down",
+        "duration": "3:52"
+      },
+      {
+        "pos": "A3",
+        "title": "In The Lap Of The Gods... Revisited",
+        "duration": "2:44"
+      },
+      {
+        "pos": "A4",
+        "title": "Seven Seas Of Rhye",
+        "duration": "1:19"
+      },
+      {
+        "pos": "A5",
+        "title": "Tear It Up",
+        "duration": "2:12"
+      },
+      {
+        "pos": "A6",
+        "title": "A Kind Of Magic",
+        "duration": "8:41"
+      },
+      {
+        "pos": "B1",
+        "title": "Under Pressure",
+        "duration": "3:41"
+      },
+      {
+        "pos": "B2",
+        "title": "Another One Bites The Dust",
+        "duration": "4:54"
+      },
+      {
+        "pos": "B3",
+        "title": "Who Wants To Live Forever",
+        "duration": "5:16"
+      },
+      {
+        "pos": "B4",
+        "title": "I Want To Break Free",
+        "duration": "3:34"
+      },
+      {
+        "pos": "C1",
+        "title": "Impromptu",
+        "duration": "2:55"
+      },
+      {
+        "pos": "C2",
+        "title": "Brighton Rock Solo",
+        "duration": "9:11"
+      },
+      {
+        "pos": "C3",
+        "title": "Now I'm Here",
+        "duration": "6:19"
+      },
+      {
+        "pos": "D1",
+        "title": "Love Of My Life",
+        "duration": "4:47"
+      },
+      {
+        "pos": "D2",
+        "title": "Is This The World We Created...?",
+        "duration": "2:59"
+      },
+      {
+        "pos": "D3",
+        "title": "(You're So Square) Baby I Don't Care",
+        "duration": "1:34"
+      },
+      {
+        "pos": "D4",
+        "title": "Hello Mary Lou (Goodbye Heart)",
+        "duration": "1:24"
+      },
+      {
+        "pos": "D5",
+        "title": "Tutti Frutti",
+        "duration": "3:23"
+      },
+      {
+        "pos": "D6",
+        "title": "Gimme Some Lovin'",
+        "duration": "0:55"
+      },
+      {
+        "pos": "E1",
+        "title": "Bohemian Rhapsody",
+        "duration": "5:50"
+      },
+      {
+        "pos": "E2",
+        "title": "Hammer To Fall",
+        "duration": "5:36"
+      },
+      {
+        "pos": "E3",
+        "title": "Crazy Little Thing Called Love",
+        "duration": "6:27"
+      },
+      {
+        "pos": "E4",
+        "title": "Big Spender",
+        "duration": "1:07"
+      },
+      {
+        "pos": "F1",
+        "title": "Radio Ga Ga",
+        "duration": "5:57"
+      },
+      {
+        "pos": "F2",
+        "title": "We Will Rock You",
+        "duration": "2:46"
+      },
+      {
+        "pos": "F3",
+        "title": "Friends Will Be Friends",
+        "duration": "2:08"
+      },
+      {
+        "pos": "F4",
+        "title": "We Are The Champions",
+        "duration": "4:05"
+      },
+      {
+        "pos": "F5",
+        "title": "God Save The Queen",
+        "duration": "1:27"
+      }
+    ],
+    "id": "12685870"
+  },
+  {
+    "artista": "Queen",
+    "titolo_album": "Rock Montreal",
+    "genere": "Rock",
+    "anno_uscita_originale": 2007,
+    "anno_stampa": 2024,
+    "anno_uscita_stampa": 2024,
+    "origine": "EU (MPO France)",
+    "etichetta": "Virgin EMI / DeAgostini",
+    "catalog_number": "??",
+    "codice_matrice": "??",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "180g",
+    "inserti": "Gatefold, 3 LP",
+    "cover": "Img/Rock_Montreal.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "Intro",
+        "duration": "1:59"
+      },
+      {
+        "pos": "A2",
+        "title": "We Will Rock You (Fast)",
+        "duration": "3:06"
+      },
+      {
+        "pos": "A3",
+        "title": "Let Me Entertain You",
+        "duration": "2:48"
+      },
+      {
+        "pos": "A4",
+        "title": "Play The Game",
+        "duration": "3:57"
+      },
+      {
+        "pos": "A5",
+        "title": "Somebody To Love",
+        "duration": "7:53"
+      },
+      {
+        "pos": "B1",
+        "title": "Killer Queen",
+        "duration": "1:59"
+      },
+      {
+        "pos": "B2",
+        "title": "I'm In Love With My Car",
+        "duration": "2:03"
+      },
+      {
+        "pos": "B3",
+        "title": "Get Down, Make Love",
+        "duration": "4:45"
+      },
+      {
+        "pos": "B4",
+        "title": "Save Me",
+        "duration": "4:14"
+      },
+      {
+        "pos": "C1",
+        "title": "Now I'm Here",
+        "duration": "5:31"
+      },
+      {
+        "pos": "C2",
+        "title": "Dragon Attack",
+        "duration": "3:11"
+      },
+      {
+        "pos": "C3",
+        "title": "Now I'm Here (Reprise)",
+        "duration": "1:53"
+      },
+      {
+        "pos": "C4",
+        "title": "Love Of My Life",
+        "duration": "3:56"
+      },
+      {
+        "pos": "D1",
+        "title": "Under Pressure",
+        "duration": "3:49"
+      },
+      {
+        "pos": "D2",
+        "title": "Keep Yourself Alive",
+        "duration": "3:29"
+      },
+      {
+        "pos": "D3",
+        "title": "Drum And Tympani Solo",
+        "duration": "3:00"
+      },
+      {
+        "pos": "D4",
+        "title": "Guitar Solo",
+        "duration": "5:11"
+      },
+      {
+        "pos": "E1",
+        "title": "Flash",
+        "duration": "2:11"
+      },
+      {
+        "pos": "E2",
+        "title": "The Hero",
+        "duration": "1:51"
+      },
+      {
+        "pos": "E3",
+        "title": "Crazy Little Thing Called Love",
+        "duration": "4:15"
+      },
+      {
+        "pos": "E4",
+        "title": "Jailhouse Rock",
+        "duration": "2:32"
+      },
+      {
+        "pos": "E5",
+        "title": "Bohemian Rhapsody",
+        "duration": "5:28"
+      },
+      {
+        "pos": "F1",
+        "title": "Tie Your Mother Down",
+        "duration": "3:52"
+      },
+      {
+        "pos": "F2",
+        "title": "Another One Bites The Dust",
+        "duration": "4:00"
+      },
+      {
+        "pos": "F3",
+        "title": "Sheer Heart Attack",
+        "duration": "3:53"
+      },
+      {
+        "pos": "F4",
+        "title": "We Will Rock You",
+        "duration": "2:09"
+      },
+      {
+        "pos": "F5",
+        "title": "We Are The Champions",
+        "duration": "3:27"
+      },
+      {
+        "pos": "F6",
+        "title": "God Save The Queen",
+        "duration": "1:27"
+      }
+    ],
+    "id": "2264310"
+  },
+  {
+    "artista": "Scorpions",
+    "titolo_album": "Tokyo Tapes",
+    "genere": "Hard Rock / Heavy Metal",
+    "anno_uscita_originale": 1978,
+    "anno_stampa": 1978,
+    "anno_uscita_stampa": 1978,
+    "origine": "Italy (RCA S.p.A.)",
+    "etichetta": "RCA",
+    "catalog_number": "CL 28331",
+    "codice_matrice": "HKAY 32574",
+    "velocita": "33",
+    "colore": "Nero",
+    "grammatura": "Standard",
+    "inserti": "Gatefold, 2 LP",
+    "cover": "Img/Tokyo_Tapes.jpg",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "All Night Long",
+        "duration": "3:44"
+      },
+      {
+        "pos": "A2",
+        "title": "Pictured Life",
+        "duration": "3:12"
+      },
+      {
+        "pos": "A3",
+        "title": "Backstage Queen",
+        "duration": "3:44"
+      },
+      {
+        "pos": "A4",
+        "title": "Polar Nights",
+        "duration": "6:43"
+      },
+      {
+        "pos": "A5",
+        "title": "In Trance",
+        "duration": "5:25"
+      },
+      {
+        "pos": "B1",
+        "title": "We'll Burn The Sky",
+        "duration": "8:07"
+      },
+      {
+        "pos": "B2",
+        "title": "Suspender Love",
+        "duration": "3:38"
+      },
+      {
+        "pos": "B3",
+        "title": "In Search Of The Peace Of Mind",
+        "duration": "3:02"
+      },
+      {
+        "pos": "B4",
+        "title": "Fly To The Rainbow",
+        "duration": "9:39"
+      },
+      {
+        "pos": "C1",
+        "title": "He's A Woman - She's A Man",
+        "duration": "5:22"
+      },
+      {
+        "pos": "C2",
+        "title": "Speedy's Coming",
+        "duration": "3:40"
+      },
+      {
+        "pos": "C3",
+        "title": "Top Of The Bill",
+        "duration": "6:45"
+      },
+      {
+        "pos": "D1",
+        "title": "Hound Dog",
+        "duration": "1:14"
+      },
+      {
+        "pos": "D2",
+        "title": "Long Tall Sally",
+        "duration": "2:09"
+      },
+      {
+        "pos": "D3",
+        "title": "Steamrock Fever",
+        "duration": "3:41"
+      },
+      {
+        "pos": "D4",
+        "title": "Dark Lady",
+        "duration": "4:18"
+      },
+      {
+        "pos": "D5",
+        "title": "Kojo No Tsuki",
+        "duration": "3:35"
+      },
+      {
+        "pos": "D6",
+        "title": "Robot Man",
+        "duration": "5:47"
+      }
+    ],
+    "id": "589763"
+  }
+]
