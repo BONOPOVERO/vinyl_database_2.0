@@ -1,19 +1,5 @@
 [
   {
-    "id": "05249",
-    "stato_disco": "8",
-    "stato_copertina": "5",
-    "note_stato": "",
-    "stato_catalogo": "Personale",
-    "foto_album": [
-      "Img/The_Dark_Side_Of_The_Moon_Foto/Fronte.jpg",
-      "Img/The_Dark_Side_Of_The_Moon_Foto/Retro.jpg",
-      "Img/The_Dark_Side_Of_The_Moon_Foto/Interno.jpg",
-      "Img/The_Dark_Side_Of_The_Moon_Foto/Side_1.jpg",
-      "Img/The_Dark_Side_Of_The_Moon_Foto/Side_2.jpg"
-    ]
-  },
-  {
     "id": "375756",
     "stato_disco": "10",
     "stato_copertina": "10",
