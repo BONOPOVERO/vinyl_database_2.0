@@ -1443,8 +1443,8 @@
   },
   {
     "id": "24583313",
-    "stato_disco": "??",
-    "stato_copertina": "10",
+    "stato_disco": "6",
+    "stato_copertina": "9",
     "note_stato": "Copertina con artwork bistecca",
     "stato_catalogo": "Personale",
     "foto_album": [
@@ -1567,8 +1567,6 @@
         "duration": "5:39"
       }
     ],
-    "identifiers": [],
-    "companies": [],
     "formats": [
       {
         "name": "Vinyl",
@@ -1592,9 +1590,124 @@
       "Gangsta"
     ],
     "titolo_album": "BOTOX",
-    "anno_uscita_originale": "2022-09-15",
+    "anno_uscita_originale": 2022,
     "etichetta": "Universal Music",
-    "_backfilled": true
+    "_backfilled": true,
+    "artista": "Night Skinny",
+    "genere": "Hip Hop",
+    "posizione_fisica": "Scaffale Principale",
+    "valore_stimato": 25,
+    "anno_stampa": 2022,
+    "catalog_number": "0602448273918",
+    "velocita": "33",
+    "grammatura": "180g",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "Fake",
+        "duration": "2:57"
+      },
+      {
+        "pos": "A2",
+        "title": "Diavolo",
+        "duration": "3:50"
+      },
+      {
+        "pos": "A3",
+        "title": "Blessed",
+        "duration": "3:18"
+      },
+      {
+        "pos": "A4",
+        "title": "Marciapiede",
+        "duration": "2:36"
+      },
+      {
+        "pos": "A5",
+        "title": "Non Aprire",
+        "duration": "2:38"
+      },
+      {
+        "pos": "B6",
+        "title": "Mezzanotte in Punto",
+        "duration": ""
+      },
+      {
+        "pos": "B7",
+        "title": "Giorni Contati",
+        "duration": "2:52"
+      },
+      {
+        "pos": "B8",
+        "title": "Doppio Hublot",
+        "duration": "3:17"
+      },
+      {
+        "pos": "B9",
+        "title": "Coki",
+        "duration": "3:53"
+      },
+      {
+        "pos": "B10",
+        "title": "Prodotto",
+        "duration": "3:34"
+      },
+      {
+        "pos": "C11",
+        "title": "Come Mi Guardi",
+        "duration": "3:33"
+      },
+      {
+        "pos": "C12",
+        "title": "Dedication",
+        "duration": "3:03"
+      },
+      {
+        "pos": "C13",
+        "title": "Addio",
+        "duration": "3:06"
+      },
+      {
+        "pos": "C14",
+        "title": "Scale",
+        "duration": "2:32"
+      },
+      {
+        "pos": "C15",
+        "title": "Per La Strada",
+        "duration": "3:30"
+      },
+      {
+        "pos": "D16",
+        "title": "Così Non Va",
+        "duration": "3:51"
+      },
+      {
+        "pos": "D17",
+        "title": "Millesimati",
+        "duration": "2:48"
+      },
+      {
+        "pos": "D18",
+        "title": "Marmellata",
+        "duration": "2:51"
+      },
+      {
+        "pos": "D19",
+        "title": "Changes",
+        "duration": "3:15"
+      },
+      {
+        "pos": "D20",
+        "title": "Sparami",
+        "duration": "2:44"
+      },
+      {
+        "pos": "D21",
+        "title": "BTX Posse",
+        "duration": "5:39"
+      }
+    ]
   },
   {
     "id": "367104",
