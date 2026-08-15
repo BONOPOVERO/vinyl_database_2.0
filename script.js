@@ -16,12 +16,12 @@ async function initSqliteDb() {
           config: {
             serverMode: "full",
             url: "https://huggingface.co/datasets/BONOPOVERO/vinili2.0/resolve/main/master_catalog.db",
-            requestChunkSize: 8192,
+            requestChunkSize: 4096,
           },
         },
       ],
-      "./sqlite.worker.js",
-      "./sql-wasm.wasm",
+      "./lib/sqlite.worker.js",
+      "./lib/sql-wasm.wasm",
       100 * 1024 * 1024 // 100MB limite per permettere query complesse
     );
     window.sqliteWorker = sqliteWorker;
@@ -36,31 +36,122 @@ async function initSqliteDb() {
 
 // Funzione di sicurezza per prevenire XSS injection nell'HTML dinamico
 
-async function joinVinylDataAsync(userVinyls) {
+async function joinVinylDataAsync(userVinyls, forceRescan = false) {
     if (!userVinyls || userVinyls.length === 0) return [];
     
-    // Fallback if sqlite is not ready
-    if (!sqliteWorker) return userVinyls;
+    const cachedDataStr = localStorage.getItem('app_all_vinyls_cache');
+    const cachedMap = {};
+    if (cachedDataStr && !forceRescan) {
+        try {
+            const cachedArr = JSON.parse(cachedDataStr);
+            cachedArr.forEach(v => cachedMap[v.id] = v);
+        } catch(e){}
+    }
 
-    const ids = userVinyls.map(uv => `'${uv.id}'`).join(',');
-    if (!ids) return userVinyls;
+    const missingIds = [];
+    userVinyls.forEach(uv => {
+        const cached = cachedMap[uv.id] || {};
+        
+        // Controllo se i dati sono già completi in uv (il file json personale) o in cache
+        const hasArtista = uv.artista || cached.artista;
+        const hasAnno = uv.anno_uscita_originale || cached.anno_uscita_originale;
+        
+        // Se mancano dati chiave o stiamo forzando la scansione, mettiamo nei missing
+        if ((forceRescan || !hasArtista || !hasAnno) && !String(uv.id).startsWith("FALLBACK_")) { 
+            missingIds.push(`'${uv.id}'`);
+        }
+    });
+    if (!sqliteWorker && missingIds.length > 0) {
+        return userVinyls.map(uv => ({...(cachedMap[uv.id] || {}), ...uv}));
+    }
 
-    const sql = `SELECT * FROM vinyls WHERE id IN (${ids})`;
-    try {
-        const results = await sqliteWorker.db.query(sql);
-        const masterMap = {};
-        for (const r of results) {
-            masterMap[r.id] = JSON.parse(r.data);
+    const masterMap = {};
+    if (missingIds.length > 0 && sqliteWorker) {
+        for (let i = 0; i < missingIds.length; i++) {
+            const uvId = missingIds[i].replace(/'/g, ""); // Rimuove gli apici
+            const sql = `SELECT * FROM vinyls WHERE id = '${uvId}'`;
+            try {
+                const results = await sqliteWorker.db.query(sql);
+                if (results && results.length > 0) {
+                    const r = results[0];
+                    masterMap[r.id] = JSON.parse(r.data);
+                    
+                    // -- AGGIORNAMENTO PROGRESSIVO UI --
+                    // Se stiamo lavorando sulla collezione principale e l'app è già avviata, aggiorniamo visivamente un elemento alla volta.
+                    if (typeof ALL_VINILI !== 'undefined' && typeof applyFiltering === 'function') {
+                        const targetIndex = ALL_VINILI.findIndex(v => String(v.id) === String(uvId));
+                        if (targetIndex !== -1) {
+                            let globalData = masterMap[r.id] || {};
+                            let cachedData = cachedMap[uvId] || {};
+                            
+                            if (globalData.title && !globalData.titolo_album) globalData.titolo_album = globalData.title;
+                            if (globalData.artists && globalData.artists.length > 0 && !globalData.artista) {
+                                globalData.artista = typeof globalData.artists[0] === 'string' ? globalData.artists[0] : globalData.artists[0].name;
+                            }
+                            if (globalData.artist && !globalData.artista) globalData.artista = globalData.artist;
+                            if (globalData.year && !globalData.anno_uscita_originale) globalData.anno_uscita_originale = globalData.year;
+                            if (globalData.labels && globalData.labels.length > 0 && !globalData.etichetta) globalData.etichetta = globalData.labels[0].name;
+                            if (globalData.label && !globalData.etichetta) globalData.etichetta = globalData.label;
+                            if (globalData.catno && !globalData.catalog_number) globalData.catalog_number = globalData.catno;
+                            if (globalData.barcode && !globalData.codice_a_barre) globalData.codice_a_barre = globalData.barcode;
+                            if (globalData.genres && globalData.genres.length > 0 && !globalData.genere) globalData.genere = globalData.genres.join(', ');
+                            if (globalData.tracklist && globalData.tracklist.length > 0 && !globalData.tracce) {
+                                globalData.tracce = globalData.tracklist.map(t => ({ pos: t.position || '', title: t.title || '', duration: t.duration || '' }));
+                            }
+                            
+                            const uv = userVinyls.find(u => String(u.id) === String(uvId)) || {};
+                            ALL_VINILI[targetIndex] = { ...cachedData, ...globalData, ...uv };
+                            
+                            // Forza l'aggiornamento grafico
+                            applyFiltering();
+                            // Piccola pausa per dare respiro al browser (e mostrare l'animazione)
+                            await new Promise(resolve => setTimeout(resolve, 50)); 
+                        }
+                    }
+                }
+            } catch(e) {
+                console.error("Error joining vinyl data progressively:", e);
+            }
+        }
+    }
+    
+    const enrichedVinyls = userVinyls.map(uv => {
+        let globalData = masterMap[uv.id] || {};
+        let cachedData = cachedMap[uv.id] || {};
+        
+        // Se i dati dal master catalog sono in formato Discogs nativo (inglese), mappiamoli nei campi dell'app (italiano)
+        if (globalData.title && !globalData.titolo_album) globalData.titolo_album = globalData.title;
+        if (globalData.artists && globalData.artists.length > 0 && !globalData.artista) {
+            globalData.artista = typeof globalData.artists[0] === 'string' ? globalData.artists[0] : globalData.artists[0].name;
+        }
+        if (globalData.artist && !globalData.artista) globalData.artista = globalData.artist;
+        if (globalData.year && !globalData.anno_uscita_originale) globalData.anno_uscita_originale = globalData.year;
+        if (globalData.labels && globalData.labels.length > 0 && !globalData.etichetta) globalData.etichetta = globalData.labels[0].name;
+        if (globalData.label && !globalData.etichetta) globalData.etichetta = globalData.label;
+        if (globalData.catno && !globalData.catalog_number) globalData.catalog_number = globalData.catno;
+        if (globalData.barcode && !globalData.codice_a_barre) globalData.codice_a_barre = globalData.barcode;
+        if (globalData.genres && globalData.genres.length > 0 && !globalData.genere) globalData.genere = globalData.genres.join(', ');
+        if (globalData.tracklist && globalData.tracklist.length > 0 && !globalData.tracce) {
+            globalData.tracce = globalData.tracklist.map(t => ({ pos: t.position || '', title: t.title || '', duration: t.duration || '' }));
         }
         
-        return userVinyls.map(uv => {
-            const globalData = masterMap[uv.id] || {};
-            return { ...globalData, ...uv };
-        });
-    } catch(e) {
-        console.error("Error joining vinyl data:", e);
-        return userVinyls;
+        // Uniamo le tre fonti e aggiungiamo un flag per ricordare che lo abbiamo già processato
+        return { ...cachedData, ...globalData, ...uv, _backfilled: true };
+    });
+    
+    // BACKFILL AUTOMATICO: se abbiamo pescato dati nuovi dal database gigante, aggiorniamo il file su GitHub
+    if (missingIds.length > 0) {
+        const currentUser = localStorage.getItem('app_current_user');
+        if (currentUser) {
+            console.log("Backfill automatico in corso: salvataggio dei dati completi su GitHub...");
+            // Non mettiamo await per non bloccare il rendering, lo lasciamo in background
+            pushDatabaseToGitHub(enrichedVinyls, currentUser).then(() => {
+                console.log("Backfill completato con successo su " + currentUser + ".json");
+            }).catch(e => console.error("Errore nel backfill automatico:", e));
+        }
     }
+    
+    return enrichedVinyls;
 }
 
 function escapeHtml(str) {
@@ -121,6 +212,14 @@ function getDiscogsToken() {
 function safeVinile(v) {
   if (!v) return {};
   const s = { ...v };
+  
+  if ((!s.artista || s.artista === 'undefined') && s.artists && s.artists.length > 0) s.artista = typeof s.artists[0] === 'string' ? s.artists[0] : (s.artists[0].name || 'Artista Ignoto');
+  if ((!s.artista || s.artista === 'undefined') && s.artista_clean) s.artista = s.artista_clean;
+  if (!s.titolo_album || s.titolo_album === 'undefined') s.titolo_album = s.titolo || s.title || 'Sconosciuto';
+  if (s.tracklist && s.tracklist.length > 0 && (!s.tracce || s.tracce.length === 0)) {
+      s.tracce = s.tracklist.map(t => ({ pos: t.position || t.pos || '', title: t.title || '', duration: t.duration || '' }));
+  }
+
   const textFields = ['titolo_album','artista','genere','etichetta','note_stato','catalog_number',
     'codice_matrice','codice_a_barre','velocita','grammatura','colore','inserti','origine','stato_disco',
     'stato_copertina','stato_catalogo','posizione_fisica'];
@@ -273,6 +372,74 @@ let updateContentTimeout = null;
 let MASTER_CATALOG = [];
 let currentTracklist = [];
 
+let activeCategory = 'Personale'; 
+let searchQuery = '';
+let filterYearFrom = null;
+let filterYearTo = null;
+let filterPriceFrom = null;
+let filterPriceTo = null;
+let filterGenre = '';
+let sortStrategy = 'DEFAULT';
+
+let filteredVinili = [];
+let selectedIndex = 0;
+let wheelItems = [];
+let currentCachedPrices = {};
+// ELEMENTI DOM
+const wheelContainer = document.getElementById("option-wheel");
+const centerContent = document.getElementById("center-content");
+const mobileCounter = document.getElementById("mobile-album-counter");
+const prevBtn = document.getElementById("prev-album-btn");
+const nextBtn = document.getElementById("next-album-btn");
+const toggleListBtn = document.getElementById("toggle-list-btn");
+const mobileOverlay = document.getElementById("mobile-overlay");
+const toastContainer = document.getElementById("toast-container");
+
+// SEARCH
+const toggleSearchBtn = document.getElementById("toggle-search-btn");
+const searchBarWrapper = document.getElementById("search-bar-wrapper");
+const searchInput = document.getElementById("search-input");
+const clearSearchBtn = document.getElementById("clear-search-btn");
+
+// FILTERS MODAL
+const openFilterBtn = document.getElementById("open-filter-btn");
+const filterModal = document.getElementById("filter-modal");
+const closeFilterModalBtn = document.getElementById("close-filter-modal");
+const filterYearFromInput = document.getElementById("filter-year-from");
+const filterYearToInput = document.getElementById("filter-year-to");
+const filterPriceFromInput = document.getElementById("filter-price-from");
+const filterPriceToInput = document.getElementById("filter-price-to");
+const filterGenreSelect = document.getElementById("filter-genre-select");
+const sortSelect = document.getElementById("sort-select");
+const applyFiltersBtn = document.getElementById("apply-filters-btn");
+const resetFiltersBtn = document.getElementById("reset-filters-btn");
+
+// EXPORT & IMPORT
+const exportJsonBtn = document.getElementById("export-json-btn");
+const exportCsvBtn = document.getElementById("export-csv-btn");
+const triggerImportBtn = document.getElementById("trigger-import-btn");
+const importJsonFile = document.getElementById("import-json-file");
+
+// STATS MODAL
+const openStatsBtn = document.getElementById("open-stats-btn");
+const statsModal = document.getElementById("stats-modal");
+const closeStatsModalBtn = document.getElementById("close-stats-modal");
+const statsModalBody = document.getElementById("stats-modal-body");
+
+// ADD VINYL MODAL & DISCOGS / MUSICBRAINZ
+const openAddBtn = document.getElementById("open-add-btn");
+const addVinylModal = document.getElementById("add-vinyl-modal");
+const closeAddModalBtn = document.getElementById("close-add-modal");
+const addVinylForm = document.getElementById("add-vinyl-form");
+const triggerCameraBtn = document.getElementById("trigger-camera-btn");
+const cameraFileInput = document.getElementById("camera-file-input");
+const photoPreviewImg = document.getElementById("photo-preview-img");
+const discogsQuery = document.getElementById("discogs-query");
+const discogsSearchBtn = document.getElementById("discogs-search-btn");
+const discogsResults = document.getElementById("discogs-results");
+
+let currentCapturedCoverBase64 = null;
+
 // BLOCCO DI SICUREZZA (PASSWORD)
 window.checkAdminAccess = function(actionType = '') {
   return new Promise((resolve) => {
@@ -349,15 +516,52 @@ const authModal = document.getElementById('auth-modal');
     authModal.setAttribute('aria-hidden', 'false');
   } else {
     try {
-      await initSqliteDb(); // Inizializza il worker SQLite HTTP VFS
       let rawUserVinyls = [];
       if (currentUser) {
           rawUserVinyls = await fetchDatabaseFromGitHub(currentUser);
       }
+      
+      // Carica inizialmente dalla cache veloce e mostra la UI
       ALL_VINILI = await joinVinylDataAsync(rawUserVinyls);
       safeSave('app_all_vinyls_cache', ALL_VINILI);
+      applyFiltering();
       
-      if (!currentUser) {
+      // Sincronizzazione in background per non bloccare l'avvio del resto dell'app (event listeners, ecc)
+      setTimeout(async () => {
+          try {
+              const hasMissingData = Array.isArray(ALL_VINILI) && ALL_VINILI.some(v => !v._backfilled && !String(v.id).startsWith("FALLBACK_"));
+              if (hasMissingData) {
+                  console.log("Metadati mancanti, avvio inizializzazione master DB...");
+                  if (typeof showToast === 'function') showToast("⬇️ Connessione al master database...");
+                  
+                  // Attendiamo il caricamento del database pesante (ora non blocca il resto dell'app)
+                  await initSqliteDb();
+                  
+                  // Nascondiamo l'overlay iniziale (il caricamento pesante del DB è finito)
+                  const overlay = document.getElementById('startup-loading-overlay');
+                  if (overlay) {
+                      overlay.style.transition = 'opacity 0.5s ease-out';
+                      overlay.style.opacity = '0';
+                      setTimeout(() => overlay.remove(), 500);
+                  }
+                  
+                  // Avviamo il join sequenziale che aggiornerà la UI disco per disco
+                  ALL_VINILI = await joinVinylDataAsync(rawUserVinyls);
+                  safeSave('app_all_vinyls_cache', ALL_VINILI);
+                  if (typeof showToast === 'function') showToast("✅ Sincronizzazione completata!");
+              } else {
+                  // Se non ci sono dati mancanti, nascondiamo l'overlay subito
+                  const overlay = document.getElementById('startup-loading-overlay');
+                  if (overlay) overlay.remove();
+              }
+          } catch(e) {
+              console.error("Errore nel caricamento background:", e);
+              const overlay = document.getElementById('startup-loading-overlay');
+              if (overlay) overlay.remove();
+          }
+      }, 50);
+
+    if (!currentUser) {
          // UI changes for Guest Mode
          const topNav = document.querySelector('.top-nav-row');
          if (topNav) {
@@ -392,8 +596,12 @@ const authModal = document.getElementById('auth-modal');
          });
       }
     } catch (err) {
+      console.error("Errore critico durante l'avvio:", err);
       ALL_VINILI = JSON.parse(localStorage.getItem('app_all_vinyls_cache') || '[]');
-      if (typeof showToast === 'function') showToast("Avvio Offline: caricata cache locale");
+      applyFiltering();
+      if (typeof showToast === 'function') showToast("Avvio Offline o Errore: caricata cache locale");
+      const overlay = document.getElementById('startup-loading-overlay');
+      if (overlay) overlay.remove();
     }
   }
 
@@ -704,7 +912,15 @@ window.forceRefreshDiscogsPrice = function(vinileId) {
 // ==========================================
 // FASE 1: FETCH ASINCRONA API DISCOGS LIVE (2-STEP CON UTILITY DOM AUTOMATICA)
 // ==========================================
-async function fetchDiscogsLivePrice(vinile, targetElementId = 'discogs-live-box', estimatedValue = 0, forceRefresh = false) {
+window.triggerLivePrice = function(id, estVal) {
+  if (typeof ALL_VINILI !== 'undefined') {
+    const v = ALL_VINILI.find(x => String(x.id) === String(id));
+    if (v && typeof window.fetchDiscogsLivePrice === 'function') {
+      window.fetchDiscogsLivePrice(v, 'live-val-box-' + id, estVal, true);
+    }
+  }
+};
+window.fetchDiscogsLivePrice = async function(vinile, targetElementId = 'discogs-live-box', estimatedValue = 0, forceRefresh = false) {
   const container = document.getElementById(targetElementId);
   if (!vinile) {
     if (container) {
@@ -984,73 +1200,6 @@ async function syncAllDiscogsPrices(force = false, ignoreFrequencyCheck = false)
   }
 }
 
-let activeCategory = 'ALL'; 
-let searchQuery = '';
-let filterYearFrom = null;
-let filterYearTo = null;
-let filterPriceFrom = null;
-let filterPriceTo = null;
-let filterGenre = '';
-let sortStrategy = 'DEFAULT';
-
-let filteredVinili = [];
-let selectedIndex = 0;
-let wheelItems = [];
-
-// ELEMENTI DOM
-const wheelContainer = document.getElementById("option-wheel");
-const centerContent = document.getElementById("center-content");
-const mobileCounter = document.getElementById("mobile-album-counter");
-const prevBtn = document.getElementById("prev-album-btn");
-const nextBtn = document.getElementById("next-album-btn");
-const toggleListBtn = document.getElementById("toggle-list-btn");
-const mobileOverlay = document.getElementById("mobile-overlay");
-const toastContainer = document.getElementById("toast-container");
-
-// SEARCH
-const toggleSearchBtn = document.getElementById("toggle-search-btn");
-const searchBarWrapper = document.getElementById("search-bar-wrapper");
-const searchInput = document.getElementById("search-input");
-const clearSearchBtn = document.getElementById("clear-search-btn");
-
-// FILTERS MODAL
-const openFilterBtn = document.getElementById("open-filter-btn");
-const filterModal = document.getElementById("filter-modal");
-const closeFilterModalBtn = document.getElementById("close-filter-modal");
-const filterYearFromInput = document.getElementById("filter-year-from");
-const filterYearToInput = document.getElementById("filter-year-to");
-const filterPriceFromInput = document.getElementById("filter-price-from");
-const filterPriceToInput = document.getElementById("filter-price-to");
-const filterGenreSelect = document.getElementById("filter-genre-select");
-const sortSelect = document.getElementById("sort-select");
-const applyFiltersBtn = document.getElementById("apply-filters-btn");
-const resetFiltersBtn = document.getElementById("reset-filters-btn");
-
-// EXPORT & IMPORT
-const exportJsonBtn = document.getElementById("export-json-btn");
-const exportCsvBtn = document.getElementById("export-csv-btn");
-const triggerImportBtn = document.getElementById("trigger-import-btn");
-const importJsonFile = document.getElementById("import-json-file");
-
-// STATS MODAL
-const openStatsBtn = document.getElementById("open-stats-btn");
-const statsModal = document.getElementById("stats-modal");
-const closeStatsModalBtn = document.getElementById("close-stats-modal");
-const statsModalBody = document.getElementById("stats-modal-body");
-
-// ADD VINYL MODAL & DISCOGS / MUSICBRAINZ
-const openAddBtn = document.getElementById("open-add-btn");
-const addVinylModal = document.getElementById("add-vinyl-modal");
-const closeAddModalBtn = document.getElementById("close-add-modal");
-const addVinylForm = document.getElementById("add-vinyl-form");
-const triggerCameraBtn = document.getElementById("trigger-camera-btn");
-const cameraFileInput = document.getElementById("camera-file-input");
-const photoPreviewImg = document.getElementById("photo-preview-img");
-const discogsQuery = document.getElementById("discogs-query");
-const discogsSearchBtn = document.getElementById("discogs-search-btn");
-const discogsResults = document.getElementById("discogs-results");
-
-let currentCapturedCoverBase64 = null;
 
 // NOTIFICHE TOAST FEEDBACK
 window.showToast = showToast;
@@ -1083,7 +1232,6 @@ function populateGenreSelect() {
 }
 populateGenreSelect();
 
-let currentCachedPrices = {};
 function getDiscogsPrice(v) {
   const price = currentCachedPrices[v.id];
   if (price === -1) return (parseFloat(v.valore_stimato) || 0);
@@ -1304,6 +1452,205 @@ function updateCenterContent(index) {
       const valData = calculateVinylValue(vinile);
       const estimatedValue = valData.total;
 
+      const catalogNum = sv.catalog_number || (vinile.labels && vinile.labels.length > 0 ? vinile.labels[0].catno : '');
+      const barcodeObj = vinile.identifiers && Array.isArray(vinile.identifiers) ? vinile.identifiers.find(i => i.type && i.type.toLowerCase() === 'barcode') : null;
+      const barcode = sv.codice_a_barre || (barcodeObj ? barcodeObj.value : '');
+      const noteRel = vinile.notes || vinile.note_release || '';
+
+      // Prepara le labels complete (nome + catno)
+      const labelsFullHTML = vinile.labels && Array.isArray(vinile.labels) && vinile.labels.length > 0
+        ? vinile.labels.map(l => `${escapeHtml(l.name || '')}${l.catno ? ' <span style="color:#9ca3af;">(' + escapeHtml(l.catno) + ')</span>' : ''}`).join(', ')
+        : '';
+
+      // Prepara il formato (es. Vinyl, LP, Album, Stereo)
+      const formatHTML = vinile.formats && Array.isArray(vinile.formats) && vinile.formats.length > 0
+        ? vinile.formats.map(f => {
+            let desc = escapeHtml(f.name || '');
+            if (f.qty && f.qty !== '1') desc += ' ×' + escapeHtml(f.qty);
+            if (f.descriptions && f.descriptions.length > 0) desc += ' (' + f.descriptions.map(d => escapeHtml(d)).join(', ') + ')';
+            if (f.text) desc += ' – ' + escapeHtml(f.text);
+            return desc;
+          }).join(' | ')
+        : '';
+
+      // Paese
+      const country = vinile.country || '';
+
+      // Stili musicali
+      const stylesHTML = vinile.styles && Array.isArray(vinile.styles) && vinile.styles.length > 0
+        ? vinile.styles.map(s => escapeHtml(s)).join(', ')
+        : '';
+
+      // Companies (studi, stampatori, copyright)
+      const companiesHTML = vinile.companies && Array.isArray(vinile.companies) && vinile.companies.length > 0
+        ? vinile.companies.map(c => `<span style="color:#cbd5e1;">${escapeHtml(c.name || '')}</span> <span style="color:#9ca3af; font-size: 0.8rem;">(${escapeHtml(c.entity_type_name || '')})</span>`).join('<br>')
+        : '';
+
+      // Identifiers (matrici, barcode, rights society ecc.)
+      const matrixIdentifiers = vinile.identifiers && Array.isArray(vinile.identifiers)
+        ? vinile.identifiers.filter(i => i.type && i.type.toLowerCase().includes('matrix'))
+        : [];
+      const otherIdentifiers = vinile.identifiers && Array.isArray(vinile.identifiers)
+        ? vinile.identifiers.filter(i => i.type && !i.type.toLowerCase().includes('matrix') && !i.type.toLowerCase().includes('barcode'))
+        : [];
+
+      // Stato disco e copertina con scala Goldmine
+      const discRating = vinile.stato_disco && vinile.stato_disco !== 'Da Valutare' ? vinile.stato_disco : '';
+      const coverRating = vinile.stato_copertina && vinile.stato_copertina !== 'Da Valutare' ? vinile.stato_copertina : '';
+      const discGoldmine = discRating ? convertRatingToGoldmine(discRating) : '';
+      const coverGoldmine = coverRating ? convertRatingToGoldmine(coverRating) : '';
+
+      const renderRow = (label, value) => {
+        if (!value || value === 'undefined' || value === 'N/A' || String(value).trim() === '') return '';
+        return `
+          <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid rgba(255,255,255,0.03); padding-bottom: 6px; margin-bottom: 4px;">
+            <span style="color: #ffffff; font-size: 0.8rem; opacity: 0.9;">${label}</span>
+            <span style="color: #ffffff; font-size: 0.85rem; font-weight: 500; text-align: right; max-width: 65%; word-break: break-word;">${value}</span>
+          </div>
+        `;
+      };
+
+      const renderBlock = (label, value) => {
+        if (!value || value === 'undefined' || value === 'N/A' || String(value).trim() === '') return '';
+        return `
+          <div style="background: rgba(0,0,0,0.4); border-radius: 8px; padding: 12px; margin-top: 8px; border: 1px solid rgba(255,255,255,0.04);">
+            <div style="color: var(--primary-color, #ffffff); filter: brightness(1.2) saturate(1.2); text-shadow: 0 1px 3px rgba(0,0,0,0.9); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; margin-bottom: 6px;">${label}</div>
+            <div style="color: #ffffff; font-size: 0.85rem; line-height: 1.5;">${value}</div>
+          </div>
+        `;
+      };
+
+      const renderCard = (title, icon, content) => {
+        if (!content || !content.trim()) return '';
+        return `
+          <div style="background: rgba(0,0,0,0.5); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); border-radius: 14px; padding: 16px; margin-bottom: 12px; box-shadow: 0 8px 16px -4px rgba(0,0,0,0.2);">
+            <div style="font-size: 0.85rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: var(--primary-color, #ffffff); filter: brightness(1.25) saturate(1.2); text-shadow: 0 1px 4px rgba(0,0,0,0.9); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px;">
+              <span style="font-size: 1.1rem; filter: none;">${icon}</span> ${title}
+            </div>
+            <div style="display: flex; flex-direction: column;">
+              ${content}
+            </div>
+          </div>
+        `;
+      };
+
+      // 1. Dettagli Edizione
+      const edHTML = 
+        renderRow("Etichetta", labelsFullHTML || sv.etichetta) +
+        renderRow("Catalogo", catalogNum) +
+        renderRow("Formato", formatHTML) +
+        renderRow("Paese", escapeHtml(country)) +
+        renderRow("Anno Stampa", vinile.anno_stampa ? escapeHtml(String(vinile.anno_stampa)) : '') +
+        renderRow("Origine/Edizione", sv.origine) +
+        renderRow("Stile", stylesHTML);
+      
+      // 2. Caratteristiche Fisiche
+      const fisHTML = 
+        renderRow("Velocità", sv.velocita) +
+        renderRow("Grammatura", sv.grammatura) +
+        renderRow("Colore", sv.colore) +
+        renderRow("Inserti", sv.inserti);
+
+      // 3. Valore e Archivio
+      let valHTML = 
+        (sv.valore_stimato ? renderRow("Valore Iniziale", `€${Number(sv.valore_stimato).toFixed(2)}`) : '') +
+        (estimatedValue ? renderRow("Stima di Mercato", `<span style="color:#34d399; font-weight:700;">€${Number(estimatedValue).toFixed(2)}</span>`) : '') +
+        (sv.data_aggiunta ? renderRow("Data Aggiunta", escapeHtml(new Date(sv.data_aggiunta).toLocaleDateString())) : '');
+
+      const hasLiveIdentifiers = (barcode && barcode !== 'undefined' && barcode !== 'N/A') || (sv.codice_matrice && sv.codice_matrice !== 'undefined' && sv.codice_matrice !== 'N/A') || matrixIdentifiers.length > 0;
+      const hasLiveConditions = discRating && coverRating && discRating !== 'Da Valutare' && coverRating !== 'Da Valutare';
+      
+      if (hasLiveIdentifiers && hasLiveConditions) {
+        valHTML += `
+          <div id="live-val-box-${vinile.id}" style="margin-top: 12px;">
+            <button type="button" class="btn-secondary" style="width: 100%; padding: 12px; font-size: 0.85rem; display: flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid rgba(52, 211, 153, 0.2); background: rgba(52, 211, 153, 0.1); border-radius: 8px; cursor: pointer; color: #34d399; font-weight: 700; transition: all 0.2s ease;" onclick="this.style.display='none'; window.triggerLivePrice('${escapeHtml(String(vinile.id))}', ${estimatedValue || 0})">
+              📡 Calcola Valore Live Reale (Discogs)
+            </button>
+          </div>
+        `;
+      }
+
+      // 4. Identificatori
+      let idHTML = 
+        renderRow("Barcode", barcode) +
+        renderRow("Matrice (Personale)", sv.codice_matrice);
+      
+      if (matrixIdentifiers.length > 0) {
+        const matList = matrixIdentifiers.map(m => `<div style="margin-bottom: 4px; font-size: 0.8rem;">• ${escapeHtml(m.value)}${m.description ? ` <span style="opacity: 0.5;">(${escapeHtml(m.description)})</span>` : ''}</div>`).join('');
+        idHTML += renderBlock("Codici Matrice / Runout", matList);
+      }
+      if (otherIdentifiers.length > 0) {
+        const othList = otherIdentifiers.map(i => `<div style="margin-bottom: 4px; font-size: 0.8rem;">• <span style="color: #94a3b8;">${escapeHtml(i.type)}:</span> ${escapeHtml(i.value)}${i.description ? ` <span style="opacity: 0.5;">(${escapeHtml(i.description)})</span>` : ''}</div>`).join('');
+        idHTML += renderBlock("Altri Identificatori", othList);
+      }
+      if (sv.id) idHTML += renderRow("ID Sistema", `<span style="font-family: monospace; font-size: 0.75rem; color:#64748b;">${sv.id}</span>`);
+
+      // 5. Stato e Valutazione
+      let statoHTML = '';
+      if (discRating || coverRating) {
+        statoHTML += `<div style="display: flex; gap: 12px; margin-bottom: 12px; flex-wrap: wrap;">
+          ${discRating ? `<div style="flex: 1; min-width: 120px; background: rgba(52, 211, 153, 0.1); border: 1px solid rgba(52, 211, 153, 0.2); border-radius: 10px; padding: 12px; text-align: center;">
+            <div style="font-size: 0.76rem; color: #34d399; margin-bottom: 4px; text-transform: uppercase; font-weight: 700;">Stato Disco</div>
+            <div style="font-size: 1.8rem; font-weight: 800; color: #fff; text-shadow: 0 2px 10px rgba(52, 211, 153, 0.4);">${escapeHtml(String(discRating))}<span style="font-size: 0.9rem; color: rgba(255,255,255,0.5);">/10</span></div>
+            <div style="font-size: 0.75rem; color: #a7f3d0; margin-top: 4px; font-weight: 600;">${escapeHtml(discGoldmine)}</div>
+          </div>` : ''}
+          ${coverRating ? `<div style="flex: 1; min-width: 120px; background: rgba(96, 165, 250, 0.1); border: 1px solid rgba(96, 165, 250, 0.2); border-radius: 10px; padding: 12px; text-align: center;">
+            <div style="font-size: 0.76rem; color: #60a5fa; margin-bottom: 4px; text-transform: uppercase; font-weight: 700;">Copertina</div>
+            <div style="font-size: 1.8rem; font-weight: 800; color: #fff; text-shadow: 0 2px 10px rgba(96, 165, 250, 0.4);">${escapeHtml(String(coverRating))}<span style="font-size: 0.9rem; color: rgba(255,255,255,0.5);">/10</span></div>
+            <div style="font-size: 0.75rem; color: #bfdbfe; margin-top: 4px; font-weight: 600;">${escapeHtml(coverGoldmine)}</div>
+          </div>` : ''}
+        </div>`;
+      }
+      statoHTML += renderRow("📍 Posizione", sv.posizione_fisica);
+      statoHTML += renderBlock("Note Personali", sv.note_stato);
+
+      // 6. Approfondimenti Release
+      let relHTML = '';
+      if (noteRel && noteRel !== 'undefined') {
+        relHTML += renderBlock("Info Release", noteRel.length > 300 ? escapeHtml(noteRel.substring(0, 300)) + '...' : escapeHtml(noteRel));
+      }
+      if (companiesHTML) {
+        relHTML += renderBlock("Aziende / Credits", companiesHTML);
+      }
+
+      const infoDettagliateHTML = `
+        <div class="section-title" style="margin-top: 20px; font-size: 1.2rem;">🔍 Info Dettagliate</div>
+        <div class="info-dettagliate-container" style="display: flex; flex-direction: column; margin-bottom: 10px;">
+          ${renderCard("Dettagli Edizione", "💿", edHTML)}
+          ${renderCard("Caratteristiche", "⚖️", fisHTML)}
+          ${renderCard("Identificativi", "🏷️", idHTML)}
+          ${renderCard("Valore & Archivio", "💰", valHTML)}
+          ${renderCard("Approfondimenti", "📖", relHTML)}
+        </div>
+      `;
+
+      const statoFinaleHTML = `
+        <div class="info-dettagliate-container" style="display: flex; flex-direction: column; margin-top: 10px; margin-bottom: 20px;">
+          ${renderCard("Stato & Note Personali", "⭐", statoHTML)}
+        </div>
+      `;
+
+      const hasBarcode = barcode && barcode !== 'undefined' && barcode !== 'N/A';
+      const personalMatrix = sv.codice_matrice && sv.codice_matrice !== 'undefined' && sv.codice_matrice !== 'N/A' ? sv.codice_matrice : null;
+      const apiMatrix = matrixIdentifiers.length > 0 ? matrixIdentifiers[0].value : null;
+      const matrixToCopy = personalMatrix || apiMatrix;
+      const hasMatrixToCopy = !!matrixToCopy;
+
+      const copyButtonsHTML = (hasBarcode || hasMatrixToCopy) ? `
+        <div class="action-buttons-row" style="margin-top: 0.8rem; display: flex; gap: 10px; margin-bottom: 20px;">
+          ${hasMatrixToCopy ? `
+            <button type="button" class="btn-secondary" style="flex: 1; font-size: 0.85rem; padding: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.3); border-radius: 8px; cursor: pointer; color: #cbd5e1;" onclick="navigator.clipboard.writeText('${escapeHtml(String(matrixToCopy))}').then(() => { if (typeof showToast === 'function') showToast('Matrice copiata!'); })">
+              📋 Copia Matrice
+            </button>
+          ` : ''}
+          ${hasBarcode ? `
+            <button type="button" class="btn-secondary" style="flex: 1; font-size: 0.85rem; padding: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.3); border-radius: 8px; cursor: pointer; color: #cbd5e1;" onclick="navigator.clipboard.writeText('${escapeHtml(String(barcode))}').then(() => { if (typeof showToast === 'function') showToast('Barcode copiato!'); })">
+              📋 Copia Barcode
+            </button>
+          ` : ''}
+        </div>
+      ` : '';
+
       centerContent.innerHTML = `
         <div class="vinyl-hero gallery-stage">
           <!-- FARETTO DI LUCE DALL'ALTO (TOP SPOTLIGHT) -->
@@ -1311,7 +1658,7 @@ function updateCenterContent(index) {
           
           <div class="floating-art-wrapper">
             <div id="cover-wrapper-btn" class="album-cover-wrapper" title="Clicca per estrarre il vinile!">
-              <img class="album-cover-img" src="${coverSrc}" alt="${vinile.titolo_album}" width="170" height="170" loading="eager" onerror="this.onerror=null; this.src='${fallbackCover}';">
+              <img class="album-cover-img" crossorigin="anonymous" src="${coverSrc}" alt="${vinile.titolo_album}" width="170" height="170" loading="eager" onerror="this.onerror=null; this.src='${fallbackCover}';">
               <div class="vinyl-disc"></div>
             </div>
             <!-- PROFONDA OMBRA 3D PROIETTATA SULLO SFONDO -->
@@ -1329,125 +1676,11 @@ function updateCenterContent(index) {
           </div>
         </div>
 
-        <div class="section-title">📊 Scheda Tecnica & Specifiche Complete</div>
-        <div class="specs-grid">
-          <div class="spec-card">
-            <span class="spec-label">ID Catalogo</span>
-            <span class="spec-value">#${vinile.id}</span>
-          </div>
-          <div class="spec-card">
-            <span class="spec-label">ID Database</span>
-            <span class="spec-value">#${vinile.id}</span>
-          </div>
-          <div class="spec-card">
-            <span class="spec-label">Anno Uscita Originale</span>
-            <span class="spec-value">${sv.anno_uscita_originale || "-"}</span>
-          </div>
-          <div class="spec-card">
-            <span class="spec-label">Anno Stampa</span>
-            <span class="spec-value">${sv.anno_stampa || "-"}</span>
-          </div>
-          <div class="spec-card">
-            <span class="spec-label">Anno Uscita Stampa</span>
-            <span class="spec-value">${sv.anno_uscita_stampa || sv.anno_stampa || "-"}</span>
-          </div>
-          <div class="spec-card">
-            <span class="spec-label">Etichetta</span>
-            <span class="spec-value">${sv.etichetta || "-"}</span>
-          </div>
-          <div class="spec-card">
-            <span class="spec-label">Origine Stampa</span>
-            <span class="spec-value">${sv.origine || "-"}</span>
-          </div>
-          <div class="spec-card">
-            <span class="spec-label">Cat. Number</span>
-            <span class="spec-value">${sv.catalog_number || "-"}</span>
-          </div>
-          <div class="spec-card">
-            <span class="spec-label">Codice Matrice</span>
-            <span class="spec-value">${sv.codice_matrice || "-"}</span>
-          </div>
-          <div class="spec-card">
-            <span class="spec-label">Barcode</span>
-            <span class="spec-value">${sv.codice_a_barre || "-"}</span>
-          </div>
-          <div class="spec-card">
-            <span class="spec-label">Velocità & Grammatura</span>
-            <span class="spec-value">${sv.velocita || "33"} RPM | ${sv.grammatura || "180g"}</span>
-          </div>
-          <div class="spec-card">
-            <span class="spec-label">Colore Vinile</span>
-            <span class="spec-value">${sv.colore || "Nero"}</span>
-          </div>
-          <div class="spec-card">
-            <span class="spec-label">Stato Disco (Goldmine)</span>
-            <span class="spec-value" style="color: #ff9ffc; font-weight: 700;">
-              ${convertRatingToGoldmine(vinile.stato_disco)}
-            </span>
-          </div>
-          <div class="spec-card">
-            <span class="spec-label">Stato Copertina (Goldmine)</span>
-            <span class="spec-value" style="color: #ff9ffc; font-weight: 700;">
-              ${convertRatingToGoldmine(vinile.stato_copertina)}
-            </span>
-          </div>
-          <div class="spec-card">
-            <span class="spec-label">Inserti</span>
-            <span class="spec-value">${sv.inserti || "Nessuno"}</span>
-          </div>
-          
-          <!-- EXTENDED DB INFO -->
-          ${vinile.artists_sort ? `<div class="spec-card"><span class="spec-label">Ordina Artista</span><span class="spec-value">${escapeHtml(vinile.artists_sort)}</span></div>` : ''}
-          ${vinile.master_id ? `<div class="spec-card"><span class="spec-label">Master ID</span><span class="spec-value">${escapeHtml(vinile.master_id)}</span></div>` : ''}
-          ${vinile.country ? `<div class="spec-card"><span class="spec-label">Paese Rilascio</span><span class="spec-value">${escapeHtml(vinile.country)}</span></div>` : ''}
-          ${vinile.released || vinile.released_formatted ? `<div class="spec-card"><span class="spec-label">Data Pubblicazione</span><span class="spec-value">${escapeHtml(vinile.released_formatted || vinile.released)}</span></div>` : ''}
-          ${vinile.formats && vinile.formats.length > 0 ? `<div class="spec-card" style="grid-column: 1 / -1;"><span class="spec-label">Formati</span><span class="spec-value">${escapeHtml(vinile.formats.map(f => (f.name || '') + (f.descriptions ? ' (' + f.descriptions.join(', ') + ')' : '')).join(' | '))}</span></div>` : ''}
-          ${vinile.format_quantity ? `<div class="spec-card"><span class="spec-label">Q.tà Supporti</span><span class="spec-value">${escapeHtml(vinile.format_quantity)}</span></div>` : ''}
-          ${vinile.labels && vinile.labels.length > 0 ? `<div class="spec-card" style="grid-column: 1 / -1;"><span class="spec-label">Etichette (Labels)</span><span class="spec-value">${escapeHtml(vinile.labels.map(l => l.name + (l.catno ? ' - ' + l.catno : '')).join(' | '))}</span></div>` : ''}
-          ${vinile.companies && vinile.companies.length > 0 ? `<div class="spec-card" style="grid-column: 1 / -1;"><span class="spec-label">Aziende Coinvolte</span><span class="spec-value">${escapeHtml(vinile.companies.map(c => (c.entity_type_name || 'Azienda') + ': ' + c.name).join(' | '))}</span></div>` : ''}
-          ${vinile.identifiers && vinile.identifiers.length > 0 ? `<div class="spec-card" style="grid-column: 1 / -1;"><span class="spec-label">Codici e Identificatori</span><span class="spec-value" style="font-size: 0.8rem;">${vinile.identifiers.map(i => escapeHtml(i.type) + ': ' + escapeHtml(i.value)).join('<br>')}</span></div>` : ''}
-          ${vinile.genres && vinile.genres.length > 0 ? `<div class="spec-card"><span class="spec-label">Generi Database</span><span class="spec-value">${escapeHtml(vinile.genres.join(', '))}</span></div>` : ''}
-          ${vinile.styles && vinile.styles.length > 0 ? `<div class="spec-card"><span class="spec-label">Stili Database</span><span class="spec-value">${escapeHtml(vinile.styles.join(', '))}</span></div>` : ''}
-          ${vinile.credits && vinile.credits.length > 0 ? `<div class="spec-card" style="grid-column: 1 / -1;"><span class="spec-label">Crediti Principali</span><span class="spec-value" style="font-size: 0.8rem;">${vinile.credits.slice(0, 10).map(c => escapeHtml(c.role) + ': ' + escapeHtml(c.name)).join('<br>')} ${vinile.credits.length > 10 ? '...' : ''}</span></div>` : ''}
-          ${vinile.extraartists && vinile.extraartists.length > 0 ? `<div class="spec-card" style="grid-column: 1 / -1;"><span class="spec-label">Altri Artisti / Staff</span><span class="spec-value" style="font-size: 0.8rem;">${vinile.extraartists.slice(0, 10).map(c => escapeHtml(c.role) + ': ' + escapeHtml(c.name)).join('<br>')} ${vinile.extraartists.length > 10 ? '...' : ''}</span></div>` : ''}
-          ${vinile.community ? `<div class="spec-card" style="grid-column: 1 / -1;"><span class="spec-label">Community Discogs</span><span class="spec-value">Posseduto da: ${vinile.community.have || 0} | Desiderato da: ${vinile.community.want || 0} ${vinile.community.rating ? `| Voto: ${vinile.community.rating.average}/5 (${vinile.community.rating.count} voti)` : ''}</span></div>` : ''}
-          ${vinile.notes ? `<div class="spec-card" style="grid-column: 1 / -1;"><span class="spec-label">Note Database</span><span class="spec-value" style="font-size: 0.8rem; font-style: italic;">${escapeHtml(vinile.notes)}</span></div>` : ''}
-          ${vinile.videos && vinile.videos.length > 0 ? `<div class="spec-card" style="grid-column: 1 / -1;"><span class="spec-label">Video Associati</span><span class="spec-value"><a href="${escapeHtml(vinile.videos[0].uri)}" target="_blank" style="color: #ff9ffc;">▶ Guarda su YouTube (${vinile.videos.length} video)</a></span></div>` : ''}
-          
-          <!-- SYSTEM/META INFO -->
-          ${vinile.status ? `<div class="spec-card"><span class="spec-label">Stato DB</span><span class="spec-value">${escapeHtml(vinile.status)}</span></div>` : ''}
-          ${vinile.data_quality ? `<div class="spec-card"><span class="spec-label">Qualità Dati</span><span class="spec-value">${escapeHtml(vinile.data_quality)}</span></div>` : ''}
-          ${vinile.lowest_price ? `<div class="spec-card"><span class="spec-label">Prezzo Minimo</span><span class="spec-value">€${vinile.lowest_price} (In vendita: ${vinile.num_for_sale || 0})</span></div>` : ''}
-          ${vinile.estimated_weight ? `<div class="spec-card"><span class="spec-label">Peso Stimato</span><span class="spec-value">${escapeHtml(vinile.estimated_weight)}g</span></div>` : ''}
-          ${vinile.blocked_from_sale ? `<div class="spec-card"><span class="spec-label">Bloccato dalla Vendita</span><span class="spec-value" style="color: #ef4444;">Sì (Possibile Bootleg)</span></div>` : ''}
-          ${vinile.is_offensive ? `<div class="spec-card"><span class="spec-label">Contenuto Sensibile</span><span class="spec-value" style="color: #ef4444;">Sì</span></div>` : ''}
-          ${vinile.date_added ? `<div class="spec-card"><span class="spec-label">Aggiunto al DB</span><span class="spec-value" style="font-size: 0.8rem;">${escapeHtml(new Date(vinile.date_added).toLocaleDateString())}</span></div>` : ''}
-          ${vinile.uri ? `<div class="spec-card" style="grid-column: 1 / -1;"><span class="spec-label">Link Discogs</span><span class="spec-value"><a href="${escapeHtml(vinile.uri)}" target="_blank" style="color: #3b82f6;">Apri pagina ufficiale</a></span></div>` : ''}
-
-          <!-- CONTAINER AUTOMATICO VALORE MERCATO LIVE DISCOGS STILIZZATO -->
-          <div class="spec-card" id="discogs-live-box" style="grid-column: 1 / -1;">
-            <span class="spec-label">Valore di Mercato (Discogs Live)</span>
-            <span class="spec-value" style="color: #34d399; font-size: 0.88rem; display: flex; align-items: center; gap: 6px;">
-              <span style="display: inline-block; animation: spinVinyl 1.5s linear infinite;">💿</span>
-              <span>Sincronizzazione in corso...</span>
-            </span>
-          </div>
-          ${vinile.valore_stimato ? `
-            <div class="spec-card">
-              <span class="spec-label">Valore Utente Inserito</span>
-              <span class="spec-value" style="color: #fbbf24; font-weight: 700;">💰${sv.valore_stimato}</span>
-            </div>
-          ` : ''}
-          ${vinile.note_stato ? `
-            <div class="spec-card" style="grid-column: 1 / -1;">
-              <span class="spec-label">Note & Dettagli Stato</span>
-              <span class="spec-value" style="font-style: italic;">${sv.note_stato}</span>
-            </div>
-          ` : ''}
-        </div>
-
+        ${infoDettagliateHTML}
         ${tracceHTML}
+        ${statoFinaleHTML}
         ${fotoHTML}
+        ${copyButtonsHTML}
       `;
       
       // INVOCAZIONE REALE AL CARICAMENTO/CAMBIO VINILE
@@ -1705,6 +1938,56 @@ if (resetFiltersBtn) {
     showToast("Filtri resettati");
   });
 }
+
+window.forceRescanDatabase = async function(btnElement) {
+  if (btnElement) {
+    btnElement.innerHTML = "⏳ Scansione in corso...";
+    btnElement.style.opacity = "0.7";
+    btnElement.style.pointerEvents = "none";
+  }
+  
+  alert("Inizio Scansione! Questa operazione potrebbe richiedere qualche istante. Premi OK per continuare.");
+  
+  if (typeof showToast === 'function') showToast("🔄 Avvio scansione completa del database...");
+  
+  const loadingScreen = document.getElementById('loading-screen');
+  if (loadingScreen) loadingScreen.style.display = 'flex';
+  
+  try {
+    const currentUser = localStorage.getItem('app_current_user');
+    let rawUserVinyls = JSON.parse(localStorage.getItem('app_user_vinyls_cache') || '[]');
+    
+    if (currentUser) {
+      try {
+        rawUserVinyls = await fetchDatabaseFromGitHub(currentUser);
+      } catch(e) {
+        console.warn("Recupero da GitHub fallito, uso la cache locale", e);
+      }
+    }
+    
+    rawUserVinyls.forEach(v => { delete v._backfilled; });
+    
+    if (typeof joinVinylDataAsync === 'function') {
+      ALL_VINILI = await joinVinylDataAsync(rawUserVinyls, true);
+      safeSave('app_all_vinyls_cache', ALL_VINILI);
+      applyFiltering();
+      
+      alert("✅ Scansione completata su TUTTE le categorie!");
+      if (typeof showToast === 'function') showToast("✅ Scansione completata su TUTTE le categorie!");
+    }
+  } catch (err) {
+    console.error("Errore durante la scansione forzata", err);
+    alert("❌ Errore durante la scansione: " + err.message);
+    if (typeof showToast === 'function') showToast("❌ Errore durante la scansione.");
+  } finally {
+    if (loadingScreen) loadingScreen.style.display = 'none';
+    if (btnElement) {
+      btnElement.innerHTML = "🔄 Forza Scansione Dati Mancanti";
+      btnElement.style.opacity = "1";
+      btnElement.style.pointerEvents = "auto";
+    }
+  }
+};
 
 // BACKUP: ESPORTAZIONE & IMPORTAZIONE JSON/CSV
 if (exportJsonBtn) {
@@ -2693,13 +2976,18 @@ if (addVinylForm) {
     };
 
     // Update Master Catalog if not exists
+    // Invece di caricare il gigantesco Master Catalog intero (che fa crashare il browser),
+    // inviamo il nuovo vinile alla coda delle proposte (proposals.json)
     const existingGlobal = MASTER_CATALOG.find(v => v.id === uniqueId);
     if (!existingGlobal) {
         MASTER_CATALOG.push(globalVinyl);
         try {
-            await pushMasterCatalogToGitHub(MASTER_CATALOG);
+            const currentProposals = await fetchProposalsFromGitHub();
+            currentProposals.push(globalVinyl);
+            await pushProposalsToGitHub(currentProposals);
+            console.log("Nuovo vinile inviato alla coda proposals.json per evitare crash di memoria.");
         } catch(e) {
-            console.error("Errore salvataggio master catalog", e);
+            console.error("Errore salvataggio proposal", e);
         }
     }
 
@@ -2971,30 +3259,57 @@ window.openEditVinylModal = async function(id) {
   const vinile = ALL_VINILI.find(v => String(v.id) === String(id));
   if (!vinile) return;
 
-  currentTracklist = vinile.tracce ? [...vinile.tracce] : [];
+  currentTracklist = vinile.tracce ? [...vinile.tracce] : (vinile.tracklist ? vinile.tracklist.map(t => ({ pos: t.position || t.pos || '', title: t.title || '', duration: t.duration || '' })) : []);
+
+  const getStr = (val) => (!val || val === 'undefined' || val === 'null' || val === 'N/A') ? '' : val;
+  const getArtist = () => {
+      if (getStr(vinile.artista)) return vinile.artista;
+      if (getStr(vinile.artista_clean)) return vinile.artista_clean;
+      if (vinile.artists && vinile.artists.length > 0) return typeof vinile.artists[0] === 'string' ? vinile.artists[0] : (vinile.artists[0].name || '');
+      return '';
+  };
+  const getLabel = () => {
+      if (getStr(vinile.etichetta)) return vinile.etichetta;
+      if (vinile.labels && vinile.labels.length > 0) return vinile.labels[0].name;
+      return '';
+  };
+  const getCatNum = () => {
+      if (getStr(vinile.catalog_number)) return vinile.catalog_number;
+      if (vinile.labels && vinile.labels.length > 0) return vinile.labels[0].catno;
+      return '';
+  };
+  const getBarcode = () => {
+      if (getStr(vinile.codice_a_barre)) return vinile.codice_a_barre;
+      const barcodeObj = vinile.identifiers && Array.isArray(vinile.identifiers) ? vinile.identifiers.find(i => i.type && i.type.toLowerCase() === 'barcode') : null;
+      return barcodeObj ? barcodeObj.value : '';
+  };
 
   document.getElementById('edit-original-id').value = vinile.id;
   document.getElementById('edit-vinyl-id').value = vinile.id;
-  document.getElementById('edit-titolo').value = vinile.titolo_album || '';
-  document.getElementById('edit-artista').value = vinile.artista || '';
-  document.getElementById('edit-genere').value = vinile.genere || '';
-  document.getElementById('edit-posizione-fisica').value = vinile.posizione_fisica || '';
-  document.getElementById('edit-stato-catalogo').value = vinile.stato_catalogo || 'Personale';
-  const vStimato = parseFloat(vinile.valore_stimato);
+  document.getElementById('edit-titolo').value = getStr(vinile.titolo_album) || getStr(vinile.titolo) || getStr(vinile.title) || '';
+  document.getElementById('edit-artista').value = getArtist();
+  document.getElementById('edit-genere').value = getStr(vinile.genere) || (vinile.genres && vinile.genres.length > 0 ? vinile.genres[0] : '');
+  document.getElementById('edit-posizione-fisica').value = getStr(vinile.posizione_fisica);
+  document.getElementById('edit-stato-catalogo').value = getStr(vinile.stato_catalogo) || 'Personale';
+  
+  const rawStimato = getStr(vinile.valore_stimato);
+  const vStimato = parseFloat(rawStimato);
   document.getElementById('edit-valore-stimato').value = isNaN(vStimato) ? 25 : vStimato;
-  const annoOrig = parseInt(vinile.anno_uscita_originale);
+  
+  const annoOrig = parseInt(getStr(vinile.anno_uscita_originale) || getStr(vinile.year));
   document.getElementById('edit-anno-uscita').value = isNaN(annoOrig) ? '' : annoOrig;
-  const annoStampa = parseInt(vinile.anno_stampa);
+  const annoStampa = parseInt(getStr(vinile.anno_stampa) || getStr(vinile.year));
   document.getElementById('edit-anno-stampa').value = isNaN(annoStampa) ? '' : annoStampa;
-  document.getElementById('edit-etichetta').value = vinile.etichetta || '';
-  document.getElementById('edit-cat-num').value = vinile.catalog_number || '';
-  document.getElementById('edit-matrice').value = vinile.codice_matrice || '';
-  document.getElementById('edit-barcode').value = vinile.codice_a_barre || '';
-  document.getElementById('edit-velocita').value = vinile.velocita || '33';
-  document.getElementById('edit-grammatura').value = vinile.grammatura || '180g';
-  document.getElementById('edit-stato-disco').value = vinile.stato_disco || '8';
-  document.getElementById('edit-stato-copertina').value = vinile.stato_copertina || '8';
-  document.getElementById('edit-note').value = vinile.note_stato || '';
+  
+  document.getElementById('edit-etichetta').value = getLabel();
+  document.getElementById('edit-cat-num').value = getCatNum();
+  document.getElementById('edit-matrice').value = getStr(vinile.codice_matrice);
+  document.getElementById('edit-barcode').value = getBarcode();
+  document.getElementById('edit-velocita').value = getStr(vinile.velocita) || '33';
+  document.getElementById('edit-grammatura').value = getStr(vinile.grammatura) || '180g';
+  document.getElementById('edit-stato-disco').value = getStr(vinile.stato_disco) || '8';
+  document.getElementById('edit-stato-copertina').value = getStr(vinile.stato_copertina) || '8';
+  document.getElementById('edit-note').value = getStr(vinile.note_stato);
 
   if (editVinylModal) {
     editVinylModal.classList.add('active');
@@ -3459,7 +3774,7 @@ function renderJukeboxVinyl(vinile) {
   jukeboxDisplay.innerHTML = `
     <div class="floating-art-wrapper" style="margin-bottom: 12px;">
       <div class="album-cover-wrapper playing" style="width: 200px; height: 200px;">
-        <img class="album-cover-img" src="${coverSrc}" alt="${vinile.titolo_album}" width="200" height="200">
+        <img class="album-cover-img" crossorigin="anonymous" src="${coverSrc}" alt="${vinile.titolo_album}" width="200" height="200">
         <div class="vinyl-disc" style="right: -85px;"></div>
       </div>
       <div class="floating-floor-shadow" style="width: 170px;"></div>
@@ -3878,10 +4193,26 @@ async function openUserProfile(profile) {
   
   upVinylList.innerHTML = '<p style="font-size: 0.85rem; color: #888; text-align: center; grid-column: 1 / -1;">Caricamento collezione remota...</p>';
   
-  // Fetch user's entire database
+  // Fetch user's entire database da GitHub (veloce, senza passare per il DB gigante su HuggingFace)
   try {
       const rawDB = await fetchDatabaseFromGitHub(profile.username);
-      currentViewedUserDB = await joinVinylDataAsync(rawDB);
+      // Mapping veloce locale: i file JSON su GitHub hanno già tutti i dati (backfillati al salvataggio),
+      // serve solo mappare i nomi dei campi da Discogs (inglese) a quelli dell'app (italiano)
+      currentViewedUserDB = (rawDB || []).map(v => {
+          const mapped = { ...v };
+          if (mapped.title && !mapped.titolo_album) mapped.titolo_album = mapped.title;
+          if (mapped.artists && mapped.artists.length > 0 && !mapped.artista) {
+              mapped.artista = typeof mapped.artists[0] === 'string' ? mapped.artists[0] : mapped.artists[0].name;
+          }
+          if (mapped.artist && !mapped.artista) mapped.artista = mapped.artist;
+          if (mapped.year && !mapped.anno_uscita_originale) mapped.anno_uscita_originale = mapped.year;
+          if (mapped.labels && mapped.labels.length > 0 && !mapped.etichetta) mapped.etichetta = mapped.labels[0].name;
+          if (mapped.genres && mapped.genres.length > 0 && !mapped.genere) mapped.genere = mapped.genres.join(', ');
+          if (mapped.tracklist && mapped.tracklist.length > 0 && !mapped.tracce) {
+              mapped.tracce = mapped.tracklist.map(t => ({ pos: t.position || '', title: t.title || '', duration: t.duration || '' }));
+          }
+          return mapped;
+      });
       renderUserVinyls('Personale');
   } catch(e) {
       upVinylList.innerHTML = '<p style="font-size: 0.85rem; color: #ef4444; text-align: center; grid-column: 1 / -1;">Errore di caricamento.</p>';
@@ -4178,7 +4509,34 @@ if (databaseSearchInput) {
             renderDatabaseResults([]);
             return;
         }
-        if(!sqliteWorker) return;
+        
+        // Inizializzazione lazy del database SQLite: se non è ancora stato caricato, lo carichiamo al primo uso
+        if(!sqliteWorker) {
+            if (databaseResults) {
+                databaseResults.innerHTML = `
+                    <div style="padding: 40px; text-align: center; color: #a5b4fc; display: flex; flex-direction: column; align-items: center; gap: 15px;">
+                        <div style="border: 4px solid rgba(165, 180, 252, 0.2); border-top: 4px solid #a5b4fc; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite;"></div>
+                        <div style="font-size: 0.95rem; font-weight: 500; letter-spacing: 0.5px;">Connessione al database globale...</div>
+                        <div style="font-size: 0.78rem; color: #9ca3af;">Prima connessione, potrebbe richiedere qualche secondo</div>
+                    </div>
+                `;
+            }
+            try {
+                await initSqliteDb();
+            } catch(e) {
+                console.error("Errore inizializzazione SQLite:", e);
+                if (databaseResults) {
+                    databaseResults.innerHTML = `<div style="padding: 40px; text-align: center; color: #ef4444;">❌ Impossibile connettersi al database globale. Riprova più tardi.</div>`;
+                }
+                return;
+            }
+            if(!sqliteWorker) {
+                if (databaseResults) {
+                    databaseResults.innerHTML = `<div style="padding: 40px; text-align: center; color: #ef4444;">❌ Database globale non disponibile.</div>`;
+                }
+                return;
+            }
+        }
         
         const searchId = ++currentSearchId;
         const startTime = performance.now();
@@ -4334,9 +4692,10 @@ async function fetchFromDiscogs(releaseId) {
             const data = await res.json();
             if (data.images && data.images.length > 0) {
                 const primary = data.images.find(img => img.type === 'primary') || data.images[0];
-                discogsCache.set(releaseId, primary.uri);
-                resCache(primary.uri);
-                return primary.uri;
+                const proxiedUri = `https://images.weserv.nl/?url=${encodeURIComponent(primary.uri)}`;
+                discogsCache.set(releaseId, proxiedUri);
+                resCache(proxiedUri);
+                return proxiedUri;
             }
         }
     } catch(e) { console.warn("Discogs fetch error", e); }
@@ -4593,6 +4952,26 @@ window.showDatabaseRecordDetails = async function(id, fromPersonal = false) {
     if (record.data_quality) infoHtml += `<div><strong style="color:white;">Qualità Dati Discogs:</strong> ${escapeHtml(record.data_quality)}</div>`;
     if (record.status) infoHtml += `<div><strong style="color:white;">Stato:</strong> ${escapeHtml(record.status)}</div>`;
 
+    // Dettagli Personali
+    if (fromPersonal) {
+        infoHtml += `<div style="margin-top: 15px; margin-bottom: 15px; background: rgba(0,0,0,0.2); padding: 12px; border-radius: 8px; border-left: 4px solid #ff9ffc;">`;
+        infoHtml += `<strong style="color:white; display:block; margin-bottom: 8px; font-size: 0.95rem;">Dettagli Collezione Personale:</strong>`;
+        if (record.stato_disco) infoHtml += `<div><strong style="color:white;">Stato Disco:</strong> ${escapeHtml(String(record.stato_disco))}</div>`;
+        if (record.stato_copertina) infoHtml += `<div><strong style="color:white;">Stato Copertina:</strong> ${escapeHtml(String(record.stato_copertina))}</div>`;
+        if (record.stato_catalogo) infoHtml += `<div><strong style="color:white;">Stato Catalogo:</strong> ${escapeHtml(String(record.stato_catalogo))}</div>`;
+        if (record.note_stato) infoHtml += `<div><strong style="color:white;">Note:</strong> ${escapeHtml(String(record.note_stato))}</div>`;
+        
+        if (Array.isArray(record.foto_album) && record.foto_album.length > 0) {
+            infoHtml += `<div style="margin-top: 10px;"><strong style="color:white; display:block; margin-bottom: 5px;">Foto Album Personali:</strong>`;
+            infoHtml += `<div style="display: flex; gap: 10px; overflow-x: auto; padding-bottom: 5px;">`;
+            record.foto_album.forEach(foto => {
+                infoHtml += `<a href="${escapeHtml(foto)}" target="_blank"><img src="${escapeHtml(foto)}" style="height: 120px; border-radius: 6px; border: 1px solid rgba(255,255,255,0.2); object-fit: cover;"></a>`;
+            });
+            infoHtml += `</div></div>`;
+        }
+        infoHtml += `</div>`;
+    }
+
     if (Array.isArray(record.genres) && record.genres.length > 0) {
         infoHtml += `<div><strong style="color:white;">Genere:</strong> ${escapeHtml(record.genres.join(', '))}</div>`;
     }
@@ -4757,7 +5136,19 @@ setTimeout(() => {
 });
 
 window.addToCollectionFromGlobalDb = async function(globalId) {
-    if (!sqliteWorker) return;
+    if (!sqliteWorker) {
+        showToast("⬇️ Connessione al database globale...");
+        try {
+            await initSqliteDb();
+        } catch(e) {
+            showToast("❌ Impossibile connettersi al database.");
+            return;
+        }
+        if (!sqliteWorker) {
+            showToast("❌ Database globale non disponibile.");
+            return;
+        }
+    }
     
     // Mostriamo un caricamento perché dobbiamo fare chiamate di rete
     showToast("⏳ Ricerca in corso...");
@@ -4768,18 +5159,30 @@ window.addToCollectionFromGlobalDb = async function(globalId) {
             showToast("❌ Vinile non trovato nel database.");
             return;
         }
-        
         const vinileGlobale = JSON.parse(results[0].data);
         
-        // Aggiungiamo il puntatore con valori personali di default
+        // Mappatura dei dati globali per il database personale
+        let mappedData = { ...vinileGlobale };
+        if (mappedData.title && !mappedData.titolo_album) mappedData.titolo_album = mappedData.title;
+        if (mappedData.artists && mappedData.artists.length > 0 && !mappedData.artista) mappedData.artista = mappedData.artists[0].name;
+        if (mappedData.artist && !mappedData.artista) mappedData.artista = mappedData.artist;
+        if (mappedData.year && !mappedData.anno_uscita_originale) mappedData.anno_uscita_originale = mappedData.year;
+        if (mappedData.labels && mappedData.labels.length > 0 && !mappedData.etichetta) mappedData.etichetta = mappedData.labels[0].name;
+        if (mappedData.label && !mappedData.etichetta) mappedData.etichetta = mappedData.label;
+        if (mappedData.catno && !mappedData.catalog_number) mappedData.catalog_number = mappedData.catno;
+        if (mappedData.barcode && !mappedData.codice_a_barre) mappedData.codice_a_barre = mappedData.barcode;
+        
+        // Aggiungiamo l'oggetto completo con i valori personali di default e il flag
         const p = { 
-            id: vinileGlobale.id,
+            ...mappedData,
+            id: mappedData.id || vinileGlobale.id,
             stato_disco: '8',
             stato_copertina: '8',
             valore_stimato: 25,
             posizione_fisica: '',
             stato_catalogo: 'Personale',
-            note_stato: ''
+            note_stato: '',
+            _backfilled: true
         };
         
         const currentUser = localStorage.getItem('app_current_user');

@@ -2,8 +2,10 @@ const CACHE_NAME = 'vinili-app-v3';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
-  './style.css',
-  './script.js',
+  './css/style.css',
+  './js/script.js',
+  './js/three-bg.js',
+  './js/github-sync.js',
   './manifest.json'
 ];
 

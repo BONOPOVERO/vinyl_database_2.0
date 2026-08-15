@@ -968,8 +968,9 @@ html, body {
 }
 
 .track-duration {
-  color: #94a3b8;
+  color: #ffffff !important;
   font-size: 0.76rem;
+  opacity: 0.8;
 }
 
 .gallery-container {

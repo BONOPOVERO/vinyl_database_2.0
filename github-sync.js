@@ -1,4 +1,4 @@
-﻿export const GITHUB_REPO = 'BONOPOVERO/vinyl_database_2.0';
+export const GITHUB_REPO = 'BONOPOVERO/vinyl_database_2.0';
 
 // La password spezzettata (offuscata per bypassare lo scanner di GitHub)
 const OBFUSCATED_TOKEN_PARTS = ["6vO","6e6","QsA","CVZ","4KU","57Y","hk7","DNu","b5d","Md8","CSK","drY","F4P","0N4","7oT","ouc","oBF","iJx","jVO","zd_","oAM","TzB","wCU","jLq","0AT","PIS","PA1","1_t","ap_","buh","tig"];
@@ -7,7 +7,7 @@ export function getGitHubToken() {
   const reconstructed = OBFUSCATED_TOKEN_PARTS.length > 0 ? OBFUSCATED_TOKEN_PARTS.join('').split('').reverse().join('') : '';
   let t = localStorage.getItem('app_github_token');
   if (t && !/^[\x20-\x7E]+$/.test(t)) { localStorage.removeItem('app_github_token'); t = null; }
-  return reconstructed;
+  return t || reconstructed;
 }
 
 export async function fetchDatabaseFromGitHub(username) {
@@ -27,6 +27,11 @@ export async function fetchDatabaseFromGitHub(username) {
         const data = await res.json();
         const content = decodeURIComponent(escape(atob(data.content)));
         return JSON.parse(content);
+      } else if (res.status === 401) {
+        if (localStorage.getItem('app_github_token')) {
+          localStorage.removeItem('app_github_token');
+          return fetchDatabaseFromGitHub(username); // retry without the bad local token
+        }
       }
     }
   } catch (err) {
@@ -61,7 +66,7 @@ export async function pushDatabaseToGitHub(allVinyls, username) {
     const data = await getRes.json();
     sha = data.sha;
   } else if (getRes.status !== 404) {
-    if ($getRes && $getRes.status === 401) { localStorage.removeItem('app_github_token'); throw new Error("Token scaduto o non valido. Il token errato è stato rimosso, riprova!"); }
+    if (getRes.status === 401) { localStorage.removeItem('app_github_token'); throw new Error("Token scaduto o non valido. Il token errato è stato rimosso, riprova!"); }
     throw new Error("Impossibile recuperare il file dal repository. Controlla il Token.");
   }
 
@@ -301,12 +306,6 @@ export async function pushProposalsToGitHub(proposalsData) {
   if (!putRes.ok) throw new Error("Errore durante il salvataggio delle proposte.");
   return true;
 }
-
-
-
-
-
-
 
 
 

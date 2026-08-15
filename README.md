@@ -1,54 +1,57 @@
-# Vinyl Database 2.0 WebApp
+# Vinyl Database 3.0 WebApp
 
-Questa repository contiene tutto il necessario per far girare localmente o ospitare su GitHub Pages la **Vinyl Database 2.0 WebApp**, un'applicazione completa per la gestione delle proprie collezioni di vinili con funzionalità di Community.
+Questa repository contiene tutto il necessario per far girare localmente o ospitare su GitHub Pages la **Vinyl Database 3.0 WebApp**, un'applicazione completa per la gestione delle proprie collezioni di vinili con funzionalità di Community e calcolo in tempo reale del valore dei dischi.
 
 ## 🚀 Caratteristiche Principali
 
-- **Gestione Collezione Personale**: Aggiungi, rimuovi e modifica i dischi della tua collezione.
-- **Database Globale Iper-veloce**: Ricerca ultra-rapida su un catalogo globale grazie a un database locale in formato SQLite caricato nativamente tramite HTTP VFS (senza pesare sulla memoria RAM del browser).
+- **Gestione Collezione Universale**: Aggiungi, rimuovi e sposta i dischi tra categorie (Personale, Wishlist, Eredità, In Vendita).
+- **Integrazione Prezzi Live**: Calcolo in tempo reale del valore dei vinili collegandosi dinamicamente ai mercati collezionistici come Discogs.
+- **Database Globale Iper-veloce**: Ricerca ultra-rapida su un catalogo globale tramite database SQLite locale (letto con HTTP VFS) ospitato su HuggingFace per una gestione senza limiti.
+- **Scansione Intelligente dei Dati**: Pulsante dedicato per forzare la riscansione e completare automaticamente i metadati mancanti (tracklist, codici a barre, label) scansionando l'intera collezione contro il catalogo master.
 - **Integrazione con GitHub**: L'app si sincronizza direttamente con il repository GitHub per salvare il tuo profilo, la tua libreria e leggere i dati della community tramite le API di GitHub.
-- **Esplora Community**: Scopri altri collezionisti, aggiungili agli amici, e naviga nel loro database personale per vedere quali dischi possiedono!
-- **Protezione Password per Token**: Il tuo Personal Access Token (PAT) di GitHub è salvato nel browser in totale sicurezza ed è sbloccabile solo tramite la password di Amministrazione. Fallback automatico in caso di problemi col token.
 - **Supporto PWA (Offline & Installabile)**: Service worker integrato per cache offline e installazione dell'app su desktop e smartphone.
-- **Interfaccia Grafica Glassmorphism 3D**: Sfondo animato 3D (con Three.js) e interfacce eleganti "effetto vetro" per un design moderno e ultra-responsivo.
+- **Interfaccia Grafica Adattiva**: Grafica Glassmorphism ad altissimo contrasto. Lo sfondo e i colori dei menu cambiano magicamente adattandosi in tempo reale ai colori dominanti della copertina del vinile che stai visualizzando.
 
-## 📁 Struttura della Repository
+## 📂 Struttura della Repository
 
-- **`index.html`**: Il punto di ingresso principale dell'app. Contiene l'intero scheletro della UI, i modal per le impostazioni, la community, il database globale e il profilo.
-- **`style.css`**: Contiene tutte le regole grafiche e le animazioni. Utilizza un tema scuro con accenti ciano/viola neon e l'effetto "Glassmorphism" per i pannelli.
-- **`script.js`**: Il motore principale (frontend) dell'app. Gestisce il ciclo di vita dell'interfaccia, i listener dei pulsanti, la logica di SQLite locale e gran parte delle visualizzazioni a schermo.
-- **`github-sync.js`**: Il modulo chiave per tutte le comunicazioni con le API di GitHub. Gestisce le chiamate di lettura/scrittura per i profili utente, la lista community e la gestione del token.
-- **`three-bg.js`**: Script dedicato all'animazione tridimensionale interattiva in background (onde ciano, particelle fluttuanti) costruita sopra la libreria Three.js.
-- **`master_catalog.db`**: Il database SQLite "globale" pre-compilato con le informazioni e le release di tutti i vinili, letto tramite HTTP VFS.
-- **`sqlite.worker.js` / `sql-wasm.wasm`**: I motori worker necessari per eseguire query SQL ad alta efficienza all'interno del browser web.
-- **`sw.js` / `manifest.json`**: File necessari per trasformare la pagina web in una vera e propria App installabile (Progressive Web App).
+L'applicazione segue ora un'architettura a cartelle standard e modulare, ottimizzata per il deployment su GitHub Pages:
 
-## ⚙️ Modificare le Impostazioni Avanzate
+- 📄 **`index.html`**: Il punto di ingresso principale dell'app. Contiene lo scheletro della UI, i modal e le interfacce principali.
+- 📄 **`sw.js` / `manifest.json`**: File necessari per la Progressive Web App (PWA). Il service worker gestisce la cache di tutti gli asset per il funzionamento offline.
+- 📁 **`css/`**
+  - **`style.css`**: Il foglio di stile globale. Include le definizioni CSS per il design Glassmorphism e le variabili cromatiche camaleontiche per adattarsi alle copertine.
+- 📁 **`js/`**
+  - **`script.js`**: Il motore frontend principale dell'app. Gestisce la manipolazione del DOM, il calcolo dei prezzi, e le logiche SQLite.
+  - **`github-sync.js`**: Modulo API indipendente. Gestisce l'autenticazione tramite Token e le chiamate fetch per leggere/scrivere sul DB GitHub remoto.
+  - **`three-bg.js`**: Modulo dedicato al motore 3D (Three.js) per l'animazione dello sfondo interattivo (particelle fluttuanti, tunnel ciano/viola).
+- 📁 **`lib/`**
+  - **`sqlite.worker.js` / `sql-wasm.wasm`**: I motori compilati WebAssembly di sql.js-httpvfs necessari per interrogare SQL nativamente nel browser.
+- 📁 **`database/`**
+  - **`config.json`**: Configurazione del database per il VFS.
+- 📁 **`users/`**
+  - Contiene i file JSON dei singoli utenti (le collezioni personali e wishlist aggiornate in tempo reale via GitHub API).
 
-Se vuoi "forkare" questa repository per farne una tua versione, dovrai modificare alcune costanti all'interno dei file JavaScript per puntare al tuo repository anziché a quello di default:
+## 🛠 Modificare le Impostazioni Avanzate
+
+Se vuoi "forkare" questa repository per farne una tua versione, dovrai modificare alcune costanti all'interno dei file JavaScript:
 
 1. **Il repository GitHub di Sync**:
-   Vai nel file **`github-sync.js`** alla riga 1:
+   Vai nel file **`js/github-sync.js`** alla riga 1:
    ```javascript
-   export const GITHUB_REPO = 'BONOPOVERO/vinyl_database_2.0';
+   export const GITHUB_REPO = 'BONOPOVERO/vinyl_database_2.0'; // o il nome della tua repo
    ```
-   *Sostituisci il nome con "tuo_nome/tua_repo" per fare in modo che i dati utente e la community si salvino nella tua repository.*
 
 2. **Password Amministratore (Admin Access)**:
-   La password è utilizzata per autorizzare modifiche sensibili (es: sblocco del token o aggiunte manuali fuori database).
-   Vai in **`script.js`**, cerca la funzione `checkAdminAccess` per poter aggiornare o cambiare il livello di verifica:
-   ```javascript
-   const storedPass = "Yuta"; // o qualsiasi logica di autenticazione preferisci
-   ```
+   La password è utilizzata per autorizzare modifiche sensibili.
+   Vai in **`js/script.js`**, cerca la funzione `checkAdminAccess` per poter aggiornare o cambiare la password.
 
 3. **Il Token GitHub "Obfuscato"**:
-   Per fare chiamate all'API GitHub anche prima che l'utente inserisca il proprio Token personale, c'è un token interno suddiviso in piccoli frammenti all'inizio di `github-sync.js`.
+   Per fare chiamate all'API GitHub anche prima che l'utente inserisca il proprio Token, c'è un token interno in `js/github-sync.js`.
    ```javascript
    const OBFUSCATED_TOKEN_PARTS = ["nh5","KpL", ...];
    ```
-   *Questo evita che i bot automatici di GitHub invalidino istantaneamente la tua chiave pubblica.* 
 
-## 🛠️ Come avviare localmente per i test
-Se vuoi testare l'app in locale, ti sconsigliamo di aprirla col doppio clic (protocollo `file://`). Utilizza invece un qualsiasi server locale leggero (ad esempio `Live Server` su VSCode) per garantire che i caricamenti via `fetch()` e SQLite funzionino correttamente.
+## 💻 Come avviare localmente per i test
+Usa sempre un server locale (`Live Server` o un webserver Python) per navigare nella cartella. I moduli ECMAScript (`<script type="module">`) e le fetch a database WebAssembly non funzionano se apri il file cliccandolo due volte col protocollo `file://`.
 
-Buona esplorazione e buona musica! 🎵
+Buona esplorazione e buona musica! 🎶
