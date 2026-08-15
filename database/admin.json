@@ -1016,7 +1016,7 @@
   },
   {
     "id": "612972",
-    "stato_disco": "??",
+    "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "",
     "stato_catalogo": "Personale",
@@ -1175,9 +1175,85 @@
       "Indie Rock"
     ],
     "titolo_album": "Whatever People Say I Am, That's What I'm Not",
-    "anno_uscita_originale": "2006-01-23",
+    "anno_uscita_originale": 2006,
     "etichetta": "Domino",
-    "_backfilled": true
+    "_backfilled": true,
+    "artista": "Arctic Monkeys",
+    "genere": "Rock",
+    "posizione_fisica": "",
+    "valore_stimato": 25,
+    "anno_stampa": 2006,
+    "catalog_number": "WIGLP162",
+    "codice_a_barre": "5034202016212",
+    "velocita": "33",
+    "grammatura": "180g",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "The View From The Afternoon",
+        "duration": "3:38"
+      },
+      {
+        "pos": "A2",
+        "title": "I Bet You Look Good On The Dancefloor",
+        "duration": "2:53"
+      },
+      {
+        "pos": "A3",
+        "title": "Fake Tales Of San Francisco",
+        "duration": "2:56"
+      },
+      {
+        "pos": "A4",
+        "title": "Dancing Shoes",
+        "duration": "2:22"
+      },
+      {
+        "pos": "A5",
+        "title": "You Probably Couldn't See For The Lights But You Were Staring Straight At Me",
+        "duration": "2:10"
+      },
+      {
+        "pos": "A6",
+        "title": "Still Take You Home",
+        "duration": "2:50"
+      },
+      {
+        "pos": "B1",
+        "title": "Riot Van",
+        "duration": "2:12"
+      },
+      {
+        "pos": "B2",
+        "title": "Red Light Indicates Doors Are Secured",
+        "duration": "2:22"
+      },
+      {
+        "pos": "B3",
+        "title": "Mardy Bum",
+        "duration": "2:53"
+      },
+      {
+        "pos": "B4",
+        "title": "Perhaps Vampires Is A Bit Strong But..",
+        "duration": "4:25"
+      },
+      {
+        "pos": "B5",
+        "title": "When The Sun Goes Down",
+        "duration": "3:17"
+      },
+      {
+        "pos": "B6",
+        "title": "From The Ritz To The Rubble",
+        "duration": "3:11"
+      },
+      {
+        "pos": "B7",
+        "title": "A Certain Romance",
+        "duration": "5:27"
+      }
+    ]
   },
   {
     "id": "13111566",
