@@ -2970,11 +2970,10 @@
   },
   {
     "id": "687822",
-    "stato_disco": "??",
-    "stato_copertina": "??",
-    "note_stato": "",
-    "stato_catalogo": "Wishlist",
-    "foto_album": [],
+    "stato_disco": "8",
+    "stato_copertina": "8",
+    "note_stato": "This seems to be an exact repress of [r8514059] however with the typo on the back cover corrected. The 2016 press had track 2 misspelled as \"Fate\" instead of \"Face\". \n\nComes in a poly outer sleeve with a Music on Vinyl hype sticker that reads: \"MOV logo / Classic Album / 180 gram audiophile vinyl pressing / www.musiconvinyl.com\"\n\nOriginally released ℗ & © 1990 Atlantic Recording Corporation. Manufactured & distributed by Music On Vinyl B.V. 2016, under exclusive license from Warner Music Benelux B.V., A Warner Music Group Company. Made in EU. \n\nThis seems to be an exact repress of [r8514059] however with the typo on the back cover corrected. The 2016 press had track 2 misspelled as \"Fate\" instead of \"Face\". \n\nComes in a poly outer sleeve with a Music on Vinyl hype sticker that reads: \"MOV logo / Classic Album / 180 gram audiophile vinyl pressing / www.musiconvinyl.com\"\n\nOriginally released ℗ & © 1990 Atlantic Recording Corporation. Manufactured & distributed by Music On Vinyl B.V. 2016, under exclusive license from Warner Music Benelux B.V., A Warner Music Group Company. Made in EU. \n\nThis seems to be an exact repress of [r8514059] however with the typo on the back cover corrected. The 2016 press had track 2 misspelled as \"Fate\" instead of \"Face\". \n\nComes in a poly outer sleeve with a Music on Vinyl hype sticker that reads: \"MOV logo / Classic Album / 180 gram audiophile vinyl pressing / www.musiconvinyl.com\"\n\nOriginally released ℗ & © 1990 Atlantic Recording Corporation. Manufactured & distributed by Music On Vinyl B.V. 2016, under exclusive license from Warner Music Benelux B.V., A Warner Music Group Company. Made in EU. \n\nThis seems to be an exact repress of [r8514059] however with the typo on the back cover corrected. The 2016 press had track 2 misspelled as \"Fate\" instead of \"Face\". \n\nComes in a poly outer sleeve with a Music on Vinyl hype sticker that reads: \"MOV logo / Classic Album / 180 gram audiophile vinyl pressing / www.musiconvinyl.com\"\n\nOriginally released ℗ & © 1990 Atlantic Recording Corporation. Manufactured & distributed by Music On Vinyl B.V. 2016, under exclusive license from Warner Music Benelux B.V., A Warner Music Group Company. Made in EU. \n\nThis seems to be an exact repress of [r8514059] however with the typo on the back cover corrected. The 2016 press had track 2 misspelled as \"Fate\" instead of \"Face\". \n\nComes in a poly outer sleeve with a Music on Vinyl hype sticker that reads: \"MOV logo / Classic Album / 180 gram audiophile vinyl pressing / www.musiconvinyl.com\"\n\nOriginally released ℗ & © 1990 Atlantic Recording Corporation. Manufactured & distributed by Music On Vinyl B.V. 2016, under exclusive license from Warner Music Benelux B.V., A Warner Music Group Company. Made in EU. \n\nThis seems to be an exact repress of [r8514059] however with the typo on the back cover corrected. The 2016 press had track 2 misspelled as \"Fate\" instead of \"Face\". \n\nComes in a poly outer sleeve with a Music on Vinyl hype sticker that reads: \"MOV logo / Classic Album / 180 gram audiophile vinyl pressing / www.musiconvinyl.com\"\n\nOriginally released ℗ & © 1990 Atlantic Recording Corporation. Manufactured & distributed by Music On Vinyl B.V. 2016, under exclusive license from Warner Music Benelux B.V., A Warner Music Group Company. Made in EU. \n\nThis seems to be an exact repress of [r8514059] however with the typo on the back cover corrected. The 2016 press had track 2 misspelled as \"Fate\" instead of \"Face\". \n\nComes in a poly outer sleeve with a Music on Vinyl hype sticker that reads: \"MOV logo / Classic Album / 180 gram audiophile vinyl pressing / www.musiconvinyl.com\"\n\nOriginally released ℗ & © 1990 Atlantic Recording Corporation. Manufactured & distributed by Music On Vinyl B.V. 2016, under exclusive license from Warner Music Benelux B.V., A Warner Music Group Company. Made in EU. \n\nThis seems to be an exact repress of [r8514059] however with the typo on the back cover corrected. The 2016 press had track 2 misspelled as \"Fate\" instead of \"Face\". \n\nComes in a poly outer sleeve with a Music on Vinyl hype sticker that reads: \"MOV logo / Classic Album / 180 gram audiophile vinyl pressing / www.musiconvinyl.com\"\n\nOriginally released ℗ & © 1990 Atlantic Recording Corporation. Manufactured & distributed by Music On Vinyl B.V. 2016, under exclusive license from Warner Music Benelux B.V., A Warner Music Group Company. Made in EU. \n\nThis seems to be an exact repress of [r8514059] however with the typo on the back cover corrected. The 2016 press had track 2 misspelled as \"Fate\" instead of \"Face\". \n\nComes in a poly outer sleeve with a Music on Vinyl hype sticker that reads: \"MOV logo / Classic Album / 180 gram audiophile vinyl pressing / www.musiconvinyl.com\"\n\nOriginally released ℗ & © 1990 Atlantic Recording Corporation. Manufactured & distributed by Music On Vinyl B.V. 2016, under exclusive license from Warner Music Benelux B.V., A Warner Music Group Company. Made in EU. ",
+    "stato_catalogo": "Personale",
     "title": "Souls Of Black",
     "artists": [
       "Testament (2)"
@@ -3165,9 +3164,80 @@
       "Speed Metal"
     ],
     "titolo_album": "Souls Of Black",
-    "anno_uscita_originale": "1990-09-24",
-    "etichetta": "Megaforce Worldwide",
-    "_backfilled": true
+    "anno_uscita_originale": 2024,
+    "etichetta": "Music On Vinyl",
+    "_backfilled": true,
+    "artista": "Testament",
+    "genere": "Rock",
+    "posizione_fisica": "Scaffale Principale",
+    "valore_stimato": 30,
+    "anno_stampa": 1990,
+    "catalog_number": "MOVLP1635",
+    "codice_a_barre": "8719262000797",
+    "velocita": "33",
+    "grammatura": "180g",
+    "tracce": [
+      {
+        "pos": "A1",
+        "title": "Beginning Of The End",
+        "duration": "0:36",
+        "durata": "0:36"
+      },
+      {
+        "pos": "A2",
+        "title": "Face In The Sky",
+        "duration": "3:53",
+        "durata": "3:53"
+      },
+      {
+        "pos": "A3",
+        "title": "Falling Fast",
+        "duration": "4:05",
+        "durata": "4:05"
+      },
+      {
+        "pos": "A4",
+        "title": "Souls Of Black",
+        "duration": "3:22",
+        "durata": "3:22"
+      },
+      {
+        "pos": "A5",
+        "title": "Absence Of Light",
+        "duration": "3:55",
+        "durata": "3:55"
+      },
+      {
+        "pos": "A6",
+        "title": "Love To Hate",
+        "duration": "3:40",
+        "durata": "3:40"
+      },
+      {
+        "pos": "B1",
+        "title": "Malpractice",
+        "duration": "4:43",
+        "durata": "4:43"
+      },
+      {
+        "pos": "B2",
+        "title": "One Man's Fate",
+        "duration": "4:49",
+        "durata": "4:49"
+      },
+      {
+        "pos": "B3",
+        "title": "The Legacy",
+        "duration": "5:30",
+        "durata": "5:30"
+      },
+      {
+        "pos": "B4",
+        "title": "Seven Days Of May",
+        "duration": "4:41",
+        "durata": "4:41"
+      }
+    ]
   },
   {
     "id": "1552282",
