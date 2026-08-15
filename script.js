@@ -20,8 +20,8 @@ async function initSqliteDb() {
           },
         },
       ],
-      "./lib/sqlite.worker.js",
-      "./lib/sql-wasm.wasm",
+      "./sqlite.worker.js",
+      "./sql-wasm.wasm",
       100 * 1024 * 1024 // 100MB limite per permettere query complesse
     );
     window.sqliteWorker = sqliteWorker;
