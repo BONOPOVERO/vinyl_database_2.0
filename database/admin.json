@@ -853,5 +853,14 @@
     "note_stato": "Identificato da matrice HKAY 32574 (Lato A). Stampa Italiana.",
     "stato_catalogo": "Eredità",
     "foto_album": []
+  },
+  {
+    "id": "2628143",
+    "stato_disco": "8",
+    "stato_copertina": "8",
+    "valore_stimato": 25,
+    "posizione_fisica": "",
+    "stato_catalogo": "Personale",
+    "note_stato": ""
   }
 ]
