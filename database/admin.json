@@ -165,7 +165,8 @@
     ],
     "titolo_album": "Wish You Were Here",
     "anno_uscita_originale": "1975",
-    "etichetta": "Harvest"
+    "etichetta": "Harvest",
+    "_backfilled": true
   },
   {
     "id": "172074",
@@ -356,7 +357,8 @@
     ],
     "titolo_album": "Discipline",
     "anno_uscita_originale": "1981-09-00",
-    "etichetta": "EG"
+    "etichetta": "EG",
+    "_backfilled": true
   },
   {
     "id": "14313975",
@@ -590,7 +592,8 @@
     ],
     "titolo_album": "Daemon",
     "anno_uscita_originale": "2019-10-25",
-    "etichetta": "Century Media"
+    "etichetta": "Century Media",
+    "_backfilled": true
   },
   {
     "id": "465796",
@@ -810,7 +813,8 @@
     ],
     "titolo_album": "In Utero",
     "anno_uscita_originale": "1993",
-    "etichetta": "Geffen Records"
+    "etichetta": "Geffen Records",
+    "_backfilled": true
   },
   {
     "id": "558856",
@@ -953,7 +957,8 @@
     ],
     "titolo_album": "Another Perfect Day",
     "anno_uscita_originale": "1986",
-    "etichetta": "Bronze"
+    "etichetta": "Bronze",
+    "_backfilled": true
   },
   {
     "id": "297766",
@@ -1006,7 +1011,8 @@
     ],
     "titolo_album": "The Wall (Rebuilt)",
     "anno_uscita_originale": "2004-04-00",
-    "etichetta": "Playable Music"
+    "etichetta": "Playable Music",
+    "_backfilled": true
   },
   {
     "id": "612972",
@@ -1170,7 +1176,8 @@
     ],
     "titolo_album": "Whatever People Say I Am, That's What I'm Not",
     "anno_uscita_originale": "2006-01-23",
-    "etichetta": "Domino"
+    "etichetta": "Domino",
+    "_backfilled": true
   },
   {
     "id": "13111566",
@@ -1270,7 +1277,8 @@
     "styles": [],
     "titolo_album": "Death USB",
     "anno_uscita_originale": "2018",
-    "etichetta": "Tanta Roba Label"
+    "etichetta": "Tanta Roba Label",
+    "_backfilled": true
   },
   {
     "id": "FALLBACK_202074",
@@ -1280,7 +1288,8 @@
     "stato_catalogo": "Personale",
     "foto_album": [
       "Img/SpiderVerse_Foto/Fronte.jpg"
-    ]
+    ],
+    "_backfilled": true
   },
   {
     "id": "21732274",
@@ -1429,7 +1438,8 @@
     ],
     "titolo_album": "Virus",
     "anno_uscita_originale": "2022-01-14",
-    "etichetta": "Thaurus"
+    "etichetta": "Thaurus",
+    "_backfilled": true
   },
   {
     "id": "24583313",
@@ -1583,7 +1593,8 @@
     ],
     "titolo_album": "BOTOX",
     "anno_uscita_originale": "2022-09-15",
-    "etichetta": "Universal Music"
+    "etichetta": "Universal Music",
+    "_backfilled": true
   },
   {
     "id": "367104",
@@ -1847,7 +1858,8 @@
     ],
     "titolo_album": "The Dark Side Of The Moon",
     "anno_uscita_originale": "1973-03-01",
-    "etichetta": "Harvest"
+    "etichetta": "Harvest",
+    "_backfilled": true
   },
   {
     "id": "FALLBACK_994280",
@@ -1857,7 +1869,8 @@
     "stato_catalogo": "Personale",
     "foto_album": [
       "Img/Abominog_Foto/Fronte.jpg"
-    ]
+    ],
+    "_backfilled": true
   },
   {
     "id": "386895",
@@ -2019,7 +2032,8 @@
     ],
     "titolo_album": "Animals",
     "anno_uscita_originale": "1977",
-    "etichetta": "Harvest"
+    "etichetta": "Harvest",
+    "_backfilled": true
   },
   {
     "id": "3760793",
@@ -2166,7 +2180,8 @@
     ],
     "titolo_album": "Dark Roots Of Earth",
     "anno_uscita_originale": "2012-07-27",
-    "etichetta": "Nuclear Blast"
+    "etichetta": "Nuclear Blast",
+    "_backfilled": true
   },
   {
     "id": "8888020",
@@ -2293,7 +2308,8 @@
     ],
     "titolo_album": "Live on Air 1974- '79. Hell's Highway",
     "anno_uscita_originale": "2016",
-    "etichetta": "Coda Publishing"
+    "etichetta": "Coda Publishing",
+    "_backfilled": true
   },
   {
     "id": "391242",
@@ -2426,7 +2442,8 @@
     ],
     "titolo_album": "Iron Maiden",
     "anno_uscita_originale": "1980-10-00",
-    "etichetta": "EMI"
+    "etichetta": "EMI",
+    "_backfilled": true
   },
   {
     "id": "FALLBACK_636719",
@@ -2436,7 +2453,8 @@
     "stato_catalogo": "Personale",
     "foto_album": [
       "Img/Nazarene_Sickness_Foto/Fronte.jpg"
-    ]
+    ],
+    "_backfilled": true
   },
   {
     "id": "380894",
@@ -2602,7 +2620,8 @@
     ],
     "titolo_album": "Sabbath Bloody Sabbath",
     "anno_uscita_originale": "1985",
-    "etichetta": "NEMS"
+    "etichetta": "NEMS",
+    "_backfilled": true
   },
   {
     "id": "385189",
@@ -2833,7 +2852,8 @@
     ],
     "titolo_album": "Chocolate Starfish And The Hot Dog Flavored Water",
     "anno_uscita_originale": "2000-10-16",
-    "etichetta": "Flip Records (2)"
+    "etichetta": "Flip Records (2)",
+    "_backfilled": true
   },
   {
     "id": "687822",
@@ -3033,7 +3053,8 @@
     ],
     "titolo_album": "Souls Of Black",
     "anno_uscita_originale": "1990-09-24",
-    "etichetta": "Megaforce Worldwide"
+    "etichetta": "Megaforce Worldwide",
+    "_backfilled": true
   },
   {
     "id": "1552282",
@@ -3186,7 +3207,8 @@
     ],
     "titolo_album": "Untitled",
     "anno_uscita_originale": "2007-07-31",
-    "etichetta": "Virgin"
+    "etichetta": "Virgin",
+    "_backfilled": true
   },
   {
     "id": "9190214",
@@ -3343,7 +3365,8 @@
     ],
     "titolo_album": "Brotherhood Of The Snake",
     "anno_uscita_originale": "2016-10-28",
-    "etichetta": "Nuclear Blast"
+    "etichetta": "Nuclear Blast",
+    "_backfilled": true
   },
   {
     "id": "1063332",
@@ -3453,7 +3476,8 @@
       "Grunge"
     ],
     "titolo_album": "Facelift",
-    "etichetta": "Columbia"
+    "etichetta": "Columbia",
+    "_backfilled": true
   },
   {
     "id": "417556",
@@ -3610,7 +3634,8 @@
     ],
     "titolo_album": "Toxicity",
     "anno_uscita_originale": "2001-08-00",
-    "etichetta": "Columbia"
+    "etichetta": "Columbia",
+    "_backfilled": true
   },
   {
     "id": "405725",
@@ -4137,7 +4162,8 @@
     ],
     "titolo_album": "Use Your Illusion I",
     "anno_uscita_originale": "1991",
-    "etichetta": "Geffen Records"
+    "etichetta": "Geffen Records",
+    "_backfilled": true
   },
   {
     "id": "405734",
@@ -4714,7 +4740,8 @@
     ],
     "titolo_album": "Use Your Illusion II",
     "anno_uscita_originale": "1991-09-17",
-    "etichetta": "Geffen Records"
+    "etichetta": "Geffen Records",
+    "_backfilled": true
   },
   {
     "id": "1544692",
@@ -4782,7 +4809,8 @@
     ],
     "titolo_album": "Chinese Democracy / Shackler's Revenge",
     "anno_uscita_originale": "2008",
-    "etichetta": "Geffen Records"
+    "etichetta": "Geffen Records",
+    "_backfilled": true
   },
   {
     "id": "7420128",
@@ -4922,7 +4950,8 @@
     ],
     "titolo_album": "Repentless",
     "anno_uscita_originale": "2015-09-11",
-    "etichetta": "Nuclear Blast"
+    "etichetta": "Nuclear Blast",
+    "_backfilled": true
   },
   {
     "id": "384775",
@@ -5041,7 +5070,8 @@
     ],
     "titolo_album": "Significant Other",
     "anno_uscita_originale": "1999",
-    "etichetta": "Interscope Records"
+    "etichetta": "Interscope Records",
+    "_backfilled": true
   },
   {
     "id": "7240348",
@@ -5244,7 +5274,8 @@
     ],
     "titolo_album": "Currents",
     "anno_uscita_originale": "2015-07-17",
-    "etichetta": "Interscope Records"
+    "etichetta": "Interscope Records",
+    "_backfilled": true
   },
   {
     "id": "396228",
@@ -5456,7 +5487,8 @@
     ],
     "titolo_album": "Fear Of The Dark",
     "anno_uscita_originale": "1992",
-    "etichetta": "EMI"
+    "etichetta": "EMI",
+    "_backfilled": true
   },
   {
     "id": "421436",
@@ -5750,7 +5782,8 @@
     ],
     "titolo_album": "Hysteria",
     "anno_uscita_originale": "1987",
-    "etichetta": "Mercury"
+    "etichetta": "Mercury",
+    "_backfilled": true
   },
   {
     "id": "22837919",
@@ -5910,7 +5943,8 @@
     ],
     "titolo_album": "See You On The Other Side",
     "anno_uscita_originale": "2022-04-01",
-    "etichetta": "Virgin (2)"
+    "etichetta": "Virgin (2)",
+    "_backfilled": true
   },
   {
     "id": "2873079",
@@ -6054,7 +6088,8 @@
     ],
     "titolo_album": "Around The Fur",
     "anno_uscita_originale": "2011-05-17",
-    "etichetta": "Maverick"
+    "etichetta": "Maverick",
+    "_backfilled": true
   },
   {
     "id": "475128",
@@ -6271,7 +6306,8 @@
     ],
     "titolo_album": "Cowboys From Hell",
     "anno_uscita_originale": "1990",
-    "etichetta": "ATCO Records"
+    "etichetta": "ATCO Records",
+    "_backfilled": true
   },
   {
     "id": "3278467",
@@ -6443,7 +6479,8 @@
     ],
     "titolo_album": "From Mars To Sirius",
     "anno_uscita_originale": "2011-11-00",
-    "etichetta": "Listenable Records"
+    "etichetta": "Listenable Records",
+    "_backfilled": true
   },
   {
     "id": "513811",
@@ -6732,7 +6769,8 @@
     ],
     "titolo_album": "Jar Of Flies / Sap",
     "anno_uscita_originale": "1994-01-18",
-    "etichetta": "Columbia"
+    "etichetta": "Columbia",
+    "_backfilled": true
   },
   {
     "id": "162920",
@@ -6807,7 +6845,8 @@
     ],
     "titolo_album": "Phantom Slasher EP",
     "anno_uscita_originale": "2003-06-00",
-    "etichetta": "Noid Recordings"
+    "etichetta": "Noid Recordings",
+    "_backfilled": true
   },
   {
     "id": "371869",
@@ -7027,7 +7066,8 @@
     ],
     "titolo_album": "Boston",
     "anno_uscita_originale": "1982",
-    "etichetta": "Epic"
+    "etichetta": "Epic",
+    "_backfilled": true
   },
   {
     "id": "1610433",
@@ -7145,7 +7185,8 @@
     ],
     "titolo_album": "Fallen Angel",
     "anno_uscita_originale": "1978",
-    "etichetta": "Bronze"
+    "etichetta": "Bronze",
+    "_backfilled": true
   },
   {
     "id": "3653532",
@@ -7340,7 +7381,8 @@
     ],
     "titolo_album": "Apocalyptic Love",
     "anno_uscita_originale": "2012-05-22",
-    "etichetta": "Roadrunner Records"
+    "etichetta": "Roadrunner Records",
+    "_backfilled": true
   },
   {
     "id": "FALLBACK_388419",
@@ -7348,7 +7390,8 @@
     "stato_copertina": "??",
     "note_stato": "",
     "stato_catalogo": "Wishlist",
-    "foto_album": []
+    "foto_album": [],
+    "_backfilled": true
   },
   {
     "id": "393266",
@@ -7549,7 +7592,8 @@
     ],
     "titolo_album": "Pyromania",
     "anno_uscita_originale": "1983-01-17",
-    "etichetta": "Mercury"
+    "etichetta": "Mercury",
+    "_backfilled": true
   },
   {
     "id": "1063727",
@@ -7657,7 +7701,8 @@
     ],
     "titolo_album": "Painkiller",
     "anno_uscita_originale": "1990-09-00",
-    "etichetta": "CBS"
+    "etichetta": "CBS",
+    "_backfilled": true
   },
   {
     "id": "474072",
@@ -7777,7 +7822,8 @@
     ],
     "titolo_album": "The Sound Of Perseverance",
     "anno_uscita_originale": "2000",
-    "etichetta": "Nuclear Blast"
+    "etichetta": "Nuclear Blast",
+    "_backfilled": true
   },
   {
     "id": "FALLBACK_470718",
@@ -7785,7 +7831,8 @@
     "stato_copertina": "??",
     "note_stato": "",
     "stato_catalogo": "Wishlist",
-    "foto_album": []
+    "foto_album": [],
+    "_backfilled": true
   },
   {
     "id": "24404510",
@@ -7902,7 +7949,8 @@
     ],
     "titolo_album": "Netherheaven",
     "anno_uscita_originale": "2022-09-09",
-    "etichetta": "Metal Blade Records"
+    "etichetta": "Metal Blade Records",
+    "_backfilled": true
   },
   {
     "id": "3469236",
@@ -8045,7 +8093,8 @@
     ],
     "titolo_album": "Torture",
     "anno_uscita_originale": "2012-03-00",
-    "etichetta": "Metal Blade Records"
+    "etichetta": "Metal Blade Records",
+    "_backfilled": true
   },
   {
     "id": "FALLBACK_369671",
@@ -8053,7 +8102,8 @@
     "stato_copertina": "??",
     "note_stato": "",
     "stato_catalogo": "Wishlist",
-    "foto_album": []
+    "foto_album": [],
+    "_backfilled": true
   },
   {
     "id": "8568278",
@@ -8195,7 +8245,8 @@
     ],
     "titolo_album": "The Evil Divide",
     "anno_uscita_originale": "2016-05-27",
-    "etichetta": "Nuclear Blast"
+    "etichetta": "Nuclear Blast",
+    "_backfilled": true
   },
   {
     "id": "370515",
@@ -8312,7 +8363,8 @@
     ],
     "titolo_album": "In The Court Of The Crimson King (An Observation By King Crimson)",
     "anno_uscita_originale": "1972",
-    "etichetta": "Island Records"
+    "etichetta": "Island Records",
+    "_backfilled": true
   },
   {
     "id": "FALLBACK_636235",
@@ -8322,7 +8374,8 @@
     "stato_catalogo": "Personale",
     "foto_album": [
       "Img/Skeleta_Foto/Fronte.jpg"
-    ]
+    ],
+    "_backfilled": true
   },
   {
     "id": "302581",
@@ -8382,7 +8435,8 @@
     ],
     "titolo_album": "London Calling",
     "anno_uscita_originale": "2003",
-    "etichetta": "Playable Music"
+    "etichetta": "Playable Music",
+    "_backfilled": true
   },
   {
     "id": "373922",
@@ -8568,7 +8622,8 @@
       "Folk Rock"
     ],
     "titolo_album": "Led Zeppelin III",
-    "etichetta": "Atlantic"
+    "etichetta": "Atlantic",
+    "_backfilled": true
   },
   {
     "id": "373922",
@@ -8754,7 +8809,8 @@
       "Folk Rock"
     ],
     "titolo_album": "Led Zeppelin III",
-    "etichetta": "Atlantic"
+    "etichetta": "Atlantic",
+    "_backfilled": true
   },
   {
     "id": "373922",
@@ -8940,7 +8996,8 @@
       "Folk Rock"
     ],
     "titolo_album": "Led Zeppelin III",
-    "etichetta": "Atlantic"
+    "etichetta": "Atlantic",
+    "_backfilled": true
   },
   {
     "id": "FALLBACK_219430",
@@ -8948,7 +9005,8 @@
     "stato_copertina": "??",
     "note_stato": "",
     "stato_catalogo": "Wishlist",
-    "foto_album": []
+    "foto_album": [],
+    "_backfilled": true
   },
   {
     "id": "174902",
@@ -9126,7 +9184,8 @@
     ],
     "titolo_album": "Eye In The Sky",
     "anno_uscita_originale": "1982",
-    "etichetta": "Arista"
+    "etichetta": "Arista",
+    "_backfilled": true
   },
   {
     "id": "368686",
@@ -9312,7 +9371,8 @@
     ],
     "titolo_album": "Let There Be Rock",
     "anno_uscita_originale": "1977",
-    "etichetta": "ATCO Records"
+    "etichetta": "ATCO Records",
+    "_backfilled": true
   },
   {
     "id": "FALLBACK_334388",
@@ -9320,7 +9380,8 @@
     "stato_copertina": "??",
     "note_stato": "",
     "stato_catalogo": "Wishlist",
-    "foto_album": []
+    "foto_album": [],
+    "_backfilled": true
   },
   {
     "id": "14761844",
@@ -9513,7 +9574,8 @@
     ],
     "titolo_album": "The Slow Rush",
     "anno_uscita_originale": "2020-02-14",
-    "etichetta": "Island Records"
+    "etichetta": "Island Records",
+    "_backfilled": true
   },
   {
     "id": "FALLBACK_694409",
@@ -9521,7 +9583,8 @@
     "stato_copertina": "??",
     "note_stato": "",
     "stato_catalogo": "Wishlist",
-    "foto_album": []
+    "foto_album": [],
+    "_backfilled": true
   },
   {
     "id": "381427",
@@ -9747,7 +9810,8 @@
     ],
     "titolo_album": "Out Of Time",
     "anno_uscita_originale": "1991",
-    "etichetta": "Warner Bros. Records"
+    "etichetta": "Warner Bros. Records",
+    "_backfilled": true
   },
   {
     "id": "513813",
@@ -9978,7 +10042,8 @@
     ],
     "titolo_album": "Dirt",
     "anno_uscita_originale": "1992",
-    "etichetta": "Columbia"
+    "etichetta": "Columbia",
+    "_backfilled": true
   },
   {
     "id": "4046850",
@@ -10525,7 +10590,8 @@
     ],
     "titolo_album": "Grrr!",
     "anno_uscita_originale": "2012-11-13",
-    "etichetta": "ABKCO"
+    "etichetta": "ABKCO",
+    "_backfilled": true
   },
   {
     "id": "611596",
@@ -10771,7 +10837,8 @@
     ],
     "titolo_album": "Mind Games",
     "anno_uscita_originale": "1980",
-    "etichetta": "Capitol Records"
+    "etichetta": "Capitol Records",
+    "_backfilled": true
   },
   {
     "id": "375628",
@@ -10970,7 +11037,8 @@
     "styles": [],
     "titolo_album": "Abbey Road",
     "anno_uscita_originale": "1973",
-    "etichetta": "Apple Records"
+    "etichetta": "Apple Records",
+    "_backfilled": true
   },
   {
     "id": "1214196",
@@ -11081,7 +11149,8 @@
       "Arena Rock"
     ],
     "titolo_album": "The Division Bell",
-    "etichetta": "Columbia (2)"
+    "etichetta": "Columbia (2)",
+    "_backfilled": true
   },
   {
     "id": "24735278",
@@ -11484,7 +11553,8 @@
     ],
     "titolo_album": "1967-1970 The Real Alternate Album - Blue",
     "anno_uscita_originale": "2018",
-    "etichetta": "Sapple"
+    "etichetta": "Sapple",
+    "_backfilled": true
   },
   {
     "id": "367567",
@@ -11569,7 +11639,8 @@
       "Pop Rock"
     ],
     "titolo_album": "Let It Be",
-    "etichetta": "Apple Records"
+    "etichetta": "Apple Records",
+    "_backfilled": true
   },
   {
     "id": "2334540",
@@ -11842,7 +11913,8 @@
     ],
     "titolo_album": "Time Flies... 1994-2009",
     "anno_uscita_originale": "2010-06-14",
-    "etichetta": "Big Brother"
+    "etichetta": "Big Brother",
+    "_backfilled": true
   },
   {
     "id": "1179741",
@@ -12130,7 +12202,8 @@
     ],
     "titolo_album": "In Your Honor",
     "anno_uscita_originale": "2005-07-11",
-    "etichetta": "RCA"
+    "etichetta": "RCA",
+    "_backfilled": true
   },
   {
     "id": "389395",
@@ -12303,7 +12376,8 @@
     ],
     "titolo_album": "Dr. Feelgood",
     "anno_uscita_originale": "1989-09-01",
-    "etichetta": "Elektra"
+    "etichetta": "Elektra",
+    "_backfilled": true
   },
   {
     "id": "6055344",
@@ -12716,7 +12790,8 @@
     ],
     "titolo_album": "Live At The Rainbow '74",
     "anno_uscita_originale": "2014-09-23",
-    "etichetta": "Virgin EMI Records"
+    "etichetta": "Virgin EMI Records",
+    "_backfilled": true
   },
   {
     "id": "586935",
@@ -12986,7 +13061,8 @@
     ],
     "titolo_album": "Greatest Hits III",
     "anno_uscita_originale": "1999",
-    "etichetta": "Parlophone"
+    "etichetta": "Parlophone",
+    "_backfilled": true
   },
   {
     "id": "411514",
@@ -13168,7 +13244,8 @@
     ],
     "titolo_album": "The Game",
     "anno_uscita_originale": "1980",
-    "etichetta": "EMI"
+    "etichetta": "EMI",
+    "_backfilled": true
   },
   {
     "id": "371953",
@@ -13458,7 +13535,8 @@
     ],
     "titolo_album": "The Works",
     "anno_uscita_originale": "1984",
-    "etichetta": "EMI"
+    "etichetta": "EMI",
+    "_backfilled": true
   },
   {
     "id": "586935",
@@ -13728,7 +13806,8 @@
     ],
     "titolo_album": "Greatest Hits III",
     "anno_uscita_originale": "1999",
-    "etichetta": "Parlophone"
+    "etichetta": "Parlophone",
+    "_backfilled": true
   },
   {
     "id": "371966",
@@ -13940,7 +14019,8 @@
     ],
     "titolo_album": "A Night At The Opera",
     "anno_uscita_originale": "1975-11-21",
-    "etichetta": "EMI"
+    "etichetta": "EMI",
+    "_backfilled": true
   },
   {
     "id": "414962",
@@ -14187,7 +14267,8 @@
     ],
     "titolo_album": "A Kind Of Magic",
     "anno_uscita_originale": "1986",
-    "etichetta": "EMI"
+    "etichetta": "EMI",
+    "_backfilled": true
   },
   {
     "id": "398783",
@@ -14321,7 +14402,8 @@
     ],
     "titolo_album": "Innuendo",
     "anno_uscita_originale": "1991-01-14",
-    "etichetta": "Parlophone"
+    "etichetta": "Parlophone",
+    "_backfilled": true
   },
   {
     "id": "119949",
@@ -14457,7 +14539,8 @@
     "styles": [],
     "titolo_album": "This Is Called Hip Hop / Queens Brooklyn Connection",
     "anno_uscita_originale": "1988",
-    "etichetta": "Capitol Records"
+    "etichetta": "Capitol Records",
+    "_backfilled": true
   },
   {
     "id": "218902",
@@ -14530,7 +14613,8 @@
     ],
     "titolo_album": "Queen Samantha II",
     "anno_uscita_originale": "1979",
-    "etichetta": "RCA Victor"
+    "etichetta": "RCA Victor",
+    "_backfilled": true
   },
   {
     "id": "371980",
@@ -14754,7 +14838,8 @@
     ],
     "titolo_album": "Live Killers",
     "anno_uscita_originale": "1979-06-22",
-    "etichetta": "EMI"
+    "etichetta": "EMI",
+    "_backfilled": true
   },
   {
     "id": "475618",
@@ -14974,7 +15059,8 @@
     ],
     "titolo_album": "The Miracle",
     "anno_uscita_originale": "1989",
-    "etichetta": "Parlophone"
+    "etichetta": "Parlophone",
+    "_backfilled": true
   },
   {
     "id": "803525",
@@ -15147,7 +15233,8 @@
     ],
     "titolo_album": "Made In Heaven",
     "anno_uscita_originale": "1995",
-    "etichetta": "Parlophone"
+    "etichetta": "Parlophone",
+    "_backfilled": true
   },
   {
     "id": "411232",
@@ -15295,7 +15382,8 @@
     ],
     "titolo_album": "Sheer Heart Attack",
     "anno_uscita_originale": "1974-11-01",
-    "etichetta": "EMI"
+    "etichetta": "EMI",
+    "_backfilled": true
   },
   {
     "id": "376152",
@@ -15767,7 +15855,8 @@
     ],
     "titolo_album": "Greatest Hits",
     "anno_uscita_originale": "1981-10-26",
-    "etichetta": "EMI"
+    "etichetta": "EMI",
+    "_backfilled": true
   },
   {
     "id": "383102",
@@ -15992,7 +16081,8 @@
     ],
     "titolo_album": "A Day At The Races",
     "anno_uscita_originale": "1976",
-    "etichetta": "Elektra"
+    "etichetta": "Elektra",
+    "_backfilled": true
   },
   {
     "id": "411009",
@@ -16222,7 +16312,8 @@
     ],
     "titolo_album": "Jazz",
     "anno_uscita_originale": "1978-11-10",
-    "etichetta": "EMI"
+    "etichetta": "EMI",
+    "_backfilled": true
   },
   {
     "id": "349067",
@@ -16492,7 +16583,8 @@
     ],
     "titolo_album": "Flash Gordon (Original Soundtrack Music)",
     "anno_uscita_originale": "1980",
-    "etichetta": "EMI"
+    "etichetta": "EMI",
+    "_backfilled": true
   },
   {
     "id": "FALLBACK_245285",
@@ -16500,7 +16592,8 @@
     "stato_copertina": "10",
     "note_stato": "Collezione DeAgostini, Live Concert",
     "stato_catalogo": "Eredità",
-    "foto_album": []
+    "foto_album": [],
+    "_backfilled": true
   },
   {
     "id": "13162528",
@@ -16802,7 +16895,8 @@
     ],
     "titolo_album": "Bohemian Rhapsody (The Original Soundtrack)",
     "anno_uscita_originale": "2019-02-08",
-    "etichetta": "Hollywood Records"
+    "etichetta": "Hollywood Records",
+    "_backfilled": true
   },
   {
     "id": "FALLBACK_443222",
@@ -16810,7 +16904,8 @@
     "stato_copertina": "10",
     "note_stato": "Collezione DeAgostini, Triplo vinile",
     "stato_catalogo": "Eredità",
-    "foto_album": []
+    "foto_album": [],
+    "_backfilled": true
   },
   {
     "id": "373176",
@@ -17158,7 +17253,8 @@
     ],
     "titolo_album": "Hot Space",
     "anno_uscita_originale": "1982-05-00",
-    "etichetta": "EMI"
+    "etichetta": "EMI",
+    "_backfilled": true
   },
   {
     "id": "12685870",
@@ -17373,7 +17469,8 @@
     ],
     "titolo_album": "Live At Wembley Stadium",
     "anno_uscita_originale": "2018-11-03",
-    "etichetta": "Virgin EMI Records"
+    "etichetta": "Virgin EMI Records",
+    "_backfilled": true
   },
   {
     "id": "2264310",
@@ -17741,7 +17838,8 @@
     ],
     "titolo_album": "Rock Montreal",
     "anno_uscita_originale": "2007-10-29",
-    "etichetta": "Parlophone"
+    "etichetta": "Parlophone",
+    "_backfilled": true
   },
   {
     "id": "589763",
@@ -18063,7 +18161,8 @@
     ],
     "titolo_album": "Tokyo Tapes",
     "anno_uscita_originale": "1978-08-15",
-    "etichetta": "RCA Extra"
+    "etichetta": "RCA Extra",
+    "_backfilled": true
   },
   {
     "id": "2628143",
@@ -18231,6 +18330,7 @@
     ],
     "titolo_album": "The Dark Side Of The Moon",
     "anno_uscita_originale": "1984",
-    "etichetta": "Harvest"
+    "etichetta": "Harvest",
+    "_backfilled": true
   }
 ]
