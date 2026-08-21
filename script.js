@@ -5,32 +5,42 @@ const { createDbWorker } = sqlJsHttpvfs;
 
 window.sqliteWorker = null; // Uso window in modo che sia disponibile ovunque
 let sqliteWorker = null;
+let _sqliteInitPromise = null; // Promessa singola per evitare inizializzazioni multiple
 
 async function initSqliteDb() {
   if (sqliteWorker) return sqliteWorker;
-  try {
-    sqliteWorker = await createDbWorker(
-      [
-        {
-          from: "inline",
-          config: {
-            serverMode: "full",
-            url: "./master_catalog.db",
-            requestChunkSize: 8192,
+  // Se una inizializzazione è già in corso, attendi quella invece di lanciarne un'altra
+  if (_sqliteInitPromise) return _sqliteInitPromise;
+  
+  _sqliteInitPromise = (async () => {
+    try {
+      const worker = await createDbWorker(
+        [
+          {
+            from: "inline",
+            config: {
+              serverMode: "full",
+              url: "./master_catalog.db",
+              requestChunkSize: 8192,
+            },
           },
-        },
-      ],
-      "./sqlite.worker.js",
-      "./sql-wasm.wasm",
-      100 * 1024 * 1024 // 100MB limite per permettere query complesse
-    );
-    window.sqliteWorker = sqliteWorker;
-    console.log("Local SQLite DB initialized successfully via HTTP VFS.");
-    return sqliteWorker;
-  } catch (error) {
-    console.error("Failed to initialize SQLite DB via HTTP VFS:", error);
-    return null;
-  }
+        ],
+        "./sqlite.worker.js",
+        "./sql-wasm.wasm",
+        100 * 1024 * 1024 // 100MB limite per permettere query complesse
+      );
+      sqliteWorker = worker;
+      window.sqliteWorker = worker;
+      console.log("Local SQLite DB initialized successfully via HTTP VFS.");
+      return worker;
+    } catch (error) {
+      console.error("Failed to initialize SQLite DB via HTTP VFS:", error);
+      _sqliteInitPromise = null; // Permetti un nuovo tentativo in caso di errore
+      return null;
+    }
+  })();
+  
+  return _sqliteInitPromise;
 }
 
 
@@ -39,7 +49,12 @@ async function initSqliteDb() {
 async function joinVinylDataAsync(userVinyls) {
     if (!userVinyls || userVinyls.length === 0) return [];
     
-    // Fallback if sqlite is not ready
+    // Se il worker non è pronto ma è in fase di inizializzazione, attendi
+    if (!sqliteWorker && _sqliteInitPromise) {
+        await _sqliteInitPromise;
+    }
+    
+    // Fallback if sqlite is still not ready after waiting
     if (!sqliteWorker) return userVinyls;
 
     const ids = userVinyls.map(uv => `'${uv.id}'`).join(',');
@@ -348,6 +363,21 @@ const authModal = document.getElementById('auth-modal');
     authModal.classList.add('active');
     authModal.setAttribute('aria-hidden', 'false');
   } else {
+    // Mostra placeholder di caricamento PRIMA di iniziare il fetch asincrono
+    const _loadingCenterContent = document.getElementById('center-content');
+    if (_loadingCenterContent) {
+      _loadingCenterContent.innerHTML = `
+        <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100%; text-align:center; padding: 20px;">
+          <h2 style="color:#ff9ffc; margin-bottom: 15px; font-size: 1.6rem; font-weight: 800;" class="shimmer-text">Caricamento vinili in corso...</h2>
+          <p style="color:#9ca3af;">Connessione al database in corso...</p>
+        </div>
+      `;
+    }
+    const _loadingWheel = document.getElementById('option-wheel');
+    if (_loadingWheel) {
+      _loadingWheel.innerHTML = '<div class="wheel-item" style="opacity:0.5; font-style:italic;">Caricamento...</div>';
+    }
+    
     try {
       await initSqliteDb(); // Inizializza il worker SQLite HTTP VFS
       let rawUserVinyls = [];
@@ -396,6 +426,45 @@ const authModal = document.getElementById('auth-modal');
       if (typeof showToast === 'function') showToast("Avvio Offline: caricata cache locale");
     }
   }
+
+// Flag globale per sapere se i dati sono stati completamente idratati con SQLite
+window._vinylDataReady = ALL_VINILI.length > 0;
+
+// Backfill differito: se ALL_VINILI ha record senza metadata (titolo_album/artista),
+// significa che joinVinylDataAsync non ha potuto completare il merge con SQLite.
+// Ritenta il merge non appena sqliteWorker è disponibile.
+async function deferredBackfillIfNeeded() {
+  if (ALL_VINILI.length === 0) return;
+  
+  const hasMissing = ALL_VINILI.some(v => 
+    (!v.titolo_album || !v.artista) && !String(v.id).startsWith("FALLBACK_") && !v._backfilled
+  );
+  
+  if (!hasMissing) return; // Tutti i dati sono già completi
+  
+  // Attendi che sqliteWorker sia pronto
+  if (!sqliteWorker && _sqliteInitPromise) {
+    await _sqliteInitPromise;
+  }
+  if (!sqliteWorker) return; // Worker non disponibile
+  
+  try {
+    console.log("[Backfill] Re-merge batch di", ALL_VINILI.length, "vinili con dati SQLite...");
+    ALL_VINILI = await joinVinylDataAsync(ALL_VINILI);
+    safeSave('app_all_vinyls_cache', ALL_VINILI);
+    
+    // Forza il re-render completo della collezione
+    if (typeof applyFiltering === 'function') {
+      applyFiltering();
+    }
+    console.log("[Backfill] Re-merge completato con successo.");
+  } catch(e) {
+    console.error("[Backfill] Errore nel re-merge differito:", e);
+  }
+}
+
+// Lancia il backfill differito (non blocca l'esecuzione principale)
+deferredBackfillIfNeeded();
 
 // HELPER PER PULIZIA TESTI E GENERAZIONE COVER FALLBACK IN SVG
 function cleanMusicTitle(str) {
@@ -1195,8 +1264,15 @@ function renderWheel() {
   filteredVinili.forEach((vinile, idx) => {
     const item = document.createElement("div");
     item.className = "wheel-item";
-    const displayName = cleanMusicTitle(vinile.titolo_album || "Sconosciuto");
+    const hasMeta = vinile.titolo_album && vinile.titolo_album !== '';
+    const displayName = hasMeta ? cleanMusicTitle(vinile.titolo_album) : "Caricamento vinili in corso...";
     item.textContent = displayName;
+    
+    // Se il vinile non ha ancora i metadati, mostra uno stile di caricamento
+    if (!hasMeta && !String(vinile.id).startsWith("FALLBACK_")) {
+      item.style.opacity = '0.5';
+      item.style.fontStyle = 'italic';
+    }
     
     item.addEventListener("click", () => {
       selectIndex(idx);
@@ -1239,6 +1315,8 @@ function updateWheel() {
 }
 
 async function updateCenterContent(index) {
+  // Guardia di sicurezza: se index non è definito, usa l'indice selezionato corrente
+  if (index === undefined || index === null) index = selectedIndex;
   if (!centerContent) return;
   
   if (filteredVinili.length === 0) {
@@ -1290,7 +1368,7 @@ async function updateCenterContent(index) {
          
          try {
              // 2. Attesa dei Dati (Await) da SQLite
-             const sql = \`SELECT * FROM vinyls WHERE id = '\${String(vinile.id).replace(/'/g, "")}'\`;
+             const sql = `SELECT * FROM vinyls WHERE id = '${String(vinile.id).replace(/'/g, "")}'`;
              const results = await window.sqliteWorker.db.query(sql);
              
              if (results && results.length > 0) {
@@ -1306,6 +1384,12 @@ async function updateCenterContent(index) {
                  
                  Object.assign(vinile, globalData, { _backfilled: true });
                  
+                 // Aggiorniamo anche ALL_VINILI in memoria
+                 const globalIdx = ALL_VINILI.findIndex(v => String(v.id) === String(vinile.id));
+                 if (globalIdx !== -1) {
+                     Object.assign(ALL_VINILI[globalIdx], globalData, { _backfilled: true });
+                 }
+                 
                  // Aggiorniamo la cache globale
                  const cachedDataStr = localStorage.getItem('app_all_vinyls_cache');
                  if (cachedDataStr) {
@@ -1319,7 +1403,7 @@ async function updateCenterContent(index) {
                  
                  // 3. Forzare il Re-render: ridisegniamo esplicitamente l'UI non appena i dati sono pronti
                  updateCenterContent(index);
-                 if (typeof renderWheel === 'function') renderWheel();
+                 renderWheel();
                  return; // Interrompe il rendering corrente, partirà quello nuovo
              }
          } catch(e) {
@@ -3302,7 +3386,7 @@ if (currencySelect) {
   currencySelect.addEventListener('change', (e) => {
     localStorage.setItem('app_user_currency', e.target.value);
     showToast(`💱 Valuta impostata su ${e.target.value}`);
-    updateCenterContent();
+    updateCenterContent(selectedIndex);
   });
 }
 
