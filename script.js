@@ -70,7 +70,17 @@ async function joinVinylDataAsync(userVinyls) {
         
         return userVinyls.map(uv => {
             const globalData = masterMap[uv.id] || {};
-            return { ...globalData, ...uv };
+            
+            // Applica la mappatura dei campi base
+            if (globalData.title && !globalData.titolo_album) globalData.titolo_album = globalData.title;
+            if (globalData.artists && globalData.artists.length > 0 && !globalData.artista) {
+                globalData.artista = typeof globalData.artists[0] === 'string' ? globalData.artists[0] : globalData.artists[0].name;
+            }
+            if (globalData.artist && !globalData.artista) globalData.artista = globalData.artist;
+            if (globalData.year && !globalData.anno_uscita_originale) globalData.anno_uscita_originale = globalData.year;
+            if (globalData.genres && globalData.genres.length > 0 && !globalData.genere) globalData.genere = globalData.genres.join(', ');
+            
+            return { ...globalData, ...uv, _backfilled: true };
         });
     } catch(e) {
         console.error("Error joining vinyl data:", e);
