@@ -1,4 +1,4 @@
-// Importa il database dal file esterno
+﻿// Importa il database dal file esterno
 import { fetchDatabaseFromGitHub, pushDatabaseToGitHub, fetchUserProfile, pushUserProfile, fetchAllUsersIndex, fetchMasterCatalogFromGitHub, pushMasterCatalogToGitHub, fetchProposalsFromGitHub, pushProposalsToGitHub } from './github-sync.js';
 import sqlJsHttpvfs from "https://esm.sh/sql.js-httpvfs@0.8.12";
 const { createDbWorker } = sqlJsHttpvfs;
@@ -9,7 +9,7 @@ let _sqliteInitPromise = null; // Promessa singola per evitare inizializzazioni 
 
 async function initSqliteDb() {
   if (sqliteWorker) return sqliteWorker;
-  // Se una inizializzazione è già in corso, attendi quella invece di lanciarne un'altra
+  // Se una inizializzazione Ã¨ giÃ  in corso, attendi quella invece di lanciarne un'altra
   if (_sqliteInitPromise) return _sqliteInitPromise;
   
   _sqliteInitPromise = (async () => {
@@ -49,7 +49,7 @@ async function initSqliteDb() {
 async function joinVinylDataAsync(userVinyls) {
     if (!userVinyls || userVinyls.length === 0) return [];
     
-    // Se il worker non è pronto ma è in fase di inizializzazione, attendi
+    // Se il worker non Ã¨ pronto ma Ã¨ in fase di inizializzazione, attendi
     if (!sqliteWorker && _sqliteInitPromise) {
         await _sqliteInitPromise;
     }
@@ -111,7 +111,7 @@ function updateLocalRateIndicator() {
   if (!indicator) return;
   const now = Date.now();
   
-  // Rimuove i timestamp più vecchi di 60 secondi
+  // Rimuove i timestamp piÃ¹ vecchi di 60 secondi
   apiRequestTimestamps = apiRequestTimestamps.filter(t => now - t < 60000);
   
   const remaining = Math.max(0, 60 - apiRequestTimestamps.length);
@@ -164,7 +164,7 @@ function safeSave(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
   } catch (e) {
     if (e.name === 'QuotaExceededError' || e.name === 'QUOTA_EXCEEDED_ERR') {
-      if (typeof showToast === 'function') showToast('⚠️ Spazio esaurito! Esporta un backup.');
+      if (typeof showToast === 'function') showToast('âš ï¸ Spazio esaurito! Esporta un backup.');
       console.error('LocalStorage quota exceeded');
     }
   }
@@ -182,7 +182,7 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-// Rilevamento se l'app è già stata installata ed avviata come PWA standalone
+// Rilevamento se l'app Ã¨ giÃ  stata installata ed avviata come PWA standalone
 function isAppInstalled() {
   const isStandalone = window.matchMedia('(display-mode: standalone)').matches ||
                        window.navigator.standalone === true ||
@@ -235,7 +235,7 @@ if (installPwaBtn) {
       deferredPrompt.prompt();
       const { outcome } = await deferredPrompt.userChoice;
       if (outcome === 'accepted') {
-        showToast("🎉 App Installata sulla schermata Home!");
+        showToast("ðŸŽ‰ App Installata sulla schermata Home!");
         checkAppInstalledState();
       }
       deferredPrompt = null;
@@ -335,7 +335,7 @@ window.checkAdminAccess = function(actionType = '') {
 
     const onSubmit = () => {
       if (input.value === 'Yuta') {
-        if (typeof showToast === 'function') showToast("✅ Azione autorizzata!");
+        if (typeof showToast === 'function') showToast("âœ… Azione autorizzata!");
         cleanup();
         resolve(true);
       } else {
@@ -395,7 +395,7 @@ const authModal = document.getElementById('auth-modal');
           rawUserVinyls = await fetchDatabaseFromGitHub(currentUser);
       }
       
-      // Merge con la cache locale per mostrare i titoli immediatamente se già scaricati
+      // Merge con la cache locale per mostrare i titoli immediatamente se giÃ  scaricati
       const cachedStr = localStorage.getItem('app_all_vinyls_cache');
       let cachedMap = {};
       if (cachedStr) {
@@ -416,7 +416,7 @@ const authModal = document.getElementById('auth-modal');
          if (topNav) {
             topNav.innerHTML = `
               <button onclick="window.openDatabaseModal()" class="action-pill-btn filter-btn-pill" style="background: rgba(236,72,153,0.2); border-color: #ec4899; color: white;">
-                🌍 Esplora Database
+                ðŸŒ Esplora Database
               </button>
               <button id="open-quick-val-btn" class="icon-circle-btn" aria-label="Valuta Veloce" title="Valuta Veloce">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
@@ -455,7 +455,7 @@ window._vinylDataReady = ALL_VINILI.length > 0;
 
 // Backfill differito: se ALL_VINILI ha record senza metadata (titolo_album/artista),
 // significa che joinVinylDataAsync non ha potuto completare il merge con SQLite.
-// Ritenta il merge non appena sqliteWorker è disponibile.
+// Ritenta il merge non appena sqliteWorker Ã¨ disponibile.
 async function deferredBackfillIfNeeded() {
   if (ALL_VINILI.length === 0) return;
   
@@ -463,7 +463,7 @@ async function deferredBackfillIfNeeded() {
     (!v.titolo_album || !v.artista) && !String(v.id).startsWith("FALLBACK_") && !v._backfilled
   );
   
-  if (!hasMissing) return; // Tutti i dati sono già completi
+  if (!hasMissing) return; // Tutti i dati sono giÃ  completi
   
   // Attendi che sqliteWorker sia pronto
   if (!sqliteWorker && _sqliteInitPromise) {
@@ -514,8 +514,8 @@ function parseArtistAndAlbum(rawTitle, rawArtist, rawAlbum) {
   let album = cleanMusicTitle(rawAlbum);
   const fullTitle = cleanMusicTitle(rawTitle);
 
-  if (fullTitle.includes(' - ') || fullTitle.includes(' — ')) {
-    const parts = fullTitle.split(/\s+[\-—]\s+/);
+  if (fullTitle.includes(' - ') || fullTitle.includes(' â€” ')) {
+    const parts = fullTitle.split(/\s+[\-â€”]\s+/);
     const candidateArtist = cleanMusicTitle(parts[0]);
     const candidateAlbum = cleanMusicTitle(parts.slice(1).join(' - '));
 
@@ -538,99 +538,101 @@ function generateSVGAlbumCover(artist, album) {
   return 'data:image/svg+xml;utf8,' + encodeURIComponent(svgContent);
 }
 
-// ESTRAZIONE COLORI REALE TRAMITE CANVAS 2D DA ELEMENTO <img> DELLA COPERTINA
+// ESTRAZIONE COLORI
 window.extractDominantColors = function extractDominantColors(imgElement) {
-  if (!imgElement) return;
+  if (!imgElement || !imgElement.src) return;
 
-  try {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    canvas.width = 20;
-    canvas.height = 20;
-
-    // Disegna l'immagine reale della copertina sul canvas miniatura 20x20
-    ctx.drawImage(imgElement, 0, 0, 20, 20);
-    const imgData = ctx.getImageData(0, 0, 20, 20).data;
-
-    let rSum = 0, gSum = 0, bSum = 0, validPixelCount = 0;
-    let maxSat = -1;
-    let vibrantColor = { r: 200, g: 210, b: 225 }; // Cold silver default
-    let maxSatPixels = 0;
-    let totalSatSum = 0;
-
-    // Analizza ciascuno dei 400 pixel
-    for (let i = 0; i < imgData.length; i += 4) {
-      const r = imgData[i];
-      const g = imgData[i + 1];
-      const b = imgData[i + 2];
-      const a = imgData[i + 3];
-
-      if (a < 128) continue; // Ignora pixel trasparenti
-
-      rSum += r;
-      gSum += g;
-      bSum += b;
-      validPixelCount++;
-
-      const max = Math.max(r, g, b);
-      const min = Math.min(r, g, b);
-      const delta = max - min;
-      const sat = max === 0 ? 0 : delta / max;
-      totalSatSum += sat;
-
-      if (sat > 0.18) maxSatPixels++;
-
-      // Trova la tonalità con maggiore saturazione tra i pixel non sovraesposti
-      if (sat > maxSat && max > 30 && min < 240) {
-        maxSat = sat;
-        vibrantColor = { r, g, b };
-      }
-    }
-
-    if (validPixelCount === 0) return;
-
-    const avgR = Math.round(rSum / validPixelCount);
-    const avgG = Math.round(gSum / validPixelCount);
-    const avgB = Math.round(bSum / validPixelCount);
-    const avgSat = totalSatSum / validPixelCount;
-
-    let color1 = "#cbd5e1";
-    let color2 = "#0f172a";
-
-    // GESTIONE COPERTINE B&N, MONOCROMATICHE O SCURE (NO TONI VIOLA/MARRONI CASUALI)
-    if (avgSat < 0.12 || maxSat < 0.15 || maxSatPixels < 15) {
-      const brightness = (avgR * 0.299 + avgG * 0.587 + avgB * 0.114);
-      if (brightness < 65) {
-        color1 = "#94a3b8"; // Silver slate ice glow
-        color2 = "#090d16"; // Deep anthracite OLED
-      } else {
-        color1 = "#f1f5f9"; // Pure ice white
-        color2 = "#1e293b"; // Dark slate
-      }
-    } else {
-      // COPERTINE CROMATICHE CON COLORI VIVACI (CALDI O FREDDI)
-      color1 = `#${vibrantColor.r.toString(16).padStart(2, '0')}${vibrantColor.g.toString(16).padStart(2, '0')}${vibrantColor.b.toString(16).padStart(2, '0')}`;
-      color2 = `#${avgR.toString(16).padStart(2, '0')}${avgG.toString(16).padStart(2, '0')}${avgB.toString(16).padStart(2, '0')}`;
-    }
-
-    // AGGIORNAMENTO VARIABILI CSS GLOBALI DI :root
-    document.documentElement.style.setProperty('--theme-glow-1', color1);
-    document.documentElement.style.setProperty('--theme-glow-2', color2);
-    document.documentElement.style.setProperty('--primary-color', color1);
-    document.documentElement.style.setProperty('--accent-color', color2);
-
-    // PASSA I COLORI ALLO SHADER THREE.JS ED ALLA DOCK BAR
-    updateDynamicAlbumBackground(color1, color2);
-  } catch (err) {
-    // Fallback sicuro se il canvas viene bloccato per regole CORS su immagini cross-origin
-    const fallbackTop = "#94a3b8";
-    const fallbackBottom = "#0f172a";
-    document.documentElement.style.setProperty('--theme-glow-1', fallbackTop);
-    document.documentElement.style.setProperty('--theme-glow-2', fallbackBottom);
-    document.documentElement.style.setProperty('--primary-color', fallbackTop);
-    document.documentElement.style.setProperty('--accent-color', fallbackBottom);
-    updateDynamicAlbumBackground(fallbackTop, fallbackBottom);
+  const originalSrc = imgElement.src;
+  
+  let proxySrc = originalSrc;
+  if (originalSrc.startsWith('http') && !originalSrc.includes('corsproxy.io')) {
+      proxySrc = 'https://corsproxy.io/?url=' + encodeURIComponent(originalSrc);
   }
+
+  const tempImg = new Image();
+  tempImg.crossOrigin = "Anonymous";
+  tempImg.onload = function() {
+    try {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = 20;
+      canvas.height = 20;
+
+      ctx.drawImage(tempImg, 0, 0, 20, 20);
+      const imgData = ctx.getImageData(0, 0, 20, 20).data;
+
+      let rSum = 0, gSum = 0, bSum = 0, validPixelCount = 0;
+      let maxSat = -1;
+      let vibrantColor = { r: 200, g: 210, b: 225 }; 
+      let maxSatPixels = 0;
+      let totalSatSum = 0;
+
+      for (let i = 0; i < imgData.length; i += 4) {
+        const r = imgData[i];
+        const g = imgData[i + 1];
+        const b = imgData[i + 2];
+        const a = imgData[i + 3];
+
+        if (a < 128) continue; 
+
+        rSum += r;
+        gSum += g;
+        bSum += b;
+        validPixelCount++;
+
+        const max = Math.max(r, g, b);
+        const min = Math.min(r, g, b);
+        const delta = max - min;
+        const sat = max === 0 ? 0 : delta / max;
+        totalSatSum += sat;
+
+        if (sat > 0.18) maxSatPixels++;
+
+        if (sat > maxSat && max > 30 && min < 240) {
+          maxSat = sat;
+          vibrantColor = { r, g, b };
+        }
+      }
+
+      if (validPixelCount === 0) return;
+
+      const avgR = Math.round(rSum / validPixelCount);
+      const avgG = Math.round(gSum / validPixelCount);
+      const avgB = Math.round(bSum / validPixelCount);
+      const avgSat = totalSatSum / validPixelCount;
+
+      let color1 = "#cbd5e1";
+      let color2 = "#0f172a";
+
+      if (avgSat < 0.12 || maxSat < 0.15 || maxSatPixels < 15) {
+        const brightness = (avgR * 0.299 + avgG * 0.587 + avgB * 0.114);
+        if (brightness < 65) {
+          color1 = "#94a3b8"; 
+          color2 = "#090d16"; 
+        } else {
+          color1 = "#f1f5f9"; 
+          color2 = "#1e293b"; 
+        }
+      } else {
+        color1 = '#' + vibrantColor.r.toString(16).padStart(2, '0') + vibrantColor.g.toString(16).padStart(2, '0') + vibrantColor.b.toString(16).padStart(2, '0');
+        color2 = '#' + avgR.toString(16).padStart(2, '0') + avgG.toString(16).padStart(2, '0') + avgB.toString(16).padStart(2, '0');
+      }
+
+      document.documentElement.style.setProperty('--theme-glow-1', color1);
+      document.documentElement.style.setProperty('--theme-glow-2', color2);
+      document.documentElement.style.setProperty('--primary-color', color1);
+      document.documentElement.style.setProperty('--accent-color', color2);
+
+      updateDynamicAlbumBackground(color1, color2);
+    } catch (err) {
+      console.warn('Canvas estrazione colori fallita:', err);
+    }
+  };
+  tempImg.onerror = function(err) {
+      console.warn('Impossibile caricare immagine per i colori', err);
+  };
+  tempImg.src = proxySrc;
+}
 }
 
 // ==========================================
@@ -655,7 +657,7 @@ function calculateVinylValue(vinile) {
     factors.push("Vintage Anni '70/'80");
   } else if (releaseYear >= 1990 && releaseYear < 2000) {
     baseValue = 42;
-    factors.push("Rarità Anni '90 (Era CD)");
+    factors.push("RaritÃ  Anni '90 (Era CD)");
   } else {
     baseValue = 24;
     factors.push("Edizione Moderna Post-2000");
@@ -688,19 +690,19 @@ function calculateVinylValue(vinile) {
 
   if (weightedCondition >= 9.5) {
     conditionMultiplier = 1.30;
-    factors.push(`Disco ${discScore}/10 • Cover ${coverScore}/10 (Condizioni Perfette/Mint +30%)`);
+    factors.push(`Disco ${discScore}/10 â€¢ Cover ${coverScore}/10 (Condizioni Perfette/Mint +30%)`);
   } else if (weightedCondition >= 8.0) {
     conditionMultiplier = 1.05;
-    factors.push(`Disco ${discScore}/10 • Cover ${coverScore}/10 (Ottimo Stato)`);
+    factors.push(`Disco ${discScore}/10 â€¢ Cover ${coverScore}/10 (Ottimo Stato)`);
   } else if (weightedCondition >= 6.5) {
     conditionMultiplier = 0.75;
-    factors.push(`Disco ${discScore}/10 • Cover ${coverScore}/10 (Buono Usato -25%)`);
+    factors.push(`Disco ${discScore}/10 â€¢ Cover ${coverScore}/10 (Buono Usato -25%)`);
   } else if (weightedCondition >= 4.5) {
     conditionMultiplier = 0.50;
-    factors.push(`Disco ${discScore}/10 • Cover ${coverScore}/10 (Usura Visibile -50%)`);
+    factors.push(`Disco ${discScore}/10 â€¢ Cover ${coverScore}/10 (Usura Visibile -50%)`);
   } else {
     conditionMultiplier = 0.30;
-    factors.push(`Disco ${discScore}/10 • Cover ${coverScore}/10 (Condizioni Scarse -70%)`);
+    factors.push(`Disco ${discScore}/10 â€¢ Cover ${coverScore}/10 (Condizioni Scarse -70%)`);
   }
 
   // 4. KEYWORDS NELLE NOTE, DISCO COLORATO, INSERTI E CONDIZIONI PARTICOLARI
@@ -738,15 +740,15 @@ function calculateVinylValue(vinile) {
 
   if (matriz !== '' && matriz !== '??' && matriz !== 'N/A') {
     rarityBonus += 5.0;
-    factors.push(`Codice Matrice Tracciato (${matriz} +€5)`);
+    factors.push(`Codice Matrice Tracciato (${matriz} +â‚¬5)`);
   }
   if (catNo !== '' && catNo !== '??' && catNo !== 'N/A') {
     rarityBonus += 3.0;
-    factors.push(`N° Catalogo Verificato (${catNo} +€3)`);
+    factors.push(`NÂ° Catalogo Verificato (${catNo} +â‚¬3)`);
   }
   if (origin !== '' && origin !== '??' && (origin.includes('UK') || origin.includes('USA') || origin.includes('JP') || origin.includes('Japan'))) {
     rarityBonus += 4.0;
-    factors.push(`Importazione Rara (${origin} +€4)`);
+    factors.push(`Importazione Rara (${origin} +â‚¬4)`);
   }
 
   let computedValue = (baseValue * printMultiplier * conditionMultiplier * bonusMultiplier) + rarityBonus;
@@ -779,7 +781,7 @@ let discogsAutoTimer = null;
 window.forceRefreshDiscogsPrice = function(vinileId) {
   const container = document.getElementById('discogs-live-box');
   if (container) {
-    container.innerHTML = `<span style="opacity: 0.8; font-size: 0.85rem;" class="shimmer-text">🔄 Ricalcolo live in corso...</span>`;
+    container.innerHTML = `<span style="opacity: 0.8; font-size: 0.85rem;" class="shimmer-text">ðŸ”„ Ricalcolo live in corso...</span>`;
   }
   const vinile = ALL_VINILI.find(v => String(v.id) === String(vinileId));
   if (vinile) {
@@ -800,7 +802,7 @@ async function fetchDiscogsLivePrice(vinile, targetElementId = 'discogs-live-box
   const container = document.getElementById(targetElementId);
   if (!vinile) {
     if (container) {
-      container.innerHTML = `<span style="opacity: 0.6;">⚠️ Dati insufficienti per la verifica live</span>`;
+      container.innerHTML = `<span style="opacity: 0.6;">âš ï¸ Dati insufficienti per la verifica live</span>`;
     }
     return null;
   }
@@ -817,7 +819,7 @@ async function fetchDiscogsLivePrice(vinile, targetElementId = 'discogs-live-box
             <span>Valore di Mercato (Discogs Live)</span>
             <span style="font-size: 0.7rem; color: #a5b4fc; display: flex; align-items: center; gap: 5px;">
               (In Cache) 
-              <button onclick="window.forceRefreshDiscogsPrice('${vinile.id}')" style="background:none; border:none; color: #34d399; cursor:pointer; padding:0; font-size: 1rem;" title="Ricalcola Prezzo">🔄</button>
+              <button onclick="window.forceRefreshDiscogsPrice('${vinile.id}')" style="background:none; border:none; color: #34d399; cursor:pointer; padding:0; font-size: 1rem;" title="Ricalcola Prezzo">ðŸ”„</button>
             </span>
           </span>
           <span class="spec-value" style="color: #34d399; font-weight: 800; font-size: 0.95rem; margin-top: 2px;">
@@ -831,10 +833,10 @@ async function fetchDiscogsLivePrice(vinile, targetElementId = 'discogs-live-box
     const barcode = (vinile.codice_a_barre && vinile.codice_a_barre !== '??' && vinile.codice_a_barre !== 'N/A') ? vinile.codice_a_barre : '';
     const matrice = (vinile.codice_matrice && vinile.codice_matrice !== '??' && vinile.codice_matrice !== 'N/A') ? vinile.codice_matrice : '';
     
-    // Se non ha né barcode né matrice, abortisce direttamente la valutazione live
+    // Se non ha nÃ© barcode nÃ© matrice, abortisce direttamente la valutazione live
     if (!barcode && !matrice) {
       if (container) {
-        container.innerHTML = `<span style="opacity: 0.6; font-size: 0.85rem;">⚠️ Dati insufficienti: valutazione live disabilitata</span>`;
+        container.innerHTML = `<span style="opacity: 0.6; font-size: 0.85rem;">âš ï¸ Dati insufficienti: valutazione live disabilitata</span>`;
       }
       return null;
     }
@@ -847,7 +849,7 @@ async function fetchDiscogsLivePrice(vinile, targetElementId = 'discogs-live-box
       searchUrl = `https://api.discogs.com/database/search?query=${encodeURIComponent(matrice)}&type=release&format=Vinyl`;
     }
     
-    // Rimuoviamo il vincolo dell'anno per evitare che scarti risultati validi il cui anno su Discogs è leggermente diverso
+    // Rimuoviamo il vincolo dell'anno per evitare che scarti risultati validi il cui anno su Discogs Ã¨ leggermente diverso
     const token = getDiscogsToken();
     const headers = { 'User-Agent': 'VinylCollectorApp/2.0 +http://localhost' };
     if (token) headers['Authorization'] = `Discogs token=${token}`;
@@ -957,7 +959,7 @@ async function fetchDiscogsLivePrice(vinile, targetElementId = 'discogs-live-box
         container.innerHTML = `
           <span class="spec-label" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
             <span>Valore di Mercato (Discogs Live)</span>
-            <a href="${bestMatch.uri ? 'https://www.discogs.com' + bestMatch.uri : 'https://www.discogs.com/release/' + releaseId}" target="_blank" rel="noopener noreferrer" style="font-size: 0.7rem; color: #a5b4fc; text-decoration: underline;">Vedi Release ↗</a>
+            <a href="${bestMatch.uri ? 'https://www.discogs.com' + bestMatch.uri : 'https://www.discogs.com/release/' + releaseId}" target="_blank" rel="noopener noreferrer" style="font-size: 0.7rem; color: #a5b4fc; text-decoration: underline;">Vedi Release â†—</a>
           </span>
           <span class="spec-value" style="color: #34d399; font-weight: 800; font-size: 0.95rem; margin-top: 2px;">
             ${priceText}
@@ -972,7 +974,7 @@ async function fetchDiscogsLivePrice(vinile, targetElementId = 'discogs-live-box
         container.innerHTML = `
           <span class="spec-label" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
             <span>Valore di Mercato (Discogs Live)</span>
-            <a href="${fallbackUrl}" target="_blank" rel="noopener noreferrer" style="font-size: 0.7rem; color: #a5b4fc; text-decoration: underline;">Cerca ↗</a>
+            <a href="${fallbackUrl}" target="_blank" rel="noopener noreferrer" style="font-size: 0.7rem; color: #a5b4fc; text-decoration: underline;">Cerca â†—</a>
           </span>
           <span class="spec-value" style="opacity: 0.7; font-size: 0.85rem; margin-top: 2px;">
             Prezzo non disponibile
@@ -983,7 +985,7 @@ async function fetchDiscogsLivePrice(vinile, targetElementId = 'discogs-live-box
     }
   } catch (err) {
     if (container) {
-      container.innerHTML = `<span style="font-size: 0.76rem; opacity: 0.6;">⚠️ Impossibile sincronizzare il mercato Discogs (Offline/Rate limit)</span>`;
+      container.innerHTML = `<span style="font-size: 0.76rem; opacity: 0.6;">âš ï¸ Impossibile sincronizzare il mercato Discogs (Offline/Rate limit)</span>`;
     }
     return null;
   }
@@ -996,17 +998,17 @@ function formatCurrencyPrice(valInEur) {
   const num = parseFloat(valInEur);
   
   if (currency === 'USD') return `a partire da $${(num * 1.08).toFixed(2)}`;
-  if (currency === 'GBP') return `a partire da £${(num * 0.85).toFixed(2)}`;
+  if (currency === 'GBP') return `a partire da Â£${(num * 0.85).toFixed(2)}`;
   if (currency === 'CHF') return `a partire da CHF ${(num * 0.96).toFixed(2)}`;
-  return `a partire da €${num.toFixed(2)}`;
+  return `a partire da â‚¬${num.toFixed(2)}`;
 }
 
 function getCurrencySymbol() {
   const currency = localStorage.getItem('app_user_currency') || 'EUR';
   if (currency === 'USD') return '$';
-  if (currency === 'GBP') return '£';
+  if (currency === 'GBP') return 'Â£';
   if (currency === 'CHF') return 'CHF ';
-  return '€';
+  return 'â‚¬';
 }
 
 function convertValueToCurrency(valInEur) {
@@ -1038,7 +1040,7 @@ async function syncAllDiscogsPrices(force = false, ignoreFrequencyCheck = false)
   }
 
   isDiscogsBatchSyncing = true;
-  if (force) showToast("🔄 Avvio risincronizzazione automatica Discogs...");
+  if (force) showToast("ðŸ”„ Avvio risincronizzazione automatica Discogs...");
 
   const syncOverlay = document.getElementById('sync-overlay');
   const syncCounter = document.getElementById('sync-counter');
@@ -1069,7 +1071,7 @@ async function syncAllDiscogsPrices(force = false, ignoreFrequencyCheck = false)
     }
 
     localStorage.setItem('app_discogs_last_sync_date', today);
-    if (force) showToast("✅ Risincronizzazione Discogs Completata!");
+    if (force) showToast("âœ… Risincronizzazione Discogs Completata!");
   } finally {
     isDiscogsBatchSyncing = false;
     if (force && syncOverlay) syncOverlay.setAttribute('aria-hidden', 'true');
@@ -1191,7 +1193,7 @@ function applyFiltering() {
       const targetCat = activeCategory.toLowerCase();
       if (targetCat === 'wishlist' && !statusStr.includes('wish')) return false;
       if (targetCat === 'personale' && !statusStr.includes('personale')) return false;
-      if (targetCat === 'eredità' && (!statusStr.includes('eredit') && !statusStr.includes('eredita'))) return false;
+      if (targetCat === 'ereditÃ ' && (!statusStr.includes('eredit') && !statusStr.includes('eredita'))) return false;
       if (targetCat === 'vendita' && (!statusStr.includes('vendita') && !statusStr.includes('scambio'))) return false;
     }
 
@@ -1273,7 +1275,7 @@ function renderWheel() {
     if (isGuest) {
         emptyItem.innerHTML = `<div style="text-align:center; padding: 10px;">
             <p style="font-size:1.1rem; font-weight:bold; margin-bottom:10px;">Benvenuto</p>
-            <button onclick="window.openExploreModal()" class="btn-primary" style="padding: 10px 20px;">🌍 Esplora</button>
+            <button onclick="window.openExploreModal()" class="btn-primary" style="padding: 10px 20px;">ðŸŒ Esplora</button>
         </div>`;
     } else {
         emptyItem.textContent = "Nessun vinile trovato";
@@ -1338,7 +1340,7 @@ function updateWheel() {
 }
 
 async function updateCenterContent(index) {
-  // Guardia di sicurezza: se index non è definito, usa l'indice selezionato corrente
+  // Guardia di sicurezza: se index non Ã¨ definito, usa l'indice selezionato corrente
   if (index === undefined || index === null) index = selectedIndex;
   if (!centerContent) return;
   
@@ -1348,8 +1350,8 @@ async function updateCenterContent(index) {
         centerContent.innerHTML = `
           <div style="display:flex; flex-direction:column; justify-content:center; align-items:center; height:100%; text-align:center; padding: 20px;">
             <h2 style="color:white; margin-bottom: 10px; font-size: 1.8rem; font-weight: 800;">Benvenuto nella Community</h2>
-            <p style="color:#9ca3af; margin-bottom: 30px; max-width: 300px; line-height: 1.5;">In modalità ospite non hai una collezione personale, ma puoi esplorare quelle degli altri.</p>
-            <button id="guest-explore-btn-center" class="btn-primary" style="font-size: 1.2rem; padding: 15px 30px; box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4); border-radius: 50px;">🌍 Esplora Utenti</button>
+            <p style="color:#9ca3af; margin-bottom: 30px; max-width: 300px; line-height: 1.5;">In modalitÃ  ospite non hai una collezione personale, ma puoi esplorare quelle degli altri.</p>
+            <button id="guest-explore-btn-center" class="btn-primary" style="font-size: 1.2rem; padding: 15px 30px; box-shadow: 0 4px 15px rgba(236, 72, 153, 0.4); border-radius: 50px;">ðŸŒ Esplora Utenti</button>
           </div>
         `;
         setTimeout(() => {
@@ -1359,7 +1361,7 @@ async function updateCenterContent(index) {
     } else {
         centerContent.innerHTML = `
           <div style="text-align: center; padding: 40px 20px; color: #cbd5e1;">
-            <h2>💿 Nessun Vinile Trovato</h2>
+            <h2>ðŸ’¿ Nessun Vinile Trovato</h2>
             <p style="margin-top: 10px; opacity: 0.7;">Prova a resettare i filtri o la ricerca.</p>
           </div>
         `;
@@ -1427,7 +1429,7 @@ async function updateCenterContent(index) {
                  // 3. Forzare il Re-render: ridisegniamo esplicitamente l'UI non appena i dati sono pronti
                  updateCenterContent(index);
                  renderWheel();
-                 return; // Interrompe il rendering corrente, partirà quello nuovo
+                 return; // Interrompe il rendering corrente, partirÃ  quello nuovo
              }
          } catch(e) {
              console.error("Errore nel recupero dati per render:", e);
@@ -1437,7 +1439,7 @@ async function updateCenterContent(index) {
       const sv = safeVinile(vinile);
 
       const tracceHTML = sv.tracce && sv.tracce.length > 0 ? `
-        <div class="section-title">🎵 Tracklist (${sv.tracce.length} Tracce)</div>
+        <div class="section-title">ðŸŽµ Tracklist (${sv.tracce.length} Tracce)</div>
         <div class="tracklist-container">
           ${sv.tracce.map(t => `
             <div class="track-item">
@@ -1452,7 +1454,7 @@ async function updateCenterContent(index) {
       const fotoHTML = vinile.foto_album && vinile.foto_album.length > 0 ? `
         <div class="action-buttons-row" style="margin-top: 0.8rem;">
           <button type="button" class="qr-sticker-action-btn full-width" style="background: rgba(82, 39, 255, 0.22); border-color: rgba(165, 180, 252, 0.45); color: #a5b4fc;" onclick="window.openGalleryModal('${vinile.id}')">
-            📷 Vedi Foto Album (${vinile.foto_album.length})
+            ðŸ“· Vedi Foto Album (${vinile.foto_album.length})
           </button>
         </div>
       ` : '';
@@ -1478,7 +1480,7 @@ async function updateCenterContent(index) {
             <div class="floating-floor-shadow"></div>
           </div>
           
-          <div class="play-hint-badge">🎵 Clicca la copertina per estrarre il vinile</div>
+          <div class="play-hint-badge">ðŸŽµ Clicca la copertina per estrarre il vinile</div>
           <h1 class="album-title-main" style="margin-top: 6px;">${sv.titolo_album}</h1>
           <div class="artist-name-sub">${sv.artista}</div>
           
@@ -1489,7 +1491,7 @@ async function updateCenterContent(index) {
           </div>
         </div>
 
-        <div class="section-title">📊 Scheda Tecnica & Specifiche Complete</div>
+        <div class="section-title">ðŸ“Š Scheda Tecnica & Specifiche Complete</div>
         <div class="specs-grid">
           <div class="spec-card">
             <span class="spec-label">ID Catalogo</span>
@@ -1532,7 +1534,7 @@ async function updateCenterContent(index) {
             <span class="spec-value">${sv.codice_a_barre || "-"}</span>
           </div>
           <div class="spec-card">
-            <span class="spec-label">Velocità & Grammatura</span>
+            <span class="spec-label">VelocitÃ  & Grammatura</span>
             <span class="spec-value">${sv.velocita || "33"} RPM | ${sv.grammatura || "180g"}</span>
           </div>
           <div class="spec-card">
@@ -1562,7 +1564,7 @@ async function updateCenterContent(index) {
           ${vinile.country ? `<div class="spec-card"><span class="spec-label">Paese Rilascio</span><span class="spec-value">${escapeHtml(vinile.country)}</span></div>` : ''}
           ${vinile.released || vinile.released_formatted ? `<div class="spec-card"><span class="spec-label">Data Pubblicazione</span><span class="spec-value">${escapeHtml(vinile.released_formatted || vinile.released)}</span></div>` : ''}
           ${vinile.formats && vinile.formats.length > 0 ? `<div class="spec-card" style="grid-column: 1 / -1;"><span class="spec-label">Formati</span><span class="spec-value">${escapeHtml(vinile.formats.map(f => (f.name || '') + (f.descriptions ? ' (' + f.descriptions.join(', ') + ')' : '')).join(' | '))}</span></div>` : ''}
-          ${vinile.format_quantity ? `<div class="spec-card"><span class="spec-label">Q.tà Supporti</span><span class="spec-value">${escapeHtml(vinile.format_quantity)}</span></div>` : ''}
+          ${vinile.format_quantity ? `<div class="spec-card"><span class="spec-label">Q.tÃ  Supporti</span><span class="spec-value">${escapeHtml(vinile.format_quantity)}</span></div>` : ''}
           ${vinile.labels && vinile.labels.length > 0 ? `<div class="spec-card" style="grid-column: 1 / -1;"><span class="spec-label">Etichette (Labels)</span><span class="spec-value">${escapeHtml(vinile.labels.map(l => l.name + (l.catno ? ' - ' + l.catno : '')).join(' | '))}</span></div>` : ''}
           ${vinile.companies && vinile.companies.length > 0 ? `<div class="spec-card" style="grid-column: 1 / -1;"><span class="spec-label">Aziende Coinvolte</span><span class="spec-value">${escapeHtml(vinile.companies.map(c => (c.entity_type_name || 'Azienda') + ': ' + c.name).join(' | '))}</span></div>` : ''}
           ${vinile.identifiers && vinile.identifiers.length > 0 ? `<div class="spec-card" style="grid-column: 1 / -1;"><span class="spec-label">Codici e Identificatori</span><span class="spec-value" style="font-size: 0.8rem;">${vinile.identifiers.map(i => escapeHtml(i.type) + ': ' + escapeHtml(i.value)).join('<br>')}</span></div>` : ''}
@@ -1572,15 +1574,15 @@ async function updateCenterContent(index) {
           ${vinile.extraartists && vinile.extraartists.length > 0 ? `<div class="spec-card" style="grid-column: 1 / -1;"><span class="spec-label">Altri Artisti / Staff</span><span class="spec-value" style="font-size: 0.8rem;">${vinile.extraartists.slice(0, 10).map(c => escapeHtml(c.role) + ': ' + escapeHtml(c.name)).join('<br>')} ${vinile.extraartists.length > 10 ? '...' : ''}</span></div>` : ''}
           ${vinile.community ? `<div class="spec-card" style="grid-column: 1 / -1;"><span class="spec-label">Community Discogs</span><span class="spec-value">Posseduto da: ${vinile.community.have || 0} | Desiderato da: ${vinile.community.want || 0} ${vinile.community.rating ? `| Voto: ${vinile.community.rating.average}/5 (${vinile.community.rating.count} voti)` : ''}</span></div>` : ''}
           ${vinile.notes ? `<div class="spec-card" style="grid-column: 1 / -1;"><span class="spec-label">Note Database</span><span class="spec-value" style="font-size: 0.8rem; font-style: italic;">${escapeHtml(vinile.notes)}</span></div>` : ''}
-          ${vinile.videos && vinile.videos.length > 0 ? `<div class="spec-card" style="grid-column: 1 / -1;"><span class="spec-label">Video Associati</span><span class="spec-value"><a href="${escapeHtml(vinile.videos[0].uri)}" target="_blank" style="color: #ff9ffc;">▶ Guarda su YouTube (${vinile.videos.length} video)</a></span></div>` : ''}
+          ${vinile.videos && vinile.videos.length > 0 ? `<div class="spec-card" style="grid-column: 1 / -1;"><span class="spec-label">Video Associati</span><span class="spec-value"><a href="${escapeHtml(vinile.videos[0].uri)}" target="_blank" style="color: #ff9ffc;">â–¶ Guarda su YouTube (${vinile.videos.length} video)</a></span></div>` : ''}
           
           <!-- SYSTEM/META INFO -->
           ${vinile.status ? `<div class="spec-card"><span class="spec-label">Stato DB</span><span class="spec-value">${escapeHtml(vinile.status)}</span></div>` : ''}
-          ${vinile.data_quality ? `<div class="spec-card"><span class="spec-label">Qualità Dati</span><span class="spec-value">${escapeHtml(vinile.data_quality)}</span></div>` : ''}
-          ${vinile.lowest_price ? `<div class="spec-card"><span class="spec-label">Prezzo Minimo</span><span class="spec-value">€${vinile.lowest_price} (In vendita: ${vinile.num_for_sale || 0})</span></div>` : ''}
+          ${vinile.data_quality ? `<div class="spec-card"><span class="spec-label">QualitÃ  Dati</span><span class="spec-value">${escapeHtml(vinile.data_quality)}</span></div>` : ''}
+          ${vinile.lowest_price ? `<div class="spec-card"><span class="spec-label">Prezzo Minimo</span><span class="spec-value">â‚¬${vinile.lowest_price} (In vendita: ${vinile.num_for_sale || 0})</span></div>` : ''}
           ${vinile.estimated_weight ? `<div class="spec-card"><span class="spec-label">Peso Stimato</span><span class="spec-value">${escapeHtml(vinile.estimated_weight)}g</span></div>` : ''}
-          ${vinile.blocked_from_sale ? `<div class="spec-card"><span class="spec-label">Bloccato dalla Vendita</span><span class="spec-value" style="color: #ef4444;">Sì (Possibile Bootleg)</span></div>` : ''}
-          ${vinile.is_offensive ? `<div class="spec-card"><span class="spec-label">Contenuto Sensibile</span><span class="spec-value" style="color: #ef4444;">Sì</span></div>` : ''}
+          ${vinile.blocked_from_sale ? `<div class="spec-card"><span class="spec-label">Bloccato dalla Vendita</span><span class="spec-value" style="color: #ef4444;">SÃ¬ (Possibile Bootleg)</span></div>` : ''}
+          ${vinile.is_offensive ? `<div class="spec-card"><span class="spec-label">Contenuto Sensibile</span><span class="spec-value" style="color: #ef4444;">SÃ¬</span></div>` : ''}
           ${vinile.date_added ? `<div class="spec-card"><span class="spec-label">Aggiunto al DB</span><span class="spec-value" style="font-size: 0.8rem;">${escapeHtml(new Date(vinile.date_added).toLocaleDateString())}</span></div>` : ''}
           ${vinile.uri ? `<div class="spec-card" style="grid-column: 1 / -1;"><span class="spec-label">Link Discogs</span><span class="spec-value"><a href="${escapeHtml(vinile.uri)}" target="_blank" style="color: #3b82f6;">Apri pagina ufficiale</a></span></div>` : ''}
 
@@ -1588,14 +1590,14 @@ async function updateCenterContent(index) {
           <div class="spec-card" id="discogs-live-box" style="grid-column: 1 / -1;">
             <span class="spec-label">Valore di Mercato (Discogs Live)</span>
             <span class="spec-value" style="color: #34d399; font-size: 0.88rem; display: flex; align-items: center; gap: 6px;">
-              <span style="display: inline-block; animation: spinVinyl 1.5s linear infinite;">💿</span>
+              <span style="display: inline-block; animation: spinVinyl 1.5s linear infinite;">ðŸ’¿</span>
               <span>Sincronizzazione in corso...</span>
             </span>
           </div>
           ${vinile.valore_stimato ? `
             <div class="spec-card">
               <span class="spec-label">Valore Utente Inserito</span>
-              <span class="spec-value" style="color: #fbbf24; font-weight: 700;">💰${sv.valore_stimato}</span>
+              <span class="spec-value" style="color: #fbbf24; font-weight: 700;">ðŸ’°${sv.valore_stimato}</span>
             </div>
           ` : ''}
           ${vinile.note_stato ? `
@@ -1644,10 +1646,10 @@ async function updateCenterContent(index) {
           coverWrapper.classList.toggle("playing");
           const isPlaying = coverWrapper.classList.contains("playing");
           if (isPlaying) {
-            showToast("▶️ Vinile estratto e in riproduzione!");
+            showToast("â–¶ï¸ Vinile estratto e in riproduzione!");
             if (navigator.vibrate) navigator.vibrate([25, 40, 25]);
           } else {
-            showToast("⏸️ Vinile reinserito nella custodia");
+            showToast("â¸ï¸ Vinile reinserito nella custodia");
             if (navigator.vibrate) navigator.vibrate(15);
           }
         });
@@ -1696,7 +1698,7 @@ async function updateCenterContent(index) {
         const vinile = filteredVinili[index];
         centerContent.innerHTML = `
           <div style="text-align:center; padding: 40px 20px; color: #cbd5e1;">
-            <div style="font-size: 2rem; margin-bottom: 12px;">🎵</div>
+            <div style="font-size: 2rem; margin-bottom: 12px;">ðŸŽµ</div>
             <h2 style="font-size: 1.1rem; color: #fff; margin-bottom: 8px;">${vinile ? (vinile.titolo_album || 'Album') : 'Album'}</h2>
             <p style="opacity:0.6; font-size: 0.85rem;">${vinile ? (vinile.artista || '') : ''}</p>
             <p style="margin-top: 16px; font-size: 0.78rem; opacity: 0.45;">Impossibile caricare alcuni dettagli.<br>Scorri i titoli per continuare.</p>
@@ -1876,7 +1878,7 @@ if (exportJsonBtn) {
     document.body.appendChild(downloadAnchor);
     downloadAnchor.click();
     downloadAnchor.remove();
-    showToast("📥 Backup JSON Scaricato!");
+    showToast("ðŸ“¥ Backup JSON Scaricato!");
   });
 }
 
@@ -1893,7 +1895,7 @@ if (exportCsvBtn) {
     document.body.appendChild(downloadAnchor);
     downloadAnchor.click();
     downloadAnchor.remove();
-    showToast("📊 Esportazione CSV Completata!");
+    showToast("ðŸ“Š Esportazione CSV Completata!");
   });
 }
 
@@ -1912,7 +1914,7 @@ if (triggerImportBtn && importJsonFile) {
             pushDatabaseToGitHub(ALL_VINILI, localStorage.getItem('app_current_user')).catch(e => console.error(e));
             populateGenreSelect();
             applyFiltering();
-            showToast("📤 Backup Importato con successo!");
+            showToast("ðŸ“¤ Backup Importato con successo!");
           }
         } catch (err) {
           alert("File JSON non valido!");
@@ -2040,13 +2042,13 @@ function renderStatsDashboard() {
   statsModalBody.innerHTML = `
     <!-- BANNER VALORE STIMATO DI MERCATO -->
     <div class="kpi-banner-gold">
-      <div class="kpi-banner-title">💶 STIMA VALORE COLLEZIONE PERSONALE</div>
+      <div class="kpi-banner-title">ðŸ’¶ STIMA VALORE COLLEZIONE PERSONALE</div>
       <div class="kpi-banner-amount">${symbol}${convertedTotal}</div>
       <div class="kpi-banner-sub">Somma dei prezzi di mercato reali letti da Discogs su ${personaleValutati} dischi catalogati con Barcode (su ${personale} totali della collezione Personale). Valore in ${symbol}</div>
     </div>
 
     <!-- GRAFICO SVG TREND AD ONDA E VALORI -->
-    <div class="section-title">📈 Grafico Evoluzione Valore Collezione</div>
+    <div class="section-title">ðŸ“ˆ Grafico Evoluzione Valore Collezione</div>
     <div style="background: rgba(14, 11, 26, 0.75); border: 1px solid rgba(255, 159, 252, 0.3); border-radius: 18px; padding: 14px; margin-bottom: 1.2rem; box-shadow: 0 8px 25px rgba(0,0,0,0.5);">
       <svg viewBox="0 0 ${chartWidth} ${chartHeight}" style="width: 100%; height: 140px; overflow: visible;">
         <defs>
@@ -2065,7 +2067,7 @@ function renderStatsDashboard() {
         <!-- Punti di valore e date -->
         ${points.map(p => `
           <circle cx="${p.x}" cy="${p.y}" r="5" fill="#5227ff" stroke="#ff9ffc" stroke-width="2.5"/>
-          <text x="${p.x}" y="${p.y - 10}" fill="#ffffff" font-size="11" font-weight="bold" text-anchor="middle">€${p.item.value}</text>
+          <text x="${p.x}" y="${p.y - 10}" fill="#ffffff" font-size="11" font-weight="bold" text-anchor="middle">â‚¬${p.item.value}</text>
           <text x="${p.x}" y="${chartHeight + 12}" fill="#94a3b8" font-size="10" text-anchor="middle">${p.item.date}</text>
         `).join('')}
       </svg>
@@ -2073,14 +2075,14 @@ function renderStatsDashboard() {
 
     ${rarestVinyl ? `
       <div class="spec-card" style="margin-bottom: 1rem; background: rgba(82, 39, 255, 0.28); border: 1px solid rgba(255, 159, 252, 0.4);">
-        <span class="spec-label" style="color: #ff9ffc; font-weight: 700;">💎 VINILE DI MAGGIOR VALORE IN COLLEZIONE</span>
-        <span class="spec-value" style="font-size: 1rem; margin-top: 2px;">${escapeHtml(rarestVinyl.artista)} — ${escapeHtml(rarestVinyl.titolo_album)} (${rarestVinyl.anno_uscita_originale || rarestVinyl.anno_stampa})</span>
-        <span style="font-size: 0.76rem; color: #cbd5e1; margin-top: 2px;">Valore registrato: €${rarestScore} | Condizioni: Disco ${escapeHtml(rarestVinyl.stato_disco) || 8}/10</span>
+        <span class="spec-label" style="color: #ff9ffc; font-weight: 700;">ðŸ’Ž VINILE DI MAGGIOR VALORE IN COLLEZIONE</span>
+        <span class="spec-value" style="font-size: 1rem; margin-top: 2px;">${escapeHtml(rarestVinyl.artista)} â€” ${escapeHtml(rarestVinyl.titolo_album)} (${rarestVinyl.anno_uscita_originale || rarestVinyl.anno_stampa})</span>
+        <span style="font-size: 0.76rem; color: #cbd5e1; margin-top: 2px;">Valore registrato: â‚¬${rarestScore} | Condizioni: Disco ${escapeHtml(rarestVinyl.stato_disco) || 8}/10</span>
       </div>
     ` : ''}
 
     <!-- GRID METRICHE COLLEZIONE -->
-    <div class="section-title">📊 Ripartizione Categorie</div>
+    <div class="section-title">ðŸ“Š Ripartizione Categorie</div>
     <div class="stats-grid">
       <div class="kpi-card">
         <div class="kpi-value">${total}</div>
@@ -2096,12 +2098,12 @@ function renderStatsDashboard() {
       </div>
       <div class="kpi-card">
         <div class="kpi-value" style="color: #fbbf24;">${eredita}</div>
-        <div class="kpi-label">Eredità</div>
+        <div class="kpi-label">EreditÃ </div>
       </div>
     </div>
 
     <!-- DISTRIBUZIONE GENERI -->
-    <div class="section-title">🎶 Ripartizione per Genere Musicale</div>
+    <div class="section-title">ðŸŽ¶ Ripartizione per Genere Musicale</div>
     <div class="stat-bar-wrapper" style="margin-bottom: 1.2rem;">
       ${sortedGenres.slice(0, 5).map(([genre, count]) => {
         const pct = Math.round((count / total) * 100);
@@ -2120,7 +2122,7 @@ function renderStatsDashboard() {
     </div>
 
     <!-- DISTRIBUZIONE DECENNI -->
-    <div class="section-title">⏳ Ripartizione per Decennio</div>
+    <div class="section-title">â³ Ripartizione per Decennio</div>
     <div class="stat-bar-wrapper">
       ${sortedDecades.map(([decade, count]) => {
         const pct = Math.round((count / total) * 100);
@@ -2181,7 +2183,7 @@ async function startBarcodeScanner() {
     }
   }
   if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-    showToast("⚠️ La fotocamera non è supportata su questo browser");
+    showToast("âš ï¸ La fotocamera non Ã¨ supportata su questo browser");
     return;
   }
 
@@ -2267,9 +2269,9 @@ async function fetchAndFillFullRelease(releaseId, prefix) {
     } else {
       currentTracklist = [];
     }
-    showToast("✅ Dati, tracce e note importati con successo!");
+    showToast("âœ… Dati, tracce e note importati con successo!");
   } catch(e) {
-    showToast("❌ Impossibile recuperare tracce e note dettagliate.");
+    showToast("âŒ Impossibile recuperare tracce e note dettagliate.");
   }
 }
 
@@ -2278,7 +2280,7 @@ async function searchDiscogsBarcodeAndFill(barcode, prefix) {
   const headers = { 'User-Agent': 'VinylCollectorApp/2.0 +http://localhost' };
   if (token) headers['Authorization'] = `Discogs token=${token}`;
   
-  showToast("🔄 Ricerca codice a barre su Discogs...");
+  showToast("ðŸ”„ Ricerca codice a barre su Discogs...");
   try {
     const searchRes = await fetch(`https://api.discogs.com/database/search?barcode=${encodeURIComponent(barcode)}`, { headers });
     if (!searchRes.ok) throw new Error();
@@ -2287,10 +2289,10 @@ async function searchDiscogsBarcodeAndFill(barcode, prefix) {
       const releaseId = searchData.results[0].id;
       await fetchAndFillFullRelease(releaseId, prefix);
     } else {
-      showToast("❌ Nessun risultato trovato su Discogs per questo codice.");
+      showToast("âŒ Nessun risultato trovato su Discogs per questo codice.");
     }
   } catch(e) {
-    showToast("❌ Errore durante la ricerca su Discogs.");
+    showToast("âŒ Errore durante la ricerca su Discogs.");
   }
 }
 
@@ -2378,7 +2380,7 @@ if (startQuickValBarcodeBtn) startQuickValBarcodeBtn.addEventListener('click', (
 
 if (calcQuickValBtn) calcQuickValBtn.addEventListener('click', async () => {
   const inputVal = document.getElementById('quick-val-barcode').value.trim();
-  if (!inputVal) return showToast("⚠️ Inserisci o scansiona un barcode / matrice");
+  if (!inputVal) return showToast("âš ï¸ Inserisci o scansiona un barcode / matrice");
   const statoDisco = document.getElementById('quick-val-disco').value;
   const statoCover = document.getElementById('quick-val-cover').value;
   
@@ -2394,7 +2396,7 @@ if (calcQuickValBtn) calcQuickValBtn.addEventListener('click', async () => {
   
   const resultDiv = document.getElementById('quick-val-result');
   resultDiv.style.display = 'block';
-  resultDiv.innerHTML = '<span class="shimmer-text">🔄 Ricerca in corso su Discogs...</span>';
+  resultDiv.innerHTML = '<span class="shimmer-text">ðŸ”„ Ricerca in corso su Discogs...</span>';
   
   await fetchDiscogsLivePrice(tempVinile, 'quick-val-result', 0, true);
 });
@@ -2407,7 +2409,7 @@ async function searchMusicBrainzOrDiscogs(query) {
 
   discogsSearchBtn.textContent = 'Ricerca in corso...';
   discogsResults.classList.remove('hidden');
-  discogsResults.innerHTML = '<div style="padding:10px; font-size:0.82rem; color:#ff9ffc;">🔍 Ricerca in corso...</div>';
+  discogsResults.innerHTML = '<div style="padding:10px; font-size:0.82rem; color:#ff9ffc;">ðŸ” Ricerca in corso...</div>';
 
   let resultsHTML = '';
   let foundAny = false;
@@ -2446,7 +2448,7 @@ async function searchMusicBrainzOrDiscogs(query) {
     foundAny = true;
     resultsHTML += `
       <div style="font-size:0.75rem; font-weight:700; color:#818cf8; padding:4px 6px; border-bottom:1px solid rgba(255,255,255,0.1); margin-bottom: 6px;">
-        📁 Trovato nella tua collezione (${localMatches.length})
+        ðŸ“ Trovato nella tua collezione (${localMatches.length})
       </div>
     `;
     localMatches.forEach(rel => {
@@ -2477,8 +2479,8 @@ async function searchMusicBrainzOrDiscogs(query) {
             <div class="result-card-title">${cleanAlbum}</div>
             <div class="result-card-artist">${cleanArtist}</div>
             <div class="result-card-badges">
-              <span class="result-badge result-badge-local">📁 Nella Tua Collezione</span>
-              ${year ? `<span class="result-badge result-badge-year">📅 ${year}</span>` : ''}
+              <span class="result-badge result-badge-local">ðŸ“ Nella Tua Collezione</span>
+              ${year ? `<span class="result-badge result-badge-year">ðŸ“… ${year}</span>` : ''}
             </div>
           </div>
         </div>
@@ -2488,15 +2490,15 @@ async function searchMusicBrainzOrDiscogs(query) {
 
   const barcodeResults = [];
 
-  // RILEVAMENTO BARCODE: esegue le chiamate API barcode solo se l'input è numerico
+  // RILEVAMENTO BARCODE: esegue le chiamate API barcode solo se l'input Ã¨ numerico
   // (EAN-13, UPC, ecc.) per evitare richieste inutili quando si cerca un nome artista o titolo.
-  // Un barcode valido è composto principalmente da cifre (eventualmente separate da spazi/trattini)
+  // Un barcode valido Ã¨ composto principalmente da cifre (eventualmente separate da spazi/trattini)
   // con almeno 6 digit consecutivi.
   const cleanBarcode = cleanQuery.replace(/[^0-9a-zA-Z]/g, '');
   const isLikelyBarcode = /^[\d\s\-]+$/.test(cleanQuery.trim()) &&
                            cleanQuery.replace(/[^0-9]/g, '').length >= 6;
 
-  // 1a. Discogs Barcode Endpoint – attivato SOLO se la query sembra un barcode numerico
+  // 1a. Discogs Barcode Endpoint â€“ attivato SOLO se la query sembra un barcode numerico
   if (isLikelyBarcode && cleanBarcode.length >= 6) {
     try {
       const token = getDiscogsToken();
@@ -2536,7 +2538,7 @@ async function searchMusicBrainzOrDiscogs(query) {
     }
   }
 
-  // 1b. MusicBrainz Barcode Endpoint – attivato SOLO se la query sembra un barcode numerico
+  // 1b. MusicBrainz Barcode Endpoint â€“ attivato SOLO se la query sembra un barcode numerico
   if (isLikelyBarcode && cleanBarcode.length >= 6) {
     try {
       const mbRes = await fetch(`https://musicbrainz.org/ws/2/release/?query=barcode:${encodeURIComponent(cleanBarcode)}&fmt=json`);
@@ -2645,7 +2647,7 @@ async function searchMusicBrainzOrDiscogs(query) {
 
     resultsHTML += `
       <div style="font-size:0.75rem; font-weight:700; color:#ff9ffc; padding:4px 6px; margin-top:8px; margin-bottom:6px; border-bottom:1px solid rgba(255,255,255,0.1);">
-        🌐 ${isFallback ? 'Fallback Ricerca per Testo (iTunes / MB)' : 'Risultati per Barcode (Discogs / MB)'} (${onlineResults.length})
+        ðŸŒ ${isFallback ? 'Fallback Ricerca per Testo (iTunes / MB)' : 'Risultati per Barcode (Discogs / MB)'} (${onlineResults.length})
       </div>
     `;
 
@@ -2679,8 +2681,8 @@ async function searchMusicBrainzOrDiscogs(query) {
             <div class="result-card-title">${title}</div>
             <div class="result-card-artist">${artist}</div>
             <div class="result-card-badges">
-              <span class="result-badge result-badge-online">🌐 ${res.source || 'Online'}</span>
-              ${year ? `<span class="result-badge result-badge-year">📅 ${year}</span>` : ''}
+              <span class="result-badge result-badge-online">ðŸŒ ${res.source || 'Online'}</span>
+              ${year ? `<span class="result-badge result-badge-year">ðŸ“… ${year}</span>` : ''}
             </div>
           </div>
         </div>
@@ -2693,7 +2695,7 @@ async function searchMusicBrainzOrDiscogs(query) {
   if (!foundAny) {
     discogsResults.innerHTML = `
       <div style="padding:12px; font-size:0.82rem; color:#cbd5e1; text-align:center;">
-        ❌ Nessun vinile trovato per "<strong>${cleanQuery}</strong>".<br>
+        âŒ Nessun vinile trovato per "<strong>${cleanQuery}</strong>".<br>
         <span style="font-size:0.75rem; opacity:0.8;">Prova ad inserire il Titolo dell'Album o il Nome dell'Artista.</span>
       </div>
     `;
@@ -2733,11 +2735,11 @@ window.selectDiscogsResult = async function(encodedJson) {
       if (document.activeElement) document.activeElement.blur();
       addVinylModal.classList.remove('active');
       discogsResults.classList.add('hidden');
-      showToast("✅ Vinile selezionato nella tua collezione!");
+      showToast("âœ… Vinile selezionato nella tua collezione!");
       return;
     }
 
-    showToast("🔄 Recupero dettagli completi da Discogs...");
+    showToast("ðŸ”„ Recupero dettagli completi da Discogs...");
     if (r.id) {
       await fetchAndFillFullRelease(r.id, 'add');
     } else {
@@ -2768,7 +2770,7 @@ window.selectDiscogsResult = async function(encodedJson) {
       if (placeholder) placeholder.style.display = 'none';
     }
     discogsResults.classList.add('hidden');
-    showToast("🎉 Dati del vinile autocompilati!");
+    showToast("ðŸŽ‰ Dati del vinile autocompilati!");
   } catch (e) {
     console.error(e);
   }
@@ -2888,7 +2890,7 @@ if (addVinylForm) {
     populateGenreSelect();
     applyFiltering();
     selectIndex(0);
-    showToast("🎵 Nuovo Vinile Aggiunto con successo!");
+    showToast("ðŸŽµ Nuovo Vinile Aggiunto con successo!");
   });
 }
 
@@ -3010,7 +3012,7 @@ if (wheelContainer) {
     }
   });
 
-  // Imposta il cursore di default a "grab" per indicare che è trascinabile
+  // Imposta il cursore di default a "grab" per indicare che Ã¨ trascinabile
   wheelContainer.style.cursor = "grab";
 }
 
@@ -3048,8 +3050,8 @@ window.openGalleryModal = function(id) {
       </div>
 
       ${totalPhotos > 1 ? `
-        <button type="button" id="prev-gallery-photo-btn" class="icon-circle-btn" style="position: absolute; left: 0px; z-index: 15; width: 46px; height: 46px; background: rgba(18, 16, 28, 0.9); border: 1px solid rgba(255, 159, 252, 0.6); font-size: 1.3rem; cursor: pointer; color: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.8);" aria-label="Foto Precedente">❮</button>
-        <button type="button" id="next-gallery-photo-btn" class="icon-circle-btn" style="position: absolute; right: 0px; z-index: 15; width: 46px; height: 46px; background: rgba(18, 16, 28, 0.9); border: 1px solid rgba(255, 159, 252, 0.6); font-size: 1.3rem; cursor: pointer; color: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.8);" aria-label="Foto Successiva">❯</button>
+        <button type="button" id="prev-gallery-photo-btn" class="icon-circle-btn" style="position: absolute; left: 0px; z-index: 15; width: 46px; height: 46px; background: rgba(18, 16, 28, 0.9); border: 1px solid rgba(255, 159, 252, 0.6); font-size: 1.3rem; cursor: pointer; color: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.8);" aria-label="Foto Precedente">â®</button>
+        <button type="button" id="next-gallery-photo-btn" class="icon-circle-btn" style="position: absolute; right: 0px; z-index: 15; width: 46px; height: 46px; background: rgba(18, 16, 28, 0.9); border: 1px solid rgba(255, 159, 252, 0.6); font-size: 1.3rem; cursor: pointer; color: #fff; box-shadow: 0 4px 20px rgba(0,0,0,0.8);" aria-label="Foto Successiva">â¯</button>
       ` : ''}
       
       <div id="gallery-track-container" style="display: flex; flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; scroll-behavior: smooth; -webkit-overflow-scrolling: touch; width: 100%; height: 100%; align-items: center; scrollbar-width: none; ms-overflow-style: none;">
@@ -3179,7 +3181,7 @@ if (editVinylForm) {
     const newId = document.getElementById('edit-vinyl-id').value;
     const currentUser = localStorage.getItem('app_current_user');
     
-    showToast("⏳ Salvataggio in corso...");
+    showToast("â³ Salvataggio in corso...");
     
     try {
       let rawUserVinyls = await fetchDatabaseFromGitHub(currentUser);
@@ -3272,11 +3274,11 @@ if (editVinylForm) {
 
       populateGenreSelect();
       applyFiltering();
-      showToast("✏️ Vinile aggiornato con successo!");
+      showToast("âœï¸ Vinile aggiornato con successo!");
 
     } catch (err) {
       console.error(err);
-      showToast("⚠️ Errore durante l'aggiornamento.");
+      showToast("âš ï¸ Errore durante l'aggiornamento.");
     }
   });
 }
@@ -3313,7 +3315,7 @@ window.deleteVinyl = async function(id) {
     populateGenreSelect();
     applyFiltering();
     selectIndex(0);
-    showToast("🗑️ Vinile eliminato dalla tua collezione.");
+    showToast("ðŸ—‘ï¸ Vinile eliminato dalla tua collezione.");
   }
 };
 
@@ -3325,7 +3327,7 @@ if (deleteVinylFromEditBtn) {
 }
 
 // ==========================================
-// GESTIONE POPUP MENÙ IN BASSO CENTRALE (DOCK QUICK MENU)
+// GESTIONE POPUP MENÃ™ IN BASSO CENTRALE (DOCK QUICK MENU)
 // ==========================================
 const bottomDockBtn = document.getElementById('bottom-dock-btn');
 const bottomQuickMenu = document.getElementById('bottom-quick-menu');
@@ -3408,7 +3410,7 @@ if (currencySelect) {
   currencySelect.value = localStorage.getItem('app_user_currency') || 'EUR';
   currencySelect.addEventListener('change', (e) => {
     localStorage.setItem('app_user_currency', e.target.value);
-    showToast(`💱 Valuta impostata su ${e.target.value}`);
+    showToast(`ðŸ’± Valuta impostata su ${e.target.value}`);
     updateCenterContent(selectedIndex);
   });
 }
@@ -3417,7 +3419,7 @@ if (syncFreqSelect) {
   syncFreqSelect.value = localStorage.getItem('app_discogs_sync_freq') || 'AUTO_ALWAYS';
   syncFreqSelect.addEventListener('change', (e) => {
     localStorage.setItem('app_discogs_sync_freq', e.target.value);
-    showToast(`⚙️ Frequenza Sincronizzazione aggiornata`);
+    showToast(`âš™ï¸ Frequenza Sincronizzazione aggiornata`);
   });
 
 
@@ -3426,7 +3428,7 @@ if (syncFreqSelect) {
     githubTokenInput.value = localStorage.getItem('app_github_token') || '';
     githubTokenInput.addEventListener('change', (e) => {
       localStorage.setItem('app_github_token', e.target.value.trim());
-      showToast("☁️ Token GitHub salvato!");
+      showToast("â˜ï¸ Token GitHub salvato!");
     });
   }
 
@@ -3448,7 +3450,7 @@ if (syncFreqSelect) {
 if (forceSyncBtn) {
   forceSyncBtn.addEventListener('click', async () => {
     const origText = forceSyncBtn.innerHTML;
-    forceSyncBtn.innerHTML = '⏳ Sincronizzazione in corso...';
+    forceSyncBtn.innerHTML = 'â³ Sincronizzazione in corso...';
     forceSyncBtn.disabled = true;
     forceSyncBtn.style.opacity = '0.7';
     
@@ -3482,7 +3484,7 @@ if (settingsTriggerImportBtn && settingsImportJsonFile) {
           populateGenreSelect();
           applyFiltering();
           if (settingsModal) settingsModal.classList.remove('active');
-          showToast("🎉 Database Vinili Importato con successo!");
+          showToast("ðŸŽ‰ Database Vinili Importato con successo!");
         }
       } catch (err) {
         alert("Errore nel formato del file JSON.");
@@ -3540,11 +3542,11 @@ document.getElementById('dock-manage-btn')?.addEventListener('click', async () =
     title: 'Gestisci Vinile',
     text: "Cosa vuoi fare con questo vinile?",
     buttons: [
-      { text: '✏️ Modifica', primary: true, action: async () => {
+      { text: 'âœï¸ Modifica', primary: true, action: async () => {
           const access = await window.checkAdminAccess('edit');
           if (access) window.openEditVinylModal(vinile.id);
       }},
-      { text: '🗑️ Elimina', primary: false, danger: true, action: async () => {
+      { text: 'ðŸ—‘ï¸ Elimina', primary: false, danger: true, action: async () => {
           const access = await window.checkAdminAccess('delete');
           if (access) window.deleteVinyl(vinile.id);
       }},
@@ -3588,7 +3590,7 @@ document.getElementById('dock-spotify-btn')?.addEventListener('click', () => {
       const start = Date.now();
       window.location.href = spotifyAppUri;
 
-      // Se l'app nativa non è presente o non risponde entro 1.2s, fa fallback sul browser web
+      // Se l'app nativa non Ã¨ presente o non risponde entro 1.2s, fa fallback sul browser web
       setTimeout(() => {
         if (Date.now() - start < 2000) {
           window.open(spotifyWebUrl, '_blank', 'noopener,noreferrer');
@@ -3629,7 +3631,7 @@ function renderJukeboxVinyl(vinile) {
     <div style="margin-top: 8px; font-size: 0.82rem; color: #cbd5e1; display: flex; gap: 8px; justify-content: center;">
       <span class="badge badge-purple">${sv.genere || 'Vinile'}</span>
       <span class="badge badge-pink">${sv.anno_uscita_originale || sv.anno_stampa || 'N/A'}</span>
-      <span class="badge" style="color:#ff9ffc;">📀 ${sv.stato_catalogo || 'Personale'}</span>
+      <span class="badge" style="color:#ff9ffc;">ðŸ“€ ${sv.stato_catalogo || 'Personale'}</span>
     </div>
   `;
 }
@@ -3675,7 +3677,7 @@ if (closeJukeboxModalBtn) {
       if (jukeboxTimer) {
         clearInterval(jukeboxTimer);
         jukeboxTimer = null;
-        if (jukeboxAutoBtn) jukeboxAutoBtn.innerHTML = '▶️ Autoplay Party (10s)';
+        if (jukeboxAutoBtn) jukeboxAutoBtn.innerHTML = 'â–¶ï¸ Autoplay Party (10s)';
       }
     }
   });
@@ -3697,7 +3699,7 @@ document.querySelectorAll('.theme-chip-btn').forEach(btn => {
   btn.addEventListener('click', (e) => {
     const theme = e.target.getAttribute('data-theme');
     applyAppTheme(theme);
-    showToast(`🎨 Tema "${e.target.textContent}" applicato!`);
+    showToast(`ðŸŽ¨ Tema "${e.target.textContent}" applicato!`);
   });
 });
 
@@ -3736,7 +3738,7 @@ function adjustDockOverflow() {
     moreBtn.classList.remove('hidden');
     
     const allButtons = Array.from(mainItems.children);
-    // Cicla a ritroso per spostare i pulsanti più a destra nel menù "Altro"
+    // Cicla a ritroso per spostare i pulsanti piÃ¹ a destra nel menÃ¹ "Altro"
     for (let i = allButtons.length - 1; i >= 0; i--) {
       const btn = allButtons[i];
       // Inserisce all'inizio dell'overflow in modo da mantenere l'ordine corretto
@@ -3761,7 +3763,7 @@ if (moreBtnElement && overflowMenuElement) {
     overflowMenuElement.classList.toggle('active');
   });
 
-  // Chiudi il menù cliccando all'esterno o sulla dock
+  // Chiudi il menÃ¹ cliccando all'esterno o sulla dock
   document.addEventListener('click', (e) => {
     if (!moreBtnElement.contains(e.target) && !overflowMenuElement.contains(e.target)) {
       overflowMenuElement.classList.remove('active');
@@ -3962,7 +3964,7 @@ window.toggleFriend = async function(targetUsername) {
         upFriendBtn.disabled = true;
         
         const myProfile = await fetchUserProfile(myUsername);
-        if (!myProfile) throw new Error("Il tuo profilo non è stato trovato.");
+        if (!myProfile) throw new Error("Il tuo profilo non Ã¨ stato trovato.");
         if (!myProfile.friends) myProfile.friends = [];
         
         const isFriend = myProfile.friends.includes(targetUsername);
@@ -3974,7 +3976,7 @@ window.toggleFriend = async function(targetUsername) {
         
         await pushUserProfile(myUsername, myProfile);
         
-        if(typeof window.showToast === 'function') window.showToast(isFriend ? `Non segui più questo utente.` : `Hai iniziato a seguire questo utente!`);
+        if(typeof window.showToast === 'function') window.showToast(isFriend ? `Non segui piÃ¹ questo utente.` : `Hai iniziato a seguire questo utente!`);
         
         // Update UI
         if (isFriend) {
@@ -3982,13 +3984,13 @@ window.toggleFriend = async function(targetUsername) {
            upFriendBtn.style.background = 'rgba(52, 211, 153, 0.2)';
            upFriendBtn.style.borderColor = 'rgba(52, 211, 153, 0.5)';
            upFriendBtn.style.color = '#34d399';
-           upFriendBtn.textContent = '➕ Segui';
+           upFriendBtn.textContent = 'âž• Segui';
         } else {
            upFriendBtn.classList.replace('btn-primary', 'btn-secondary');
            upFriendBtn.style.background = 'transparent';
            upFriendBtn.style.borderColor = 'rgba(239, 68, 68, 0.4)';
            upFriendBtn.style.color = '#f87171';
-           upFriendBtn.textContent = '❌ Smetti di seguire';
+           upFriendBtn.textContent = 'âŒ Smetti di seguire';
         }
         
         const cacheIdx = currentLoadedProfilesCache.findIndex(p => p.username === myUsername);
@@ -4023,13 +4025,13 @@ async function openUserProfile(profile) {
           upFriendBtn.style.background = 'transparent';
           upFriendBtn.style.borderColor = 'rgba(239, 68, 68, 0.4)';
           upFriendBtn.style.color = '#f87171';
-          upFriendBtn.textContent = '❌ Smetti di seguire';
+          upFriendBtn.textContent = 'âŒ Smetti di seguire';
       } else {
           upFriendBtn.classList.replace('btn-secondary', 'btn-primary');
           upFriendBtn.style.background = 'rgba(52, 211, 153, 0.2)';
           upFriendBtn.style.borderColor = 'rgba(52, 211, 153, 0.5)';
           upFriendBtn.style.color = '#34d399';
-          upFriendBtn.textContent = '➕ Segui';
+          upFriendBtn.textContent = 'âž• Segui';
       }
       upFriendBtn.onclick = () => window.toggleFriend(profile.username);
   } else {
@@ -4212,7 +4214,7 @@ if (authRegisterBtn) {
     try {
       const existing = await fetchUserProfile(username);
       if (existing) {
-        showAuthError("L'username è già in uso!");
+        showAuthError("L'username Ã¨ giÃ  in uso!");
       } else {
         // Create profile
         const profileData = {
@@ -4355,8 +4357,8 @@ if (databaseSearchInput) {
         try {
             const field = databaseSearchField ? databaseSearchField.value : 'all';
             
-            // FTS5: applica il wildcard a ogni singola parola (es. "iron maiden" → "iron* maiden*")
-            // così cercare "maiden" o parole parziali trova correttamente i record nel DB
+            // FTS5: applica il wildcard a ogni singola parola (es. "iron maiden" â†’ "iron* maiden*")
+            // cosÃ¬ cercare "maiden" o parole parziali trova correttamente i record nel DB
             const tokens = query.trim().split(/\s+/).filter(t => t.length > 0);
             const wildcardTokens = tokens.map(t => t + '*').join(' ');
             
@@ -4367,8 +4369,8 @@ if (databaseSearchInput) {
                 matchExpr = `'${wildcardTokens}'`;
             }
             
-            // NOTA: rimosso GROUP BY lower(artist), lower(title) dalla query SQL perché SQLite
-            // non supporta regex e non può pulire i suffissi Discogs (es. "Iron Maiden (2)").
+            // NOTA: rimosso GROUP BY lower(artist), lower(title) dalla query SQL perchÃ© SQLite
+            // non supporta regex e non puÃ² pulire i suffissi Discogs (es. "Iron Maiden (2)").
             // La deduplicazione avviene nel JS (renderDatabaseResults) dopo la sanificazione
             // dell'artista con replace(/\s*\(\d+\)$/, '').
             const sql = `
@@ -4385,7 +4387,7 @@ if (databaseSearchInput) {
             `;
             const results = await sqliteWorker.db.query(sql);
             
-            // Ignora i risultati se è iniziata una ricerca più recente
+            // Ignora i risultati se Ã¨ iniziata una ricerca piÃ¹ recente
             if (searchId !== currentSearchId) return;
             
             const filtered = results.map(r => ({
@@ -4594,7 +4596,7 @@ function renderDatabaseResults(results, startTime) {
         if (aMinor && !bMinor) return 1;
         if (!aMinor && bMinor) return -1;
         
-        // 4. Titolo più corto (album originale)
+        // 4. Titolo piÃ¹ corto (album originale)
         return aTitle.length - bTitle.length;
     });
 
@@ -4616,7 +4618,7 @@ function renderDatabaseResults(results, startTime) {
             }
         }
 
-        // Determina se è Unofficial
+        // Determina se Ã¨ Unofficial
         const checkUnofficial = (vin) => vin.formats && vin.formats.some(f => f.descriptions && (f.descriptions.includes('Unofficial Release') || f.descriptions.includes('Bootleg')));
         const isUnofficial = checkUnofficial(v);
 
@@ -4749,8 +4751,8 @@ window.showDatabaseRecordDetails = async function(id, fromPersonal = false) {
     // Aggiungi dettagli estesi (Paese, Data Rilascio, Generi, Stili)
     if (record.country) infoHtml += `<div><strong style="color:white;">Paese:</strong> ${escapeHtml(record.country)}</div>`;
     if (record.released) infoHtml += `<div><strong style="color:white;">Data Pubblicazione:</strong> ${escapeHtml(record.released)}</div>`;
-    if (record.format_quantity) infoHtml += `<div><strong style="color:white;">Quantità Supporti:</strong> ${escapeHtml(String(record.format_quantity))}</div>`;
-    if (record.data_quality) infoHtml += `<div><strong style="color:white;">Qualità Dati Discogs:</strong> ${escapeHtml(record.data_quality)}</div>`;
+    if (record.format_quantity) infoHtml += `<div><strong style="color:white;">QuantitÃ  Supporti:</strong> ${escapeHtml(String(record.format_quantity))}</div>`;
+    if (record.data_quality) infoHtml += `<div><strong style="color:white;">QualitÃ  Dati Discogs:</strong> ${escapeHtml(record.data_quality)}</div>`;
     if (record.status) infoHtml += `<div><strong style="color:white;">Stato:</strong> ${escapeHtml(record.status)}</div>`;
 
     if (Array.isArray(record.genres) && record.genres.length > 0) {
@@ -4774,9 +4776,9 @@ window.showDatabaseRecordDetails = async function(id, fromPersonal = false) {
     
     // Aziende / Case Discografiche
     if (Array.isArray(record.companies) && record.companies.length > 0) {
-        infoHtml += `<div style="margin-top: 10px;"><strong style="color:white; display:block;">Società / Case Discografiche:</strong>`;
+        infoHtml += `<div style="margin-top: 10px;"><strong style="color:white; display:block;">SocietÃ  / Case Discografiche:</strong>`;
         record.companies.forEach(comp => {
-            infoHtml += `<div style="font-size: 0.85rem; padding-left: 10px; color: #9ca3af;">• ${escapeHtml(comp.entity_type_name || 'Azienda')}: <span style="color: #cbd5e1;">${escapeHtml(comp.name)}</span></div>`;
+            infoHtml += `<div style="font-size: 0.85rem; padding-left: 10px; color: #9ca3af;">â€¢ ${escapeHtml(comp.entity_type_name || 'Azienda')}: <span style="color: #cbd5e1;">${escapeHtml(comp.name)}</span></div>`;
         });
         infoHtml += `</div>`;
     }
@@ -4789,7 +4791,7 @@ window.showDatabaseRecordDetails = async function(id, fromPersonal = false) {
     if (allCredits.length > 0) {
         infoHtml += `<div style="margin-top: 10px;"><strong style="color:white; display:block;">Tutti i Crediti / Autori:</strong>`;
         allCredits.forEach(cred => {
-            infoHtml += `<div style="font-size: 0.85rem; padding-left: 10px; color: #9ca3af;">• ${escapeHtml(cred.role)}: <span style="color: #cbd5e1;">${escapeHtml(cred.name)}</span> ${cred.tracks ? `(Tracce: ${escapeHtml(cred.tracks)})` : ''}</div>`;
+            infoHtml += `<div style="font-size: 0.85rem; padding-left: 10px; color: #9ca3af;">â€¢ ${escapeHtml(cred.role)}: <span style="color: #cbd5e1;">${escapeHtml(cred.name)}</span> ${cred.tracks ? `(Tracce: ${escapeHtml(cred.tracks)})` : ''}</div>`;
         });
         infoHtml += `</div>`;
     }
@@ -4798,7 +4800,7 @@ window.showDatabaseRecordDetails = async function(id, fromPersonal = false) {
     if (Array.isArray(record.identifiers) && record.identifiers.length > 0) {
         infoHtml += `<div style="margin-top: 10px;"><strong style="color:white; display:block;">Tutti gli Identificatori:</strong>`;
         record.identifiers.forEach(ident => {
-            infoHtml += `<div style="font-size: 0.85rem; padding-left: 10px; color: #cbd5e1;">• <span style="color: #9ca3af;">${escapeHtml(ident.type)}:</span> ${escapeHtml(ident.value)} ${ident.description ? `(${escapeHtml(ident.description)})` : ''}</div>`;
+            infoHtml += `<div style="font-size: 0.85rem; padding-left: 10px; color: #cbd5e1;">â€¢ <span style="color: #9ca3af;">${escapeHtml(ident.type)}:</span> ${escapeHtml(ident.value)} ${ident.description ? `(${escapeHtml(ident.description)})` : ''}</div>`;
         });
         infoHtml += `</div>`;
     }
@@ -4815,7 +4817,7 @@ window.showDatabaseRecordDetails = async function(id, fromPersonal = false) {
     if (Array.isArray(record.videos) && record.videos.length > 0) {
         infoHtml += `<div style="margin-top: 10px;"><strong style="color:white; display:block;">Video collegati:</strong>`;
         record.videos.forEach(v => {
-            infoHtml += `<div style="font-size: 0.85rem; padding-left: 10px; margin-bottom: 4px;"><a href="${escapeHtml(v.uri)}" target="_blank" style="color: #a5b4fc; text-decoration: underline;">▶ ${escapeHtml(v.title || 'Video')}</a></div>`;
+            infoHtml += `<div style="font-size: 0.85rem; padding-left: 10px; margin-bottom: 4px;"><a href="${escapeHtml(v.uri)}" target="_blank" style="color: #a5b4fc; text-decoration: underline;">â–¶ ${escapeHtml(v.title || 'Video')}</a></div>`;
         });
         infoHtml += `</div>`;
     }
@@ -4880,7 +4882,7 @@ window.hideDatabaseRecordDetails = function() {
 window.startMatrixSearch = function(prefix) { console.log('startMatrixSearch called with prefix:', prefix); 
     const matriceInput = document.getElementById(`${prefix}-matrice`);
     if (!matriceInput || !matriceInput.value.trim()) {
-        showToast("⚠️ Inserisci un codice matrice prima di cercare.");
+        showToast("âš ï¸ Inserisci un codice matrice prima di cercare.");
         return;
     }
     const matrice = matriceInput.value.trim();
@@ -4892,7 +4894,7 @@ async function searchDiscogsMatrixAndFill(matrice, prefix) {
   const headers = { 'User-Agent': 'VinylCollectorApp/2.0 +http://localhost' };
   if (token) headers['Authorization'] = `Discogs token=${token}`;
   
-  showToast("🔍 Ricerca codice matrice su Discogs...");
+  showToast("ðŸ” Ricerca codice matrice su Discogs...");
   try {
     const searchRes = await fetch(`https://api.discogs.com/database/search?query=${encodeURIComponent(matrice)}&type=release`, { headers });
     if (!searchRes.ok) throw new Error();
@@ -4901,10 +4903,10 @@ async function searchDiscogsMatrixAndFill(matrice, prefix) {
       const releaseId = searchData.results[0].id;
       await fetchAndFillFullRelease(releaseId, prefix);
     } else {
-      showToast("❌ Nessun risultato trovato su Discogs per questa matrice.");
+      showToast("âŒ Nessun risultato trovato su Discogs per questa matrice.");
     }
   } catch(e) {
-    showToast("❌ Errore durante la ricerca su Discogs.");
+    showToast("âŒ Errore durante la ricerca su Discogs.");
   }
 }
 
@@ -4919,13 +4921,13 @@ setTimeout(() => {
 window.addToCollectionFromGlobalDb = async function(globalId) {
     if (!sqliteWorker) return;
     
-    // Mostriamo un caricamento perché dobbiamo fare chiamate di rete
-    showToast("⏳ Ricerca in corso...");
+    // Mostriamo un caricamento perchÃ© dobbiamo fare chiamate di rete
+    showToast("â³ Ricerca in corso...");
 
     try {
         const results = await sqliteWorker.db.query(`SELECT data FROM vinyls WHERE id = '${globalId}'`);
         if(results.length === 0) {
-            showToast("❌ Vinile non trovato nel database.");
+            showToast("âŒ Vinile non trovato nel database.");
             return;
         }
         
@@ -4946,7 +4948,7 @@ window.addToCollectionFromGlobalDb = async function(globalId) {
         let rawUserVinyls = await fetchDatabaseFromGitHub(currentUser);
         rawUserVinyls.push(p);
         
-        showToast("⏳ Sincronizzazione in corso...");
+        showToast("â³ Sincronizzazione in corso...");
         await pushDatabaseToGitHub(rawUserVinyls, currentUser);
         
         // Aggiorniamo la cache locale fondendo il catalogo master
@@ -4954,10 +4956,10 @@ window.addToCollectionFromGlobalDb = async function(globalId) {
         safeSave('app_all_vinyls_cache', ALL_VINILI);
         applyFiltering();
         
-        showToast("✅ Vinile aggiunto alla tua collezione!");
+        showToast("âœ… Vinile aggiunto alla tua collezione!");
     } catch(e) {
         console.error(e);
-        showToast("⚠️ Errore di sincronizzazione. Riprova.");
+        showToast("âš ï¸ Errore di sincronizzazione. Riprova.");
     }
     
     // Ripristiniamo la visualizzazione della ricerca senza chiudere la modale intera
@@ -5067,3 +5069,5 @@ if (tabExploreAll && tabExploreFriends) {
         renderCommunityLists();
     });
 }
+
+
