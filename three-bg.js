@@ -96,22 +96,24 @@ if (pillarContainer) {
   const scene = new THREE.Scene();
   const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
 
-  const renderer = new THREE.WebGLRenderer({
-    antialias: false,
-    alpha: true,
-    powerPreference: 'high-performance',
-    precision: settings.precision,
-    stencil: false,
-    depth: false
-  });
+  const initialPixelRatio = Math.min(window.devicePixelRatio, 1.0);
+  
+  try {
+    const renderer = new THREE.WebGLRenderer({
+      antialias: false,
+      alpha: true,
+      powerPreference: 'low-power',
+      precision: settings.precision,
+      stencil: false,
+      depth: false
+    });
 
-  const initialPixelRatio = Math.min(window.devicePixelRatio, 3.0);
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(initialPixelRatio);
-  pillarContainer.appendChild(renderer.domElement);
-  activeThreeRenderer = renderer;
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(initialPixelRatio);
+    pillarContainer.appendChild(renderer.domElement);
+    activeThreeRenderer = renderer;
 
-  const parseColor = hex => {
+    const parseColor = hex => {
     const color = new THREE.Color(hex);
     return new THREE.Vector3(color.r, color.g, color.b);
   };
@@ -271,6 +273,11 @@ if (pillarContainer) {
     renderer.render(scene, camera);
   }
   requestAnimationFrame(animate);
+  } catch (err) {
+    console.error("ThreeJS non supportato o errore contesto WebGL. Attivazione fallback sfocato.", err);
+    pillarContainer.style.background = 'linear-gradient(135deg, #5227FF, #FF9FFC)';
+    pillarContainer.style.filter = 'blur(100px)';
+  }
 }
 
 // ==========================================
