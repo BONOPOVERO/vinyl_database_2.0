@@ -1,4 +1,4 @@
-import * as THREE from 'https://esm.sh/three';
+﻿import * as THREE from 'https://esm.sh/three';
 
 let activeShaderMaterial = null;
 let activeThreeRenderer = null;
@@ -21,7 +21,7 @@ export function updateBackgroundSharpness(val) {
   if (badge) {
     let label = `${bgIterations} iter.`;
     if (bgIterations >= 40) label += ' (Ultra)';
-    else if (bgIterations >= 28) label += ' (Alta qualità)';
+    else if (bgIterations >= 28) label += ' (Alta qualitÃ )';
     else if (bgIterations >= 15) label += ' (Bilanciato)';
     else label += ' (Veloce)';
     badge.textContent = label;
@@ -46,11 +46,11 @@ export function updateAnimationToggleButtonUI() {
   const btn = document.getElementById('settings-toggle-anim-btn');
   if (btn) {
     if (isBgAnimationPaused) {
-      btn.innerHTML = '▶️ Riprendi Animazioni Sfondo';
+      btn.innerHTML = 'â–¶ï¸ Riprendi Animazioni Sfondo';
       btn.style.background = 'rgba(52, 211, 153, 0.2)';
       btn.style.borderColor = 'rgba(52, 211, 153, 0.6)';
     } else {
-      btn.innerHTML = '⏸️ Metti in Pausa Animazioni Sfondo';
+      btn.innerHTML = 'â¸ï¸ Metti in Pausa Animazioni Sfondo';
       btn.style.background = 'rgba(255, 255, 255, 0.08)';
       btn.style.borderColor = 'rgba(255, 255, 255, 0.25)';
     }
@@ -63,12 +63,12 @@ export function toggleBackgroundAnimation() {
   updateAnimationToggleButtonUI();
   if (typeof showToast === 'function') {
     if (isBgAnimationPaused) {
-      showToast("⏸️ Animazioni Sfondo messe in Pausa");
+      showToast("â¸ï¸ Animazioni Sfondo messe in Pausa");
     } else {
-      showToast("▶️ Animazioni Sfondo riattivate!");
+      showToast("â–¶ï¸ Animazioni Sfondo riattivate!");
     }
   } else if (window.showToast) {
-      window.showToast(isBgAnimationPaused ? "⏸️ Animazioni Sfondo messe in Pausa" : "▶️ Animazioni Sfondo riattivate!");
+      window.showToast(isBgAnimationPaused ? "â¸ï¸ Animazioni Sfondo messe in Pausa" : "â–¶ï¸ Animazioni Sfondo riattivate!");
   }
 }
 
@@ -98,8 +98,8 @@ if (pillarContainer) {
   // CSS GRADIENT FALLBACK FOR MOBILE
   if (isMobile) {
     pillarContainer.style.background = `linear-gradient(135deg, ${PILLAR_CONFIG.topColor}, ${PILLAR_CONFIG.bottomColor})`;
-    pillarContainer.style.backgroundSize = "400% 400%";
-    pillarContainer.style.animation = "gradientBG 15s ease infinite";
+    
+    
     pillarContainer.style.transition = "background 1s ease";
     
     // Polyfill per la funzione di aggiornamento colori
@@ -471,3 +471,5 @@ export function updateDynamicAlbumBackground(topHex, bottomHex) {
     heroWrapper.style.setProperty('--album-secondary-color', bottomHex);
   }
 }
+
+
