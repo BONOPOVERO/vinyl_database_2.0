@@ -95,18 +95,33 @@ if (pillarContainer) {
     pillarRotation: 0
   };
 
-  const scene = new THREE.Scene();
-  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-  
-  try {
-    const renderer = new THREE.WebGLRenderer({
-      antialias: false,
-      alpha: true,
-      powerPreference: 'low-power',
-      precision: settings.precision,
-      stencil: false,
-      depth: false
-    });
+  // CSS GRADIENT FALLBACK FOR MOBILE
+  if (isMobile) {
+    pillarContainer.style.background = `linear-gradient(135deg, ${PILLAR_CONFIG.topColor}, ${PILLAR_CONFIG.bottomColor})`;
+    pillarContainer.style.backgroundSize = "400% 400%";
+    pillarContainer.style.animation = "gradientBG 15s ease infinite";
+    pillarContainer.style.transition = "background 1s ease";
+    
+    // Polyfill per la funzione di aggiornamento colori
+    window.updateDynamicAlbumBackground = (c1, c2) => {
+      pillarContainer.style.background = `linear-gradient(135deg, ${c1}, ${c2})`;
+    };
+    
+    // Niente Three.js sul telefono!
+  } else {
+    // DESKTOP WEBGL
+    const scene = new THREE.Scene();
+    const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+    
+    try {
+      const renderer = new THREE.WebGLRenderer({
+        antialias: false,
+        alpha: true,
+        powerPreference: 'low-power',
+        precision: settings.precision,
+        stencil: false,
+        depth: false
+      });
 
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(settings.pixelRatio);
@@ -278,6 +293,7 @@ if (pillarContainer) {
     pillarContainer.style.background = 'linear-gradient(135deg, #5227FF, #FF9FFC)';
     pillarContainer.style.filter = 'blur(100px)';
   }
+  } // Chiusura else (isMobile)
 }
 
 // ==========================================

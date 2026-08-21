@@ -1315,6 +1315,11 @@ html, body {
     height: 74vh;
   }
   
+  /* FIX VRAM / SEZIONI CHE SCOMPAIONO SU MOBILE */
+  .center-glass-panel, .center-content, .wheel-item {
+    will-change: auto !important;
+  }
+  
   .glass-surface {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
@@ -1865,3 +1870,11 @@ html, body {
   padding: 10px 20px !important;
   font-weight: 600 !important;
 }
+
+ @ k e y f r a m e s   g r a d i e n t B G   { 
+     0 %   {   b a c k g r o u n d - p o s i t i o n :   0 %   5 0 % ;   } 
+     5 0 %   {   b a c k g r o u n d - p o s i t i o n :   1 0 0 %   5 0 % ;   } 
+     1 0 0 %   {   b a c k g r o u n d - p o s i t i o n :   0 %   5 0 % ;   } 
+ } 
+  
+ 
