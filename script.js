@@ -545,8 +545,8 @@ window.extractDominantColors = function extractDominantColors(imgElement) {
   const originalSrc = imgElement.src;
   
   let proxySrc = originalSrc;
-  if (originalSrc.startsWith('http') && !originalSrc.includes('corsproxy.io')) {
-      proxySrc = 'https://corsproxy.io/?url=' + encodeURIComponent(originalSrc);
+  if (originalSrc.startsWith('http') && !originalSrc.includes('images.weserv.nl')) {
+      proxySrc = 'https://images.weserv.nl/?url=' + encodeURIComponent(originalSrc);
   }
 
   const tempImg = new Image();
