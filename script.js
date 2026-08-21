@@ -21,7 +21,7 @@ async function initSqliteDb() {
             config: {
               serverMode: "full",
               url: "https://huggingface.co/datasets/BONOPOVERO/vinili2.0/resolve/main/master_catalog.db",
-              requestChunkSize: 8192,
+              requestChunkSize: 4096,
             },
           },
         ],
