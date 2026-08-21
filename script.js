@@ -379,12 +379,25 @@ const authModal = document.getElementById('auth-modal');
     }
     
     try {
-      await initSqliteDb(); // Inizializza il worker SQLite HTTP VFS
+      initSqliteDb(); // Inizializza il worker SQLite HTTP VFS in background, senza bloccare
       let rawUserVinyls = [];
       if (currentUser) {
           rawUserVinyls = await fetchDatabaseFromGitHub(currentUser);
       }
-      ALL_VINILI = await joinVinylDataAsync(rawUserVinyls);
+      
+      // Merge con la cache locale per mostrare i titoli immediatamente se già scaricati
+      const cachedStr = localStorage.getItem('app_all_vinyls_cache');
+      let cachedMap = {};
+      if (cachedStr) {
+          try {
+              const cached = JSON.parse(cachedStr);
+              cached.forEach(v => cachedMap[v.id] = v);
+          } catch(e) {}
+      }
+      
+      ALL_VINILI = rawUserVinyls.map(uv => {
+          return { ...(cachedMap[uv.id] || {}), ...uv };
+      });
       safeSave('app_all_vinyls_cache', ALL_VINILI);
       
       if (!currentUser) {
