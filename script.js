@@ -1472,7 +1472,7 @@ async function updateCenterContent(index) {
           
           <div class="floating-art-wrapper">
             <div id="cover-wrapper-btn" class="album-cover-wrapper" title="Clicca per estrarre il vinile!">
-              <img class="album-cover-img" src="${coverSrc}" alt="${vinile.titolo_album}" width="170" height="170" loading="eager" onerror="this.onerror=null; this.src='${fallbackCover}';">
+              <img class="album-cover-img" src="${coverSrc}" alt="${vinile.titolo_album}" width="170" height="170" fetchpriority="high" loading="eager" onerror="this.onerror=null; this.src='${fallbackCover}';">
               <div class="vinyl-disc"></div>
             </div>
             <!-- PROFONDA OMBRA 3D PROIETTATA SULLO SFONDO -->
@@ -1723,8 +1723,12 @@ function selectIndex(newIndex) {
   
   if (targetIndex !== selectedIndex) {
     selectedIndex = targetIndex;
-    triggerWheelAnimation();
-    updateCenterContent(selectedIndex); 
+    triggerWheelAnimation(); // Aggiorna visivamente la ruota subito
+    
+    // Deferisce il calcolo pesante per non bloccare l'INP del click/scroll
+    setTimeout(() => {
+      updateCenterContent(selectedIndex); 
+    }, 0);
   }
 }
 
@@ -3620,7 +3624,7 @@ function renderJukeboxVinyl(vinile) {
   jukeboxDisplay.innerHTML = `
     <div class="floating-art-wrapper" style="margin-bottom: 12px;">
       <div class="album-cover-wrapper playing" style="width: 200px; height: 200px;">
-        <img class="album-cover-img" src="${coverSrc}" alt="${vinile.titolo_album}" width="200" height="200">
+        <img class="album-cover-img" src="${coverSrc}" alt="${vinile.titolo_album}" width="200" height="200" fetchpriority="high" loading="eager">
         <div class="vinyl-disc" style="right: -85px;"></div>
       </div>
       <div class="floating-floor-shadow" style="width: 170px;"></div>
