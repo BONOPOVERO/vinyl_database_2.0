@@ -5,7 +5,8 @@ let activeThreeRenderer = null;
 let targetTopColor = new THREE.Vector3(0.32, 0.15, 1.0);
 let targetBottomColor = new THREE.Vector3(1.0, 0.62, 0.98);
 let isBgAnimationPaused = localStorage.getItem('app_bg_anim_paused') === 'true';
-export let bgIterations = parseInt(localStorage.getItem('app_bg_iterations'), 10) || 20;
+const isMobileDevice = window.innerWidth <= 768;
+export let bgIterations = parseInt(localStorage.getItem('app_bg_iterations'), 10) || (isMobileDevice ? 10 : 20);
 export let bgBlur = parseFloat(localStorage.getItem('app_bg_blur')) || 0.0;
 
 export function updateBackgroundSharpness(val) {
@@ -74,12 +75,13 @@ export function toggleBackgroundAnimation() {
 const pillarContainer = document.getElementById('light-pillar-container');
 
 if (pillarContainer) {
+  const isMobile = window.innerWidth <= 768;
   const settings = { 
-    iterations: 21, // Ottimizzato per prestazioni fluide a 60 FPS senza lag GPU
+    iterations: isMobile ? 12 : 21, 
     waveIterations: 2, 
-    pixelRatio: Math.min(window.devicePixelRatio, 1.0), 
-    precision: 'mediump', 
-    stepMultiplier: 1.6 
+    pixelRatio: isMobile ? Math.min(window.devicePixelRatio, 1.25) : Math.min(window.devicePixelRatio, 1.5), 
+    precision: isMobile ? 'lowp' : 'mediump', 
+    stepMultiplier: isMobile ? 2.5 : 1.6 
   };
 
   const PILLAR_CONFIG = {
@@ -95,8 +97,6 @@ if (pillarContainer) {
 
   const scene = new THREE.Scene();
   const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-
-  const initialPixelRatio = Math.min(window.devicePixelRatio, 1.0);
   
   try {
     const renderer = new THREE.WebGLRenderer({
@@ -109,7 +109,7 @@ if (pillarContainer) {
     });
 
     renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(initialPixelRatio);
+    renderer.setPixelRatio(settings.pixelRatio);
     pillarContainer.appendChild(renderer.domElement);
     activeThreeRenderer = renderer;
 
@@ -147,7 +147,7 @@ if (pillarContainer) {
     uniform int u_iterations;
     varying vec2 vUv;
 
-    const float STEP_MULT = 1.6;
+    const float STEP_MULT = ${settings.stepMultiplier.toFixed(1)};
     const int WAVE_ITER = 2;
 
     void main() {
