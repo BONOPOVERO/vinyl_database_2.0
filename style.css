@@ -1314,6 +1314,15 @@ html, body {
     width: 94vw;
     height: 74vh;
   }
+  
+  .glass-surface {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: 
+      linear-gradient(135deg, 
+        rgba(25, 20, 38, 0.85) 0%, 
+        rgba(25, 20, 38, 0.75) 100%) !important;
+  }
 
   .fab-bottom-btn {
     bottom: 16px;
@@ -1349,8 +1358,9 @@ html, body {
     display: block;
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.4);
-    backdrop-filter: blur(3px);
+    background: rgba(0, 0, 0, 0.75);
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
     z-index: 4;
     opacity: 0;
     pointer-events: none;
@@ -1364,6 +1374,9 @@ html, body {
 
   /* Riduce le dimensioni della dock bar e lo spazio tra le icone su Mobile */
   .glass-dock-container {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(18, 16, 28, 0.95) !important;
     gap: 6px !important;
     padding: 6px 12px !important;
     bottom: 12px !important;
