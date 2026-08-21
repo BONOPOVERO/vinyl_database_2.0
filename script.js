@@ -521,45 +521,45 @@ const authModal = document.getElementById('auth-modal');
           rawUserVinyls = await fetchDatabaseFromGitHub(currentUser);
       }
       
-      // Carica inizialmente dalla cache veloce e mostra la UI
+      // Carica inizialmente dalla cache veloce
       ALL_VINILI = await joinVinylDataAsync(rawUserVinyls);
-      safeSave('app_all_vinyls_cache', ALL_VINILI);
-      applyFiltering();
       
-      // Sincronizzazione in background per non bloccare l'avvio del resto dell'app (event listeners, ecc)
-      setTimeout(async () => {
+      const hasMissingData = Array.isArray(ALL_VINILI) && ALL_VINILI.some(v => !v._backfilled && !String(v.id).startsWith("FALLBACK_"));
+      
+      if (!hasMissingData) {
+          safeSave('app_all_vinyls_cache', ALL_VINILI);
+          applyFiltering(); // Dati completi, renderizza subito
+          
+          const overlay = document.getElementById('startup-loading-overlay');
+          if (overlay) overlay.remove();
+      } else {
+          // Dati mancanti, blocca il rendering e attendi SQLite
           try {
-              const hasMissingData = Array.isArray(ALL_VINILI) && ALL_VINILI.some(v => !v._backfilled && !String(v.id).startsWith("FALLBACK_"));
-              if (hasMissingData) {
-                  console.log("Metadati mancanti, avvio inizializzazione master DB...");
-                  if (typeof showToast === 'function') showToast("⬇️ Connessione al master database...");
-                  
-                  // Attendiamo il caricamento del database pesante (ora non blocca il resto dell'app)
-                  await initSqliteDb();
-                  
-                  // Nascondiamo l'overlay iniziale (il caricamento pesante del DB è finito)
-                  const overlay = document.getElementById('startup-loading-overlay');
-                  if (overlay) {
-                      overlay.style.transition = 'opacity 0.5s ease-out';
-                      overlay.style.opacity = '0';
-                      setTimeout(() => overlay.remove(), 500);
-                  }
-                  
-                  // Avviamo il join sequenziale che aggiornerà la UI disco per disco
-                  ALL_VINILI = await joinVinylDataAsync(rawUserVinyls);
-                  safeSave('app_all_vinyls_cache', ALL_VINILI);
-                  if (typeof showToast === 'function') showToast("✅ Sincronizzazione completata!");
-              } else {
-                  // Se non ci sono dati mancanti, nascondiamo l'overlay subito
-                  const overlay = document.getElementById('startup-loading-overlay');
-                  if (overlay) overlay.remove();
+              console.log("Metadati mancanti, avvio inizializzazione master DB...");
+              if (typeof showToast === 'function') showToast("⬇️ Connessione al master database...");
+              
+              await initSqliteDb();
+              
+              const overlay = document.getElementById('startup-loading-overlay');
+              if (overlay) {
+                  overlay.style.transition = 'opacity 0.5s ease-out';
+                  overlay.style.opacity = '0';
+                  setTimeout(() => overlay.remove(), 500);
               }
+              
+              ALL_VINILI = await joinVinylDataAsync(rawUserVinyls);
+              safeSave('app_all_vinyls_cache', ALL_VINILI);
+              
+              applyFiltering(); // Renderizza solo DOPO aver risolto il DB
+              if (typeof showToast === 'function') showToast("✅ Sincronizzazione completata!");
           } catch(e) {
-              console.error("Errore nel caricamento background:", e);
+              console.error("Errore nel caricamento master DB:", e);
               const overlay = document.getElementById('startup-loading-overlay');
               if (overlay) overlay.remove();
+              
+              applyFiltering(); // Rendering di fallback
           }
-      }, 50);
+      }
 
     if (!currentUser) {
          // UI changes for Guest Mode
