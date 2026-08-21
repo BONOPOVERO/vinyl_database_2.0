@@ -1,4 +1,4 @@
-﻿// Importa il database dal file esterno
+// Importa il database dal file esterno
 import { fetchDatabaseFromGitHub, pushDatabaseToGitHub, fetchUserProfile, pushUserProfile, fetchAllUsersIndex, fetchMasterCatalogFromGitHub, pushMasterCatalogToGitHub, fetchProposalsFromGitHub, pushProposalsToGitHub } from './github-sync.js';
 import sqlJsHttpvfs from "https://esm.sh/sql.js-httpvfs@0.8.12";
 const { createDbWorker } = sqlJsHttpvfs;
@@ -632,7 +632,6 @@ window.extractDominantColors = function extractDominantColors(imgElement) {
       console.warn('Impossibile caricare immagine per i colori', err);
   };
   tempImg.src = proxySrc;
-}
 }
 
 // ==========================================
