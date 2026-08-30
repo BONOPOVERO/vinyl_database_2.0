@@ -2740,7 +2740,7 @@ if (addVinylForm) {
     // Load current user DB (to ensure we are appending to the latest)
     let rawUserVinyls = await fetchDatabaseFromGitHub(currentUser);
     // Remove existing if present to avoid duplicates
-    rawUserVinyls = rawUserVinyls.filter(v => v.id !== personalVinyl.id);
+    rawUserVinyls = rawUserVinyls.filter(v => String(v.id) !== String(personalVinyl.id));
     // Add personal vinyl to user DB
     rawUserVinyls.unshift(personalVinyl);
     
