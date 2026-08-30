@@ -1,7 +1,7 @@
 
 Object.defineProperty(Element.prototype, 'safeInnerHTML', {
     set: function(val) {
-        this.safeInnerHTML = window.sanitizeHTML(val);
+        this.innerHTML = window.sanitizeHTML(val);
     }
 });
 
