@@ -4512,7 +4512,7 @@ function renderDatabaseResults(results, startTime) {
     }).join('');
 
     // Intersection Observer per lazy loading a cascata (iTunes -> Discogs)
-    const observer = new IntersectionObserver((entries, obs) => {
+    const observer = new IntersectionObserver(async (entries, obs) => {
         for (const entry of entries) {
             if (entry.isIntersecting) {
                 const img = entry.target;
@@ -4529,7 +4529,6 @@ function renderDatabaseResults(results, startTime) {
                     }
                 }
             }
-        })();
         }
     }, { root: null, rootMargin: "200px" });
     
