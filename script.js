@@ -532,6 +532,17 @@ const authModal = document.getElementById('auth-modal');
                   ALL_VINILI = await joinVinylDataAsync(rawUserVinyls);
                   safeSave('app_all_vinyls_cache', ALL_VINILI);
                   
+                  // NEW: Salviamo il risultato arricchito (con metadati completi) direttamente su GitHub 
+                  // così non servirà più scaricare dal Master DB ai successivi riavvii.
+                  if (currentUser) {
+                      console.log("Salvataggio metadati completi sul database GitHub personale...");
+                      try {
+                          await pushDatabaseToGitHub(ALL_VINILI, currentUser);
+                      } catch(e) {
+                          console.error("Errore salvataggio metadati su GitHub:", e);
+                      }
+                  }
+                  
                   // Aggiorniamo la UI con tutti i dati completi in un colpo solo
                   applyFiltering();
                   
