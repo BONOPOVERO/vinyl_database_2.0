@@ -6,7 +6,7 @@ export const GITHUB_REPO = 'BONOPOVERO/vinyl_database_2.0';
 async function fetchWithRetry(url, options = {}, retries = 3, backoff = 300) {
   for (let i = 0; i < retries; i++) {
     try {
-      const res = await fetchWithRetry(url, options);
+      const res = await fetch(url, options);
       if (res.ok || res.status === 404 || res.status === 401) {
         return res;
       }
