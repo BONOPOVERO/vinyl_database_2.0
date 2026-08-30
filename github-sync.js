@@ -17,7 +17,8 @@ async function fetchWithRetry(url, options = {}, retries = 3, backoff = 300) {
     await new Promise(r => setTimeout(r, backoff * Math.pow(2, i)));
   }
 }
-\nexport function getGitHubToken() {
+
+export function getGitHubToken() {
     let t = localStorage.getItem('app_github_token');
   if (t && !/^[\x20-\x7E]+$/.test(t)) { localStorage.removeItem('app_github_token'); t = null; }
   return t || '';
