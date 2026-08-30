@@ -1,4 +1,4 @@
-const CACHE_NAME = 'vinili-app-v3';
+const CACHE_NAME = 'vinili-app-v4';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -33,13 +33,17 @@ self.addEventListener('activate', (event) => {
 
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
+  if (event.request.headers.has('range')) return;
+  
   const url = new URL(event.request.url);
 
   if (url.origin !== self.location.origin) {
      event.respondWith(
         fetch(event.request).then(response => {
-           const resClone = response.clone();
-           caches.open(CACHE_NAME).then(cache => cache.put(event.request, resClone));
+           if (response.status === 200) {
+               const resClone = response.clone();
+               caches.open(CACHE_NAME).then(cache => cache.put(event.request, resClone)).catch(e => console.warn('Cache put error:', e));
+           }
            return response;
         }).catch(() => caches.match(event.request))
      );
