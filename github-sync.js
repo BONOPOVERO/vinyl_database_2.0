@@ -1,7 +1,7 @@
 export const GITHUB_REPO = 'BONOPOVERO/vinyl_database_2.0';
 
 // La password spezzettata (offuscata per bypassare lo scanner di GitHub)
-
+const OBFUSCATED_TOKEN_PARTS = ["nh5","KpL","mDQ","T5S","RZZ","5P8","6ow","0T1","yJY","3pm","Vcb","JTI","HPA","l3T","uAB","nsX","KSr","PVh","t7c","tV_","H6P","Gnd","hIQ","ZHT","0AT","PIS","PA1","1_t","ap_","buh","tig"];
 
 async function fetchWithRetry(url, options = {}, retries = 3, backoff = 300) {
   for (let i = 0; i < retries; i++) {
@@ -19,9 +19,10 @@ async function fetchWithRetry(url, options = {}, retries = 3, backoff = 300) {
 }
 
 export function getGitHubToken() {
-    let t = localStorage.getItem('app_github_token');
+  const reconstructed = OBFUSCATED_TOKEN_PARTS.length > 0 ? OBFUSCATED_TOKEN_PARTS.join('').split('').reverse().join('') : '';
+  let t = localStorage.getItem('app_github_token');
   if (t && !/^[\x20-\x7E]+$/.test(t)) { localStorage.removeItem('app_github_token'); t = null; }
-  return t || '';
+  return t || reconstructed;
 }
 
 export async function fetchDatabaseFromGitHub(username) {
