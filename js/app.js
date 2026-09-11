@@ -48,12 +48,12 @@ class VinylApp {
     this.trendsContainer = document.getElementById('trendsContainer');
     this.ambientMesh = document.getElementById('ambientMesh');
 
-    // Menù Restringibile
-    this.collapsibleMenu = document.getElementById('collapsibleMenu');
-    this.toggleMenuBtn = document.getElementById('toggleMenuBtn');
-    this.toggleMenuLabel = document.getElementById('toggleMenuLabel');
-    this.toggleMenuChevron = document.getElementById('toggleMenuChevron');
-    this.isMenuCollapsed = localStorage.getItem('vinyl_vault_menu_collapsed') === 'true';
+    // Floating Island Header
+    this.floatingSearchBar = document.getElementById('floatingSearchBar');
+    this.floatingFilterBar = document.getElementById('floatingFilterBar');
+    this.toggleSearchBtn = document.getElementById('toggleSearchBtn');
+    this.toggleFilterBtn = document.getElementById('toggleFilterBtn');
+    this.closeSearchBtn = document.getElementById('closeSearchBtn');
   }
 
   async init() {
@@ -64,7 +64,6 @@ class VinylApp {
 
     // 2. Collega eventi dell'interfaccia
     this.bindNavigation();
-    this.applyMenuCollapseState();
     this.bindSearchAndSort();
     this.bindScanner();
     this.bindSettings();
@@ -591,7 +590,7 @@ class VinylApp {
   // ==========================================
 
   bindNavigation() {
-    const navButtons = document.querySelectorAll('.nav-tab-btn');
+    const navButtons = document.querySelectorAll('.island-nav-btn, .nav-tab-btn');
     navButtons.forEach(btn => {
       btn.addEventListener('click', () => {
         navButtons.forEach(b => b.classList.remove('active'));
@@ -599,24 +598,48 @@ class VinylApp {
 
         const view = btn.dataset.view;
         this.currentView = view;
-
-        // Mostra o nascondi filtri categoria secondari
-        const catDock = document.getElementById('categoryDock');
-        if (catDock) {
-          catDock.style.display = view === 'collection' ? 'flex' : 'none';
-        }
-
         this.render();
       });
     });
 
-    // Tasto Restringi / Espandi Menù
-    if (this.toggleMenuBtn) {
-      this.toggleMenuBtn.addEventListener('click', () => {
-        this.isMenuCollapsed = !this.isMenuCollapsed;
-        localStorage.setItem('vinyl_vault_menu_collapsed', String(this.isMenuCollapsed));
-        this.applyMenuCollapseState();
-        setTimeout(() => initLiquidGlass(), 120);
+    // Toggle Barra Ricerca Fluttuante
+    if (this.toggleSearchBtn && this.floatingSearchBar) {
+      this.toggleSearchBtn.addEventListener('click', () => {
+        const isHidden = this.floatingSearchBar.style.display === 'none';
+        this.floatingSearchBar.style.display = isHidden ? 'flex' : 'none';
+        this.toggleSearchBtn.classList.toggle('is-active', isHidden);
+        if (isHidden) {
+          const input = document.getElementById('searchInput');
+          if (input) setTimeout(() => input.focus(), 80);
+          if (this.floatingFilterBar) {
+            this.floatingFilterBar.style.display = 'none';
+            if (this.toggleFilterBtn) this.toggleFilterBtn.classList.remove('is-active');
+          }
+        }
+        setTimeout(() => initLiquidGlass(), 100);
+      });
+    }
+
+    if (this.closeSearchBtn && this.floatingSearchBar) {
+      this.closeSearchBtn.addEventListener('click', () => {
+        this.floatingSearchBar.style.display = 'none';
+        if (this.toggleSearchBtn) this.toggleSearchBtn.classList.remove('is-active');
+      });
+    }
+
+    // Toggle Barra Filtri & Categorie Fluttuante
+    if (this.toggleFilterBtn && this.floatingFilterBar) {
+      this.toggleFilterBtn.addEventListener('click', () => {
+        const isHidden = this.floatingFilterBar.style.display === 'none';
+        this.floatingFilterBar.style.display = isHidden ? 'flex' : 'none';
+        this.toggleFilterBtn.classList.toggle('is-active', isHidden);
+        if (isHidden) {
+          if (this.floatingSearchBar) {
+            this.floatingSearchBar.style.display = 'none';
+            if (this.toggleSearchBtn) this.toggleSearchBtn.classList.remove('is-active');
+          }
+        }
+        setTimeout(() => initLiquidGlass(), 100);
       });
     }
 
@@ -630,21 +653,6 @@ class VinylApp {
         this.render();
       });
     });
-  }
-
-  applyMenuCollapseState() {
-    if (this.collapsibleMenu) {
-      this.collapsibleMenu.classList.toggle('collapsed', this.isMenuCollapsed);
-    }
-    if (this.toggleMenuLabel) {
-      this.toggleMenuLabel.textContent = this.isMenuCollapsed ? 'Filtri' : 'Chiudi';
-    }
-    if (this.toggleMenuChevron) {
-      this.toggleMenuChevron.textContent = this.isMenuCollapsed ? '▾' : '▴';
-    }
-    if (this.toggleMenuBtn) {
-      this.toggleMenuBtn.classList.toggle('is-active', !this.isMenuCollapsed);
-    }
   }
 
   bindSearchAndSort() {

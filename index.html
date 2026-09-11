@@ -34,63 +34,67 @@
   <!-- Contenitore Principale dell'Applicazione -->
   <div class="app-viewport">
 
-    <!-- Top Bar Liquid Glass Compatta & Restringibile -->
-    <header class="app-header-container">
+    <!-- Header Floating Island: Ultra-Minimal & Ultra-Liquid -->
+    <header class="island-header-wrap">
       
-      <!-- Barra Compatta Principale (Floating Glass Capsule) -->
-      <div class="compact-glass-bar liquid-glass-panel">
+      <!-- Capsula Flottante Monolitica (Altezza ~44px) -->
+      <div class="island-capsule liquid-glass-panel">
         
-        <!-- Brand & Icona Vinile -->
-        <div class="header-brand" title="Vinyl Vault — Lorenzo Bona">
+        <!-- Brand Compatto -->
+        <div class="island-brand" title="Vinyl Vault — Lorenzo Bona">
           <div class="brand-disc-icon">
             <div class="disc-spindle"></div>
           </div>
-          <div class="brand-text">
-            <span class="brand-title">VINYL VAULT</span>
-          </div>
+          <span class="brand-title">VINYL</span>
         </div>
 
-        <!-- Navigazione Principale a Schede Compatta -->
-        <nav class="header-nav-tabs">
-          <button type="button" class="nav-tab-btn active" data-view="collection">
-            <span class="tab-icon">💿</span> <span class="tab-text">Collezione</span>
+        <div class="island-divider"></div>
+
+        <!-- Segmenti di Navigazione Minimali -->
+        <nav class="island-nav">
+          <button type="button" class="island-nav-btn active" data-view="collection" title="I Miei Vinili">
+            <span class="nav-icon">💿</span>
+            <span class="nav-text">Collezione</span>
           </button>
-          <button type="button" class="nav-tab-btn" data-view="wishlist">
-            <span class="tab-icon">⭐</span> <span class="tab-text">Wishlist</span>
+          <button type="button" class="island-nav-btn" data-view="wishlist" title="Lista Desideri">
+            <span class="nav-icon">⭐</span>
+            <span class="nav-text">Wishlist</span>
           </button>
-          <button type="button" class="nav-tab-btn" data-view="trends">
-            <span class="tab-icon">📈</span> <span class="tab-text">Trend</span>
+          <button type="button" class="island-nav-btn" data-view="trends" title="Valore & Storico Prezzi">
+            <span class="nav-icon">📈</span>
+            <span class="nav-text">Trend</span>
           </button>
         </nav>
 
-        <!-- Azioni Rapide a Destra -->
-        <div class="header-actions">
-          <!-- Tasto Restringi / Espandi Menù e Ricerca -->
-          <button type="button" class="liquid-glass-btn btn-toggle-menu" id="toggleMenuBtn" title="Restringi o Espandi Menù e Filtri">
-            <svg class="icon-sliders" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2">
-              <line x1="4" y1="21" x2="4" y2="14"></line>
-              <line x1="4" y1="10" x2="4" y2="3"></line>
-              <line x1="12" y1="21" x2="12" y2="12"></line>
-              <line x1="12" y1="8" x2="12" y2="3"></line>
-              <line x1="20" y1="21" x2="20" y2="16"></line>
-              <line x1="20" y1="12" x2="20" y2="3"></line>
-              <line x1="1" y1="14" x2="7" y2="14"></line>
-              <line x1="9" y1="8" x2="15" y2="8"></line>
-              <line x1="17" y1="16" x2="23" y2="16"></line>
+        <div class="island-divider"></div>
+
+        <!-- Azioni Rapide ad Icona -->
+        <div class="island-actions">
+          <!-- Toggle Ricerca Rapida -->
+          <button type="button" class="island-icon-btn" id="toggleSearchBtn" title="Cerca Vinili">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
             </svg>
-            <span class="btn-text" id="toggleMenuLabel">Filtri</span>
-            <span class="chevron-arrow" id="toggleMenuChevron">▾</span>
           </button>
 
-          <button type="button" class="liquid-glass-btn btn-primary" id="openScannerBtn" title="Scansiona Barcode o Matrice">
-            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2">
-              <path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"></path>
-              <line x1="7" y1="12" x2="17" y2="12"></line>
+          <!-- Toggle Filtri & Categorie -->
+          <button type="button" class="island-icon-btn" id="toggleFilterBtn" title="Filtri Categorie & Ordinamento">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.3">
+              <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
             </svg>
-            <span class="btn-text">+ Aggiungi</span>
           </button>
 
-          <button type="button" class="liquid-glass-btn btn-icon" id="openSettingsBtn" title="Impostazioni Discogs API & Wantlist">
+          <!-- Aggiungi Vinile Scanner -->
+          <button type="button" class="island-icon-btn island-btn-add" id="openScannerBtn" title="Aggiungi Vinile">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+          </button>
+
+          <!-- Impostazioni -->
+          <button type="button" class="island-icon-btn" id="openSettingsBtn" title="Impostazioni Discogs API">
             <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2">
               <circle cx="12" cy="12" r="3"></circle>
               <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
@@ -100,45 +104,40 @@
 
       </div>
 
-      <!-- Cassetto Restringibile Liquid Glass (Ricerca, Ordinamento & Categorie) -->
-      <div class="collapsible-controls-drawer liquid-glass-panel" id="collapsibleMenu">
-        <div class="drawer-inner-grid">
-          
-          <!-- Ricerca -->
-          <div class="search-input-wrap liquid-glass-elem">
-            <svg class="search-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5">
-              <circle cx="11" cy="11" r="8"></circle>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-            <input type="text" id="searchInput" placeholder="Cerca per artista, titolo, matrice, codice a barre..." autocomplete="off" spellcheck="false">
-            <button id="searchClear" class="search-clear-btn" aria-label="Cancella ricerca" style="display: none;">&times;</button>
-          </div>
+      <!-- Barra Ricerca Fluttuante Liquid Glass (Compare solo quando attivata) -->
+      <div class="island-expandable-bar liquid-glass-panel" id="floatingSearchBar" style="display: none;">
+        <svg class="search-icon" viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="searchInput" placeholder="Cerca artista, album, matrice..." autocomplete="off" spellcheck="false">
+        <button type="button" id="searchClear" class="search-clear-btn" aria-label="Cancella ricerca" style="display: none;">&times;</button>
+        <button type="button" id="closeSearchBtn" class="search-close-icon" title="Chiudi ricerca">&times;</button>
+      </div>
 
-          <!-- Ordinamento -->
-          <div class="sort-select-wrap liquid-glass-elem">
-            <select id="sortSelect" title="Ordina per">
-              <option value="artist">Artista (A-Z)</option>
-              <option value="title">Titolo (A-Z)</option>
-              <option value="value_desc">Valore più alto</option>
-              <option value="value_asc">Valore più basso</option>
-              <option value="year_desc">Anno (Più recente)</option>
-              <option value="year_asc">Anno (Meno recente)</option>
-            </select>
-          </div>
+      <!-- Barra Filtri e Categorie Fluttuante Liquid Glass (Compare solo quando attivata) -->
+      <div class="island-expandable-bar liquid-glass-panel" id="floatingFilterBar" style="display: none;">
+        <div class="filter-pills-row" id="categoryDock">
+          <button type="button" class="category-pill active" data-category="all">
+            <span class="pill-dot"></span> Tutti
+          </button>
+          <button type="button" class="category-pill" data-category="personal">
+            <span class="pill-dot personal-dot"></span> Personali
+          </button>
+          <button type="button" class="category-pill" data-category="family">
+            <span class="pill-dot family-dot"></span> Famiglia
+          </button>
+        </div>
 
-          <!-- Filtri Categoria Integrati -->
-          <div class="category-pills-group" id="categoryDock">
-            <button type="button" class="category-pill active" data-category="all">
-              <span class="pill-dot"></span> Tutti
-            </button>
-            <button type="button" class="category-pill" data-category="personal">
-              <span class="pill-dot personal-dot"></span> Personali
-            </button>
-            <button type="button" class="category-pill" data-category="family">
-              <span class="pill-dot family-dot"></span> Famiglia
-            </button>
-          </div>
-
+        <div class="filter-sort-wrap">
+          <select id="sortSelect" title="Ordina vinili">
+            <option value="artist">Artista (A-Z)</option>
+            <option value="title">Titolo (A-Z)</option>
+            <option value="value_desc">Valore più alto</option>
+            <option value="value_asc">Valore più basso</option>
+            <option value="year_desc">Anno (Più recente)</option>
+            <option value="year_asc">Anno (Meno recente)</option>
+          </select>
         </div>
       </div>
 
@@ -156,7 +155,7 @@
       <div class="empty-state" id="emptyState" style="display: none;">
         <div class="empty-icon-wrap">💿</div>
         <h3 class="empty-title">Nessun vinile trovato</h3>
-        <p class="empty-text">Prova a modificare i filtri di ricerca o aggiungi un nuovo disco alla tua collezione.</p>
+        <p class="empty-text">Nessun vinile corrisponde ai filtri selezionati.</p>
       </div>
 
       <!-- Dashboard Trend Prezzi & Valore -->
@@ -170,12 +169,12 @@
     <footer class="floating-capsule-dock liquid-glass-dock" id="floatingDock">
       <div class="dock-stat-item">
         <span class="stat-num" id="dockTotalCount">0</span>
-        <span class="stat-unit">vinili in collezione</span>
+        <span class="stat-unit">vinili</span>
       </div>
       <div class="dock-separator"></div>
       <div class="dock-stat-item">
         <span class="stat-num stat-val" id="dockTotalValue">€ 0</span>
-        <span class="stat-unit">stima totale</span>
+        <span class="stat-unit">totale</span>
       </div>
     </footer>
 
