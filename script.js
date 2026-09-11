@@ -75,29 +75,45 @@ async function joinVinylDataAsync(userVinyls) {
     if (cachedDataStr) {
         try {
             const cachedArr = JSON.parse(cachedDataStr);
-            cachedArr.forEach(v => cachedMap[v.id] = v);
+            cachedArr.forEach(v => {
+                if (v && v.id != null) cachedMap[String(v.id)] = v;
+            });
         } catch(e){console.warn(e);}
     }
 
+    // Carica la lista degli ID già verificati o non presenti nel Master DB
+    let unresolvableIds = new Set();
+    try {
+        const rawUnresolved = localStorage.getItem('app_master_unresolvable_ids');
+        if (rawUnresolved) unresolvableIds = new Set(JSON.parse(rawUnresolved));
+    } catch(e) {}
+
     const missingIds = [];
     userVinyls.forEach(uv => {
-        const cached = cachedMap[uv.id];
-        // Controlla se abbiamo i dati master completi in cache
-        if (!cached || !cached.artista || !cached.anno_uscita_originale || !cached.etichetta || !cached.codice_a_barre) { 
-            missingIds.push(`'${uv.id}'`);
+        const idStr = String(uv.id);
+        const cached = cachedMap[idStr];
+        // Considera mancante SOLO se non è in cache con i dati essenziali E non è già noto come non presente nel master DB
+        if (!unresolvableIds.has(idStr)) {
+            const hasEssentialData = cached && cached.artista && cached.titolo_album;
+            if (!hasEssentialData) {
+                missingIds.push(idStr);
+            }
         }
     });
+
     if (!sqliteWorker && missingIds.length > 0) {
-        return userVinyls.map(uv => ({...(cachedMap[uv.id] || {}), ...uv}));
+        return userVinyls.map(uv => ({...(cachedMap[String(uv.id)] || {}), ...uv}));
     }
 
     const masterMap = {};
     if (missingIds.length > 0 && sqliteWorker) {
         const chunkSize = 100;
         const promises = [];
+        const foundIds = new Set();
+        
         for (let i = 0; i < missingIds.length; i += chunkSize) {
-            const chunk = missingIds.slice(i, i + chunkSize).map(id => id.replace(/'/g, ""));
-            const inClause = chunk.map(id => `'${id}'`).join(',');
+            const chunk = missingIds.slice(i, i + chunkSize);
+            const inClause = chunk.map(id => `'${id.replace(/'/g, "")}'`).join(',');
             const sql = `SELECT * FROM vinyls WHERE id IN (${inClause})`;
             promises.push(sqliteWorker.db.query(sql));
         }
@@ -106,30 +122,29 @@ async function joinVinylDataAsync(userVinyls) {
             for (const results of allResults) {
                 if (results && results.length > 0) {
                     for (const r of results) {
-                        masterMap[r.id] = JSON.parse(r.data);
-                        const uvId = r.id;
-                        
-                        if (typeof ALL_VINILI !== 'undefined') {
-                            const targetIndex = ALL_VINILI.findIndex(v => String(v.id) === String(uvId));
-                            if (targetIndex !== -1) {
-                                let globalData = masterMap[r.id] || {};
-                                let cachedData = cachedMap[uvId] || {};
-                                
-                                if (globalData.title && !globalData.titolo_album) globalData.titolo_album = globalData.title;
-                                if (globalData.artists && globalData.artists.length > 0 && !globalData.artista) globalData.artista = globalData.artists[0].name;
-                                if (globalData.artist && !globalData.artista) globalData.artista = globalData.artist;
-                                if (globalData.year && !globalData.anno_uscita_originale) globalData.anno_uscita_originale = globalData.year;
-                                if (globalData.labels && globalData.labels.length > 0 && !globalData.etichetta) globalData.etichetta = globalData.labels[0].name;
-                                if (globalData.label && !globalData.etichetta) globalData.etichetta = globalData.label;
-                                if (globalData.catno && !globalData.catalog_number) globalData.catalog_number = globalData.catno;
-                                if (globalData.barcode && !globalData.codice_a_barre) globalData.codice_a_barre = globalData.barcode;
-                                
-                                const uv = userVinyls.find(u => String(u.id) === String(uvId)) || {};
-                                ALL_VINILI[targetIndex] = { ...cachedData, ...globalData, ...uv };
-                            }
+                        try {
+                            const parsed = typeof r.data === 'string' ? JSON.parse(r.data) : r;
+                            masterMap[String(r.id)] = parsed;
+                            foundIds.add(String(r.id));
+                        } catch(e) {
+                            console.warn("Errore parsing record", r.id, e);
                         }
                     }
                 }
+            }
+
+            // Segna gli ID cercati ma non trovati nel Master DB per non interrogarli mai più
+            let changedUnresolved = false;
+            missingIds.forEach(id => {
+                if (!foundIds.has(id)) {
+                    unresolvableIds.add(id);
+                    changedUnresolved = true;
+                }
+            });
+            if (changedUnresolved) {
+                try {
+                    localStorage.setItem('app_master_unresolvable_ids', JSON.stringify([...unresolvableIds]));
+                } catch(e) {}
             }
         } catch(e) {
             console.error("Error joining vinyl data in batch:", e);
@@ -137,8 +152,9 @@ async function joinVinylDataAsync(userVinyls) {
     }
     
     return userVinyls.map(uv => {
-        let globalData = masterMap[uv.id] || {};
-        let cachedData = cachedMap[uv.id] || {};
+        const idStr = String(uv.id);
+        let globalData = masterMap[idStr] || {};
+        let cachedData = cachedMap[idStr] || {};
         
         // Se i dati dal master catalog sono in formato Discogs nativo (inglese), mappiamoli nei campi dell'app (italiano)
         if (globalData.title && !globalData.titolo_album) globalData.titolo_album = globalData.title;
@@ -150,8 +166,7 @@ async function joinVinylDataAsync(userVinyls) {
         if (globalData.catno && !globalData.catalog_number) globalData.catalog_number = globalData.catno;
         if (globalData.barcode && !globalData.codice_a_barre) globalData.codice_a_barre = globalData.barcode;
         
-        // Uniamo le tre fonti: i dati nuovi del master (globalData), i dati salvati in precedenza (cachedData) e le tue impostazioni personali (uv)
-        return { ...cachedData, ...globalData, ...uv };
+        return { ...cachedData, ...globalData, ...uv, _master_checked: true };
     });
 }
 
@@ -375,7 +390,19 @@ let sortStrategy = 'DEFAULT';
 let filteredVinili = [];
 let selectedIndex = 0;
 let wheelItems = [];
-let currentCachedPrices = {};
+let currentCachedPrices = null;
+
+function getCachedDiscogsPrices() {
+  if (!currentCachedPrices) {
+    try {
+      currentCachedPrices = JSON.parse(localStorage.getItem('discogs_cached_prices') || '{}');
+    } catch(e) {
+      currentCachedPrices = {};
+    }
+  }
+  return currentCachedPrices;
+}
+
 // ELEMENTI DOM
 const wheelContainer = document.getElementById("option-wheel");
 const centerContent = document.getElementById("center-content");
@@ -512,60 +539,36 @@ const authModal = document.getElementById('auth-modal');
           rawUserVinyls = await fetchDatabaseFromGitHub(currentUser);
       }
       
-      // Carica inizialmente dalla cache veloce e mostra la UI
+      // Carica inizialmente dalla cache veloce e mostra la UI SUBITO
       ALL_VINILI = await joinVinylDataAsync(rawUserVinyls);
       safeSave('app_all_vinyls_cache', ALL_VINILI);
       applyFiltering();
+
+      // Nascondi istantaneamente l'overlay iniziale: la collezione è già visibile a schermo!
+      const overlay = document.getElementById('startup-loading-overlay');
+      if (overlay) {
+          overlay.style.transition = 'opacity 0.25s ease-out';
+          overlay.style.opacity = '0';
+          setTimeout(() => overlay.remove(), 250);
+      }
       
-      // Sincronizzazione in background per non bloccare l'avvio del resto dell'app (event listeners, ecc)
+      // Sincronizzazione opzionale in background SOLO per dischi non ancora verificati
       setTimeout(async () => {
           try {
-              const hasMissingData = Array.isArray(ALL_VINILI) && ALL_VINILI.some(v => !v.artista || !v.titolo_album || !v.anno_uscita_originale || !v.etichetta);
+              const hasMissingData = Array.isArray(ALL_VINILI) && ALL_VINILI.some(v => 
+                  !v._master_checked && (!v.artista || !v.titolo_album || !v.anno_uscita_originale || !v.etichetta)
+              );
               if (hasMissingData) {
-                  console.log("Metadati mancanti, avvio inizializzazione master DB...");
-                  if (typeof showToast === 'function') showToast("⬇️ Connessione al master database...");
-                  
-                  // Attendiamo il caricamento del database pesante
+                  console.log("Controllo metadati mancanti in background...");
                   await initSqliteDb();
-                  
-                  // Avviamo il join che scarica tutti i dati completi
                   ALL_VINILI = await joinVinylDataAsync(rawUserVinyls);
                   safeSave('app_all_vinyls_cache', ALL_VINILI);
-                  
-                  // NEW: Salviamo il risultato arricchito (con metadati completi) direttamente su GitHub 
-                  // così non servirà più scaricare dal Master DB ai successivi riavvii.
-                  if (currentUser) {
-                      console.log("Salvataggio metadati completi sul database GitHub personale...");
-                      try {
-                          await pushDatabaseToGitHub(ALL_VINILI, currentUser);
-                      } catch(e) {
-                          console.error("Errore salvataggio metadati su GitHub:", e);
-                      }
-                  }
-                  
-                  // Aggiorniamo la UI con tutti i dati completi in un colpo solo
                   applyFiltering();
-                  
-                  // Nascondiamo l'overlay iniziale ora che tutto è pronto
-                  const overlay = document.getElementById('startup-loading-overlay');
-                  if (overlay) {
-                      overlay.style.transition = 'opacity 0.5s ease-out';
-                      overlay.style.opacity = '0';
-                      setTimeout(() => overlay.remove(), 500);
-                  }
-                  
-                  if (typeof showToast === 'function') showToast("✅ Sincronizzazione completata!");
-              } else {
-                  // Se non ci sono dati mancanti, nascondiamo l'overlay subito
-                  const overlay = document.getElementById('startup-loading-overlay');
-                  if (overlay) overlay.remove();
               }
           } catch(e) {
-              console.error("Errore nel caricamento background:", e);
-              const overlay = document.getElementById('startup-loading-overlay');
-              if (overlay) overlay.remove();
+              console.warn("Errore nel controllo metadati in background:", e);
           }
-      }, 50);
+      }, 300);
 
     if (!currentUser) {
          // UI changes for Guest Mode
@@ -1231,6 +1234,7 @@ function populateGenreSelect() {
 populateGenreSelect();
 
 function getDiscogsPrice(v) {
+  if (!currentCachedPrices) currentCachedPrices = getCachedDiscogsPrices();
   const price = currentCachedPrices[v.id];
   if (price === -1) return (parseFloat(v.valore_stimato) || 0);
   return (price !== undefined && price !== null) ? parseFloat(price) : (parseFloat(v.valore_stimato) || 0);
@@ -1238,7 +1242,7 @@ function getDiscogsPrice(v) {
 
 // ALGORITMO DI FILTRAGGIO & ORDINAMENTO
 function applyFiltering() {
-  currentCachedPrices = JSON.parse(localStorage.getItem('discogs_cached_prices') || '{}');
+  if (!currentCachedPrices) currentCachedPrices = getCachedDiscogsPrices();
   filteredVinili = ALL_VINILI.filter(vinile => {
     if (activeCategory !== 'ALL') {
       const statusStr = (vinile.stato_catalogo || '').toLowerCase();

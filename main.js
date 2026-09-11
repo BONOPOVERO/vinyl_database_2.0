@@ -51,25 +51,57 @@ async function fetchUserCollection(username) {
   }
 }
 
-async function getVinylDetails(id) {
+async function getVinylsBatch(items) {
+  if (!items || items.length === 0) return [];
   const worker = await initDB();
-  // Assume table is named 'vinyls' or 'catalog' and id is 'id'. 
-  // Since we don't know the schema, we'll try 'SELECT * FROM catalog WHERE id = ?' or similar.
-  // Wait, we need to query dynamically. Let's assume table is 'catalog' or 'master_catalog'.
-  // Let's first query sqlite_master to find the table if we don't know it, but let's assume 'catalog'
-  // Actually, we can fetch everything from table where id matches.
+  const detailMap = new Map();
+  const ids = items.map(item => String(item.id).replace(/'/g, "")).filter(Boolean);
   
-  try {
-    const res = await worker.db.query(`SELECT * FROM master_catalog WHERE id = '${id}'`);
-    if (res && res.length > 0) return res[0];
+  if (ids.length === 0) return items;
+
+  const chunkSize = 100;
+  for (let i = 0; i < ids.length; i += chunkSize) {
+    const chunk = ids.slice(i, i + chunkSize);
+    const inClause = chunk.map(id => `'${id}'`).join(',');
     
-    const res2 = await worker.db.query(`SELECT * FROM catalog WHERE id = '${id}'`);
-    if (res2 && res2.length > 0) return res2[0];
-    
-  } catch (err) {
-    console.warn("Table query error:", err);
+    try {
+      // Tabella primaria in master_catalog.db è 'vinyls' con colonna data JSON
+      const res = await worker.db.query(`SELECT * FROM vinyls WHERE id IN (${inClause})`);
+      if (res && res.length > 0) {
+        for (const row of res) {
+          let parsedData = {};
+          if (row.data) {
+            try { parsedData = JSON.parse(row.data); } catch(e) { parsedData = row; }
+          } else {
+            parsedData = row;
+          }
+          detailMap.set(String(row.id), parsedData);
+        }
+      } else {
+        // Fallback per schemi alternativi
+        const resFallback = await worker.db.query(`SELECT * FROM master_catalog WHERE id IN (${inClause})`);
+        if (resFallback && resFallback.length > 0) {
+          for (const row of resFallback) {
+            detailMap.set(String(row.id), row);
+          }
+        }
+      }
+    } catch(err) {
+      console.warn("Batch query error:", err);
+    }
   }
-  return { id, title: "Unknown Title", artist: "Unknown Artist", year: "N/A" }; // Fallback
+
+  return items.map(item => {
+    const details = detailMap.get(String(item.id)) || {};
+    return {
+      id: item.id,
+      title: details.titolo_album || details.title || item.title || "Unknown Title",
+      artist: details.artista || (details.artists && details.artists[0]?.name) || details.artist || item.artist || "Unknown Artist",
+      year: details.anno_uscita_originale || details.year || item.year || "N/A",
+      ...details,
+      ...item
+    };
+  });
 }
 
 function renderVinyls(vinyls) {
@@ -105,27 +137,13 @@ document.getElementById('load-collection-btn').addEventListener('click', async (
   loadingState.classList.remove('hidden');
 
   const collection = await fetchUserCollection(username);
-  if (collection && Array.isArray(collection)) {
-    // collection is expected to be an array of objects like { id: "123", state: "Mint" }
-    const fullDetails = [];
-    
-    // Process in batches or one by one
-    for (const item of collection) {
-      const details = await getVinylDetails(item.id);
-      fullDetails.push({ ...details, ...item });
-    }
-    
-    renderVinyls(fullDetails);
-  } else if (collection && collection.vinyls) {
-    // if collection is { vinyls: [...] }
-    const fullDetails = [];
-    for (const item of collection.vinyls) {
-      const details = await getVinylDetails(item.id);
-      fullDetails.push({ ...details, ...item });
-    }
+  const items = Array.isArray(collection) ? collection : (collection && collection.vinyls ? collection.vinyls : null);
+
+  if (items && items.length > 0) {
+    const fullDetails = await getVinylsBatch(items);
     renderVinyls(fullDetails);
   } else {
-    // Just mock some data for preview if no DB schema known or fetch failed
+    // Mock data per preview se nessun dato presente
     const mockData = [
       { id: "1", title: "Dark Side of the Moon", artist: "Pink Floyd", state: "Mint" },
       { id: "2", title: "Abbey Road", artist: "The Beatles", state: "Very Good" }
