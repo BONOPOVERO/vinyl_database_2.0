@@ -1,7 +1,7 @@
 // js/store.js - IndexedDB nativo & Memoria Reattiva a Zero Latenza (< 1ms)
 
 const DB_NAME = 'VinylVaultDB';
-const DB_VERSION = 1;
+const DB_VERSION = 3; // Aggiornato per forzare refresh dei metadati completi
 const STORE_NAME = 'records';
 
 let db = null;
@@ -23,14 +23,18 @@ export async function initStore() {
   // Carica da DB
   let items = await getAllFromDb();
 
-  // Se DB vuoto, carica da data/records.json
-  if (!items || items.length === 0) {
+  // Rileva se il DB locale contiene ancora i vecchi dati non arricchiti ("Senza Titolo")
+  const needsReseed = !items || items.length === 0 || items.some(r => r.title === 'Senza Titolo' || (r.id === '05249' && r.artist === 'Artista Sconosciuto'));
+
+  if (needsReseed) {
     try {
-      const res = await fetch('data/records.json');
+      console.log('[Store] Reseed automatico del dataset arricchito con 97 vinili...');
+      const res = await fetch('data/records.json?v=' + Date.now());
       if (res.ok) {
         items = await res.json();
+        await clearDb();
         await bulkInsert(items);
-        console.log(`[Store] Inizializzati ${items.length} vinili dal dataset seed.`);
+        console.log(`[Store] Inizializzati ${items.length} vinili dal dataset seed arricchito.`);
       }
     } catch (err) {
       console.warn('[Store] Impossibile caricare data/records.json:', err);
@@ -39,6 +43,20 @@ export async function initStore() {
 
   inMemoryRecords = items || [];
   return inMemoryRecords;
+}
+
+function clearDb() {
+  return new Promise((resolve, reject) => {
+    try {
+      const tx = db.transaction(STORE_NAME, 'readwrite');
+      const store = tx.objectStore(STORE_NAME);
+      const req = store.clear();
+      req.onsuccess = () => resolve();
+      req.onerror = () => reject(req.error);
+    } catch (e) {
+      resolve();
+    }
+  });
 }
 
 function getAllFromDb() {

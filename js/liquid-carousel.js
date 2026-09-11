@@ -1,14 +1,27 @@
-// js/liquid-carousel.js - Selettore & Palcoscenico 3D con Fisica Liquida e Inclinazione Realistica
+// js/liquid-carousel.js - Selettore 3D a Ruota Cilindrica & Palcoscenico Liquid Glass Completo
+
+const GOLDMINE_MAP = {
+  '10': 'Mint (M)',
+  '9': 'Near Mint (NM)',
+  '8': 'Very Good Plus (VG+)',
+  '7': 'Very Good (VG)',
+  '6': 'Good Plus (G+)',
+  '5': 'Good (G)',
+  '4': 'Fair (F)',
+  '3': 'Poor (P)'
+};
 
 export class LiquidCarousel {
-  constructor({ wheelContainer, stageContainer, onSelectRecord }) {
+  constructor({ wheelContainer, stageContainer, onSelectRecord, onAction }) {
     this.wheelContainer = wheelContainer;
     this.stageContainer = stageContainer;
     this.onSelect = onSelectRecord;
+    this.onAction = onAction;
     this.records = [];
     this.selectedIndex = 0;
     this.lastWheelTime = 0;
     this.touchStartY = 0;
+    this.touchStartX = 0;
     this.isPlaying = false;
 
     this.initEvents();
@@ -32,61 +45,209 @@ export class LiquidCarousel {
 
     if (!record) {
       this.stageContainer.innerHTML = `
-        <div class="liquid-empty-stage">
+        <div class="liquid-stage-card empty-card">
           <div class="empty-icon">💿</div>
-          <h3>Nessun vinile in questa categoria</h3>
-          <p>Seleziona un'altra categoria o azzera i filtri di ricerca.</p>
+          <h3>Nessun vinile trovato</h3>
+          <p>Prova a modificare i filtri di ricerca o la categoria.</p>
         </div>
       `;
       return;
     }
 
     const cover = record.cover_image || (record.foto_album && record.foto_album[0]) || 'favicon.svg';
+    const discoRating = GOLDMINE_MAP[String(record.stato_disco)] || (record.stato_disco ? `Grado ${record.stato_disco}` : 'VG+');
+    const coverRating = GOLDMINE_MAP[String(record.stato_copertina)] || (record.stato_copertina ? `Grado ${record.stato_copertina}` : 'VG');
+
+    const tracklist = record.tracklist || [];
+    const identifiers = record.identifiers || [];
+    const matrixItems = identifiers.filter(i => (i.type || '').toLowerCase().includes('matrix') || (i.type || '').toLowerCase().includes('runout'));
+    const photos = Array.isArray(record.foto_album) && record.foto_album.length > 0 ? record.foto_album : [];
 
     this.stageContainer.innerHTML = `
       <div class="liquid-stage-card" id="liquid-stage-card">
-        <!-- RIFLESSO SPECULARE VETRO SUPERFICIALE -->
+        
+        <!-- Specular Highlight Top Surface -->
         <div class="glass-specular-sheen"></div>
-
-        <!-- ALONE DI LUCE AMBIENTALE ADATTIVO SUL VINILE -->
         <div class="liquid-cover-aura" id="cover-aura"></div>
 
-        <!-- CUSTODIA 3D & DISCO IN VINILE -->
-        <div class="liquid-art-assembly" id="art-assembly" title="Clicca per estrarre il vinile!">
-          <div class="liquid-sleeve-wrap">
-            <img src="${cover}" class="liquid-sleeve-art" id="stage-cover-img" alt="${record.title}" onerror="this.src='favicon.svg'">
-            <div class="sleeve-glass-gloss"></div>
+        <!-- 3D Vinyl Sleeve & Interactive Disc Assembly -->
+        <div class="stage-top-section">
+          
+          <button type="button" class="stage-nav-arrow arrow-prev" id="stage-prev-btn" title="Vinile Precedente">‹</button>
+
+          <div class="liquid-art-assembly ${this.isPlaying ? 'playing' : ''}" id="art-assembly" title="Clicca il vinile per estrarlo e farlo ruotare!">
+            <div class="liquid-sleeve-wrap">
+              <img src="${cover}" class="liquid-sleeve-art" id="stage-cover-img" alt="${record.title}" onerror="this.src='favicon.svg'">
+              <div class="sleeve-glass-gloss"></div>
+            </div>
+            <div class="liquid-vinyl-disc ${this.isPlaying ? 'playing' : ''}" id="stage-disc">
+              <div class="vinyl-groove-rings"></div>
+              <div class="vinyl-center-label"></div>
+            </div>
+            <div class="liquid-floor-shadow"></div>
           </div>
-          <div class="liquid-vinyl-disc ${this.isPlaying ? 'playing' : ''}" id="stage-disc">
-            <div class="vinyl-groove-rings"></div>
-            <div class="vinyl-center-label"></div>
-          </div>
-          <div class="liquid-floor-shadow"></div>
+
+          <button type="button" class="stage-nav-arrow arrow-next" id="stage-next-btn" title="Vinile Successivo">›</button>
+
         </div>
 
-        <!-- INFO TITOLO & ARTISTA CENTRALE -->
+        <!-- Info Titolo & Artista Primari -->
         <div class="liquid-stage-info">
           <span class="liquid-play-hint">🎵 Clicca il vinile per estrarlo</span>
           <h1 class="liquid-stage-title">${record.title}</h1>
           <h2 class="liquid-stage-artist">${record.artist}</h2>
           
           <div class="liquid-meta-row">
-            <span class="liquid-tag tag-category">${record.category.toUpperCase()}</span>
+            <span class="liquid-tag tag-category cat-${record.category || 'personal'}">${(record.category || 'personal').toUpperCase()}</span>
             <span class="liquid-tag tag-genre">${record.genre || 'Rock'}</span>
             <span class="liquid-tag tag-year">${record.year || '—'}</span>
-            ${record.valore_stimato ? `<span class="liquid-tag tag-price">€ ${parseFloat(record.valore_stimato).toFixed(2)}</span>` : ''}
+            <span class="liquid-tag tag-price">€ ${(parseFloat(record.valore_stimato) || 0).toFixed(2)}</span>
           </div>
         </div>
 
-        <!-- PULSANTE APRI SCHEDA COMPLETA -->
-        <button type="button" class="liquid-inspect-btn" id="open-details-sheet-btn">
-          <span>Esplora Tutte le Informazioni</span>
-          <span class="btn-arrow">↓</span>
-        </button>
+        <!-- SEZIONE DETTAGLI PROFONDI SCORREVOLI -->
+        <div class="stage-scrollable-details">
+          
+          <!-- Card Valutazione Discogs Live -->
+          <div class="liquid-sub-card price-highlight-card">
+            <div class="sub-card-header">
+              <span class="card-caption">💰 Valutazione Mercato Discogs</span>
+              <button type="button" id="stage-refresh-price-btn" class="liquid-pill-action">🔄 Verifica Live</button>
+            </div>
+            <div class="price-big" id="stage-price-val">
+              € ${(parseFloat(record.valore_stimato) || 0).toFixed(2)}
+            </div>
+            <div class="card-hint">Stima ponderata in base alle condizioni Goldmine della tua copia</div>
+          </div>
+
+          <!-- Tracce / Songs Menu -->
+          ${tracklist.length > 0 ? `
+            <div class="liquid-sub-card">
+              <div class="sub-card-title">🎵 Canzoni & Tracklist (${tracklist.length} Brani)</div>
+              <div class="tracklist-container">
+                ${tracklist.map(t => `
+                  <div class="track-row">
+                    <span class="track-pos">${t.position || t.pos || '•'}</span>
+                    <span class="track-name">${t.title}</span>
+                    <span class="track-dur">${t.duration || ''}</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+
+          <!-- Specifiche di Stampa -->
+          <div class="liquid-sub-card">
+            <div class="sub-card-title">⚙️ Specifiche di Stampa</div>
+            <div class="specs-grid">
+              <div class="spec-tile">
+                <span class="tile-label">Etichetta</span>
+                <span class="tile-value">${record.label || '—'}</span>
+              </div>
+              <div class="spec-tile">
+                <span class="tile-label">N° Catalogo</span>
+                <span class="tile-value">${record.catalog_number || '—'}</span>
+              </div>
+              <div class="spec-tile">
+                <span class="tile-label">Paese</span>
+                <span class="tile-value">${record.country || '—'}</span>
+              </div>
+              <div class="spec-tile">
+                <span class="tile-label">Formato</span>
+                <span class="tile-value">${record.format || '12" LP'}</span>
+              </div>
+              <div class="spec-tile">
+                <span class="tile-label">Velocità</span>
+                <span class="tile-value">${record.rpm || '33 ⅓ RPM'}</span>
+              </div>
+              <div class="spec-tile">
+                <span class="tile-label">Anno Prima Stampa</span>
+                <span class="tile-value">${record.year || '—'}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Stato di Conservazione Goldmine -->
+          <div class="liquid-sub-card">
+            <div class="sub-card-title">✨ Stato di Conservazione (Goldmine)</div>
+            <div class="specs-grid-two">
+              <div class="spec-tile">
+                <span class="tile-label">Vinile (Media)</span>
+                <span class="tile-value highlight-gold">${discoRating}</span>
+              </div>
+              <div class="spec-tile">
+                <span class="tile-label">Copertina (Sleeve)</span>
+                <span class="tile-value highlight-gold">${coverRating}</span>
+              </div>
+            </div>
+            ${record.note_stato ? `
+              <div class="notes-callout"><strong>Note:</strong> ${record.note_stato}</div>
+            ` : ''}
+          </div>
+
+          <!-- Codici Matrice & Barcode -->
+          <div class="liquid-sub-card">
+            <div class="sub-card-title">🔍 Identificatori & Matrice Runout</div>
+            <div class="spec-tile" style="margin-bottom: 0.6rem;">
+              <span class="tile-label">Codice a Barre (Barcode / EAN)</span>
+              <span class="tile-value font-mono">${record.codice_a_barre || 'Non presente / Vintage'}</span>
+            </div>
+            <div class="spec-tile">
+              <span class="tile-label">Incisioni Matrice (Runout Groove)</span>
+              ${matrixItems.length > 0 ? `
+                <div class="matrix-list">
+                  ${matrixItems.map(m => `
+                    <div class="matrix-chip">
+                      <span class="matrix-side">${m.description || 'Runout'}:</span>
+                      <code class="matrix-val">${m.value}</code>
+                    </div>
+                  `).join('')}
+                </div>
+              ` : `
+                <code class="matrix-val-single">${record.codice_matrice || 'Nessuna incisione registrata'}</code>
+              `}
+            </div>
+          </div>
+
+          <!-- Galleria Foto Se Presenti -->
+          ${photos.length > 0 ? `
+            <div class="liquid-sub-card">
+              <div class="sub-card-title">📷 Galleria Fotografica (${photos.length})</div>
+              <div class="sheet-photo-strip">
+                ${photos.map((p, idx) => `
+                  <img src="${p}" class="sheet-photo-item" alt="Foto ${idx + 1}" onclick="window.open('${p}', '_blank')" onerror="this.style.display='none'">
+                `).join('')}
+              </div>
+            </div>
+          ` : ''}
+
+          <!-- Footer Azioni Record -->
+          <div class="stage-footer-actions">
+            <div class="category-change-row">
+              <span>Sposta in:</span>
+              <button type="button" class="liquid-chip ${record.category === 'personal' ? 'active' : ''}" data-cat="personal">Personal 👤</button>
+              <button type="button" class="liquid-chip ${record.category === 'wishlist' ? 'active' : ''}" data-cat="wishlist">Wishlist ⭐</button>
+              <button type="button" class="liquid-chip ${record.category === 'family' ? 'active' : ''}" data-cat="family">Family 👨‍👩‍👧‍👦</button>
+            </div>
+            <button type="button" id="stage-delete-btn" class="liquid-delete-btn">🗑️ Elimina</button>
+          </div>
+
+        </div>
+
       </div>
     `;
 
-    // Eventi interattivi sul vinile estraibile
+    // Eventi Prev / Next sui pulsanti freccia
+    this.stageContainer.querySelector('#stage-prev-btn')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.prev();
+    });
+    this.stageContainer.querySelector('#stage-next-btn')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.next();
+    });
+
+    // Interazione estrazione e rotazione vinile
     const assembly = this.stageContainer.querySelector('#art-assembly');
     const disc = this.stageContainer.querySelector('#stage-disc');
     if (assembly && disc) {
@@ -97,39 +258,75 @@ export class LiquidCarousel {
       });
     }
 
-    // Dynamic 3D tilt con il movimento del mouse
+    // Refresh prezzo
+    this.stageContainer.querySelector('#stage-refresh-price-btn')?.addEventListener('click', () => {
+      if (this.onAction) this.onAction('refresh_price', record);
+    });
+
+    // Cambio categoria
+    this.stageContainer.querySelectorAll('.category-change-row button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const newCat = btn.dataset.cat;
+        if (newCat && newCat !== record.category && this.onAction) {
+          this.onAction('change_category', { record, newCat });
+        }
+      });
+    });
+
+    // Elimina record
+    this.stageContainer.querySelector('#stage-delete-btn')?.addEventListener('click', () => {
+      if (confirm(`Rimuovere "${record.title}" dalla collezione?`) && this.onAction) {
+        this.onAction('delete_record', record);
+      }
+    });
+
+    // Inclinazione prospettica 3D del vetro card
     const card = this.stageContainer.querySelector('#liquid-stage-card');
-    if (card) {
+    if (card && window.matchMedia('(hover: hover)').matches) {
       card.addEventListener('pointermove', (e) => {
         const rect = card.getBoundingClientRect();
         const x = (e.clientX - rect.left) / rect.width - 0.5;
         const y = (e.clientY - rect.top) / rect.height - 0.5;
-        card.style.transform = `perspective(1000px) rotateY(${x * 14}deg) rotateX(${-y * 14}deg) translateY(-2px)`;
+        card.style.transform = `perspective(1000px) rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateY(-2px)`;
       });
       card.addEventListener('pointerleave', () => {
-        card.style.transform = `perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(0)`;
-      });
-    }
-
-    // Tasto apri dettagli completi
-    const openBtn = this.stageContainer.querySelector('#open-details-sheet-btn');
-    if (openBtn) {
-      openBtn.addEventListener('click', () => {
-        const sheet = document.getElementById('details-sheet-panel');
-        if (sheet) sheet.classList.add('active');
+        card.style.transform = 'perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(0)';
       });
     }
   }
 
   renderWheel() {
     if (!this.wheelContainer) return;
-    this.wheelContainer.innerHTML = '';
+    this.wheelContainer.innerHTML = `
+      <div class="drawer-header">
+        <span class="drawer-title">CATALOGO VINILI (${this.records.length})</span>
+        <button type="button" class="drawer-close-btn" id="close-drawer-btn" aria-label="Chiudi">&times;</button>
+      </div>
+      <div class="wheel-items-stage" id="wheel-items-stage"></div>
+    `;
 
-    if (this.records.length === 0) return;
+    const closeBtn = this.wheelContainer.querySelector('#close-drawer-btn');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.closeMobileDrawer();
+      });
+    }
+
+    const stage = this.wheelContainer.querySelector('#wheel-items-stage');
+    if (!stage) return;
+
+    if (this.records.length === 0) {
+      const empty = document.createElement('div');
+      empty.className = 'wheel-item';
+      empty.textContent = 'Nessun vinile';
+      stage.appendChild(empty);
+      return;
+    }
 
     this.records.forEach((record, idx) => {
       const item = document.createElement('div');
-      item.className = 'liquid-wheel-item';
+      item.className = 'wheel-item';
       item.dataset.index = idx;
       item.textContent = record.title || 'Senza Titolo';
 
@@ -138,35 +335,39 @@ export class LiquidCarousel {
         this.closeMobileDrawer();
       });
 
-      this.wheelContainer.appendChild(item);
+      stage.appendChild(item);
     });
 
-    this.wheelItems = Array.from(this.wheelContainer.querySelectorAll('.liquid-wheel-item'));
+    this.wheelItems = Array.from(stage.querySelectorAll('.wheel-item'));
     this.updateWheelPositions();
   }
 
   updateWheelPositions() {
-    if (!this.wheelContainer || this.records.length === 0) return;
+    if (!this.wheelContainer || this.records.length === 0 || !this.wheelItems) return;
 
     this.wheelItems.forEach((item, index) => {
       const distance = index - this.selectedIndex;
       const absDist = Math.abs(distance);
       const isSelected = distance === 0;
 
-      // Curva cilindrica 3D ultra-fluida
-      const translateY = distance * 2.8;
-      const curveOffset = Math.pow(absDist, 1.35) * 12; // Curva verso destra
+      // Matematica cilindrica 3D fluida e leggibile
+      const translateY = distance * 2.6;
+      const curveOffset = Math.pow(absDist, 1.35) * 10;
       const rotateX = distance * -5.5;
-      const opacity = isSelected ? 1 : Math.max(0.04, 0.42 - absDist * 0.16);
-      const scale = isSelected ? 1.08 : Math.max(0.74, 1 - absDist * 0.08);
+      const opacity = isSelected ? 1 : Math.max(0.28, 0.7 - absDist * 0.1);
+      const scale = isSelected ? 1.08 : Math.max(0.8, 1 - absDist * 0.05);
 
-      item.style.transform = `translate3d(${curveOffset}px, calc(${translateY}rem - 50%), 0) rotateX(${rotateX}deg) scale(${scale})`;
+      item.style.color = isSelected ? '#ffffff' : '#cbd5e1';
+      item.style.fontWeight = isSelected ? '800' : '500';
       item.style.opacity = opacity;
+      item.style.transform = `translate3d(${curveOffset}px, calc(${translateY}rem - 50%), 0) rotateX(${rotateX}deg) scale(${scale})`;
 
       if (isSelected) {
         item.classList.add('active');
+        item.style.textShadow = '0 0 16px rgba(56, 189, 248, 0.8), 0 2px 10px rgba(0,0,0,0.95)';
       } else {
         item.classList.remove('active');
+        item.style.textShadow = '0 2px 8px rgba(0,0,0,0.85)';
       }
     });
   }
@@ -200,11 +401,9 @@ export class LiquidCarousel {
   }
 
   initEvents() {
-    // 1. Scorrimento globale della rotella del mouse
+    // 1. Scorrimento della rotella del mouse
     window.addEventListener('wheel', (e) => {
-      if (e.target.closest('.details-sheet-scroll') || e.target.closest('dialog') || e.target.closest('.app-dialog')) {
-        return;
-      }
+      if (e.target.closest('.stage-scrollable-details') || e.target.closest('dialog')) return;
       const now = performance.now();
       if (now - this.lastWheelTime < 60) return;
       if (Math.abs(e.deltaY) > 8) {
@@ -215,33 +414,50 @@ export class LiquidCarousel {
 
     // 2. Touch swipe su mobile
     window.addEventListener('touchstart', (e) => {
-      if (e.touches.length === 1) this.touchStartY = e.touches[0].clientY;
+      if (e.touches.length === 1) {
+        this.touchStartY = e.touches[0].clientY;
+        this.touchStartX = e.touches[0].clientX;
+      }
     }, { passive: true });
 
     window.addEventListener('touchmove', (e) => {
-      if (e.target.closest('.details-sheet-scroll') || e.target.closest('dialog')) return;
+      if (e.target.closest('.stage-scrollable-details') || e.target.closest('dialog')) return;
       if (e.touches.length === 1) {
         const currentY = e.touches[0].clientY;
-        const diff = this.touchStartY - currentY;
-        if (Math.abs(diff) > 35) {
-          this.selectIndex(this.selectedIndex + Math.sign(diff));
+        const currentX = e.touches[0].clientX;
+        const diffY = this.touchStartY - currentY;
+        const diffX = this.touchStartX - currentX;
+
+        // Se swipe orizzontale (cambio vinile con swipe)
+        if (Math.abs(diffX) > 45 && Math.abs(diffX) > Math.abs(diffY)) {
+          if (diffX > 0) this.next();
+          else this.prev();
+          this.touchStartX = currentX;
           this.touchStartY = currentY;
+          return;
+        }
+
+        // Se swipe verticale (scorrimento ruota)
+        if (Math.abs(diffY) > 40 && Math.abs(diffY) > Math.abs(diffX)) {
+          this.selectIndex(this.selectedIndex + Math.sign(diffY));
+          this.touchStartY = currentY;
+          this.touchStartX = currentX;
         }
       }
     }, { passive: true });
 
-    // 3. Tasti freccia su/giù
+    // 3. Frecce tastiera
     window.addEventListener('keydown', (e) => {
-      if (['input', 'textarea', 'select'].includes(document.activeElement?.tagName?.toLowerCase())) return;
-      if (e.key === 'ArrowDown') { e.preventDefault(); this.next(); }
-      else if (e.key === 'ArrowUp') { e.preventDefault(); this.prev(); }
+      if (['input', 'textarea'].includes(document.activeElement?.tagName?.toLowerCase())) return;
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); this.next(); }
+      else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); this.prev(); }
     });
 
     // 4. Overlay mobile
     const overlay = document.getElementById('mobile-overlay');
     if (overlay) overlay.addEventListener('click', () => this.closeMobileDrawer());
 
-    // 5. Toggle titoli
+    // 5. Toggle bottone titoli
     const toggleBtn = document.getElementById('toggle-wheel-btn');
     if (toggleBtn) toggleBtn.addEventListener('click', () => this.toggleMobileDrawer());
   }

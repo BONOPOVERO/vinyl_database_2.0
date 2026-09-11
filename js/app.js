@@ -1,12 +1,11 @@
 /**
  * Vinyl Vault — Liquid Glass Experience (app.js)
- * Master Controller orchestrating Store, 3D Carousel, Details Sheet, Discogs Engine, and Scanner.
+ * Master Controller orchestrating Store, 3D Carousel Stage, Discogs Engine, and Scanner.
  */
 
 import { initStore, getAllRecords, getFilteredRecords, saveRecord, deleteRecord, getStats } from './store.js';
 import { LiquidCarousel } from './liquid-carousel.js';
-import { renderDetailsSheet } from './details-sheet.js';
-import { searchDiscogsPrice, BarcodeScanner, calculateGoldminePrice } from './discogs-engine.js';
+import { searchDiscogsPrice, BarcodeScanner } from './discogs-engine.js';
 
 class VinylApp {
   constructor() {
@@ -19,8 +18,7 @@ class VinylApp {
 
     // DOM Elements
     this.stageWrapper = document.getElementById('liquid-stage-wrapper');
-    this.wheelContainer = document.getElementById('records-wheel-container');
-    this.detailsPanel = document.getElementById('details-sheet-panel');
+    this.wheelContainer = document.getElementById('option-wheel');
     this.ambientMesh = document.getElementById('ambientMesh');
     this.scannerModal = document.getElementById('scannerModal');
     this.scannerVideo = document.getElementById('scannerVideo');
@@ -30,14 +28,15 @@ class VinylApp {
   async init() {
     console.log('[VinylApp] Inizializzazione Liquid Glass Experience...');
 
-    // 1. Inizializza archivio IndexedDB con i 97 vinili
+    // 1. Inizializza archivio IndexedDB con i 97 vinili arricchiti
     await initStore();
 
     // 2. Inizializza Selettore 3D e Palcoscenico
     this.carousel = new LiquidCarousel({
       wheelContainer: this.wheelContainer,
       stageContainer: this.stageWrapper,
-      onSelectRecord: (record) => this.onRecordSelected(record)
+      onSelectRecord: (record) => this.onRecordSelected(record),
+      onAction: (action, payload) => this.handleAction(action, payload)
     });
 
     // 3. Collega eventi dell'interfaccia (Dock, Ricerca, Scanner, Tastiera)
@@ -76,30 +75,24 @@ class VinylApp {
   }
 
   /**
-   * Callback quando un vinile viene selezionato dalla ruota o dallo scorrimento
+   * Callback quando un vinile viene selezionato
    */
   onRecordSelected(record) {
     this.currentRecord = record;
-    if (!record) {
-      if (this.detailsPanel) this.detailsPanel.innerHTML = '';
-      return;
-    }
-
-    // Render della scheda dettagli con azioni interattive
-    renderDetailsSheet(this.detailsPanel, record, (action, payload) => this.handleSheetAction(action, payload));
+    if (!record) return;
 
     // Estrazione colore dominante dalla copertina per illuminare lo sfondo in modo adattivo
     this.updateCoverAura(record.cover_image || (record.foto_album && record.foto_album[0]));
   }
 
   /**
-   * Gestione azioni utente dalla Scheda Dettagli (aggiorna prezzo, cambia categoria, elimina)
+   * Gestione azioni utente dal palcoscenico (aggiorna prezzo, cambia categoria, elimina)
    */
-  async handleSheetAction(action, payload) {
+  async handleAction(action, payload) {
     if (action === 'refresh_price') {
       const record = payload;
-      const priceValEl = document.getElementById('sheet-price-val');
-      const refreshBtn = document.getElementById('sheet-refresh-price-btn');
+      const priceValEl = document.getElementById('stage-price-val');
+      const refreshBtn = document.getElementById('stage-refresh-price-btn');
       if (priceValEl) priceValEl.textContent = 'Verifica in corso...';
       if (refreshBtn) refreshBtn.disabled = true;
 
@@ -116,7 +109,6 @@ class VinylApp {
           record.discogs_release_id = res.releaseId;
           await saveRecord(record);
           this.carousel.renderStage();
-          renderDetailsSheet(this.detailsPanel, record, (a, p) => this.handleSheetAction(a, p));
           this.updateStats();
         } else {
           if (priceValEl) priceValEl.textContent = 'Nessun riscontro Discogs';
@@ -133,14 +125,10 @@ class VinylApp {
       record.category = newCat;
       await saveRecord(record);
       this.refreshCatalog();
-      if (this.currentRecord && this.currentRecord.id === record.id) {
-        renderDetailsSheet(this.detailsPanel, record, (a, p) => this.handleSheetAction(a, p));
-      }
 
     } else if (action === 'delete_record') {
       const record = payload;
       await deleteRecord(record.id);
-      if (this.detailsPanel) this.detailsPanel.classList.remove('active');
       this.refreshCatalog();
     }
   }
@@ -161,7 +149,7 @@ class VinylApp {
    * Estrazione cromatica fluida dalla copertina attiva
    */
   updateCoverAura(imgUrl) {
-    if (!imgUrl) return;
+    if (!imgUrl || imgUrl.startsWith('data:image/svg')) return;
 
     const img = new Image();
     img.crossOrigin = 'Anonymous';
@@ -191,13 +179,13 @@ class VinylApp {
           document.documentElement.style.setProperty('--ambient-glow-rgb', `${r}, ${g}, ${b}`);
         }
       } catch (e) {
-        // Fallback su gradiente di default in caso di CORS su immagini esterne
+        // Fallback su gradiente in caso di restrizioni CORS
       }
     };
   }
 
   /**
-   * Eventi Dock a Capsula (Filtro categorie, apri dettagli, apri scanner)
+   * Eventi Dock a Capsula
    */
   bindDock() {
     const dockButtons = document.querySelectorAll('.dock-pill');
@@ -210,21 +198,19 @@ class VinylApp {
       });
     });
 
-    const openDetailsBtn = document.getElementById('openDetailsBtn');
-    if (openDetailsBtn) {
-      openDetailsBtn.addEventListener('click', () => {
-        if (this.detailsPanel) this.detailsPanel.classList.add('active');
-      });
-    }
-
     const openScannerBtn = document.getElementById('openScannerBtn');
     if (openScannerBtn) {
       openScannerBtn.addEventListener('click', () => this.openScannerModal());
     }
+
+    const dockScannerBtn = document.getElementById('dockScannerBtn');
+    if (dockScannerBtn) {
+      dockScannerBtn.addEventListener('click', () => this.openScannerModal());
+    }
   }
 
   /**
-   * Barra di ricerca con filtraggio immediato
+   * Barra di ricerca live
    */
   bindSearch() {
     const input = document.getElementById('searchInput');
@@ -250,7 +236,7 @@ class VinylApp {
   }
 
   /**
-   * Modal Scanner Barcode & Ricerca Matrice
+   * Scanner & Ricerca Matrice
    */
   bindScanner() {
     const closeBtn = document.getElementById('closeScannerModal');
@@ -322,7 +308,7 @@ class VinylApp {
     if (!this.scannerResult) return;
     this.scannerResult.innerHTML = `
       <div class="scanner-status">
-        <div class="spinner"></div> Ricerca in corso per ${type}: <strong>${code}</strong>...
+        <div class="spinner"></div> Ricerca per ${type}: <strong>${code}</strong>...
       </div>
     `;
 
@@ -346,7 +332,7 @@ class VinylApp {
           <h4>${localMatch.title}</h4>
           <p>${localMatch.artist} • Categoria: ${localMatch.category}</p>
           <div class="match-price">Valore Stimato: € ${parseFloat(localMatch.valore_stimato || 0).toFixed(2)}</div>
-          <button type="button" class="liquid-btn-sm" id="goto-matched-record-btn">Vai al vinile</button>
+          <button type="button" class="liquid-btn-sm" id="goto-matched-record-btn">Visualizza Vinile</button>
         </div>
       `;
 
@@ -355,7 +341,6 @@ class VinylApp {
         if (idx !== -1) {
           this.carousel.selectIndex(idx);
         } else {
-          // Rimuovi filtri per mostrarlo
           this.currentCategory = 'all';
           this.searchQuery = '';
           document.querySelectorAll('.dock-pill').forEach(b => b.classList.toggle('active', b.dataset.category === 'all'));
@@ -398,7 +383,7 @@ class VinylApp {
   }
 
   /**
-   * Scorciatoie da tastiera (Frecce, Esc, Spazio)
+   * Scorciatoie da tastiera
    */
   bindShortcuts() {
     window.addEventListener('keydown', (e) => {
@@ -407,13 +392,6 @@ class VinylApp {
       if (e.key === 'Escape') {
         if (this.scannerModal && this.scannerModal.open) {
           this.closeScannerModal();
-        } else if (this.detailsPanel && this.detailsPanel.classList.contains('active')) {
-          this.detailsPanel.classList.remove('active');
-        }
-      } else if (e.key === ' ' || e.key === 'Enter') {
-        e.preventDefault();
-        if (this.detailsPanel) {
-          this.detailsPanel.classList.toggle('active');
         }
       }
     });
