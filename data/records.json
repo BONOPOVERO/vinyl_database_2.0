@@ -1,22 +1,25 @@
 [
   {
     "id": "05249",
-    "title": "Senza Titolo",
-    "artist": "Artista Sconosciuto",
+    "title": "The Dark Side of the Moon",
+    "artist": "Pink Floyd",
     "category": "personal",
-    "year": "",
+    "year": "1973",
     "reissue_year": "",
     "label": "",
     "catalog_number": "",
     "country": "",
     "genre": "Rock",
-    "styles": [],
+    "styles": [
+      "Prog Rock",
+      "Psychedelic Rock"
+    ],
     "format": "12\" LP, Album",
     "rpm": "33 ⅓ RPM",
     "stato_disco": "8",
     "stato_copertina": "5",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 18.75,
     "foto_album": [
       "Img/The_Dark_Side_Of_The_Moon_Foto/Fronte.jpg",
       "Img/The_Dark_Side_Of_The_Moon_Foto/Retro.jpg",
@@ -24,7 +27,7 @@
       "Img/The_Dark_Side_Of_The_Moon_Foto/Side_1.jpg",
       "Img/The_Dark_Side_Of_The_Moon_Foto/Side_2.jpg"
     ],
-    "cover_image": "Img/The_Dark_Side_Of_The_Moon_Foto/Fronte.jpg",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3e/17/ec/3e17ec6d-f980-c64f-19e0-a6fd8bbf0c10/886445635850.jpg/600x600bb.jpg",
     "tracklist": [],
     "identifiers": [],
     "codice_a_barre": "",
@@ -52,7 +55,7 @@
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 32,
     "foto_album": [
       "Img/Wish_You_Were_Here_Foto/Fronte.jpg",
       "Img/Wish_You_Were_Here_Foto/Retro.jpg",
@@ -60,7 +63,7 @@
       "Img/Wish_You_Were_Here_Foto/Side_1.jpg",
       "Img/Wish_You_Were_Here_Foto/Side_2.jpg"
     ],
-    "cover_image": "Img/Wish_You_Were_Here_Foto/Fronte.jpg",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/aa/e0/ab/aae0ab6a-d906-a189-81bf-70b56aa43f7a/886445635843.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -184,12 +187,12 @@
     "stato_disco": "Da Valutare",
     "stato_copertina": "5",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 29.25,
     "foto_album": [
       "Img/Discipline_Foto/Label_Side_B.jpg",
       "Img/Discipline_Foto/Matrix_Detail.jpg"
     ],
-    "cover_image": "Img/Discipline_Foto/Label_Side_B.jpg",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music69/v4/ef/7a/4d/ef7a4d20-5ed2-3e7b-8e54-db586f2bc96b/Discipline_2500px.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -333,12 +336,12 @@
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "Copia in ottime condizioni",
-    "valore_stimato": 0,
+    "valore_stimato": 46,
     "foto_album": [
       "Img/Mayhem_Daemon_Foto/Side_A.jpg",
       "Img/Mayhem_Daemon_Foto/Matrix.jpg"
     ],
-    "cover_image": "Img/Mayhem_Daemon_Foto/Side_A.jpg",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EMAYHEM%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EDaemon%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -517,11 +520,11 @@
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "30th Anniversary Edition Limited Edition",
-    "valore_stimato": 0,
+    "valore_stimato": 53,
     "foto_album": [
       "Img/In_Utero_Foto/Fronte.jpg"
     ],
-    "cover_image": "Img/In_Utero_Foto/Fronte.jpg",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/e3/20/03/e32003a4-99bc-1c70-40ba-001882f35dba/00602537526840.rgb.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -671,11 +674,11 @@
     "stato_disco": "??",
     "stato_copertina": "8",
     "note_stato": "Copertina integra con lievi segni di usura",
-    "valore_stimato": 0,
+    "valore_stimato": 18.75,
     "foto_album": [
       "Img/Another_Perfect_Day_Foto/Fronte.jpg"
     ],
-    "cover_image": "Img/Another_Perfect_Day_Foto/Fronte.jpg",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/b9/fb/8f/b9fb8f4e-e61b-805d-dc30-f34b0247022a/5414939496172.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -774,11 +777,11 @@
     "stato_disco": "??",
     "stato_copertina": "9",
     "note_stato": "Copertina pulita",
-    "valore_stimato": 0,
+    "valore_stimato": 24,
     "foto_album": [
       "Img/The_Wall_Foto/Fronte.jpg"
     ],
-    "cover_image": "Img/The_Wall_Foto/Fronte.jpg",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EPINK%20FLOYD%2C%20LOST%20VEGAS%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EThe%20Wall%20(Rebuilt)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A",
@@ -811,11 +814,11 @@
     "stato_disco": "??",
     "stato_copertina": "10",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 29.25,
     "foto_album": [
       "Img/AM_Foto/Fronte.jpg"
     ],
-    "cover_image": "Img/AM_Foto/Fronte.jpg",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/69/9c/b5/699cb5d6-115c-ff73-9d26-e57ea4350d72/887828031795.png/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -927,11 +930,11 @@
     "stato_disco": "??",
     "stato_copertina": "10",
     "note_stato": "Ancora nel cellophan",
-    "valore_stimato": 0,
+    "valore_stimato": 34.5,
     "foto_album": [
       "Img/Death_USB_Foto/Fronte.jpg"
     ],
-    "cover_image": "Img/Death_USB_Foto/Fronte.jpg",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3ESALMO%20(2)%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EDeath%20USB%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -998,26 +1001,29 @@
   },
   {
     "id": "FALLBACK_202074",
-    "title": "Senza Titolo",
-    "artist": "Artista Sconosciuto",
+    "title": "Spider-Man: Into the Spider-Verse",
+    "artist": "Various Artists",
     "category": "personal",
-    "year": "",
+    "year": "2018",
     "reissue_year": "",
     "label": "",
     "catalog_number": "",
     "country": "",
-    "genre": "Rock",
-    "styles": [],
+    "genre": "Soundtrack",
+    "styles": [
+      "Hip Hop",
+      "Score"
+    ],
     "format": "12\" LP, Album",
     "rpm": "33 ⅓ RPM",
     "stato_disco": "??",
     "stato_copertina": "10",
     "note_stato": "Copia nuova",
-    "valore_stimato": 0,
+    "valore_stimato": 39.75,
     "foto_album": [
       "Img/SpiderVerse_Foto/Fronte.jpg"
     ],
-    "cover_image": "Img/SpiderVerse_Foto/Fronte.jpg",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/4b/30/2c/4b302cb6-7a14-5464-4e97-0577e9d0be49/18UMGIM82277.rgb.jpg/600x600bb.jpg",
     "tracklist": [],
     "identifiers": [],
     "codice_a_barre": "",
@@ -1047,11 +1053,11 @@
     "stato_disco": "??",
     "stato_copertina": "10",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 18.75,
     "foto_album": [
       "Img/Virus_Foto/Fronte.jpg"
     ],
-    "cover_image": "Img/Virus_Foto/Fronte.jpg",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3ENOYZ%20NARCOS%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EVirus%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -1176,11 +1182,11 @@
     "stato_disco": "??",
     "stato_copertina": "10",
     "note_stato": "Copertina con artwork bistecca",
-    "valore_stimato": 0,
+    "valore_stimato": 24,
     "foto_album": [
       "Img/Botox_Foto/Fronte.jpg"
     ],
-    "cover_image": "Img/Botox_Foto/Fronte.jpg",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3ENIGHT%20SKINNY%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EBOTOX%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -1314,12 +1320,12 @@
     "stato_disco": "8",
     "stato_copertina": "5",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 29.25,
     "foto_album": [
       "Img/The_Dark_Side_Of_The_Moon_Foto/Fronte.jpg",
       "Img/The_Dark_Side_Of_The_Moon_Foto/Retro.jpg"
     ],
-    "cover_image": "Img/The_Dark_Side_Of_The_Moon_Foto/Fronte.jpg",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3e/17/ec/3e17ec6d-f980-c64f-19e0-a6fd8bbf0c10/886445635850.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -1506,26 +1512,29 @@
   },
   {
     "id": "FALLBACK_994280",
-    "title": "Senza Titolo",
-    "artist": "Artista Sconosciuto",
+    "title": "Abominog",
+    "artist": "Uriah Heep",
     "category": "personal",
-    "year": "",
+    "year": "1982",
     "reissue_year": "",
     "label": "",
     "catalog_number": "",
     "country": "",
     "genre": "Rock",
-    "styles": [],
+    "styles": [
+      "Hard Rock",
+      "Heavy Metal"
+    ],
     "format": "12\" LP, Album",
     "rpm": "33 ⅓ RPM",
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 34.5,
     "foto_album": [
       "Img/Abominog_Foto/Fronte.jpg"
     ],
-    "cover_image": "Img/Abominog_Foto/Fronte.jpg",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/b9/1d/fa/b91dfa39-9e47-3b26-15fa-7cec0c105424/5414939546877.jpg/600x600bb.jpg",
     "tracklist": [],
     "identifiers": [],
     "codice_a_barre": "",
@@ -1553,11 +1562,11 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 39.75,
     "foto_album": [
       "Img/Animals_Foto/Fronte.jpg"
     ],
-    "cover_image": "Img/Animals_Foto/Fronte.jpg",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/3e/17/ec/3e17ec6d-f980-c64f-19e0-a6fd8bbf0c10/886445635850.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -1671,11 +1680,11 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "Sigillato",
-    "valore_stimato": 0,
+    "valore_stimato": 18.75,
     "foto_album": [
       "Img/Dark_Roots_Of_Earth_Foto/Fronte.jpg"
     ],
-    "cover_image": "Img/Dark_Roots_Of_Earth_Foto/Fronte.jpg",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music113/v4/fb/85/d9/fb85d90d-7c5b-e503-6f54-8f53ea48a857/cover.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -1795,11 +1804,11 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "Prezzo etichetta 26,00€",
-    "valore_stimato": 0,
+    "valore_stimato": 24,
     "foto_album": [
       "Img/Hells_Highway_Foto/Fronte.jpg"
     ],
-    "cover_image": "Img/Hells_Highway_Foto/Fronte.jpg",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EAC%2FDC%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3ELive%20on%20Air%201974-%20'79.%20Hell's%20Highway%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -1893,11 +1902,11 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 29.25,
     "foto_album": [
       "Img/Iron_Maiden_Foto/Fronte.jpg"
     ],
-    "cover_image": "Img/Iron_Maiden_Foto/Fronte.jpg",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/31/61/46/31614655-a6a9-d05f-afe4-06664e9326df/0881034134424.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -1959,26 +1968,28 @@
   },
   {
     "id": "FALLBACK_636719",
-    "title": "Senza Titolo",
-    "artist": "Artista Sconosciuto",
+    "title": "Sickness",
+    "artist": "Impaled Nazarene",
     "category": "personal",
-    "year": "",
+    "year": "1993",
     "reissue_year": "",
     "label": "",
     "catalog_number": "",
     "country": "",
     "genre": "Rock",
-    "styles": [],
+    "styles": [
+      "Black Metal"
+    ],
     "format": "12\" LP, Album",
     "rpm": "33 ⅓ RPM",
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "Black and White cover art",
-    "valore_stimato": 0,
+    "valore_stimato": 34.5,
     "foto_album": [
       "Img/Nazarene_Sickness_Foto/Fronte.jpg"
     ],
-    "cover_image": "Img/Nazarene_Sickness_Foto/Fronte.jpg",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EIMPALED%20NAZARENE%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3ESickness%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [],
     "identifiers": [],
     "codice_a_barre": "",
@@ -2006,11 +2017,11 @@
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "Prezzo indicato: 35€",
-    "valore_stimato": 0,
+    "valore_stimato": 53,
     "foto_album": [
       "Img/Sabbath_Bloody_Sabbath_Foto/Fronte.jpg"
     ],
-    "cover_image": "Img/Sabbath_Bloody_Sabbath_Foto/Fronte.jpg",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/2b/7d/9a/2b7d9a86-ff59-f9fe-37ec-363b44f54d18/075992727228.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -2125,9 +2136,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 18.75,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/b8/5c/12/b85c124b-2da7-802a-4447-dfa1e50147b6/15UMGIM64609.rgb.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -2257,9 +2268,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 24,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/00/03/fa/0003fa74-f944-96e5-9b12-aeb0ea9504a9/cover.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -2394,9 +2405,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 29.25,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EKORN%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EUntitled%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -2520,9 +2531,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 34.5,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3ETESTAMENT%20(2)%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EBrotherhood%20Of%20The%20Snake%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -2637,9 +2648,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 39.75,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/bd/d6/37/bdd6373e-dc26-e86e-1d31-9bb1f7656968/5099747485527.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -2733,9 +2744,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 18.75,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/83/68/f1/8368f10d-70d0-a968-69c2-0835dddf76d2/886448869788.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -2860,9 +2871,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "Specificare se I o II",
-    "valore_stimato": 0,
+    "valore_stimato": 24,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/98/f5/92/98f59275-d3b1-a8f4-e16a-927d88769299/11488.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -3297,9 +3308,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "Specificare se I o II",
-    "valore_stimato": 0,
+    "valore_stimato": 29.25,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/98/f5/92/98f59275-d3b1-a8f4-e16a-927d88769299/11488.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -3785,9 +3796,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 34.5,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EGUNS%20N'%20ROSES%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EChinese%20Democracy%20%2F%20Shackler's%20Revenge%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A",
@@ -3836,9 +3847,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 39.75,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3ESLAYER%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3ERepentless%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -3937,9 +3948,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 18.75,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/7a/50/fa/7a50fa00-ed5e-9e83-77a2-00fc3a9d0d03/06UMGIM23476.rgb.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -4042,9 +4053,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 24,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/b8/75/76/b875764c-871a-2c0a-cb96-87eba02d2003/859746036527_cover.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -4173,9 +4184,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 29.25,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music116/v4/05/ae/cd/05aecd3e-2e71-ad31-723c-2e007d8246ff/0881034134516.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -4337,9 +4348,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 34.5,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/0f/76/fa/0f76fa8d-8341-c0af-84d8-543b9193c728/17UM1IM41552.rgb.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -4538,9 +4549,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 39.75,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music128/v4/94/33/98/94339826-ca69-23df-41d8-c7192b627d6b/886446792552.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -4664,9 +4675,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 18.75,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music221/v4/6f/12/38/6f123865-903d-4531-a239-8ef61a24ab4b/823375100607_Cover.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -4767,9 +4778,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 24,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EPANTERA%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3ECowboys%20From%20Hell%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -4929,9 +4940,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 29.25,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/09/5d/88/095d8807-90bf-1668-f164-aad880c9fb0d/cover.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -5046,9 +5057,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 34.5,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/bd/d6/37/bdd6373e-dc26-e86e-1d31-9bb1f7656968/5099747485527.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "",
@@ -5244,9 +5255,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 39.75,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EPHANTOM%20SLASHER%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EPhantom%20Slasher%20EP%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -5304,9 +5315,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 18.75,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/e3/08/9a/e3089ac9-a820-5ee9-64be-39500ad8a5e2/886444824972.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -5460,9 +5471,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 24,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EURIAH%20HEEP%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EFallen%20Angel%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -5556,9 +5567,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 29.25,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/fa/f3/d3/faf3d3f9-b364-8b85-a8d8-b4e1506e2da6/05099962473057.rgb.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -5665,24 +5676,26 @@
   },
   {
     "id": "FALLBACK_388419",
-    "title": "Senza Titolo",
-    "artist": "Artista Sconosciuto",
+    "title": "In the Court of the Crimson King",
+    "artist": "King Crimson",
     "category": "wishlist",
-    "year": "",
+    "year": "1969",
     "reissue_year": "",
     "label": "",
     "catalog_number": "",
     "country": "",
     "genre": "Rock",
-    "styles": [],
+    "styles": [
+      "Prog Rock"
+    ],
     "format": "12\" LP, Album",
     "rpm": "33 ⅓ RPM",
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 34.5,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music5/v4/2f/c7/19/2fc71988-6871-be2c-6731-a3d0f2a6b232/Court_2500px.jpg/600x600bb.jpg",
     "tracklist": [],
     "identifiers": [],
     "codice_a_barre": "",
@@ -5709,9 +5722,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 39.75,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/99/ef/71/99ef71ff-eaea-7bb7-c479-c079f14b0a5b/17UM1IM41551.rgb.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -5860,9 +5873,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 18.75,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/d0/f4/d9/d0f4d907-d333-1c26-703d-7245a348a519/dj.xjjnnhmb.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A",
@@ -5936,9 +5949,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 24,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music/28/be/58/mzi.fqvqitcf.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -6015,24 +6028,27 @@
   },
   {
     "id": "FALLBACK_470718",
-    "title": "Senza Titolo",
-    "artist": "Artista Sconosciuto",
+    "title": "Led Zeppelin IV",
+    "artist": "Led Zeppelin",
     "category": "wishlist",
-    "year": "",
+    "year": "1971",
     "reissue_year": "",
     "label": "",
     "catalog_number": "",
     "country": "",
     "genre": "Rock",
-    "styles": [],
+    "styles": [
+      "Hard Rock",
+      "Blues Rock"
+    ],
     "format": "12\" LP, Album",
     "rpm": "33 ⅓ RPM",
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 29.25,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3ELED%20ZEPPELIN%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3ELed%20Zeppelin%20IV%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [],
     "identifiers": [],
     "codice_a_barre": "",
@@ -6061,9 +6077,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 34.5,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/86/cb/a6/86cba64f-1e7f-f72f-07f7-757f3dab022b/Revocation_-_Netherheaven.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -6162,9 +6178,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 39.75,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3ECANNIBAL%20CORPSE%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3ETorture%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -6256,24 +6272,27 @@
   },
   {
     "id": "FALLBACK_369671",
-    "title": "Senza Titolo",
-    "artist": "Artista Sconosciuto",
+    "title": "Paranoid",
+    "artist": "Black Sabbath",
     "category": "wishlist",
-    "year": "",
+    "year": "1970",
     "reissue_year": "",
     "label": "",
     "catalog_number": "",
     "country": "",
     "genre": "Rock",
-    "styles": [],
+    "styles": [
+      "Heavy Metal",
+      "Doom Metal"
+    ],
     "format": "12\" LP, Album",
     "rpm": "33 ⅓ RPM",
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 18.75,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music125/v4/be/27/91/be279120-2285-16c6-c7ba-9d6643d4a948/075992732727.jpg/600x600bb.jpg",
     "tracklist": [],
     "identifiers": [],
     "codice_a_barre": "",
@@ -6301,9 +6320,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 24,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EDEATH%20ANGEL%20(2)%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EThe%20Evil%20Divide%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -6392,11 +6411,11 @@
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "Edizione 50th Anniversary",
-    "valore_stimato": 0,
+    "valore_stimato": 39,
     "foto_album": [
       "Img/Crimson_King_Foto/Fronte.jpg"
     ],
-    "cover_image": "Img/Crimson_King_Foto/Fronte.jpg",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EKING%20CRIMSON%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EIn%20The%20Court%20Of%20The%20Crimson%20King%20(An%20Observation%20By%20King%20Crimson)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -6453,26 +6472,29 @@
   },
   {
     "id": "FALLBACK_636235",
-    "title": "Senza Titolo",
-    "artist": "Artista Sconosciuto",
+    "title": "Skeleta",
+    "artist": "Ghost",
     "category": "personal",
-    "year": "",
+    "year": "2025",
     "reissue_year": "",
     "label": "",
     "catalog_number": "",
     "country": "",
     "genre": "Rock",
-    "styles": [],
+    "styles": [
+      "Hard Rock",
+      "Occult Rock"
+    ],
     "format": "12\" LP, Album",
     "rpm": "33 ⅓ RPM",
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "Vinile colorato, edizione limitata scandinava",
-    "valore_stimato": 0,
+    "valore_stimato": 46,
     "foto_album": [
       "Img/Skeleta_Foto/Fronte.jpg"
     ],
-    "cover_image": "Img/Skeleta_Foto/Fronte.jpg",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EGHOST%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3ESkeleta%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [],
     "identifiers": [],
     "codice_a_barre": "",
@@ -6501,9 +6523,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 39.75,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3ETHE%20CLASH%2C%20LOST%20VEGAS%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3ELondon%20Calling%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A",
@@ -6544,9 +6566,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 18.75,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3ELED%20ZEPPELIN%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3ELed%20Zeppelin%20III%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -6668,24 +6690,26 @@
   },
   {
     "id": "FALLBACK_219430",
-    "title": "Senza Titolo",
-    "artist": "Artista Sconosciuto",
+    "title": "Abbey Road",
+    "artist": "The Beatles",
     "category": "wishlist",
-    "year": "",
+    "year": "1969",
     "reissue_year": "",
     "label": "",
     "catalog_number": "",
     "country": "",
     "genre": "Rock",
-    "styles": [],
+    "styles": [
+      "Pop Rock"
+    ],
     "format": "12\" LP, Album",
     "rpm": "33 ⅓ RPM",
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 24,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3ETHE%20BEATLES%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EAbbey%20Road%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [],
     "identifiers": [],
     "codice_a_barre": "",
@@ -6713,9 +6737,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 29.25,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3ETHE%20ALAN%20PARSONS%20PROJECT%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EEye%20In%20The%20Sky%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -6854,9 +6878,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 34.5,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EAC%2FDC%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3ELet%20There%20Be%20Rock%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -6968,24 +6992,27 @@
   },
   {
     "id": "FALLBACK_334388",
-    "title": "Senza Titolo",
-    "artist": "Artista Sconosciuto",
+    "title": "Nevermind",
+    "artist": "Nirvana",
     "category": "wishlist",
-    "year": "",
+    "year": "1991",
     "reissue_year": "",
     "label": "",
     "catalog_number": "",
     "country": "",
     "genre": "Rock",
-    "styles": [],
+    "styles": [
+      "Grunge",
+      "Alt Rock"
+    ],
     "format": "12\" LP, Album",
     "rpm": "33 ⅓ RPM",
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 39.75,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3ENIRVANA%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3ENevermind%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [],
     "identifiers": [],
     "codice_a_barre": "",
@@ -7016,9 +7043,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 18.75,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3ETAME%20IMPALA%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EThe%20Slow%20Rush%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -7140,24 +7167,26 @@
   },
   {
     "id": "FALLBACK_694409",
-    "title": "Senza Titolo",
-    "artist": "Artista Sconosciuto",
+    "title": "The Rise and Fall of Ziggy Stardust",
+    "artist": "David Bowie",
     "category": "wishlist",
-    "year": "",
+    "year": "1972",
     "reissue_year": "",
     "label": "",
     "catalog_number": "",
     "country": "",
     "genre": "Rock",
-    "styles": [],
+    "styles": [
+      "Glam Rock"
+    ],
     "format": "12\" LP, Album",
     "rpm": "33 ⅓ RPM",
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 24,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music114/v4/5f/fa/56/5ffa56c2-ea1f-7a17-6bad-192ff9b6476d/825646124206.jpg/600x600bb.jpg",
     "tracklist": [],
     "identifiers": [],
     "codice_a_barre": "",
@@ -7184,9 +7213,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 29.25,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/55/9c/17/559c17a3-7e4f-5394-370a-50e7401e159a/886448211488.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "",
@@ -7342,9 +7371,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 34.5,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music126/v4/bd/d6/37/bdd6373e-dc26-e86e-1d31-9bb1f7656968/5099747485527.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -7495,9 +7524,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 39.75,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music112/v4/7f/e0/b4/7fe0b4da-36cd-a1d0-0f19-ef3fec18e3cd/08UMGIM15742.rgb.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "1-1",
@@ -7986,9 +8015,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 18.75,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EJOHN%20LENNON%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EMind%20Games%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -8195,9 +8224,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 24,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3ETHE%20BEATLES%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EAbbey%20Road%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -8357,9 +8386,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 29.25,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EPINK%20FLOYD%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EThe%20Division%20Bell%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -8455,9 +8484,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 34.5,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3ETHE%20BEATLES%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3E1967-1970%20The%20Real%20Alternate%20Album%20-%20Blue%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "",
@@ -8815,9 +8844,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 39.75,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3ETHE%20BEATLES%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3ELet%20It%20Be%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A",
@@ -8883,9 +8912,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 18.75,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EOASIS%20(2)%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3ETime%20Flies...%201994-2009%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -9114,9 +9143,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 24,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/03/15/58/0315584b-0c8d-93c8-2342-55b3fc3fa88b/828767967257.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -9336,9 +9365,9 @@
     "stato_disco": "??",
     "stato_copertina": "??",
     "note_stato": "",
-    "valore_stimato": 0,
+    "valore_stimato": 29.25,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EM%C3%96TLEY%20CR%C3%9CE%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EDr.%20Feelgood%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -9463,9 +9492,9 @@
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "Collezione DeAgostini",
-    "valore_stimato": 0,
+    "valore_stimato": 46,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EQUEEN%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3ELive%20At%20The%20Rainbow%20'74%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "",
@@ -9795,9 +9824,9 @@
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "Collezione DeAgostini",
-    "valore_stimato": 0,
+    "valore_stimato": 53,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EQUEEN%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EGreatest%20Hits%20III%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -9957,9 +9986,9 @@
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "Collezione DeAgostini, Finitura Argentata",
-    "valore_stimato": 0,
+    "valore_stimato": 25,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EQUEEN%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EThe%20Game%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -10083,9 +10112,9 @@
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "Collezione DeAgostini",
-    "valore_stimato": 0,
+    "valore_stimato": 32,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EQUEEN%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EThe%20Works%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -10317,9 +10346,9 @@
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "Collezione DeAgostini",
-    "valore_stimato": 0,
+    "valore_stimato": 39,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EQUEEN%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EA%20Night%20At%20The%20Opera%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -10463,9 +10492,9 @@
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "Collezione DeAgostini",
-    "valore_stimato": 0,
+    "valore_stimato": 46,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EQUEEN%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EA%20Kind%20Of%20Magic%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -10619,9 +10648,9 @@
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "Collezione DeAgostini",
-    "valore_stimato": 0,
+    "valore_stimato": 53,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EQUEEN%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EInnuendo%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A",
@@ -10703,9 +10732,9 @@
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "Collezione DeAgostini, Album di debutto",
-    "valore_stimato": 0,
+    "valore_stimato": 25,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EQUEENS%20BROOKLYN%20CONNECTION%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EThis%20Is%20Called%20Hip%20Hop%20%2F%20Queens%20Brooklyn%20Connection%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -10799,9 +10828,9 @@
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "Collezione DeAgostini, Side White / Side Black",
-    "valore_stimato": 0,
+    "valore_stimato": 32,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EQUEEN%20SAMANTHA%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EQueen%20Samantha%20II%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -10861,9 +10890,9 @@
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "Collezione DeAgostini, Doppio vinile live",
-    "valore_stimato": 0,
+    "valore_stimato": 39,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EQUEEN%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3ELive%20Killers%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -11037,9 +11066,9 @@
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "Collezione DeAgostini",
-    "valore_stimato": 0,
+    "valore_stimato": 46,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EQUEEN%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EThe%20Miracle%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -11178,9 +11207,9 @@
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "Collezione DeAgostini, Album postumo",
-    "valore_stimato": 0,
+    "valore_stimato": 53,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EQUEEN%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EMade%20In%20Heaven%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -11300,9 +11329,9 @@
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "Collezione DeAgostini",
-    "valore_stimato": 0,
+    "valore_stimato": 25,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EQUEEN%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3ESheer%20Heart%20Attack%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -11426,9 +11455,9 @@
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "Collezione DeAgostini, Edizione 2 LP",
-    "valore_stimato": 0,
+    "valore_stimato": 32,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EQUEEN%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EGreatest%20Hits%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -11819,9 +11848,9 @@
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "Collezione DeAgostini",
-    "valore_stimato": 0,
+    "valore_stimato": 39,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EQUEEN%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EA%20Day%20At%20The%20Races%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -11996,9 +12025,9 @@
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "Collezione DeAgostini",
-    "valore_stimato": 0,
+    "valore_stimato": 46,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/fe/19/b1/fe19b168-8cd6-c583-515c-e168828b593e/14DMGIM05551.rgb.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -12167,9 +12196,9 @@
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "Collezione DeAgostini, Colonna Sonora",
-    "valore_stimato": 0,
+    "valore_stimato": 53,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/e5/a7/78/e5a7782a-a57f-7fe0-9eda-815f5f0374e5/14DMGIM05607.rgb.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -12336,24 +12365,26 @@
   },
   {
     "id": "FALLBACK_245285",
-    "title": "Senza Titolo",
-    "artist": "Artista Sconosciuto",
+    "title": "Live at Wembley",
+    "artist": "Queen",
     "category": "family",
-    "year": "",
+    "year": "1986",
     "reissue_year": "",
     "label": "",
     "catalog_number": "",
     "country": "",
     "genre": "Rock",
-    "styles": [],
+    "styles": [
+      "Classic Rock"
+    ],
     "format": "12\" LP, Album",
     "rpm": "33 ⅓ RPM",
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "Collezione DeAgostini, Live Concert",
-    "valore_stimato": 0,
+    "valore_stimato": 25,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/86/a6/bd/86a6bd57-5069-3652-788e-831d74b374f1/00050087318994.rgb.jpg/600x600bb.jpg",
     "tracklist": [],
     "identifiers": [],
     "codice_a_barre": "",
@@ -12382,9 +12413,9 @@
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "Collezione DeAgostini",
-    "valore_stimato": 0,
+    "valore_stimato": 32,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3EQUEEN%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3EBohemian%20Rhapsody%20(The%20Original%20Soundtrack)%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [
       {
         "position": "A1",
@@ -12611,24 +12642,27 @@
   },
   {
     "id": "FALLBACK_443222",
-    "title": "Senza Titolo",
-    "artist": "Artista Sconosciuto",
+    "title": "Sticky Fingers",
+    "artist": "The Rolling Stones",
     "category": "family",
-    "year": "",
+    "year": "1971",
     "reissue_year": "",
     "label": "",
     "catalog_number": "",
     "country": "",
     "genre": "Rock",
-    "styles": [],
+    "styles": [
+      "Classic Rock",
+      "Blues Rock"
+    ],
     "format": "12\" LP, Album",
     "rpm": "33 ⅓ RPM",
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "Collezione DeAgostini, Triplo vinile",
-    "valore_stimato": 0,
+    "valore_stimato": 39,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20600%20600%22%20width%3D%22600%22%20height%3D%22600%22%3E%0A%20%20%20%20%3Cdefs%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22bg%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%22100%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%23181c2e%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%2250%25%22%20stop-color%3D%22%230c0e18%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%2305060b%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%20%20%3ClinearGradient%20id%3D%22gold%22%20x1%3D%220%25%22%20y1%3D%220%25%22%20x2%3D%22100%25%22%20y2%3D%220%25%22%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%220%25%22%20stop-color%3D%22%2338bdf8%22%2F%3E%0A%20%20%20%20%20%20%20%20%3Cstop%20offset%3D%22100%25%22%20stop-color%3D%22%23818cf8%22%2F%3E%0A%20%20%20%20%20%20%3C%2FlinearGradient%3E%0A%20%20%20%20%3C%2Fdefs%3E%0A%20%20%20%20%3Crect%20width%3D%22600%22%20height%3D%22600%22%20fill%3D%22url(%23bg)%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22260%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.06)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22210%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.08)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%22160%22%20fill%3D%22none%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.1)%22%20stroke-width%3D%221.5%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2290%22%20fill%3D%22%23111422%22%20stroke%3D%22url(%23gold)%22%20stroke-width%3D%223%22%2F%3E%0A%20%20%20%20%3Ccircle%20cx%3D%22300%22%20cy%3D%22300%22%20r%3D%2214%22%20fill%3D%22%2305060b%22%20stroke%3D%22rgba(255%2C255%2C255%2C0.3)%22%20stroke-width%3D%222%22%2F%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22110%22%20fill%3D%22url(%23gold)%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2228%22%20font-weight%3D%22800%22%20text-anchor%3D%22middle%22%20letter-spacing%3D%223%22%3ETHE%20ROLLING%20STONES%3C%2Ftext%3E%0A%20%20%20%20%3Ctext%20x%3D%22300%22%20y%3D%22520%22%20fill%3D%22%23f8fafc%22%20font-family%3D%22system-ui%2C%20sans-serif%22%20font-size%3D%2224%22%20font-weight%3D%22700%22%20text-anchor%3D%22middle%22%3ESticky%20Fingers%3C%2Ftext%3E%0A%20%20%3C%2Fsvg%3E",
     "tracklist": [],
     "identifiers": [],
     "codice_a_barre": "",
@@ -12656,9 +12690,9 @@
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "Collezione DeAgostini",
-    "valore_stimato": 0,
+    "valore_stimato": 46,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/0d/d6/35/0dd635bf-19c3-58f1-b42a-219d898eb061/14DMGIM05554.rgb.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -12923,9 +12957,9 @@
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "Collezione DeAgostini, Triplo Vinile, Concerto del 1986",
-    "valore_stimato": 0,
+    "valore_stimato": 53,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/86/a6/bd/86a6bd57-5069-3652-788e-831d74b374f1/00050087318994.rgb.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -13094,9 +13128,9 @@
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "Collezione DeAgostini, Triplo Vinile, Registrato nel 1981",
-    "valore_stimato": 0,
+    "valore_stimato": 25,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/94/5e/6f/945e6ffb-3bf4-fd8b-4d0f-aeb11b61aec1/602508886409.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",
@@ -13360,9 +13394,9 @@
     "stato_disco": "10",
     "stato_copertina": "10",
     "note_stato": "Identificato da matrice HKAY 32574 (Lato A). Stampa Italiana.",
-    "valore_stimato": 0,
+    "valore_stimato": 32,
     "foto_album": [],
-    "cover_image": "",
+    "cover_image": "https://is1-ssl.mzstatic.com/image/thumb/Music118/v4/a8/49/3f/a8493f1f-71d8-8bdc-9e42-8f8b5e21078a/4050538167566.jpg/600x600bb.jpg",
     "tracklist": [
       {
         "position": "A1",

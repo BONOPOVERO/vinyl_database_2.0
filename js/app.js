@@ -1,77 +1,70 @@
 /**
- * Liquid Glass Vinyl Experience — Main Controller (app.js)
- * High-performance, zero-bloat, reactive state and event management.
+ * Vinyl Vault — Liquid Glass Experience (app.js)
+ * Master Controller orchestrating Store, 3D Carousel, Details Sheet, Discogs Engine, and Scanner.
  */
 
-import { Store } from './store.js';
+import { initStore, getAllRecords, getFilteredRecords, saveRecord, deleteRecord, getStats } from './store.js';
 import { LiquidCarousel } from './liquid-carousel.js';
-import { DetailsSheet } from './details-sheet.js';
-import { DiscogsEngine } from './discogs-engine.js';
+import { renderDetailsSheet } from './details-sheet.js';
+import { searchDiscogsPrice, BarcodeScanner, calculateGoldminePrice } from './discogs-engine.js';
 
 class VinylApp {
   constructor() {
-    this.store = null;
     this.carousel = null;
-    this.detailsSheet = null;
-    this.discogs = new DiscogsEngine();
-
+    this.scanner = null;
     this.currentCategory = 'all';
     this.searchQuery = '';
     this.activeRecords = [];
-    this.selectedRecord = null;
+    this.currentRecord = null;
 
+    // DOM Elements
+    this.stageWrapper = document.getElementById('liquid-stage-wrapper');
+    this.wheelContainer = document.getElementById('records-wheel-container');
+    this.detailsPanel = document.getElementById('details-sheet-panel');
     this.ambientMesh = document.getElementById('ambientMesh');
     this.scannerModal = document.getElementById('scannerModal');
+    this.scannerVideo = document.getElementById('scannerVideo');
     this.scannerResult = document.getElementById('scannerResult');
   }
 
   async init() {
-    console.log('[VinylApp] Initializing Liquid Glass Experience...');
+    console.log('[VinylApp] Inizializzazione Liquid Glass Experience...');
 
-    // 1. Initialize Store & Data
-    this.store = new Store();
-    await this.store.init();
+    // 1. Inizializza archivio IndexedDB con i 97 vinili
+    await initStore();
 
-    // 2. Initialize Components
+    // 2. Inizializza Selettore 3D e Palcoscenico
     this.carousel = new LiquidCarousel({
-      stageEl: document.getElementById('liquidStage'),
-      wheelEl: document.getElementById('recordsWheel'),
-      onSelect: (record) => this.handleRecordSelect(record)
+      wheelContainer: this.wheelContainer,
+      stageContainer: this.stageWrapper,
+      onSelectRecord: (record) => this.onRecordSelected(record)
     });
 
-    this.detailsSheet = new DetailsSheet({
-      containerEl: document.getElementById('detailsSheetContainer'),
-      discogsEngine: this.discogs,
-      onClose: () => {
-        // Optional callback when sheet closes
-      }
-    });
+    // 3. Collega eventi dell'interfaccia (Dock, Ricerca, Scanner, Tastiera)
+    this.bindDock();
+    this.bindSearch();
+    this.bindScanner();
+    this.bindShortcuts();
 
-    // 3. Bind UI Events
-    this.bindDockEvents();
-    this.bindSearchEvents();
-    this.bindScannerEvents();
-    this.bindKeyboardShortcuts();
+    // 4. Carica catalogo iniziale
+    this.refreshCatalog();
+    this.updateStats();
 
-    // 4. Initial Load
-    this.applyFilters();
-    this.updateDockStats();
-
-    // 5. Register Service Worker for offline PWA
+    // 5. Registra Service Worker offline
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js').catch(err => {
-          console.warn('[SW] Registration failed:', err);
-        });
+        navigator.serviceWorker.register('./sw.js').catch(() => {});
       });
     }
+
+    console.log('[VinylApp] Sistema pronto al 100%.');
   }
 
   /**
-   * Filter records based on category and search query
+   * Aggiorna la lista dei vinili in base a categoria e ricerca
    */
-  applyFilters() {
-    this.activeRecords = this.store.filter(this.currentCategory, this.searchQuery);
+  refreshCatalog() {
+    this.activeRecords = getFilteredRecords(this.currentCategory, this.searchQuery);
     this.carousel.setRecords(this.activeRecords);
 
     const emptyState = document.getElementById('emptyState');
@@ -79,57 +72,115 @@ class VinylApp {
       emptyState.style.display = this.activeRecords.length === 0 ? 'flex' : 'none';
     }
 
-    if (this.activeRecords.length > 0) {
-      this.handleRecordSelect(this.activeRecords[this.carousel.currentIndex] || this.activeRecords[0]);
-    } else {
-      this.selectedRecord = null;
-      this.detailsSheet.render(null);
+    this.updateStats();
+  }
+
+  /**
+   * Callback quando un vinile viene selezionato dalla ruota o dallo scorrimento
+   */
+  onRecordSelected(record) {
+    this.currentRecord = record;
+    if (!record) {
+      if (this.detailsPanel) this.detailsPanel.innerHTML = '';
+      return;
+    }
+
+    // Render della scheda dettagli con azioni interattive
+    renderDetailsSheet(this.detailsPanel, record, (action, payload) => this.handleSheetAction(action, payload));
+
+    // Estrazione colore dominante dalla copertina per illuminare lo sfondo in modo adattivo
+    this.updateCoverAura(record.cover_image || (record.foto_album && record.foto_album[0]));
+  }
+
+  /**
+   * Gestione azioni utente dalla Scheda Dettagli (aggiorna prezzo, cambia categoria, elimina)
+   */
+  async handleSheetAction(action, payload) {
+    if (action === 'refresh_price') {
+      const record = payload;
+      const priceValEl = document.getElementById('sheet-price-val');
+      const refreshBtn = document.getElementById('sheet-refresh-price-btn');
+      if (priceValEl) priceValEl.textContent = 'Verifica in corso...';
+      if (refreshBtn) refreshBtn.disabled = true;
+
+      try {
+        const res = await searchDiscogsPrice({
+          barcode: record.codice_a_barre,
+          matrix: record.codice_matrice,
+          discoGrade: record.stato_disco,
+          coverGrade: record.stato_copertina
+        });
+
+        if (res.found && res.estimatedValue > 0) {
+          record.valore_stimato = res.estimatedValue;
+          record.discogs_release_id = res.releaseId;
+          await saveRecord(record);
+          this.carousel.renderStage();
+          renderDetailsSheet(this.detailsPanel, record, (a, p) => this.handleSheetAction(a, p));
+          this.updateStats();
+        } else {
+          if (priceValEl) priceValEl.textContent = 'Nessun riscontro Discogs';
+        }
+      } catch (err) {
+        if (priceValEl) priceValEl.textContent = 'Errore verifica Discogs';
+        console.warn('Errore Discogs:', err);
+      } finally {
+        if (refreshBtn) refreshBtn.disabled = false;
+      }
+
+    } else if (action === 'change_category') {
+      const { record, newCat } = payload;
+      record.category = newCat;
+      await saveRecord(record);
+      this.refreshCatalog();
+      if (this.currentRecord && this.currentRecord.id === record.id) {
+        renderDetailsSheet(this.detailsPanel, record, (a, p) => this.handleSheetAction(a, p));
+      }
+
+    } else if (action === 'delete_record') {
+      const record = payload;
+      await deleteRecord(record.id);
+      if (this.detailsPanel) this.detailsPanel.classList.remove('active');
+      this.refreshCatalog();
     }
   }
 
   /**
-   * Handle record selection from carousel or wheel
+   * Aggiorna le statistiche e stima economica nel Dock Fluttuante
    */
-  handleRecordSelect(record) {
-    if (!record) return;
-    this.selectedRecord = record;
-    this.detailsSheet.render(record);
-    this.extractAndApplyAmbientGlow(record.cover_image || record.cover);
+  updateStats() {
+    const stats = getStats(this.currentCategory);
+    const countEl = document.getElementById('dockTotalCount');
+    const valueEl = document.getElementById('dockTotalValue');
+
+    if (countEl) countEl.textContent = stats.total;
+    if (valueEl) valueEl.textContent = `€ ${stats.totalValue.toFixed(0)}`;
   }
 
   /**
-   * Dynamically extract dominant color from cover art and update ambient mesh
+   * Estrazione cromatica fluida dalla copertina attiva
    */
-  extractAndApplyAmbientGlow(imgSrc) {
-    if (!imgSrc || !this.ambientMesh) return;
+  updateCoverAura(imgUrl) {
+    if (!imgUrl) return;
 
     const img = new Image();
     img.crossOrigin = 'Anonymous';
-    img.src = imgSrc;
-
+    img.src = imgUrl;
     img.onload = () => {
       try {
         const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d', { willReadFrequently: true });
         canvas.width = 16;
         canvas.height = 16;
+        const ctx = canvas.getContext('2d', { willReadFrequently: true });
         ctx.drawImage(img, 0, 0, 16, 16);
+        const data = ctx.getImageData(0, 0, 16, 16).data;
 
-        const imgData = ctx.getImageData(0, 0, 16, 16).data;
         let r = 0, g = 0, b = 0, count = 0;
-
-        for (let i = 0; i < imgData.length; i += 16) {
-          // Avoid near blacks and near whites for vibrant glowing refraction
-          const pr = imgData[i];
-          const pg = imgData[i + 1];
-          const pb = imgData[i + 2];
+        for (let i = 0; i < data.length; i += 16) {
+          const pr = data[i], pg = data[i + 1], pb = data[i + 2];
           const brightness = (pr * 299 + pg * 587 + pb * 114) / 1000;
-
-          if (brightness > 20 && brightness < 240) {
-            r += pr;
-            g += pg;
-            b += pb;
-            count++;
+          if (brightness > 25 && brightness < 235) {
+            r += pr; g += pg; b += pb; count++;
           }
         }
 
@@ -140,114 +191,97 @@ class VinylApp {
           document.documentElement.style.setProperty('--ambient-glow-rgb', `${r}, ${g}, ${b}`);
         }
       } catch (e) {
-        // Fallback default cyan/purple iridescent glow on CORS restrictions
+        // Fallback su gradiente di default in caso di CORS su immagini esterne
       }
     };
   }
 
   /**
-   * Bind category buttons & quick action buttons in floating glass dock
+   * Eventi Dock a Capsula (Filtro categorie, apri dettagli, apri scanner)
    */
-  bindDockEvents() {
+  bindDock() {
     const dockButtons = document.querySelectorAll('.dock-pill');
     dockButtons.forEach(btn => {
-      btn.addEventListener('click', (e) => {
+      btn.addEventListener('click', () => {
         dockButtons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         this.currentCategory = btn.dataset.category || 'all';
-        this.applyFilters();
+        this.refreshCatalog();
       });
     });
-
-    const openScannerBtn = document.getElementById('openScannerBtn');
-    if (openScannerBtn) {
-      openScannerBtn.addEventListener('click', () => {
-        this.openScanner();
-      });
-    }
 
     const openDetailsBtn = document.getElementById('openDetailsBtn');
     if (openDetailsBtn) {
       openDetailsBtn.addEventListener('click', () => {
-        this.detailsSheet.toggleSheet();
+        if (this.detailsPanel) this.detailsPanel.classList.add('active');
       });
+    }
+
+    const openScannerBtn = document.getElementById('openScannerBtn');
+    if (openScannerBtn) {
+      openScannerBtn.addEventListener('click', () => this.openScannerModal());
     }
   }
 
   /**
-   * Update floating dock counter and total value estimate
+   * Barra di ricerca con filtraggio immediato
    */
-  updateDockStats() {
-    const stats = this.store.getStats();
-    const countEl = document.getElementById('dockTotalCount');
-    const valueEl = document.getElementById('dockTotalValue');
+  bindSearch() {
+    const input = document.getElementById('searchInput');
+    const clearBtn = document.getElementById('searchClear');
 
-    if (countEl) countEl.textContent = stats.total;
-    if (valueEl) valueEl.textContent = `€${stats.totalValue.toFixed(0)}`;
-  }
-
-  /**
-   * Search input with instant fluid filtering
-   */
-  bindSearchEvents() {
-    const searchInput = document.getElementById('searchInput');
-    const searchClear = document.getElementById('searchClear');
-
-    if (searchInput) {
-      searchInput.addEventListener('input', (e) => {
+    if (input) {
+      input.addEventListener('input', (e) => {
         this.searchQuery = e.target.value.trim();
-        if (searchClear) {
-          searchClear.style.display = this.searchQuery ? 'block' : 'none';
-        }
-        this.applyFilters();
+        if (clearBtn) clearBtn.style.display = this.searchQuery ? 'block' : 'none';
+        this.refreshCatalog();
       });
     }
 
-    if (searchClear && searchInput) {
-      searchClear.addEventListener('click', () => {
-        searchInput.value = '';
+    if (clearBtn && input) {
+      clearBtn.addEventListener('click', () => {
+        input.value = '';
         this.searchQuery = '';
-        searchClear.style.display = 'none';
-        this.applyFilters();
-        searchInput.focus();
+        clearBtn.style.display = 'none';
+        this.refreshCatalog();
+        input.focus();
       });
     }
   }
 
   /**
-   * Barcode & Matrix runout scanner modal
+   * Modal Scanner Barcode & Ricerca Matrice
    */
-  bindScannerEvents() {
+  bindScanner() {
     const closeBtn = document.getElementById('closeScannerModal');
-    const manualBarcodeBtn = document.getElementById('manualBarcodeBtn');
-    const manualBarcodeVal = document.getElementById('manualBarcodeVal');
-    const manualMatrixBtn = document.getElementById('manualMatrixBtn');
-    const manualMatrixVal = document.getElementById('manualMatrixVal');
-
     if (closeBtn) {
-      closeBtn.addEventListener('click', () => this.closeScanner());
+      closeBtn.addEventListener('click', () => this.closeScannerModal());
     }
 
     if (this.scannerModal) {
       this.scannerModal.addEventListener('click', (e) => {
-        if (e.target === this.scannerModal) this.closeScanner();
+        if (e.target === this.scannerModal) this.closeScannerModal();
       });
     }
 
+    const manualBarcodeBtn = document.getElementById('manualBarcodeBtn');
+    const manualBarcodeVal = document.getElementById('manualBarcodeVal');
     if (manualBarcodeBtn && manualBarcodeVal) {
       manualBarcodeBtn.addEventListener('click', () => {
         const val = manualBarcodeVal.value.trim();
-        if (val) this.processSearchCode('barcode', val);
+        if (val) this.processCodeSearch('barcode', val);
       });
       manualBarcodeVal.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') manualBarcodeBtn.click();
       });
     }
 
+    const manualMatrixBtn = document.getElementById('manualMatrixBtn');
+    const manualMatrixVal = document.getElementById('manualMatrixVal');
     if (manualMatrixBtn && manualMatrixVal) {
       manualMatrixBtn.addEventListener('click', () => {
         const val = manualMatrixVal.value.trim();
-        if (val) this.processSearchCode('matrix', val);
+        if (val) this.processCodeSearch('matrix', val);
       });
       manualMatrixVal.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') manualMatrixBtn.click();
@@ -255,124 +289,138 @@ class VinylApp {
     }
   }
 
-  async openScanner() {
+  async openScannerModal() {
     if (!this.scannerModal) return;
     this.scannerModal.showModal();
     if (this.scannerResult) this.scannerResult.innerHTML = '';
 
-    const videoEl = document.getElementById('scannerVideo');
-    if (videoEl && this.discogs.isScannerSupported()) {
-      try {
-        await this.discogs.startBarcodeScanner(videoEl, (barcode) => {
-          this.processSearchCode('barcode', barcode);
-          this.discogs.stopBarcodeScanner();
-        });
-      } catch (err) {
-        console.warn('Camera scanner not started:', err);
-      }
+    if (this.scannerVideo) {
+      this.scanner = new BarcodeScanner(
+        this.scannerVideo,
+        (detectedBarcode) => {
+          this.processCodeSearch('barcode', detectedBarcode);
+        },
+        (err) => {
+          console.warn('Camera non disponibile o permesso negato:', err);
+        }
+      );
+      this.scanner.start();
     }
   }
 
-  closeScanner() {
-    this.discogs.stopBarcodeScanner();
+  closeScannerModal() {
+    if (this.scanner) {
+      this.scanner.stop();
+      this.scanner = null;
+    }
     if (this.scannerModal && this.scannerModal.open) {
       this.scannerModal.close();
     }
   }
 
-  async processSearchCode(type, code) {
+  async processCodeSearch(type, code) {
     if (!this.scannerResult) return;
-    this.scannerResult.innerHTML = `<div class="scanner-loading"><div class="spinner"></div> Ricerca Discogs per ${type}: <strong>${code}</strong>...</div>`;
+    this.scannerResult.innerHTML = `
+      <div class="scanner-status">
+        <div class="spinner"></div> Ricerca in corso per ${type}: <strong>${code}</strong>...
+      </div>
+    `;
 
-    // 1. Check local collection first
-    const localMatch = this.store.findLocalMatch(type, code);
+    // 1. Controlla prima nella collezione locale
+    const all = getAllRecords();
+    const cleanCode = code.toLowerCase().trim();
+    const localMatch = all.find(r => {
+      if (type === 'barcode') {
+        return (r.codice_a_barre || '').toLowerCase().trim() === cleanCode;
+      } else {
+        const matrixStr = (r.codice_matrice || '').toLowerCase();
+        const hasIdent = (r.identifiers || []).some(id => (id.value || '').toLowerCase().includes(cleanCode));
+        return matrixStr.includes(cleanCode) || hasIdent;
+      }
+    });
+
     if (localMatch) {
-      const idx = this.activeRecords.findIndex(r => r.id === localMatch.id);
       this.scannerResult.innerHTML = `
-        <div class="scanner-found local-found">
-          <div class="badge">In Collezione</div>
-          <h4>${localMatch.artist} - ${localMatch.title}</h4>
-          <p>Valore stimato: €${localMatch.price || localMatch.estimated_value || 'N/D'} (${localMatch.condition || 'VG+'})</p>
-          <button class="glass-btn-primary" id="selectFoundRecordBtn">Seleziona Vinile</button>
+        <div class="scanner-match-card local">
+          <span class="match-badge">Trovato in Collezione</span>
+          <h4>${localMatch.title}</h4>
+          <p>${localMatch.artist} • Categoria: ${localMatch.category}</p>
+          <div class="match-price">Valore Stimato: € ${parseFloat(localMatch.valore_stimato || 0).toFixed(2)}</div>
+          <button type="button" class="liquid-btn-sm" id="goto-matched-record-btn">Vai al vinile</button>
         </div>
       `;
-      document.getElementById('selectFoundRecordBtn')?.addEventListener('click', () => {
-        if (idx !== -1) this.carousel.goToIndex(idx);
-        this.closeScanner();
+
+      document.getElementById('goto-matched-record-btn')?.addEventListener('click', () => {
+        const idx = this.activeRecords.findIndex(r => r.id === localMatch.id);
+        if (idx !== -1) {
+          this.carousel.selectIndex(idx);
+        } else {
+          // Rimuovi filtri per mostrarlo
+          this.currentCategory = 'all';
+          this.searchQuery = '';
+          document.querySelectorAll('.dock-pill').forEach(b => b.classList.toggle('active', b.dataset.category === 'all'));
+          this.refreshCatalog();
+          const newIdx = this.activeRecords.findIndex(r => r.id === localMatch.id);
+          if (newIdx !== -1) this.carousel.selectIndex(newIdx);
+        }
+        this.closeScannerModal();
       });
       return;
     }
 
-    // 2. Fetch live from Discogs API
+    // 2. Interroga Discogs Live
     try {
-      let results = [];
-      if (type === 'barcode') {
-        results = await this.discogs.searchByBarcode(code);
-      } else {
-        results = await this.discogs.searchByMatrix(code);
-      }
-
-      if (results && results.length > 0) {
-        const item = results[0];
-        const valData = await this.discogs.fetchLiveValuation(item.id);
-        const medPrice = valData.median || valData.suggested || 25;
-
+      const res = await searchDiscogsPrice(type === 'barcode' ? { barcode: code } : { matrix: code });
+      if (res.found) {
         this.scannerResult.innerHTML = `
-          <div class="scanner-found discogs-found">
-            <div class="badge">Discogs Live</div>
-            <h4>${item.title || `${item.artist} - ${item.release_title}`}</h4>
-            <p>Formato: ${item.format?.join(', ') || 'Vinyl'} | Anno: ${item.year || 'N/D'}</p>
-            <div class="price-pill">Prezzo Mediano Stimato: <strong>€${medPrice.toFixed(2)}</strong></div>
-            <p class="matrix-info">ID Discogs: #${item.id} ${item.catno ? `| Cat: ${item.catno}` : ''}</p>
-            <a href="${item.uri ? `https://www.discogs.com${item.uri}` : `https://www.discogs.com/release/${item.id}`}" target="_blank" rel="noopener" class="glass-btn-secondary">Apri su Discogs ↗</a>
+          <div class="scanner-match-card discogs">
+            <span class="match-badge discogs-badge">Discogs Live</span>
+            <h4>${res.title}</h4>
+            <p>${res.year || ''} • ${res.country || ''}</p>
+            <div class="match-price">Prezzo Minimo: € ${res.lowestPrice ? res.lowestPrice.toFixed(2) : 'N/D'} | Stima Copia: € ${res.estimatedValue.toFixed(2)}</div>
+            <a href="${res.discogsUrl}" target="_blank" rel="noopener" class="discogs-link-btn">Apri su Discogs ↗</a>
           </div>
         `;
       } else {
         this.scannerResult.innerHTML = `
-          <div class="scanner-empty">
-            <p>Nessun vinile trovato su Discogs per <code>${code}</code>.</p>
-            <small>Verifica se il codice matrice include spazi o caratteri d'incisione speciali.</small>
+          <div class="scanner-empty-box">
+            <p>Nessun vinile trovato per <code>${code}</code>.</p>
           </div>
         `;
       }
     } catch (err) {
       this.scannerResult.innerHTML = `
-        <div class="scanner-error">
-          <p>Errore durante l'interrogazione Discogs: ${err.message}</p>
+        <div class="scanner-error-box">
+          <p>Errore durante la ricerca Discogs: ${err.message}</p>
         </div>
       `;
     }
   }
 
   /**
-   * Keyboard arrows navigation & Esc to close modals
+   * Scorciatoie da tastiera (Frecce, Esc, Spazio)
    */
-  bindKeyboardShortcuts() {
+  bindShortcuts() {
     window.addEventListener('keydown', (e) => {
-      // Don't intercept if user is typing in an input
       if (['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName)) return;
 
-      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-        e.preventDefault();
-        this.carousel.next();
-      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-        e.preventDefault();
-        this.carousel.prev();
-      } else if (e.key === 'Escape') {
+      if (e.key === 'Escape') {
         if (this.scannerModal && this.scannerModal.open) {
-          this.closeScanner();
-        } else if (this.detailsSheet.isOpen) {
-          this.detailsSheet.toggleSheet();
+          this.closeScannerModal();
+        } else if (this.detailsPanel && this.detailsPanel.classList.contains('active')) {
+          this.detailsPanel.classList.remove('active');
         }
       } else if (e.key === ' ' || e.key === 'Enter') {
         e.preventDefault();
-        this.detailsSheet.toggleSheet();
+        if (this.detailsPanel) {
+          this.detailsPanel.classList.toggle('active');
+        }
       }
     });
   }
 }
 
-// Bootstrap on DOM ready
+// Bootstrap
 document.addEventListener('DOMContentLoaded', () => {
   const app = new VinylApp();
   app.init().catch(console.error);

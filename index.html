@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="theme-color" content="#070913">
+  <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="description" content="Collezione Vinili di Lorenzo Bona — Liquid Glass 3D Experience">
@@ -12,7 +13,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="manifest" href="manifest.json">
 
-  <!-- Google Fonts: Plus Jakarta Sans for clean luxury typography -->
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -21,7 +22,7 @@
 </head>
 <body>
 
-  <!-- Dynamic Ambient Mesh & Refractive Lights -->
+  <!-- Dynamic Ambient Mesh & Refraction Lights -->
   <div class="ambient-background" id="ambientMesh">
     <div class="glow-orb orb-primary"></div>
     <div class="glow-orb orb-secondary"></div>
@@ -29,10 +30,13 @@
     <div class="glass-dust-layer"></div>
   </div>
 
+  <!-- Mobile Overlay for Wheel Drawer -->
+  <div id="mobile-overlay" class="mobile-overlay"></div>
+
   <!-- App Wrapper -->
   <div class="app-viewport">
 
-    <!-- Top Navigation & Global Search -->
+    <!-- Top Glass Header & Search -->
     <header class="glass-header">
       <div class="header-brand">
         <div class="brand-disc-icon">
@@ -56,8 +60,20 @@
       </div>
 
       <div class="header-actions">
+        <button class="toggle-wheel-btn" id="toggle-wheel-btn" title="Elenco Album">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="8" y1="6" x2="21" y2="6"></line>
+            <line x1="8" y1="12" x2="21" y2="12"></line>
+            <line x1="8" y1="18" x2="21" y2="18"></line>
+            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+          </svg>
+          <span class="btn-label">Elenco</span>
+        </button>
+
         <button class="glass-icon-btn" id="openScannerBtn" title="Scansiona Barcode o Matrice">
-          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"></path>
             <line x1="7" y1="12" x2="17" y2="12"></line>
           </svg>
@@ -66,13 +82,13 @@
       </div>
     </header>
 
-    <!-- Main 3D Interactive Stage -->
+    <!-- Main Experience: 3D Stage + 3D Cylindrical Wheel -->
     <main class="main-experience">
       
-      <!-- Center: 3D Stage with Vinyl Sleeve & Slide-out Vinyl Disc -->
+      <!-- Center: 3D Interactive Stage -->
       <section class="stage-section" id="stageSection">
-        <div class="liquid-stage-wrapper" id="liquidStage">
-          <!-- Populated dynamically by liquid-carousel.js -->
+        <div class="liquid-stage-wrapper" id="liquid-stage-wrapper">
+          <!-- Rendered dynamically by liquid-carousel.js -->
         </div>
 
         <div class="empty-state" id="emptyState" style="display: none;">
@@ -85,11 +101,11 @@
       <!-- Right: Cylindrical 3D Wheel Navigation -->
       <aside class="wheel-section">
         <div class="wheel-header">
-          <span class="wheel-title">CATALOGO</span>
+          <span class="wheel-title">CATALOGO VINILI</span>
           <span class="wheel-hint">Scorri o usa le frecce</span>
         </div>
-        <div class="wheel-container" id="recordsWheel">
-          <!-- Populated dynamically by liquid-carousel.js -->
+        <div class="records-wheel-container" id="records-wheel-container">
+          <!-- Rendered dynamically by liquid-carousel.js -->
         </div>
       </aside>
 
@@ -120,7 +136,7 @@
           <span class="stat-unit">vinili</span>
         </div>
         <div class="dock-stat-item">
-          <span class="stat-num stat-val" id="dockTotalValue">€0</span>
+          <span class="stat-num stat-val" id="dockTotalValue">€ 0</span>
           <span class="stat-unit">stima</span>
         </div>
       </div>
@@ -129,7 +145,7 @@
 
       <div class="dock-segment actions-segment">
         <button class="dock-action-btn" id="openDetailsBtn" title="Dettagli completi del vinile">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="12" y1="5" x2="12" y2="19"></line>
             <polyline points="19 12 12 19 5 12"></polyline>
           </svg>
@@ -139,7 +155,7 @@
     </nav>
 
     <!-- Expandable Liquid Glass Details Bottom Sheet -->
-    <div id="detailsSheetContainer"></div>
+    <div id="details-sheet-panel" class="details-sheet-panel"></div>
 
   </div>
 
@@ -155,8 +171,7 @@
       </div>
 
       <div class="modal-body">
-        
-        <!-- Live Camera Scanner (if supported) -->
+        <!-- Live Camera Scanner -->
         <div class="scanner-camera-wrapper">
           <video id="scannerVideo" playsinline muted></video>
           <div class="scanner-laser-overlay">
@@ -166,10 +181,10 @@
             <div class="corner bottom-left"></div>
             <div class="corner bottom-right"></div>
           </div>
-          <div class="scanner-hint">Inquadra il codice a barre del vinile</div>
+          <div class="scanner-hint">Inquadra il codice a barre del vinile con la fotocamera</div>
         </div>
 
-        <!-- Manual Matrix / Barcode Search Form -->
+        <!-- Manual Search -->
         <div class="scanner-manual-grid">
           <div class="manual-input-box">
             <label for="manualBarcodeVal">Codice a Barre (EAN/UPC)</label>
@@ -190,12 +205,11 @@
 
         <!-- Result Box -->
         <div class="scanner-result-box" id="scannerResult"></div>
-
       </div>
     </div>
   </dialog>
 
-  <!-- Main Application Script -->
+  <!-- Module Script -->
   <script type="module" src="js/app.js"></script>
 </body>
 </html>
