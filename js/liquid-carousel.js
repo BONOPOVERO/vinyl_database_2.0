@@ -297,26 +297,128 @@ export class LiquidCarousel {
 
   renderWheel() {
     if (!this.wheelContainer) return;
-    this.wheelContainer.innerHTML = `
-      <div class="drawer-header">
-        <span class="drawer-title">CATALOGO VINILI (${this.records.length})</span>
-        <button type="button" class="drawer-close-btn" id="close-drawer-btn" aria-label="Chiudi">&times;</button>
-      </div>
-      <div class="wheel-items-stage" id="wheel-items-stage"></div>
-    `;
-
-    const closeBtn = this.wheelContainer.querySelector('#close-drawer-btn');
-    if (closeBtn) {
-      closeBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        this.closeMobileDrawer();
-      });
+    if (this.drawerMode === undefined) {
+      this.drawerMode = window.innerWidth <= 1024 ? 'list' : 'wheel';
     }
 
+    const filterText = (this.drawerFilter || '').toLowerCase().trim();
+    const visibleRecords = filterText 
+      ? this.records.filter(r => (r.title || '').toLowerCase().includes(filterText) || (r.artist || '').toLowerCase().includes(filterText))
+      : this.records;
+
+    this.wheelContainer.innerHTML = `
+      <div class="drawer-header-area">
+        <div class="drawer-top-bar">
+          <div class="drawer-title-group">
+            <span class="drawer-icon">💿</span>
+            <span class="drawer-title">I TUOI VINILI (${visibleRecords.length})</span>
+          </div>
+          <button type="button" class="drawer-close-btn" id="close-drawer-btn" aria-label="Chiudi">&times;</button>
+        </div>
+
+        <div class="drawer-mode-switch">
+          <button type="button" class="drawer-mode-pill ${this.drawerMode === 'list' ? 'active' : ''}" data-mode="list">📋 Lista Catalogo</button>
+          <button type="button" class="drawer-mode-pill ${this.drawerMode === 'wheel' ? 'active' : ''}" data-mode="wheel">🎡 Ruota 3D</button>
+        </div>
+
+        <div class="drawer-quick-search">
+          <input type="text" id="drawerSearchInput" placeholder="🔍 Cerca per titolo, artista..." value="${this.drawerFilter || ''}" autocomplete="off">
+          ${this.drawerFilter ? `<button type="button" class="drawer-clear-search" id="drawerClearSearch">&times;</button>` : ''}
+        </div>
+      </div>
+
+      ${this.drawerMode === 'list' ? `
+        <div class="drawer-catalog-list" id="drawer-catalog-list">
+          ${visibleRecords.length === 0 ? `
+            <div class="drawer-empty">Nessun vinile corrisponde alla ricerca</div>
+          ` : visibleRecords.map((record) => {
+            const origIdx = this.records.indexOf(record);
+            const isSelected = origIdx === this.selectedIndex;
+            const cover = record.cover_image || (record.foto_album && record.foto_album[0]) || 'favicon.svg';
+            const price = (parseFloat(record.valore_stimato) || 0).toFixed(0);
+            return `
+              <div class="drawer-record-item ${isSelected ? 'active' : ''}" data-index="${origIdx}">
+                <img src="${cover}" class="drawer-record-thumb" alt="${record.title}" onerror="this.src='favicon.svg'">
+                <div class="drawer-record-info">
+                  <div class="drawer-record-title">${record.title}</div>
+                  <div class="drawer-record-artist">${record.artist} ${record.year ? `• ${record.year}` : ''}</div>
+                </div>
+                <div class="drawer-record-meta">
+                  <span class="drawer-tag cat-${record.category || 'personal'}">${(record.category || 'personal')}</span>
+                  <span class="drawer-price">€ ${price}</span>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      ` : `
+        <div class="wheel-items-stage" id="wheel-items-stage"></div>
+      `}
+    `;
+
+    // Handler chiusura drawer
+    this.wheelContainer.querySelector('#close-drawer-btn')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      this.closeMobileDrawer();
+    });
+
+    // Handler switch modalità
+    this.wheelContainer.querySelectorAll('.drawer-mode-pill').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        this.drawerMode = btn.dataset.mode;
+        this.renderWheel();
+      });
+    });
+
+    // Handler ricerca nel drawer
+    const searchInput = this.wheelContainer.querySelector('#drawerSearchInput');
+    if (searchInput) {
+      searchInput.addEventListener('input', (e) => {
+        this.drawerFilter = e.target.value;
+        this.renderWheel();
+        const inputRef = this.wheelContainer.querySelector('#drawerSearchInput');
+        if (inputRef) {
+          inputRef.focus();
+          inputRef.selectionStart = inputRef.selectionEnd = inputRef.value.length;
+        }
+      });
+    }
+    this.wheelContainer.querySelector('#drawerClearSearch')?.addEventListener('click', () => {
+      this.drawerFilter = '';
+      this.renderWheel();
+    });
+
+    // Se modalità Catalogo a Lista
+    if (this.drawerMode === 'list') {
+      const listContainer = this.wheelContainer.querySelector('#drawer-catalog-list');
+      if (listContainer) {
+        listContainer.querySelectorAll('.drawer-record-item').forEach(item => {
+          item.addEventListener('click', () => {
+            const idx = parseInt(item.dataset.index, 10);
+            if (!isNaN(idx)) {
+              this.selectIndex(idx);
+              this.closeMobileDrawer();
+            }
+          });
+        });
+
+        // Scroll automatico all'elemento attivo
+        setTimeout(() => {
+          const activeEl = listContainer.querySelector('.drawer-record-item.active');
+          if (activeEl) {
+            activeEl.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+          }
+        }, 60);
+      }
+      return;
+    }
+
+    // Se modalità Ruota 3D
     const stage = this.wheelContainer.querySelector('#wheel-items-stage');
     if (!stage) return;
 
-    if (this.records.length === 0) {
+    if (visibleRecords.length === 0) {
       const empty = document.createElement('div');
       empty.className = 'wheel-item';
       empty.textContent = 'Nessun vinile';
@@ -324,14 +426,18 @@ export class LiquidCarousel {
       return;
     }
 
-    this.records.forEach((record, idx) => {
+    visibleRecords.forEach((record) => {
+      const origIdx = this.records.indexOf(record);
       const item = document.createElement('div');
       item.className = 'wheel-item';
-      item.dataset.index = idx;
-      item.textContent = record.title || 'Senza Titolo';
+      item.dataset.index = origIdx;
+      item.innerHTML = `
+        <span class="wheel-item-title">${record.title || 'Senza Titolo'}</span>
+        <span class="wheel-item-sub">${record.artist || 'Sconosciuto'}</span>
+      `;
 
       item.addEventListener('click', () => {
-        this.selectIndex(idx);
+        this.selectIndex(origIdx);
         this.closeMobileDrawer();
       });
 
@@ -344,18 +450,20 @@ export class LiquidCarousel {
 
   updateWheelPositions() {
     if (!this.wheelContainer || this.records.length === 0 || !this.wheelItems) return;
+    const isMobile = window.innerWidth <= 1024;
 
-    this.wheelItems.forEach((item, index) => {
+    this.wheelItems.forEach((item) => {
+      const index = parseInt(item.dataset.index, 10);
       const distance = index - this.selectedIndex;
       const absDist = Math.abs(distance);
       const isSelected = distance === 0;
 
-      // Matematica cilindrica 3D fluida e leggibile
-      const translateY = distance * 2.6;
-      const curveOffset = Math.pow(absDist, 1.35) * 10;
+      // Matematica cilindrica 3D fluida, armoniosa e senza fuoriuscite
+      const translateY = distance * 2.8;
+      const curveOffset = isMobile ? Math.pow(absDist, 1.1) * 3 : Math.pow(absDist, 1.35) * 9;
       const rotateX = distance * -5.5;
-      const opacity = isSelected ? 1 : Math.max(0.28, 0.7 - absDist * 0.1);
-      const scale = isSelected ? 1.08 : Math.max(0.8, 1 - absDist * 0.05);
+      const opacity = isSelected ? 1 : Math.max(0.35, 0.78 - absDist * 0.08);
+      const scale = isSelected ? 1.06 : Math.max(0.82, 1 - absDist * 0.04);
 
       item.style.color = isSelected ? '#ffffff' : '#cbd5e1';
       item.style.fontWeight = isSelected ? '800' : '500';
@@ -364,7 +472,7 @@ export class LiquidCarousel {
 
       if (isSelected) {
         item.classList.add('active');
-        item.style.textShadow = '0 0 16px rgba(56, 189, 248, 0.8), 0 2px 10px rgba(0,0,0,0.95)';
+        item.style.textShadow = '0 0 16px rgba(56, 189, 248, 0.85), 0 2px 10px rgba(0,0,0,0.95)';
       } else {
         item.classList.remove('active');
         item.style.textShadow = '0 2px 8px rgba(0,0,0,0.85)';
@@ -377,7 +485,14 @@ export class LiquidCarousel {
     const target = Math.max(0, Math.min(newIndex, this.records.length - 1));
     if (target !== this.selectedIndex) {
       this.selectedIndex = target;
-      this.updateWheelPositions();
+      if (this.drawerMode === 'wheel') {
+        this.updateWheelPositions();
+      } else if (this.wheelContainer) {
+        // Aggiorna classe active nella lista catalogo
+        this.wheelContainer.querySelectorAll('.drawer-record-item').forEach(el => {
+          el.classList.toggle('active', parseInt(el.dataset.index, 10) === target);
+        });
+      }
       this.renderStage();
       if (this.records[this.selectedIndex]) {
         this.onSelect(this.records[this.selectedIndex]);
@@ -389,9 +504,15 @@ export class LiquidCarousel {
   prev() { this.selectIndex(this.selectedIndex - 1); }
 
   toggleMobileDrawer() {
-    this.wheelContainer.classList.toggle('open');
+    const willOpen = !this.wheelContainer.classList.contains('open');
+    this.wheelContainer.classList.toggle('open', willOpen);
     const overlay = document.getElementById('mobile-overlay');
-    if (overlay) overlay.classList.toggle('active');
+    if (overlay) overlay.classList.toggle('active', willOpen);
+
+    if (willOpen) {
+      // Se apriamo su mobile, assicuriamoci di re-renderizzare o centrare l'elemento attivo
+      this.renderWheel();
+    }
   }
 
   closeMobileDrawer() {
@@ -403,7 +524,7 @@ export class LiquidCarousel {
   initEvents() {
     // 1. Scorrimento della rotella del mouse
     window.addEventListener('wheel', (e) => {
-      if (e.target.closest('.stage-scrollable-details') || e.target.closest('dialog')) return;
+      if (e.target.closest('.stage-scrollable-details') || e.target.closest('.drawer-catalog-list') || e.target.closest('dialog')) return;
       const now = performance.now();
       if (now - this.lastWheelTime < 60) return;
       if (Math.abs(e.deltaY) > 8) {
@@ -421,14 +542,14 @@ export class LiquidCarousel {
     }, { passive: true });
 
     window.addEventListener('touchmove', (e) => {
-      if (e.target.closest('.stage-scrollable-details') || e.target.closest('dialog')) return;
+      if (e.target.closest('.stage-scrollable-details') || e.target.closest('.drawer-catalog-list') || e.target.closest('dialog')) return;
       if (e.touches.length === 1) {
         const currentY = e.touches[0].clientY;
         const currentX = e.touches[0].clientX;
         const diffY = this.touchStartY - currentY;
         const diffX = this.touchStartX - currentX;
 
-        // Se swipe orizzontale (cambio vinile con swipe)
+        // Se swipe orizzontale (cambio vinile con swipe sullo stage)
         if (Math.abs(diffX) > 45 && Math.abs(diffX) > Math.abs(diffY)) {
           if (diffX > 0) this.next();
           else this.prev();
@@ -437,8 +558,8 @@ export class LiquidCarousel {
           return;
         }
 
-        // Se swipe verticale (scorrimento ruota)
-        if (Math.abs(diffY) > 40 && Math.abs(diffY) > Math.abs(diffX)) {
+        // Se swipe verticale (scorrimento ruota sullo stage)
+        if (Math.abs(diffY) > 35 && Math.abs(diffY) > Math.abs(diffX)) {
           this.selectIndex(this.selectedIndex + Math.sign(diffY));
           this.touchStartY = currentY;
           this.touchStartX = currentX;
@@ -446,18 +567,58 @@ export class LiquidCarousel {
       }
     }, { passive: true });
 
-    // 3. Frecce tastiera
+    // 3. Touch Drag dedicato dentro il wheelContainer
+    if (this.wheelContainer) {
+      let isThrottled = false;
+      let drawerTouchX = 0;
+      let drawerTouchY = 0;
+
+      this.wheelContainer.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          drawerTouchX = e.touches[0].clientX;
+          drawerTouchY = e.touches[0].clientY;
+        }
+      }, { passive: true });
+
+      this.wheelContainer.addEventListener('touchmove', (e) => {
+        const currentX = e.touches[0].clientX;
+        const currentY = e.touches[0].clientY;
+        const diffX = currentX - drawerTouchX;
+        const diffY = drawerTouchY - currentY;
+
+        // Swipe orizzontale verso destra per chiudere il cassetto
+        if (diffX > 50 && Math.abs(diffX) > Math.abs(diffY)) {
+          this.closeMobileDrawer();
+          return;
+        }
+
+        // In modalità Ruota 3D: drag verticale fluido per ruotare
+        if (this.drawerMode === 'wheel' && Math.abs(diffY) > Math.abs(diffX)) {
+          e.preventDefault();
+          if (isThrottled) return;
+          if (Math.abs(diffY) > 20) {
+            isThrottled = true;
+            if (diffY > 0) this.next();
+            else this.prev();
+            drawerTouchY = currentY;
+            setTimeout(() => { isThrottled = false; }, 90);
+          }
+        }
+      }, { passive: false });
+    }
+
+    // 4. Frecce tastiera
     window.addEventListener('keydown', (e) => {
       if (['input', 'textarea'].includes(document.activeElement?.tagName?.toLowerCase())) return;
       if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); this.next(); }
       else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); this.prev(); }
     });
 
-    // 4. Overlay mobile
+    // 5. Overlay mobile
     const overlay = document.getElementById('mobile-overlay');
     if (overlay) overlay.addEventListener('click', () => this.closeMobileDrawer());
 
-    // 5. Toggle bottone titoli
+    // 6. Toggle bottone titoli
     const toggleBtn = document.getElementById('toggle-wheel-btn');
     if (toggleBtn) toggleBtn.addEventListener('click', () => this.toggleMobileDrawer());
   }
