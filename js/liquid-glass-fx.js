@@ -1,5 +1,5 @@
 /**
- * Liquid Glass FX Engine
+ * Liquid Glass FX Engine (Enhanced Edition)
  * Faithful recreation of nikdelvin/liquid-glass (iOS 26 Liquid Glass)
  * Pure CSS & SVG displacement mapping with chromatic aberration and automatic resize handling.
  */
@@ -25,15 +25,15 @@ export const getDisplacementMap = ({ height, width, radius, depth }) =>
           id="Y" 
           x1="0" 
           x2="0" 
-          y1="${Math.max(0, Math.ceil((radius / Math.max(1, height)) * 15))}%" 
-          y2="${Math.min(100, Math.floor(100 - (radius / Math.max(1, height)) * 15))}%">
+          y1="${Math.max(0, Math.ceil((radius / Math.max(1, height)) * 16))}%" 
+          y2="${Math.min(100, Math.floor(100 - (radius / Math.max(1, height)) * 16))}%">
             <stop offset="0%" stop-color="#0F0" />
             <stop offset="100%" stop-color="#000" />
         </linearGradient>
         <linearGradient 
           id="X" 
-          x1="${Math.max(0, Math.ceil((radius / Math.max(1, width)) * 15))}%" 
-          x2="${Math.min(100, Math.floor(100 - (radius / Math.max(1, width)) * 15))}%"
+          x1="${Math.max(0, Math.ceil((radius / Math.max(1, width)) * 16))}%" 
+          x2="${Math.min(100, Math.floor(100 - (radius / Math.max(1, width)) * 16))}%"
           y1="0" 
           y2="0">
             <stop offset="0%" stop-color="#F00" />
@@ -42,7 +42,7 @@ export const getDisplacementMap = ({ height, width, radius, depth }) =>
     </defs>
 
     <rect x="0" y="0" height="${height}" width="${width}" fill="#808080" />
-    <g filter="blur(2px)">
+    <g filter="blur(3px)">
       <rect x="0" y="0" height="${height}" width="${width}" fill="#000080" />
       <rect x="0" y="0" height="${height}" width="${width}" fill="url(#Y)" class="mix" />
       <rect x="0" y="0" height="${height}" width="${width}" fill="url(#X)" class="mix" />
@@ -54,7 +54,7 @@ export const getDisplacementMap = ({ height, width, radius, depth }) =>
           fill="#808080"
           rx="${radius}"
           ry="${radius}"
-          filter="blur(${depth}px)"
+          filter="blur(${depth * 1.2}px)"
       />
     </g>
 </svg>`);
@@ -64,8 +64,8 @@ export const getDisplacementFilter = ({
   width,
   radius,
   depth,
-  strength = 60,
-  chromaticAberration = 2,
+  strength = 100,
+  chromaticAberration = 3.5,
 }) =>
   'data:image/svg+xml;utf8,' +
   encodeURIComponent(`<svg height="${height}" width="${width}" viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">
@@ -132,19 +132,20 @@ export const getDisplacementFilter = ({
 export function applyLiquidGlass(element, options = {}) {
   if (!element) return;
 
-  const depth = options.depth ?? parseFloat(element.dataset.depth || '8');
-  const strength = options.strength ?? parseFloat(element.dataset.strength || '45');
-  const chromaticAberration = options.chromaticAberration ?? parseFloat(element.dataset.cab || '2');
+  // Strength and chromatic aberration tuned for maximum realistic refraction
+  const depth = options.depth ?? parseFloat(element.dataset.depth || '10');
+  const strength = options.strength ?? parseFloat(element.dataset.strength || '95');
+  const chromaticAberration = options.chromaticAberration ?? parseFloat(element.dataset.cab || '3.5');
   const blur = options.blur ?? parseFloat(element.dataset.blur || '0');
-  const saturate = options.saturate ?? parseFloat(element.dataset.saturate || '1.35');
-  const brightness = options.brightness ?? parseFloat(element.dataset.brightness || '1.08');
+  const saturate = options.saturate ?? parseFloat(element.dataset.saturate || '1.45');
+  const brightness = options.brightness ?? parseFloat(element.dataset.brightness || '1.12');
 
   const rect = element.getBoundingClientRect();
   const width = Math.max(16, Math.round(rect.width));
   const height = Math.max(16, Math.round(rect.height));
 
   const computedStyle = window.getComputedStyle(element);
-  const radius = parseFloat(computedStyle.borderRadius || '20') || 20;
+  const radius = parseFloat(computedStyle.borderRadius || '24') || 24;
 
   if (supportsBackdropFilterUrl) {
     const filterUrl = getDisplacementFilter({
@@ -159,15 +160,17 @@ export function applyLiquidGlass(element, options = {}) {
     element.style.webkitBackdropFilter = element.style.backdropFilter;
   } else {
     // Ultra-polished fallback using multi-layer blur & saturation
-    element.style.backdropFilter = `blur(18px) saturate(${saturate * 1.2}) brightness(${brightness})`;
-    element.style.webkitBackdropFilter = `blur(18px) saturate(${saturate * 1.2}) brightness(${brightness})`;
+    element.style.backdropFilter = `blur(24px) saturate(${saturate * 1.3}) brightness(${brightness})`;
+    element.style.webkitBackdropFilter = `blur(24px) saturate(${saturate * 1.3}) brightness(${brightness})`;
   }
 }
 
 let resizeObserverInstance = null;
 
 export function initLiquidGlass(root = document) {
-  const elements = root.querySelectorAll('.liquid-glass-elem, .liquid-glass-card, .liquid-glass-btn, .liquid-glass-dock, .liquid-glass-panel, .glass-card');
+  const elements = root.querySelectorAll(
+    '.liquid-glass-elem, .liquid-glass-card, .liquid-glass-btn, .liquid-glass-dock, .liquid-glass-panel, .glass-card, .app-header'
+  );
   
   if (!resizeObserverInstance && typeof ResizeObserver !== 'undefined') {
     resizeObserverInstance = new ResizeObserver((entries) => {

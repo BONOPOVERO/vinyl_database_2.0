@@ -47,6 +47,13 @@ class VinylApp {
     this.settingsModal = document.getElementById('settingsModal');
     this.trendsContainer = document.getElementById('trendsContainer');
     this.ambientMesh = document.getElementById('ambientMesh');
+
+    // Menù Restringibile
+    this.collapsibleMenu = document.getElementById('collapsibleMenu');
+    this.toggleMenuBtn = document.getElementById('toggleMenuBtn');
+    this.toggleMenuLabel = document.getElementById('toggleMenuLabel');
+    this.toggleMenuChevron = document.getElementById('toggleMenuChevron');
+    this.isMenuCollapsed = localStorage.getItem('vinyl_vault_menu_collapsed') === 'true';
   }
 
   async init() {
@@ -57,6 +64,7 @@ class VinylApp {
 
     // 2. Collega eventi dell'interfaccia
     this.bindNavigation();
+    this.applyMenuCollapseState();
     this.bindSearchAndSort();
     this.bindScanner();
     this.bindSettings();
@@ -602,6 +610,16 @@ class VinylApp {
       });
     });
 
+    // Tasto Restringi / Espandi Menù
+    if (this.toggleMenuBtn) {
+      this.toggleMenuBtn.addEventListener('click', () => {
+        this.isMenuCollapsed = !this.isMenuCollapsed;
+        localStorage.setItem('vinyl_vault_menu_collapsed', String(this.isMenuCollapsed));
+        this.applyMenuCollapseState();
+        setTimeout(() => initLiquidGlass(), 120);
+      });
+    }
+
     // Filtri pillole categoria ("Tutti", "Personale", "Famiglia")
     const catPills = document.querySelectorAll('.category-pill');
     catPills.forEach(pill => {
@@ -612,6 +630,21 @@ class VinylApp {
         this.render();
       });
     });
+  }
+
+  applyMenuCollapseState() {
+    if (this.collapsibleMenu) {
+      this.collapsibleMenu.classList.toggle('collapsed', this.isMenuCollapsed);
+    }
+    if (this.toggleMenuLabel) {
+      this.toggleMenuLabel.textContent = this.isMenuCollapsed ? 'Filtri' : 'Chiudi';
+    }
+    if (this.toggleMenuChevron) {
+      this.toggleMenuChevron.textContent = this.isMenuCollapsed ? '▾' : '▴';
+    }
+    if (this.toggleMenuBtn) {
+      this.toggleMenuBtn.classList.toggle('is-active', !this.isMenuCollapsed);
+    }
   }
 
   bindSearchAndSort() {
