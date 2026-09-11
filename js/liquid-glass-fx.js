@@ -132,13 +132,13 @@ export const getDisplacementFilter = ({
 export function applyLiquidGlass(element, options = {}) {
   if (!element) return;
 
-  // Strength and chromatic aberration tuned for maximum realistic refraction
-  const depth = options.depth ?? parseFloat(element.dataset.depth || '10');
-  const strength = options.strength ?? parseFloat(element.dataset.strength || '95');
-  const chromaticAberration = options.chromaticAberration ?? parseFloat(element.dataset.cab || '3.5');
+  // Tuned for high-intensity optical refraction & chromatic dispersion (Liquid Glass iOS 26)
+  const depth = options.depth ?? parseFloat(element.dataset.depth || '12');
+  const strength = options.strength ?? parseFloat(element.dataset.strength || '120');
+  const chromaticAberration = options.chromaticAberration ?? parseFloat(element.dataset.cab || '4.5');
   const blur = options.blur ?? parseFloat(element.dataset.blur || '0');
-  const saturate = options.saturate ?? parseFloat(element.dataset.saturate || '1.45');
-  const brightness = options.brightness ?? parseFloat(element.dataset.brightness || '1.12');
+  const saturate = options.saturate ?? parseFloat(element.dataset.saturate || '1.85');
+  const brightness = options.brightness ?? parseFloat(element.dataset.brightness || '1.18');
 
   const rect = element.getBoundingClientRect();
   const width = Math.max(16, Math.round(rect.width));
@@ -160,8 +160,8 @@ export function applyLiquidGlass(element, options = {}) {
     element.style.webkitBackdropFilter = element.style.backdropFilter;
   } else {
     // Ultra-polished fallback using multi-layer blur & saturation
-    element.style.backdropFilter = `blur(24px) saturate(${saturate * 1.3}) brightness(${brightness})`;
-    element.style.webkitBackdropFilter = `blur(24px) saturate(${saturate * 1.3}) brightness(${brightness})`;
+    element.style.backdropFilter = `blur(28px) saturate(${saturate * 1.35}) brightness(${brightness})`;
+    element.style.webkitBackdropFilter = `blur(28px) saturate(${saturate * 1.35}) brightness(${brightness})`;
   }
 }
 

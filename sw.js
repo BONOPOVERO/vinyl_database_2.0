@@ -1,6 +1,6 @@
 // sw.js - Service Worker per funzionamento 100% Offline (PWA)
 
-const CACHE_NAME = 'vinyl-vault-liquid-v4';
+const CACHE_NAME = 'vinyl-vault-liquid-v8';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',

@@ -653,6 +653,26 @@ class VinylApp {
         this.render();
       });
     });
+
+    // Toggle Barra Compatta / Minimalista
+    const toggleCompactBtn = document.getElementById('toggleCompactBtn');
+    const islandCapsule = document.querySelector('.island-capsule');
+    
+    // Ripristina preferenza salvata (o default compatta su schermi piccoli)
+    const isSavedCompact = localStorage.getItem('vinyl_vault_menu_compact') === 'true';
+    if (islandCapsule && isSavedCompact) {
+      islandCapsule.classList.add('is-compact');
+      if (toggleCompactBtn) toggleCompactBtn.classList.add('is-active');
+    }
+
+    if (toggleCompactBtn && islandCapsule) {
+      toggleCompactBtn.addEventListener('click', () => {
+        const isNowCompact = islandCapsule.classList.toggle('is-compact');
+        toggleCompactBtn.classList.toggle('is-active', isNowCompact);
+        localStorage.setItem('vinyl_vault_menu_compact', isNowCompact);
+        setTimeout(() => initLiquidGlass(), 60);
+      });
+    }
   }
 
   bindSearchAndSort() {
