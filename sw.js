@@ -1,6 +1,6 @@
 // sw.js - Service Worker per funzionamento 100% Offline (PWA)
 
-const CACHE_NAME = 'vinyl-vault-liquid-v1';
+const CACHE_NAME = 'vinyl-vault-liquid-v4';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -10,9 +10,8 @@ const ASSETS_TO_CACHE = [
   './data/records.json',
   './js/app.js',
   './js/store.js',
-  './js/liquid-carousel.js',
-  './js/details-sheet.js',
-  './js/discogs-engine.js'
+  './js/discogs-engine.js',
+  './js/liquid-glass-fx.js'
 ];
 
 self.addEventListener('install', (e) => {
@@ -35,7 +34,7 @@ self.addEventListener('fetch', (e) => {
   if (e.request.method !== 'GET') return;
   const url = new URL(e.request.url);
 
-  // Non mettere in cache le chiamate esterne Discogs
+  // Non mettere in cache le chiamate esterne dinamiche
   if (url.hostname.includes('discogs.com')) return;
 
   // Cache-First per immagini locali ed esterne (cover)

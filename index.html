@@ -7,7 +7,7 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="description" content="Collezione Vinili di Lorenzo Bona — Liquid Glass 3D Experience">
+  <meta name="description" content="Vinyl Vault — Collezione Vinili di Lorenzo Bona con Liquid Glass FX, Wishlist e Storico Prezzi">
 
   <title>Vinyl Vault — Liquid Glass Experience</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -22,7 +22,7 @@
 </head>
 <body>
 
-  <!-- Dynamic Ambient Mesh & Refractive Lights -->
+  <!-- Sfondo Dinamico Ambient & Rifrazioni Luminose -->
   <div class="ambient-background" id="ambientMesh">
     <div class="glow-orb orb-primary"></div>
     <div class="glow-orb orb-secondary"></div>
@@ -30,16 +30,15 @@
     <div class="glass-dust-layer"></div>
   </div>
 
-  <!-- Mobile Overlay for 3D Wheel Drawer -->
-  <div id="mobile-overlay" class="mobile-overlay"></div>
-
-  <!-- App Wrapper -->
+  <!-- Contenitore Principale dell'Applicazione -->
   <div class="app-viewport">
 
-    <!-- Top Glass Header & Search -->
-    <header class="glass-header">
+    <!-- Top Bar Liquid Glass con Navigazione, Ricerca & Azioni -->
+    <header class="app-header liquid-glass-panel">
+      
+      <!-- Brand & Icona Vinile -->
       <div class="header-brand">
-        <div class="brand-disc-icon">
+        <div class="brand-disc-icon" title="Vinyl Vault">
           <div class="disc-spindle"></div>
         </div>
         <div class="brand-text">
@@ -48,8 +47,22 @@
         </div>
       </div>
 
-      <div class="header-search-container">
-        <div class="glass-search-box">
+      <!-- Navigazione Principale a Schede (Collezione, Wishlist, Trend) -->
+      <nav class="header-nav-tabs">
+        <button type="button" class="nav-tab-btn active" data-view="collection">
+          <span class="tab-icon">💿</span> Collezione
+        </button>
+        <button type="button" class="nav-tab-btn" data-view="wishlist">
+          <span class="tab-icon">⭐</span> Wishlist
+        </button>
+        <button type="button" class="nav-tab-btn" data-view="trends">
+          <span class="tab-icon">📈</span> Trend & Valore
+        </button>
+      </nav>
+
+      <!-- Barra di Ricerca & Ordinamento -->
+      <div class="header-search-bar">
+        <div class="search-input-wrap liquid-glass-elem">
           <svg class="search-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5">
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -57,93 +70,108 @@
           <input type="text" id="searchInput" placeholder="Cerca artista, album, matrice..." autocomplete="off" spellcheck="false">
           <button id="searchClear" class="search-clear-btn" aria-label="Cancella ricerca" style="display: none;">&times;</button>
         </div>
+
+        <div class="sort-select-wrap liquid-glass-elem">
+          <select id="sortSelect" title="Ordina per">
+            <option value="artist">Artista (A-Z)</option>
+            <option value="title">Titolo (A-Z)</option>
+            <option value="value_desc">Valore più alto</option>
+            <option value="value_asc">Valore più basso</option>
+            <option value="year_desc">Anno (Più recente)</option>
+            <option value="year_asc">Anno (Meno recente)</option>
+          </select>
+        </div>
       </div>
 
+      <!-- Pulsanti Azione (Aggiungi & Impostazioni) -->
       <div class="header-actions">
-        <button class="toggle-wheel-btn" id="toggle-wheel-btn" title="Elenco Album 3D">
-          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2">
-            <line x1="8" y1="6" x2="21" y2="6"></line>
-            <line x1="8" y1="12" x2="21" y2="12"></line>
-            <line x1="8" y1="18" x2="21" y2="18"></line>
-            <line x1="3" y1="6" x2="3.01" y2="6"></line>
-            <line x1="3" y1="12" x2="3.01" y2="12"></line>
-            <line x1="3" y1="18" x2="3.01" y2="18"></line>
-          </svg>
-          <span class="btn-label">Titoli</span>
-        </button>
-
-        <button class="glass-icon-btn" id="openScannerBtn" title="Scansiona Barcode o Matrice">
+        <button type="button" class="liquid-glass-btn btn-primary" id="openScannerBtn" title="Scansiona Barcode o Matrice">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2">
             <path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2"></path>
             <line x1="7" y1="12" x2="17" y2="12"></line>
           </svg>
-          <span class="btn-label">Scanner</span>
+          <span class="btn-text">+ Aggiungi</span>
+        </button>
+
+        <button type="button" class="liquid-glass-btn btn-icon" id="openSettingsBtn" title="Impostazioni Discogs API & Wantlist">
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
         </button>
       </div>
+
     </header>
 
-    <!-- Main Experience: Central Liquid Glass Showcase -->
-    <main class="main-experience">
-      <div class="liquid-stage-wrapper" id="liquid-stage-wrapper">
-        <!-- Rendered dynamically by liquid-carousel.js -->
+    <!-- Barra Categorie Secondarie (Pillole Liquid Glass) -->
+    <div class="category-subdock" id="categoryDock">
+      <button type="button" class="category-pill active" data-category="all">
+        <span class="pill-dot"></span> Tutti i Vinili
+      </button>
+      <button type="button" class="category-pill" data-category="personal">
+        <span class="pill-dot personal-dot"></span> Personali
+      </button>
+      <button type="button" class="category-pill" data-category="family">
+        <span class="pill-dot family-dot"></span> Famiglia
+      </button>
+    </div>
+
+    <!-- Contenuto Principale: Griglia Vinili o Vista Trends -->
+    <main class="main-content">
+      
+      <!-- Griglia Vinili -->
+      <section class="records-grid" id="recordsGrid">
+        <!-- Render dinamico da js/app.js -->
+      </section>
+
+      <!-- Stato Vuoto -->
+      <div class="empty-state" id="emptyState" style="display: none;">
+        <div class="empty-icon-wrap">💿</div>
+        <h3 class="empty-title">Nessun vinile trovato</h3>
+        <p class="empty-text">Prova a modificare i filtri di ricerca o aggiungi un nuovo disco alla tua collezione.</p>
       </div>
+
+      <!-- Dashboard Trend Prezzi & Valore -->
+      <section class="trends-container" id="trendsContainer" style="display: none;">
+        <!-- Render dinamico da js/app.js -->
+      </section>
+
     </main>
 
-    <!-- Overlay scura e sfocata per il cassetto mobile -->
-    <div id="mobile-overlay" class="mobile-overlay"></div>
-
-    <!-- Floating 3D Curved Wheel (Desktop & Mobile Drawer) -->
-    <aside id="option-wheel" class="wheel-container">
-      <!-- Rendered dynamically by liquid-carousel.js -->
-    </aside>
-
-    <!-- Floating Liquid Glass Capsule Dock -->
-    <nav class="floating-capsule-dock" id="floatingDock">
-      <div class="dock-segment categories-segment">
-        <button class="dock-pill active" data-category="all">
-          <span class="pill-dot"></span> Tutti
-        </button>
-        <button class="dock-pill" data-category="personal">
-          <span class="pill-dot personal-dot"></span> Personale
-        </button>
-        <button class="dock-pill" data-category="wishlist">
-          <span class="pill-dot wishlist-dot"></span> Wishlist
-        </button>
-        <button class="dock-pill" data-category="family">
-          <span class="pill-dot family-dot"></span> Famiglia
-        </button>
+    <!-- Floating Liquid Glass Capsule Dock con Statistiche -->
+    <footer class="floating-capsule-dock liquid-glass-dock" id="floatingDock">
+      <div class="dock-stat-item">
+        <span class="stat-num" id="dockTotalCount">0</span>
+        <span class="stat-unit">vinili in collezione</span>
       </div>
-
       <div class="dock-separator"></div>
-
-      <div class="dock-segment stats-segment" title="Totale vinili e stima economica">
-        <div class="dock-stat-item">
-          <span class="stat-num" id="dockTotalCount">0</span>
-          <span class="stat-unit">vinili</span>
-        </div>
-        <div class="dock-stat-item">
-          <span class="stat-num stat-val" id="dockTotalValue">€ 0</span>
-          <span class="stat-unit">stima</span>
-        </div>
+      <div class="dock-stat-item">
+        <span class="stat-num stat-val" id="dockTotalValue">€ 0</span>
+        <span class="stat-unit">stima totale</span>
       </div>
-    </nav>
+    </footer>
 
   </div>
 
-  <!-- Barcode & Matrix Scanner Modal -->
+  <!-- Modale Scheda di Dettaglio & Ispezione Vinile -->
+  <dialog class="liquid-glass-modal" id="detailModal">
+    <!-- Popolato dinamicamente da app.js -->
+  </dialog>
+
+  <!-- Modale Scanner Barcode & Matrice Runout -->
   <dialog class="liquid-glass-modal" id="scannerModal">
-    <div class="modal-card">
+    <div class="modal-card liquid-glass-panel">
       <div class="modal-header">
         <div class="modal-title-group">
-          <h3 class="modal-title">Scanner Vinili & Valutazione</h3>
-          <span class="modal-subtitle">Riconoscimento Barcode & Ricerca Matrice Runout</span>
+          <h3 class="modal-title">Aggiungi Vinile & Valutazione</h3>
+          <span class="modal-subtitle">Riconoscimento Barcode, Matrice Runout o Ricerca Discogs</span>
         </div>
-        <button class="modal-close-btn" id="closeScannerModal" aria-label="Chiudi">&times;</button>
+        <button type="button" class="modal-close-icon" id="closeScannerModal" aria-label="Chiudi">&times;</button>
       </div>
 
       <div class="modal-body">
         <!-- Live Camera Scanner -->
-        <div class="scanner-camera-wrapper">
+        <div class="scanner-camera-wrapper liquid-glass-elem">
           <video id="scannerVideo" playsinline muted></video>
           <div class="scanner-laser-overlay">
             <div class="laser-beam"></div>
@@ -152,16 +180,16 @@
             <div class="corner bottom-left"></div>
             <div class="corner bottom-right"></div>
           </div>
-          <div class="scanner-hint">Inquadra il codice a barre del vinile</div>
+          <div class="scanner-hint">Inquadra il codice a barre con la fotocamera</div>
         </div>
 
-        <!-- Manual Search -->
+        <!-- Ricerca Manuale -->
         <div class="scanner-manual-grid">
           <div class="manual-input-box">
-            <label for="manualBarcodeVal">Codice a Barre (EAN/UPC)</label>
+            <label for="manualBarcodeVal">Codice a Barre (EAN / UPC)</label>
             <div class="input-with-action">
               <input type="text" id="manualBarcodeVal" placeholder="Es. 075678123425">
-              <button id="manualBarcodeBtn" class="glass-btn-primary">Cerca Barcode</button>
+              <button type="button" id="manualBarcodeBtn" class="liquid-glass-btn btn-secondary">Cerca Barcode</button>
             </div>
           </div>
 
@@ -169,18 +197,57 @@
             <label for="manualMatrixVal">Codice di Matrice (Runout Groove)</label>
             <div class="input-with-action">
               <input type="text" id="manualMatrixVal" placeholder="Es. SD 19129-A / STERLING">
-              <button id="manualMatrixBtn" class="glass-btn-primary">Cerca Matrice</button>
+              <button type="button" id="manualMatrixBtn" class="liquid-glass-btn btn-secondary">Cerca Matrice</button>
             </div>
           </div>
         </div>
 
-        <!-- Result Box -->
+        <!-- Box Risultati -->
         <div class="scanner-result-box" id="scannerResult"></div>
       </div>
     </div>
   </dialog>
 
-  <!-- Module Script -->
+  <!-- Modale Impostazioni API & Trucco Wantlist -->
+  <dialog class="liquid-glass-modal" id="settingsModal">
+    <div class="modal-card liquid-glass-panel settings-card">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <h3 class="modal-title">Configurazione API Discogs</h3>
+          <span class="modal-subtitle">Abilita il trucco della Wantlist e le quotazioni automatiche</span>
+        </div>
+        <button type="button" class="modal-close-icon" id="closeSettingsModal" aria-label="Chiudi">&times;</button>
+      </div>
+
+      <div class="modal-body settings-body">
+        <div class="settings-hint-box liquid-glass-elem">
+          <span class="hint-icon">💡</span>
+          <p>
+            <b>Come funziona il trucco:</b> Quando richiedi la stima di un vinile, l'app lo inserisce temporaneamente nella tua <b>Wantlist Discogs</b> per catturare il valore di mercato e le quotazioni ufficiali calibrate sulle condizioni (Mint, VG+, VG). Subito dopo la lettura, il vinile viene <b>rimosso all'istante</b> dalla tua Wantlist, mantenendo il tuo profilo perfettamente pulito!
+          </p>
+        </div>
+
+        <div class="form-group">
+          <label for="discogsUsernameInput">Username Discogs</label>
+          <input type="text" id="discogsUsernameInput" placeholder="Es. il_tuo_username" class="liquid-glass-elem">
+        </div>
+
+        <div class="form-group">
+          <label for="discogsTokenInput">Personal Access Token Discogs</label>
+          <input type="password" id="discogsTokenInput" placeholder="Inserisci il tuo Personal Token Discogs..." class="liquid-glass-elem">
+          <small class="form-note">Puoi generare il token nelle impostazioni sviluppatore del tuo account Discogs (gratuito).</small>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="liquid-glass-btn btn-primary" id="saveSettingsBtn">
+            💾 Salva Impostazioni
+          </button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- Script Modulare -->
   <script type="module" src="js/app.js"></script>
 </body>
 </html>
