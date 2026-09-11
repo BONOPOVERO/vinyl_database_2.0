@@ -1247,9 +1247,9 @@ function applyFiltering() {
     if (activeCategory !== 'ALL') {
       const statusStr = (vinile.stato_catalogo || '').toLowerCase();
       const targetCat = activeCategory.toLowerCase();
+      if ((targetCat === 'personal' || targetCat === 'personale') && (!statusStr.includes('personale') && !statusStr.includes('personal'))) return false;
       if (targetCat === 'wishlist' && !statusStr.includes('wish')) return false;
-      if (targetCat === 'personale' && !statusStr.includes('personale')) return false;
-      if (targetCat === 'eredità' && (!statusStr.includes('eredit') && !statusStr.includes('eredita'))) return false;
+      if ((targetCat === 'family' || targetCat === 'eredità' || targetCat === 'eredita') && (!statusStr.includes('eredit') && !statusStr.includes('eredita') && !statusStr.includes('famigli') && !statusStr.includes('family'))) return false;
       if (targetCat === 'vendita' && (!statusStr.includes('vendita') && !statusStr.includes('scambio'))) return false;
     }
 
@@ -1454,6 +1454,95 @@ function updateCenterContent(index) {
       const valData = calculateVinylValue(vinile);
       const estimatedValue = valData.total;
 
+      const goldmineMap = { '10': 'Mint (M)', '9': 'Near Mint (NM)', '8': 'Very Good Plus (VG+)', '7': 'Very Good (VG)', '6': 'Good Plus (G+)', '5': 'Good (G)', '4': 'Fair (F)', '3': 'Poor (P)' };
+      const discoRating = goldmineMap[String(vinile.stato_disco)] || (vinile.stato_disco ? `Grado ${vinile.stato_disco}` : 'Non specificato');
+      const coverRating = goldmineMap[String(vinile.stato_copertina)] || (vinile.stato_copertina ? `Grado ${vinile.stato_copertina}` : 'Non specificato');
+
+      const identArray = Array.isArray(vinile.identifiers) ? vinile.identifiers : [];
+      const matrixVariants = identArray.filter(i => (i.type || '').toLowerCase().includes('matrix') || (i.type || '').toLowerCase().includes('runout'));
+      const barcodeVal = sv.codice_a_barre || identArray.find(i => (i.type || '').toLowerCase().includes('barcode'))?.value || 'Non presente / Vintage';
+      const matrixVal = sv.codice_matrice || (matrixVariants[0] ? matrixVariants[0].value : '') || '—';
+
+      const specsHTML = `
+        <div class="specs-card-container" style="margin-top: 1.2rem; display: flex; flex-direction: column; gap: 14px;">
+          <!-- BOX VALORE DISCOGS LIVE -->
+          <div id="discogs-live-box" class="discogs-live-box" style="background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 14px; padding: 12px 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+              <span style="font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.5px; color: #94a3b8; font-weight: 700;">Valore di Mercato Discogs</span>
+              <button onclick="window.forceRefreshDiscogsPrice('${vinile.id}')" style="background: rgba(16,185,129,0.15); border: 1px solid rgba(16,185,129,0.35); color: #34d399; padding: 3px 10px; border-radius: 12px; cursor:pointer; font-size: 0.75rem; font-weight: 700;" title="Ricalcola Prezzo">🔄 Verifica Live</button>
+            </div>
+            <div style="color: #34d399; font-weight: 800; font-size: 1.5rem; margin-top: 4px;">
+              € ${estimatedValue ? parseFloat(estimatedValue).toFixed(2) : '—'}
+            </div>
+            <div style="font-size: 0.72rem; color: #64748b; margin-top: 2px;">Stima ponderata in base alla gradazione Goldmine</div>
+          </div>
+
+          <!-- STATO DI CONSERVAZIONE GOLDMINE -->
+          <div class="specs-section-box" style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 14px;">
+            <div class="section-title" style="font-size: 0.88rem; font-weight: 700; color: #fff; margin-bottom: 10px;">✨ Stato di Conservazione (Goldmine)</div>
+            <div class="specs-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <div class="spec-item" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 8px 12px;">
+                <span class="spec-label" style="font-size: 0.68rem; text-transform: uppercase; color: #94a3b8;">Disco (Media)</span>
+                <span class="spec-value" style="display: block; font-weight: 700; color: #fbbf24; font-size: 0.88rem; margin-top: 2px;">${discoRating}</span>
+              </div>
+              <div class="spec-item" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 8px 12px;">
+                <span class="spec-label" style="font-size: 0.68rem; text-transform: uppercase; color: #94a3b8;">Cover (Sleeve)</span>
+                <span class="spec-value" style="display: block; font-weight: 700; color: #fbbf24; font-size: 0.88rem; margin-top: 2px;">${coverRating}</span>
+              </div>
+            </div>
+            ${sv.note_stato ? `<div style="margin-top: 8px; font-size: 0.8rem; color: #cbd5e1; background: rgba(0,0,0,0.25); padding: 8px 12px; border-radius: 8px;"><strong>Note:</strong> ${sv.note_stato}</div>` : ''}
+          </div>
+
+          <!-- SPECIFICHE DI STAMPA -->
+          <div class="specs-section-box" style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 14px;">
+            <div class="section-title" style="font-size: 0.88rem; font-weight: 700; color: #fff; margin-bottom: 10px;">⚙️ Dettagli Stampa & Supporto</div>
+            <div class="specs-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <div class="spec-item" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 8px 12px;">
+                <span class="spec-label" style="font-size: 0.68rem; text-transform: uppercase; color: #94a3b8;">Etichetta</span>
+                <span class="spec-value" style="display: block; font-weight: 700; color: #fff; font-size: 0.85rem; margin-top: 2px;">${sv.etichetta || (Array.isArray(vinile.labels) && vinile.labels[0] ? vinile.labels[0].name : '—')}</span>
+              </div>
+              <div class="spec-item" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 8px 12px;">
+                <span class="spec-label" style="font-size: 0.68rem; text-transform: uppercase; color: #94a3b8;">N° Catalogo</span>
+                <span class="spec-value" style="display: block; font-weight: 700; color: #fff; font-size: 0.85rem; margin-top: 2px;">${sv.catalog_number || (Array.isArray(vinile.labels) && vinile.labels[0] ? vinile.labels[0].catno : '—')}</span>
+              </div>
+              <div class="spec-item" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 8px 12px;">
+                <span class="spec-label" style="font-size: 0.68rem; text-transform: uppercase; color: #94a3b8;">Paese</span>
+                <span class="spec-value" style="display: block; font-weight: 700; color: #fff; font-size: 0.85rem; margin-top: 2px;">${sv.origine || vinile.country || '—'}</span>
+              </div>
+              <div class="spec-item" style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 8px 12px;">
+                <span class="spec-label" style="font-size: 0.68rem; text-transform: uppercase; color: #94a3b8;">Velocità / Giri</span>
+                <span class="spec-value" style="display: block; font-weight: 700; color: #fff; font-size: 0.85rem; margin-top: 2px;">${sv.velocita || '33 ⅓ RPM'}</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- NUMISMATICA: BARCODE & MATRICE / RUNOUT -->
+          <div class="specs-section-box" style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 14px;">
+            <div class="section-title" style="font-size: 0.88rem; font-weight: 700; color: #fff; margin-bottom: 10px;">🔍 Barcode & Matrice sulla Cera</div>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 8px 12px;">
+                <span style="font-size: 0.68rem; text-transform: uppercase; color: #94a3b8; display: block;">Codice a Barre (Barcode / EAN)</span>
+                <span style="font-family: var(--font-mono, monospace); font-size: 0.85rem; color: #fff;">${barcodeVal}</span>
+              </div>
+              <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 8px 12px;">
+                <span style="font-size: 0.68rem; text-transform: uppercase; color: #94a3b8; display: block; margin-bottom: 4px;">Incisione Matrice (Matrix / Runout)</span>
+                ${matrixVariants.length > 0 ? `
+                  <div style="display: flex; flex-direction: column; gap: 4px;">
+                    ${matrixVariants.map(m => `
+                      <div style="font-size: 0.78rem; font-family: var(--font-mono, monospace); color: #38bdf8; background: rgba(56,189,248,0.1); padding: 3px 8px; border-radius: 4px;">
+                        <span style="color: #cbd5e1;">${m.description || 'Runout'}:</span> ${m.value}
+                      </div>
+                    `).join('')}
+                  </div>
+                ` : `
+                  <span style="font-family: var(--font-mono, monospace); font-size: 0.85rem; color: #38bdf8;">${matrixVal}</span>
+                `}
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+
       centerContent.safeInnerHTML = `
         <div class="vinyl-hero gallery-stage">
           <!-- FARETTO DI LUCE DALL'ALTO (TOP SPOTLIGHT) -->
@@ -1479,6 +1568,7 @@ function updateCenterContent(index) {
           </div>
         </div>
 
+        ${specsHTML}
         ${tracceHTML}
         ${fotoHTML}
       `;
@@ -1644,13 +1734,18 @@ if (wheelContainer) {
   }, { passive: true });
 }
 
-// GESTIONE CHIPS CATEGORIA DENTRO MODAL FILTRI
-document.querySelectorAll('.category-chips .chip-btn').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    document.querySelectorAll('.category-chips .chip-btn').forEach(b => b.classList.remove('active'));
-    e.target.classList.add('active');
-    activeCategory = e.target.getAttribute('data-category');
+// GESTIONE CHIPS CATEGORIA (HEADER & MODAL FILTRI)
+document.addEventListener('click', (e) => {
+  const chipBtn = e.target.closest('.category-chips .chip-btn');
+  if (!chipBtn) return;
+  const chosenCat = chipBtn.getAttribute('data-category');
+  if (!chosenCat) return;
+  activeCategory = chosenCat;
+  document.querySelectorAll('.category-chips .chip-btn').forEach(b => {
+    b.classList.toggle('active', b.getAttribute('data-category') === chosenCat);
   });
+  applyFiltering();
+  selectIndex(0);
 });
 
 // SEARCH EVENT LISTENERS

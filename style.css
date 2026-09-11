@@ -232,12 +232,26 @@ html, body {
   cursor: pointer;
 }
 
-/* CATEGORY CHIPS DENTRO IL MODAL FILTRI */
-.modal-category-chips {
+/* CATEGORY CHIPS DENTRO HEADER E MODAL FILTRI */
+.modal-category-chips, .header-category-chips {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
   margin-top: 4px;
+}
+
+.header-category-chips {
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  overflow-x: auto;
+  padding: 2px 0 4px;
+}
+
+.header-category-chips .chip-btn {
+  padding: 4px 12px;
+  font-size: 0.78rem;
+  white-space: nowrap;
 }
 
 .chip-btn {
