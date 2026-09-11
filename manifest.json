@@ -1,15 +1,15 @@
 {
-  "name": "Catalogazione Vinili 3D",
-  "short_name": "Vinili 3D",
+  "name": "Vinyl Vault - Liquid Glass Experience",
+  "short_name": "VinylVault",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#08070d",
-  "theme_color": "#5227ff",
-  "description": "App di catalogazione vinili 3D & Liquid Glass",
+  "background_color": "#06070a",
+  "theme_color": "#7928ca",
+  "description": "Catalogo e Valutazione Vinili - Esperienza Liquid Glass Fluida",
   "icons": [
     {
-      "src": "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><circle cx='256' cy='256' r='240' fill='%23111115'/><circle cx='256' cy='256' r='80' fill='%23ff9ffc'/><circle cx='256' cy='256' r='20' fill='%235227ff'/></svg>",
-      "sizes": "512x512",
+      "src": "favicon.svg",
+      "sizes": "192x192 512x512",
       "type": "image/svg+xml",
       "purpose": "any maskable"
     }
